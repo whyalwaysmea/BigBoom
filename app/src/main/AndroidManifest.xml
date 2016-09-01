@@ -2,12 +2,29 @@
 <manifest package="com.whyalwasymea.bigboom"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--
+        如果项目有混淆，则在proguard中添加
+           -keepnames class com.mypackage.MyGlideModule
+            # or more generally:
+            #-keep public class * implements com.whyalwasymea.bigboom.imageloader.glide.CustomGlideModule
+        -->
+        <meta-data
+            android:name="com.whyalwasymea.bigboom.imageloader.glide.CustomGlideModule"
+            android:value="GlideModule"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
