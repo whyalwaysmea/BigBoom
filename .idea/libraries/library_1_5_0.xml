@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="library-1.5.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.zhaokaiqiang.klog/library/1.5.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.zhaokaiqiang.klog/library/1.5.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.zhaokaiqiang.klog/library/1.5.0/e76b4c7567ef627f823e1f9534ad4c91c296c33d/library-1.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

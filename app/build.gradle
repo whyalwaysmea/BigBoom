@@ -47,4 +47,7 @@ dependencies {
     // butterknife
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    // log
+    compile 'com.github.zhaokaiqiang.klog:library:1.5.0'
 }
