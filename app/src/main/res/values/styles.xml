@@ -1,11 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--这是App的主要颜色，用于工具栏背景-->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <!--这是App深色调的基本颜色，主要用于通知栏背景-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--这是文本的主要颜色-->
         <item name="colorAccent">@color/colorAccent</item>
+        <!--分割线颜色-->
+        <item name="android:divider">@color/divider</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
 
 </resources>
