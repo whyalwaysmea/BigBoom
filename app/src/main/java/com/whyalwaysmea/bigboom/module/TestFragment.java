@@ -18,16 +18,16 @@ import butterknife.ButterKnife;
  * Created by Long
  * on 2016/9/2.
  */
-public class MovieFragment extends Fragment {
+public class TestFragment extends Fragment {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    public static MovieFragment newInstance() {
+    public static TestFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        MovieFragment fragment = new MovieFragment();
+        TestFragment fragment = new TestFragment();
         fragment.setArguments(args);
         return fragment;
     }
