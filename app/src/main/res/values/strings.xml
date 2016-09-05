@@ -3,4 +3,14 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <array name="movie_titles">
+        <item>正在热映</item>
+        <item>将要上映</item>
+        <item>新片榜</item>
+        <item>口碑榜</item>
+        <item>TOP250</item>
+        <item>北美票房榜单</item>
+    </array>
 </resources>

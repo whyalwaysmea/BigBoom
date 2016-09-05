@@ -26,7 +26,7 @@
             android:value="GlideModule"/>
 
         <activity android:name="com.whyalwaysmea.bigboom.MainActivity"
-            android:theme="@style/BaseAppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

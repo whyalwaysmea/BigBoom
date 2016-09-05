@@ -12,21 +12,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.utils.SystemBarTintManager;
 
 /**
  * Created by Long
- * on 2016/9/2.
+ * on 2016/9/5.
  */
-public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V>> extends AppCompatActivity implements BaseView{
-
-    protected P mPresenter;
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected Toolbar mToolbar;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,32 +30,16 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
         init();
     }
 
-
-    private void init() {
-        mPresenter = createPresenter(this);
+    protected void init() {
         initView();
         initData();
         initSystemBar();
     }
 
-
-    protected void initSystemBar() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                setTranslucentStatus(this, true);
-            }
-            SystemBarTintManager tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(false);
-            // 使用颜色资源
-            tintManager.setStatusBarTintResource(getStatusColor());
-        }
-    }
-
-    protected abstract P createPresenter(BaseView view);
-
     protected abstract void initData();
 
     protected abstract void initView();
+
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -73,7 +53,6 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
 
     }
 
-
     protected void addFragmentToStack(int containerViewId, Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(containerViewId, fragment);
@@ -81,21 +60,18 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
     }
 
 
-    @Override
-    public void showLoading() {
-
+    protected void initSystemBar() {
+        System.out.println("initSystemBar");
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                setTranslucentStatus(this, true);
+            }
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(false);
+            // 使用颜色资源
+            tintManager.setStatusBarTintResource(getStatusColor());
+        }
     }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showToast(String msg) {
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-    }
-
 
     protected int getStatusColor() {
         return R.color.colorPrimaryDark;
@@ -115,11 +91,5 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
         win.setAttributes(winParams);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(mPresenter != null) {
-            mPresenter.onDestroy();
-        }
-    }
+
 }
