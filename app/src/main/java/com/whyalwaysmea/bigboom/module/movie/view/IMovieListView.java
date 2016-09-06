@@ -1,6 +1,7 @@
 package com.whyalwaysmea.bigboom.module.movie.view;
 
 import com.whyalwaysmea.bigboom.base.BaseView;
+import com.whyalwaysmea.bigboom.bean.Movie;
 
 /**
  * Created by Long
@@ -8,8 +9,8 @@ import com.whyalwaysmea.bigboom.base.BaseView;
  */
 public interface IMovieListView extends BaseView{
 
-    void refreshData();
+    void refreshData(Movie movie);
 
-    void addData();
+    void addData(Movie movie);
 
 }

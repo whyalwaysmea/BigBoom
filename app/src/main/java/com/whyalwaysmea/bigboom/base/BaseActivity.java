@@ -67,7 +67,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 setTranslucentStatus(this, true);
             }
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(false);
+            tintManager.setStatusBarTintEnabled(true);
             // 使用颜色资源
             tintManager.setStatusBarTintResource(getStatusColor());
         }
