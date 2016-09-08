@@ -9,8 +9,6 @@ import com.whyalwaysmea.bigboom.bean.Movie;
  */
 public interface IMovieListView extends BaseView{
 
-    void refreshData(Movie movie);
-
-    void addData(Movie movie);
+    void setData(Movie movie);
 
 }

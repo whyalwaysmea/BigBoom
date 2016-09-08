@@ -10,5 +10,5 @@ import com.whyalwaysmea.bigboom.bean.Movie;
  */
 public interface IMovieListModel extends BaseModel{
 
-    void load(OnLoadCompleteListener<Movie> listener);
+    void load(int start,int count, OnLoadCompleteListener<Movie> listener);
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="toolbar" type="id"/>
+    <item name="toolbar_title" type="id" />
+    <item name="recyclerview" type="id" />
+    <item name="swipeRefreshLayout" type="id" />
+    <item name="pullToRefreshRecyclerView" type="id" />
+</resources>

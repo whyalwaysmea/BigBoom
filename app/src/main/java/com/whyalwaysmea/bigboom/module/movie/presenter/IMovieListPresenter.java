@@ -5,5 +5,5 @@ package com.whyalwaysmea.bigboom.module.movie.presenter;
  * on 2016/9/5.
  */
 public interface IMovieListPresenter {
-    void load();
+    void load(int start, int count);
 }

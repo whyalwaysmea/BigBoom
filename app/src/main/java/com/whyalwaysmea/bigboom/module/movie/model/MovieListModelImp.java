@@ -20,9 +20,9 @@ public class MovieListModelImp implements IMovieListModel {
     private Subscription mSubscribe;
 
     @Override
-    public void load(OnLoadCompleteListener<Movie> listener) {
+    public void load(int start, int count, OnLoadCompleteListener<Movie> listener) {
         ApiManager apiManager = HttpMethods.createService(Constants.URL.HOT_MOVIE, ApiManager.class);
-        mSubscribe = apiManager.getMovie(0, 50)
+        mSubscribe = apiManager.getMovie(start, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Movie>() {

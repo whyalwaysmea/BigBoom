@@ -25,20 +25,20 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
 
 
     @Override
-    public void load() {
+    public void load(int start, int count) {
         if(!NetworkUtils.isConnected(App.getApplication())) {
             mView.hideLoading();
             mView.showToast(App.getApplication().getResources().getString(R.string.no_network));
         } else {
             mView.showLoading();
-            mMovieListModel.load(this);
+            mMovieListModel.load(start, count, this);
         }
     }
 
     @Override
     public void onLoadSussess(Movie movie) {
         mView.hideLoading();
-        mView.refreshData(movie);
+        mView.setData(movie);
     }
 
     @Override

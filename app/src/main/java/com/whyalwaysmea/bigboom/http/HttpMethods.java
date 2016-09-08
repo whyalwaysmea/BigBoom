@@ -104,6 +104,8 @@ public class HttpMethods {
         public Response intercept(Chain chain) throws IOException {
 
             final Request request = chain.request();
+            KLog.e("URL",request.url().toString());
+
             final Response response = chain.proceed(request);
 
             final ResponseBody responseBody = response.body();

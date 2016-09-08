@@ -13,10 +13,6 @@ import android.view.ViewGroup;
 import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseFragment;
-import com.whyalwaysmea.bigboom.base.BaseView;
-import com.whyalwaysmea.bigboom.base.MvpFragment;
-import com.whyalwaysmea.bigboom.module.movie.presenter.MovieListPresenterImp;
-import com.whyalwaysmea.bigboom.module.movie.view.IMovieListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +23,7 @@ import butterknife.BindView;
  * Created by Long
  * on 2016/9/5.
  */
-public class MovieFragment extends MvpFragment<IMovieListView, MovieListPresenterImp> {
+public class MovieFragment extends BaseFragment {
 
 
     @BindView(R.id.toolbar)
@@ -55,11 +51,6 @@ public class MovieFragment extends MvpFragment<IMovieListView, MovieListPresente
         mRootView = inflater.inflate(R.layout.fragment_movie, container, false);
     }
 
-
-    @Override
-    protected MovieListPresenterImp createPresenter(BaseView view) {
-        return null;
-    }
 
     @Override
     protected void initView() {
