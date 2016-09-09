@@ -7,13 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpFragment;
-import com.whyalwaysmea.bigboom.bean.Movie;
+import com.whyalwaysmea.bigboom.bean.MovieInfo;
+import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 import com.whyalwaysmea.bigboom.module.movie.presenter.MovieListPresenterImp;
-import com.whyalwaysmea.bigboom.module.movie.ui.adapter.HotMovieAdapter;
+import com.whyalwaysmea.bigboom.module.movie.ui.adapter.Top250MovieAdapter;
 import com.whyalwaysmea.bigboom.module.movie.view.IMovieListView;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 
@@ -26,7 +26,7 @@ import butterknife.BindView;
  * Created by Long
  * on 2016/9/5.
  */
-public class MovieListFragment extends MvpFragment<IMovieListView, MovieListPresenterImp> implements IMovieListView, SwipeRefreshLayout.OnRefreshListener, MyRecyclerView.OnLoadMoreListener {
+public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieListPresenterImp> implements IMovieListView, SwipeRefreshLayout.OnRefreshListener, MyRecyclerView.OnLoadMoreListener {
 
 
     @BindView(R.id.recyclerview)
@@ -36,17 +36,17 @@ public class MovieListFragment extends MvpFragment<IMovieListView, MovieListPres
 
     private GridLayoutManager mLayoutManager;
     private MovieListPresenterImp mMovieListPresenter;
-    private List<String> hotMovies;
-    private HotMovieAdapter mHotMovieAdapter;
-    private int start = 1;
+    private List<MovieInfo> mTop250Movies;
+    private Top250MovieAdapter mTop250MovieAdapter;
+    private int start = 0;
     private int count = 20;
 
 
-    public static MovieListFragment newInstance() {
+    public static Top250MovieListFragment newInstance() {
         
         Bundle args = new Bundle();
         
-        MovieListFragment fragment = new MovieListFragment();
+        Top250MovieListFragment fragment = new Top250MovieListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -72,9 +72,9 @@ public class MovieListFragment extends MvpFragment<IMovieListView, MovieListPres
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        hotMovies = new ArrayList<>();
-        mHotMovieAdapter = new HotMovieAdapter(getContext(), hotMovies);
-        mRecyclerView.setAdapter(mHotMovieAdapter);
+        mTop250Movies = new ArrayList<>();
+        mTop250MovieAdapter = new Top250MovieAdapter(getContext(), mTop250Movies);
+        mRecyclerView.setAdapter(mTop250MovieAdapter);
         mRecyclerView.setOnLoadMoreListener(this);
     }
 
@@ -83,25 +83,21 @@ public class MovieListFragment extends MvpFragment<IMovieListView, MovieListPres
         onRefresh();
     }
 
-
     @Override
-    public void setData(Movie movie) {
-        if(start == 1) {
-            hotMovies.clear();
+    public void setData(MovieListResponse movieListResponse) {
+        if(start == 0) {
+            mTop250Movies.clear();
         }
-        for (int i = 0; i < movie.getSubjects().size(); i++) {
-            KLog.e(movie.getSubjects().get(i).getTitle() + "...................." + i);
-            hotMovies.add(movie.getSubjects().get(i).getTitle());
-        }
-        mHotMovieAdapter.notifyDataSetChanged();
-        start = start * count + 1;
+        mTop250Movies.addAll(movieListResponse.getSubjects());
+        mTop250MovieAdapter.notifyDataSetChanged();
+        start = movieListResponse. getCount();
     }
 
 
     @Override
     public void onRefresh() {
-        start = 1;
-        mMovieListPresenter.load(start, count);
+        start = 0;
+        mMovieListPresenter.loadTop250(start, count);
     }
 
     @Override
@@ -120,7 +116,9 @@ public class MovieListFragment extends MvpFragment<IMovieListView, MovieListPres
     @Override
     public void onLoadMore() {
         if(!mSwipeRefreshLayout.isRefreshing()) {
-            mMovieListPresenter.load(start, count);
+            mMovieListPresenter.loadTop250(start, count);
         }
     }
+
+
 }

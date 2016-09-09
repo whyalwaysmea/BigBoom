@@ -5,5 +5,9 @@ package com.whyalwaysmea.bigboom.module.movie.presenter;
  * on 2016/9/5.
  */
 public interface IMovieListPresenter {
-    void load(int start, int count);
+    // Top250
+    void loadTop250(int start, int count);
+
+    // 正在热映
+    void loadInTheaters(String city);
 }

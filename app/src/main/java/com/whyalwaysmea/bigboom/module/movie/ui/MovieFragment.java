@@ -63,7 +63,7 @@ public class MovieFragment extends BaseFragment {
         titles = getResources().getStringArray(R.array.movie_titles);
         fragments = new ArrayList<>();
         for (String t : titles) {
-            fragments.add(MovieListFragment.newInstance());
+            fragments.add(Top250MovieListFragment.newInstance());
         }
         mViewPager.setAdapter(new MainAdapter(getChildFragmentManager(), titles, fragments));
         mViewPager.setOffscreenPageLimit(5);

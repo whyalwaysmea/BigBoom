@@ -2,7 +2,7 @@ package com.whyalwaysmea.bigboom.module.movie.model;
 
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
-import com.whyalwaysmea.bigboom.bean.Movie;
+import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 import com.whyalwaysmea.bigboom.http.ApiManager;
 import com.whyalwaysmea.bigboom.http.HttpMethods;
 
@@ -20,12 +20,12 @@ public class MovieListModelImp implements IMovieListModel {
     private Subscription mSubscribe;
 
     @Override
-    public void load(int start, int count, OnLoadCompleteListener<Movie> listener) {
+    public void loadTop250(int start, int count, OnLoadCompleteListener<MovieListResponse> listener) {
         ApiManager apiManager = HttpMethods.createService(Constants.URL.HOT_MOVIE, ApiManager.class);
         mSubscribe = apiManager.getMovie(start, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Movie>() {
+                .subscribe(new Subscriber<MovieListResponse>() {
                     @Override
                     public void onCompleted() {
 
@@ -39,12 +39,19 @@ public class MovieListModelImp implements IMovieListModel {
                     }
 
                     @Override
-                    public void onNext(Movie movie) {
-                        if (null != listener) {
-                            listener.onLoadSussess(movie);
+                    public void onNext(MovieListResponse response) {
+                        if (null != listener && response.getCount() > 0) {
+                            listener.onLoadSussess(response);
+                        } else {
+                            listener.onLoadFailed("无更多数据 ヾﾉ≧∀≦)o");
                         }
                     }
                 });
+    }
+
+    @Override
+    public void loadInTheaters(String city, OnLoadCompleteListener<MovieListResponse> listener) {
+
     }
 
     @Override

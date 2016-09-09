@@ -1,6 +1,6 @@
 package com.whyalwaysmea.bigboom.http;
 
-import com.whyalwaysmea.bigboom.bean.Movie;
+import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -13,5 +13,5 @@ import rx.Observable;
 public interface ApiManager {
 
     @GET("top250")
-    Observable<Movie> getMovie(@Query("start") int start, @Query("count") int count);
+    Observable<MovieListResponse> getMovie(@Query("start") int start, @Query("count") int count);
 }
