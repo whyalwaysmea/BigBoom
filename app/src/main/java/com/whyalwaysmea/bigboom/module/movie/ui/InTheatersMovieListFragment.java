@@ -3,18 +3,19 @@ package com.whyalwaysmea.bigboom.module.movie.ui;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpFragment;
 import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 import com.whyalwaysmea.bigboom.module.movie.presenter.MovieListPresenterImp;
-import com.whyalwaysmea.bigboom.module.movie.ui.adapter.Top250MovieAdapter;
+import com.whyalwaysmea.bigboom.module.movie.ui.adapter.InTheatersMovieAdapter;
 import com.whyalwaysmea.bigboom.module.movie.view.IMovieListView;
+import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 
 import java.util.ArrayList;
@@ -24,29 +25,26 @@ import butterknife.BindView;
 
 /**
  * Created by Long
- * on 2016/9/5.
+ * on 2016/9/9.
  */
-public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieListPresenterImp> implements IMovieListView, SwipeRefreshLayout.OnRefreshListener, MyRecyclerView.OnLoadMoreListener {
-
+public class InTheatersMovieListFragment extends MvpFragment<IMovieListView, MovieListPresenterImp> implements IMovieListView, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.recyclerview)
     MyRecyclerView mRecyclerView;
     @BindView(R.id.swiperefreshlayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+
+    private MovieListPresenterImp mMovieListPresenterImp;
     private GridLayoutManager mLayoutManager;
-    private MovieListPresenterImp mMovieListPresenter;
-    private List<MovieInfo> mTop250Movies;
-    private Top250MovieAdapter mTop250MovieAdapter;
-    private int start = 0;
-    private int count = 20;
+    private List<MovieInfo> mMovieInfos;
+    private InTheatersMovieAdapter mInTheatersMovieAdapter;
 
-
-    public static Top250MovieListFragment newInstance() {
+    public static InTheatersMovieListFragment newInstance() {
         
         Bundle args = new Bundle();
         
-        Top250MovieListFragment fragment = new Top250MovieListFragment();
+        InTheatersMovieListFragment fragment = new InTheatersMovieListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,8 +56,8 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
 
     @Override
     protected MovieListPresenterImp createPresenter(BaseView view) {
-        mMovieListPresenter = new MovieListPresenterImp(this);
-        return mMovieListPresenter;
+        mMovieListPresenterImp = new MovieListPresenterImp(this);
+        return mMovieListPresenterImp;
     }
 
     @Override
@@ -68,58 +66,57 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
                 R.color.material_cyan_500, R.color.material_deep_purple_500);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        mLayoutManager = new GridLayoutManager(getContext(), 1);
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mLayoutManager = new GridLayoutManager(mContext, 3);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                switch (position % 6) {
+                    case 5:
+                        return 3;
+                    case 3:
+                        return 2;
+                    default:
+                        return 1;
+                }
+            }
+        });
 
-        mTop250Movies = new ArrayList<>();
-        mTop250MovieAdapter = new Top250MovieAdapter(getContext(), mTop250Movies);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mTop250MovieAdapter);
-        mRecyclerView.setOnLoadMoreListener(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addItemDecoration(new GridMarginDecoration(mContext.getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration)));
+
     }
 
     @Override
     protected void initData() {
+        mMovieInfos = new ArrayList<>();
+        mInTheatersMovieAdapter = new InTheatersMovieAdapter(mContext, mMovieInfos);
+        mRecyclerView.setAdapter(mInTheatersMovieAdapter);
         onRefresh();
     }
 
     @Override
     public void setData(MovieListResponse movieListResponse) {
-        if(start == 0) {
-            mTop250Movies.clear();
-        }
-        mTop250Movies.addAll(movieListResponse.getSubjects());
-        mTop250MovieAdapter.notifyDataSetChanged();
-        start = movieListResponse. getCount();
+        mMovieInfos.addAll(movieListResponse.getSubjects());
+        mInTheatersMovieAdapter.notifyDataSetChanged();
+        KLog.e(movieListResponse.getSubjects().size());
+        KLog.e(movieListResponse.getTitle());
     }
 
 
     @Override
     public void onRefresh() {
-        start = 0;
-        mMovieListPresenter.loadTop250(start, count);
+        mMovieListPresenterImp.loadInTheaters(null);
     }
 
     @Override
     public void showLoading() {
         super.showLoading();
-        mSwipeRefreshLayout.post(() ->mSwipeRefreshLayout.setRefreshing(true));
-
+        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(true));
     }
 
     @Override
     public void hideLoading() {
         super.hideLoading();
-        mSwipeRefreshLayout.post(() ->mSwipeRefreshLayout.setRefreshing(false));
+        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(false));
     }
-
-    @Override
-    public void onLoadMore() {
-        if(!mSwipeRefreshLayout.isRefreshing()) {
-            mMovieListPresenter.loadTop250(start, count);
-        }
-    }
-
-
 }

@@ -1,5 +1,7 @@
 package com.whyalwaysmea.bigboom.module.movie.presenter;
 
+import android.support.annotation.Nullable;
+
 import com.whyalwaysmea.bigboom.App;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BasePresenter;
@@ -36,7 +38,7 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
     }
 
     @Override
-    public void loadInTheaters(String city) {
+    public void loadInTheaters(@Nullable String city) {
         if(!NetworkUtils.isConnected(App.getApplication())) {
             mView.hideLoading();
             mView.showToast(App.getApplication().getResources().getString(R.string.no_network));

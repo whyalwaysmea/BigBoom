@@ -1,5 +1,6 @@
 package com.whyalwaysmea.bigboom.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,7 +17,7 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment{
 
     protected View mRootView;
-
+    protected Context mContext;
 
     @Nullable
     @Override
@@ -34,6 +35,7 @@ public abstract class BaseFragment extends Fragment{
     }
 
     protected void init() {
+        mContext = getActivity();
         initView();
         initData();
     }

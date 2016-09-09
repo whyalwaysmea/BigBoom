@@ -13,5 +13,8 @@ import rx.Observable;
 public interface ApiManager {
 
     @GET("top250")
-    Observable<MovieListResponse> getMovie(@Query("start") int start, @Query("count") int count);
+    Observable<MovieListResponse> getTop250Movie(@Query("start") int start, @Query("count") int count);
+
+    @GET("in_theaters")
+    Observable<MovieListResponse> getInTheatersMovie(@Query("city") String city);
 }

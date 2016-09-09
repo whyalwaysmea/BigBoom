@@ -6,6 +6,6 @@ package com.whyalwaysmea.bigboom;
  */
 public class Constants {
     public static class URL {
-        public static final String HOT_MOVIE = "https://api.douban.com/v2/movie/";
+        public static final String MOVIE = "https://api.douban.com/v2/movie/";
     }
 }
