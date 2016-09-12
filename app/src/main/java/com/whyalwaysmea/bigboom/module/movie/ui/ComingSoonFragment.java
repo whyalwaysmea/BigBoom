@@ -1,5 +1,6 @@
 package com.whyalwaysmea.bigboom.module.movie.ui;
 
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.whyalwaysmea.bigboom.module.movie.ui.adapter.ComingSoonMovieAdapter;
 import com.whyalwaysmea.bigboom.module.movie.view.IMovieListView;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,7 +34,16 @@ public class ComingSoonFragment extends MvpFragment<IMovieListView, MovieListPre
 
     private LinearLayoutManager mLayoutManager;
     private ComingSoonMovieAdapter mComingSoonMovieAdapter;
-    private List<MovieInfo> mMovieInfos;
+    private List<MovieInfo> mMovieInfoList;
+
+    public static ComingSoonFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        ComingSoonFragment fragment = new ComingSoonFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
     @Override
@@ -59,26 +70,30 @@ public class ComingSoonFragment extends MvpFragment<IMovieListView, MovieListPre
 
     @Override
     protected void initData() {
-
+        mMovieInfoList = new ArrayList<>();
+        mComingSoonMovieAdapter = new ComingSoonMovieAdapter(mContext, mMovieInfoList, true);
+        mRecyclerView.setAdapter(mComingSoonMovieAdapter);
+//        onRefresh();
     }
 
     @Override
     public void setData(MovieListResponse movieListResponse) {
-
+        mMovieInfoList = movieListResponse.getSubjects();
+        mComingSoonMovieAdapter.addData(mMovieInfoList);
     }
 
     @Override
     public void onRefresh() {
-
+        mPresenter.loadComingSoon(0,20);
     }
 
     @Override
     public void hideLoading() {
-        super.hideLoading();
+        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(false));
     }
 
     @Override
     public void showLoading() {
-        super.showLoading();
+        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(true));
     }
 }

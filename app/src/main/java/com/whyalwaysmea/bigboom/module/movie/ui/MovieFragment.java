@@ -63,7 +63,8 @@ public class MovieFragment extends BaseFragment {
         titles = getResources().getStringArray(R.array.movie_titles);
         fragments = new ArrayList<>();
         fragments.add(InTheatersMovieListFragment.newInstance());
-        for (int i = 0; i < titles.length-1; i++) {
+        fragments.add(ComingSoonFragment.newInstance());
+        for (int i = 0; i < titles.length-2; i++) {
             fragments.add(Top250MovieListFragment.newInstance());
 
         }

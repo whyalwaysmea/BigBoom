@@ -30,8 +30,4 @@ public class ComingSoonMovieAdapter extends BaseAdapter<MovieInfo> {
 
     }
 
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
 }

@@ -83,7 +83,33 @@ public class MovieListModelImp implements IMovieListModel {
 
     @Override
     public void loadComingSoon(int start, int count, OnLoadCompleteListener<MovieListResponse> listener) {
+        ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
+        mSubscribe = apiManager.getComingSoonMovie(start, count)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<MovieListResponse>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (null != listener) {
+                            listener.onLoadFailed(e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onNext(MovieListResponse movieListResponse) {
+                        if (null != listener && movieListResponse.getCount() > 0) {
+                            listener.onLoadSussess(movieListResponse);
+                        } else {
+                            listener.onLoadFailed("无更多数据 ヾﾉ≧∀≦)o");
+                        }
+                    }
+                });
     }
 
     @Override

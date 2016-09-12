@@ -31,10 +31,10 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
         if(!NetworkUtils.isConnected(App.getApplication())) {
             mView.hideLoading();
             mView.showToast(App.getApplication().getResources().getString(R.string.no_network));
-        } else {
-            mView.showLoading();
-            mMovieListModel.loadTop250(start, count, this);
         }
+        mView.showLoading();
+        mMovieListModel.loadTop250(start, count, this);
+
     }
 
     @Override
@@ -42,10 +42,10 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
         if(!NetworkUtils.isConnected(App.getApplication())) {
             mView.hideLoading();
             mView.showToast(App.getApplication().getResources().getString(R.string.no_network));
-        } else {
+        }
             mView.showLoading();
             mMovieListModel.loadInTheaters(city, this);
-        }
+
     }
 
     @Override
@@ -53,10 +53,10 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
         if(!NetworkUtils.isConnected(App.getApplication())) {
             mView.hideLoading();
             mView.showToast(App.getApplication().getResources().getString(R.string.no_network));
-        } else {
-            mView.showLoading();
-            mMovieListModel.loadComingSoon(start, count, this);
         }
+        mView.showLoading();
+        mMovieListModel.loadComingSoon(start, count, this);
+
     }
 
     @Override

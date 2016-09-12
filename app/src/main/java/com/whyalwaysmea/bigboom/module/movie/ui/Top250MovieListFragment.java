@@ -81,7 +81,7 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
 
     @Override
     protected void initData() {
-        onRefresh();
+//        onRefresh();
     }
 
     @Override

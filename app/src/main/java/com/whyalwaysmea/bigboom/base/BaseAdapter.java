@@ -60,9 +60,20 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     protected abstract void bindData(BaseViewHolder holder, int position);
 
+
+    @Override
+    public int getItemCount() {
+        if(mData.isEmpty()) {
+            return 1;
+        }
+        return mData.size();
+    }
+
     @Override
     public int getItemViewType(int position) {
-        if(getItemCount() == 0) {
+        System.out.println("getItemViewType");
+
+        if(mData == null || mData.isEmpty()) {
             return TYPE_EMPTY;
         } else {
             return TYPE_DEFAULT;
@@ -83,7 +94,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         holder.itemView.clearAnimation();
     }
 
-    protected void addData(List<T> data) {
+    public void addData(List<T> data) {
         if(mData == null) {
             mData = new ArrayList<>();
         }
