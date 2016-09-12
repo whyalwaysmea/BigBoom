@@ -15,4 +15,6 @@ public interface IMovieListModel extends BaseModel{
     void loadTop250(int start,int count, OnLoadCompleteListener<MovieListResponse> listener);
 
     void loadInTheaters(@Nullable String city, OnLoadCompleteListener<MovieListResponse> listener);
+
+    void loadComingSoon(int start, int count, OnLoadCompleteListener<MovieListResponse> listener);
 }

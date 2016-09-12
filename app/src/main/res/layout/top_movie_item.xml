@@ -56,11 +56,12 @@
                 android:id="@+id/ratingBar_hots"
                 style="?android:attr/ratingBarStyle"
                 android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content"
                 android:isIndicator="true"
                 android:max="10"
                 android:numStars="5"
-                android:progressDrawable="@drawable/rating_bar_bg"
+                android:progressDrawable="@drawable/rating_bar_bg2"
                 android:rating="1" />
 
 

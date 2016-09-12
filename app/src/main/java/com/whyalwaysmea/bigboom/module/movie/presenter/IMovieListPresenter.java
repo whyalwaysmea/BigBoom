@@ -12,4 +12,6 @@ public interface IMovieListPresenter {
 
     // 正在热映
     void loadInTheaters(@Nullable String city);
+
+    void loadComingSoon(int start, int count);
 }

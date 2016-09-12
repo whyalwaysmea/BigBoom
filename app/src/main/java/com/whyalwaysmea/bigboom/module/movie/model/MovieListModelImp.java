@@ -82,6 +82,11 @@ public class MovieListModelImp implements IMovieListModel {
     }
 
     @Override
+    public void loadComingSoon(int start, int count, OnLoadCompleteListener<MovieListResponse> listener) {
+
+    }
+
+    @Override
     public void onDestroy() {
         if(null != mSubscribe && mSubscribe.isUnsubscribed()) {
             mSubscribe.unsubscribe();

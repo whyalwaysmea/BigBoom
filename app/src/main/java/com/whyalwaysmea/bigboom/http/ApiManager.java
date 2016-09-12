@@ -17,4 +17,7 @@ public interface ApiManager {
 
     @GET("in_theaters")
     Observable<MovieListResponse> getInTheatersMovie(@Query("city") String city);
+
+    @GET("coming_soon")
+    Observable<MovieListResponse> getComingSoonMovie(@Query("start") int start, @Query("count") int count);
 }
