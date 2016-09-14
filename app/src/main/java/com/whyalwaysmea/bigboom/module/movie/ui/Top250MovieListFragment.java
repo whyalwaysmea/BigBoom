@@ -73,7 +73,7 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mTop250Movies = new ArrayList<>();
-        mTop250MovieAdapter = new Top250MovieAdapter(getContext(), mTop250Movies);
+        mTop250MovieAdapter = new Top250MovieAdapter(getContext(), mTop250Movies, true);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mTop250MovieAdapter);
         mRecyclerView.setOnLoadMoreListener(this);
@@ -81,7 +81,7 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
 
     @Override
     protected void initData() {
-//        onRefresh();
+        onRefresh();
     }
 
     @Override

@@ -54,6 +54,7 @@ public class ComingSoonFragment extends MvpFragment<IMovieListView, MovieListPre
     @Override
     protected void initRootView(LayoutInflater inflater, ViewGroup container) {
         mRootView = inflater.inflate(R.layout.fragment_movie_list, container, false);
+        mRootView.setBackgroundColor(getResources().getColor(R.color.material_grey_200));
     }
 
     @Override
@@ -73,7 +74,7 @@ public class ComingSoonFragment extends MvpFragment<IMovieListView, MovieListPre
         mMovieInfoList = new ArrayList<>();
         mComingSoonMovieAdapter = new ComingSoonMovieAdapter(mContext, mMovieInfoList, true);
         mRecyclerView.setAdapter(mComingSoonMovieAdapter);
-//        onRefresh();
+        onRefresh();
     }
 
     @Override

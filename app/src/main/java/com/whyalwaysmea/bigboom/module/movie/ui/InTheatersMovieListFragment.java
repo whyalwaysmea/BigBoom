@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpFragment;
@@ -96,10 +95,7 @@ public class InTheatersMovieListFragment extends MvpFragment<IMovieListView, Mov
 
     @Override
     public void setData(MovieListResponse movieListResponse) {
-        mMovieInfos.addAll(movieListResponse.getSubjects());
-        mInTheatersMovieAdapter.notifyDataSetChanged();
-        KLog.e(movieListResponse.getSubjects().size());
-        KLog.e(movieListResponse.getTitle());
+        mInTheatersMovieAdapter.addData(movieListResponse.getSubjects());
     }
 
 

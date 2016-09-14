@@ -71,8 +71,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        System.out.println("getItemViewType");
-
         if(mData == null || mData.isEmpty()) {
             return TYPE_EMPTY;
         } else {
@@ -102,7 +100,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         notifyDataSetChanged();
     }
 
-    public void add(int pos, T item) {
+    public void addData(int pos, T item) {
         if(mData == null) {
             mData = new ArrayList<>();
         }
@@ -112,11 +110,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     public List<T> getData() {
         return mData;
-    }
-
-    public void setData(List<T> data) {
-        mData = data;
-        notifyDataSetChanged();
     }
 
     public void delete(int pos) {
