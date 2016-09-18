@@ -64,7 +64,8 @@ public class MovieFragment extends BaseFragment {
         fragments = new ArrayList<>();
         fragments.add(InTheatersMovieListFragment.newInstance());
         fragments.add(ComingSoonFragment.newInstance());
-        for (int i = 0; i < titles.length-2; i++) {
+        fragments.add(WeeklyMovieFragment.newInstance());
+        for (int i = 0; i < titles.length-3; i++) {
             fragments.add(Top250MovieListFragment.newInstance());
 
         }

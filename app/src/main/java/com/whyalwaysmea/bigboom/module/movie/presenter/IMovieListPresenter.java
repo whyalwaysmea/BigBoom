@@ -13,5 +13,6 @@ public interface IMovieListPresenter {
     // 正在热映
     void loadInTheaters(@Nullable String city);
 
+    // 即将上映
     void loadComingSoon(int start, int count);
 }

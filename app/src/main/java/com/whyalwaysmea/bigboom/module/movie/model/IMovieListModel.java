@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import com.whyalwaysmea.bigboom.base.BaseModel;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
+import com.whyalwaysmea.bigboom.bean.WeeklyMovieInfo;
 
 /**
  * Created by Long
@@ -17,4 +18,8 @@ public interface IMovieListModel extends BaseModel{
     void loadInTheaters(@Nullable String city, OnLoadCompleteListener<MovieListResponse> listener);
 
     void loadComingSoon(int start, int count, OnLoadCompleteListener<MovieListResponse> listener);
+
+    void loadWeeklyMovies(OnLoadCompleteListener<WeeklyMovieInfo> listener);
+
+    void loadNewMovies(OnLoadCompleteListener<MovieListResponse> listener);
 }

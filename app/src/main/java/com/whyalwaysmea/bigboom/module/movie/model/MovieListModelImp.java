@@ -3,6 +3,7 @@ package com.whyalwaysmea.bigboom.module.movie.model;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
+import com.whyalwaysmea.bigboom.bean.WeeklyMovieInfo;
 import com.whyalwaysmea.bigboom.http.ApiManager;
 import com.whyalwaysmea.bigboom.http.HttpMethods;
 
@@ -104,6 +105,67 @@ public class MovieListModelImp implements IMovieListModel {
                     @Override
                     public void onNext(MovieListResponse movieListResponse) {
                         if (null != listener && movieListResponse.getCount() > 0) {
+                            listener.onLoadSussess(movieListResponse);
+                        } else {
+                            listener.onLoadFailed("无更多数据 ヾﾉ≧∀≦)o");
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void loadWeeklyMovies(OnLoadCompleteListener<WeeklyMovieInfo> listener) {
+        ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
+        mSubscribe = apiManager.getWeeklyMovie(Constants.ID.APIKEY)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<WeeklyMovieInfo>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(WeeklyMovieInfo weeklyMovieInfo) {
+                        if (null != listener && weeklyMovieInfo.getSubjects().size() > 0) {
+                            listener.onLoadSussess(weeklyMovieInfo);
+                        } else {
+                            listener.onLoadFailed("无更多数据 ヾﾉ≧∀≦)o");
+                        }
+                    }
+                });
+    }
+
+
+    @Override
+    public void loadNewMovies(OnLoadCompleteListener<MovieListResponse> listener) {
+        ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
+        mSubscribe = apiManager.getNewMovies(Constants.ID.APIKEY)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<MovieListResponse>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (null != listener) {
+                            listener.onLoadFailed(e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onNext(MovieListResponse movieListResponse) {
+                        if (null != listener && movieListResponse.getSubjects().size() > 0) {
                             listener.onLoadSussess(movieListResponse);
                         } else {
                             listener.onLoadFailed("无更多数据 ヾﾉ≧∀≦)o");

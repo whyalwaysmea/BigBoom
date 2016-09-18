@@ -1,6 +1,7 @@
 package com.whyalwaysmea.bigboom.http;
 
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
+import com.whyalwaysmea.bigboom.bean.WeeklyMovieInfo;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -20,4 +21,10 @@ public interface ApiManager {
 
     @GET("coming_soon")
     Observable<MovieListResponse> getComingSoonMovie(@Query("start") int start, @Query("count") int count);
+
+    @GET("weekly")
+    Observable<WeeklyMovieInfo> getWeeklyMovie(@Query("apikey") String apikey);
+
+    @GET("new_movies")
+    Observable<MovieListResponse> getNewMovies(@Query("apikey") String apikey);
 }

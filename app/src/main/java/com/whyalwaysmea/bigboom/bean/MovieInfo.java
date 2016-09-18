@@ -1,5 +1,7 @@
 package com.whyalwaysmea.bigboom.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -11,36 +13,43 @@ public class MovieInfo {
 
     /**
      * max : 10
-     * average : 9.6
-     * stars : 50
+     * average : 8.3
+     * details : {"1":237,"2":665,"3":6915,"4":20392,"5":15184}
+     * stars : 45
      * min : 0
      */
 
     private RatingBean rating;
     /**
-     * rating : {"max":10,"average":9.6,"stars":"50","min":0}
-     * genres : ["犯罪","剧情"]
-     * title : 肖申克的救赎
-     * casts : [{"alt":"https://movie.douban.com/celebrity/1054521/","avatars":{"small":"https://img3.doubanio.com/img/celebrity/small/17525.jpg","large":"https://img3.doubanio.com/img/celebrity/large/17525.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/17525.jpg"},"name":"蒂姆·罗宾斯","id":"1054521"},{"alt":"https://movie.douban.com/celebrity/1054534/","avatars":{"small":"https://img3.doubanio.com/img/celebrity/small/34642.jpg","large":"https://img3.doubanio.com/img/celebrity/large/34642.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/34642.jpg"},"name":"摩根·弗里曼","id":"1054534"},{"alt":"https://movie.douban.com/celebrity/1041179/","avatars":{"small":"https://img1.doubanio.com/img/celebrity/small/5837.jpg","large":"https://img1.doubanio.com/img/celebrity/large/5837.jpg","medium":"https://img1.doubanio.com/img/celebrity/medium/5837.jpg"},"name":"鲍勃·冈顿","id":"1041179"}]
-     * collect_count : 955731
-     * original_title : The Shawshank Redemption
+     * rating : {"max":10,"average":8.3,"details":{"1":237,"2":665,"3":6915,"4":20392,"5":15184},"stars":"45","min":0}
+     * genres : ["动作","惊悚","灾难"]
+     * title : 釜山行
+     * casts : [{"avatars":{"small":"http://img3.douban.com/img/celebrity/small/55195.jpg","large":"http://img3.douban.com/img/celebrity/large/55195.jpg","medium":"http://img3.douban.com/img/celebrity/medium/55195.jpg"},"name_en":"Yoo Gong","name":"孔侑","alt":"https://movie.douban.com/celebrity/1011009/","id":"1011009"},{"avatars":{"small":"http://img3.doubanio.com/img/celebrity/small/1409765749.47.jpg","large":"http://img3.doubanio.com/img/celebrity/large/1409765749.47.jpg","medium":"http://img3.doubanio.com/img/celebrity/medium/1409765749.47.jpg"},"name_en":"Yu-mi Jung","name":"郑有美","alt":"https://movie.douban.com/celebrity/1276062/","id":"1276062"},{"avatars":{"small":"http://img3.douban.com/img/celebrity/small/1372317937.35.jpg","large":"http://img3.douban.com/img/celebrity/large/1372317937.35.jpg","medium":"http://img3.douban.com/img/celebrity/medium/1372317937.35.jpg"},"name_en":"Tong-Seok Ma","name":"马东锡","alt":"https://movie.douban.com/celebrity/1322205/","id":"1322205"}]
+     * durations : ["118分钟"]
+     * collect_count : 70609
+     * mainland_pubdate :
+     * has_video : false
+     * original_title : 부산행
      * subtype : movie
-     * directors : [{"alt":"https://movie.douban.com/celebrity/1047973/","avatars":{"small":"https://img3.doubanio.com/img/celebrity/small/230.jpg","large":"https://img3.doubanio.com/img/celebrity/large/230.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/230.jpg"},"name":"弗兰克·德拉邦特","id":"1047973"}]
-     * year : 1994
-     * images : {"small":"https://img3.doubanio.com/view/movie_poster_cover/ipst/public/p480747492.jpg","large":"https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p480747492.jpg","medium":"https://img3.doubanio.com/view/movie_poster_cover/spst/public/p480747492.jpg"}
-     * alt : https://movie.douban.com/subject/1292052/
-     * id : 1292052
+     * directors : [{"avatars":{"small":"http://img3.douban.com/img/celebrity/small/1374825155.63.jpg","large":"http://img3.douban.com/img/celebrity/large/1374825155.63.jpg","medium":"http://img3.douban.com/img/celebrity/medium/1374825155.63.jpg"},"name_en":"Sang-ho Yeon","name":"延尚昊","alt":"https://movie.douban.com/celebrity/1322175/","id":"1322175"}]
+     * pubdates : ["2016-07-20(韩国)"]
+     * year : 2016
+     * images : {"small":"http://img3.doubanio.com/view/movie_poster_cover/ipst/public/p2360940399.jpg","large":"http://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2360940399.jpg","medium":"http://img3.doubanio.com/view/movie_poster_cover/spst/public/p2360940399.jpg"}
+     * alt : https://movie.douban.com/subject/25986180/
+     * id : 25986180
      */
 
     private String title;
     private int collect_count;
+    private String mainland_pubdate;
+    private boolean has_video;
     private String original_title;
     private String subtype;
     private String year;
     /**
-     * small : https://img3.doubanio.com/view/movie_poster_cover/ipst/public/p480747492.jpg
-     * large : https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p480747492.jpg
-     * medium : https://img3.doubanio.com/view/movie_poster_cover/spst/public/p480747492.jpg
+     * small : http://img3.doubanio.com/view/movie_poster_cover/ipst/public/p2360940399.jpg
+     * large : http://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2360940399.jpg
+     * medium : http://img3.doubanio.com/view/movie_poster_cover/spst/public/p2360940399.jpg
      */
 
     private ImagesBean images;
@@ -48,21 +57,25 @@ public class MovieInfo {
     private String id;
     private List<String> genres;
     /**
-     * alt : https://movie.douban.com/celebrity/1054521/
-     * avatars : {"small":"https://img3.doubanio.com/img/celebrity/small/17525.jpg","large":"https://img3.doubanio.com/img/celebrity/large/17525.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/17525.jpg"}
-     * name : 蒂姆·罗宾斯
-     * id : 1054521
+     * avatars : {"small":"http://img3.douban.com/img/celebrity/small/55195.jpg","large":"http://img3.douban.com/img/celebrity/large/55195.jpg","medium":"http://img3.douban.com/img/celebrity/medium/55195.jpg"}
+     * name_en : Yoo Gong
+     * name : 孔侑
+     * alt : https://movie.douban.com/celebrity/1011009/
+     * id : 1011009
      */
 
     private List<CastsBean> casts;
+    private List<String> durations;
     /**
-     * alt : https://movie.douban.com/celebrity/1047973/
-     * avatars : {"small":"https://img3.doubanio.com/img/celebrity/small/230.jpg","large":"https://img3.doubanio.com/img/celebrity/large/230.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/230.jpg"}
-     * name : 弗兰克·德拉邦特
-     * id : 1047973
+     * avatars : {"small":"http://img3.douban.com/img/celebrity/small/1374825155.63.jpg","large":"http://img3.douban.com/img/celebrity/large/1374825155.63.jpg","medium":"http://img3.douban.com/img/celebrity/medium/1374825155.63.jpg"}
+     * name_en : Sang-ho Yeon
+     * name : 延尚昊
+     * alt : https://movie.douban.com/celebrity/1322175/
+     * id : 1322175
      */
 
     private List<DirectorsBean> directors;
+    private List<String> pubdates;
 
     public RatingBean getRating() {
         return rating;
@@ -86,6 +99,22 @@ public class MovieInfo {
 
     public void setCollect_count(int collect_count) {
         this.collect_count = collect_count;
+    }
+
+    public String getMainland_pubdate() {
+        return mainland_pubdate;
+    }
+
+    public void setMainland_pubdate(String mainland_pubdate) {
+        this.mainland_pubdate = mainland_pubdate;
+    }
+
+    public boolean isHas_video() {
+        return has_video;
+    }
+
+    public void setHas_video(boolean has_video) {
+        this.has_video = has_video;
     }
 
     public String getOriginal_title() {
@@ -152,6 +181,14 @@ public class MovieInfo {
         this.casts = casts;
     }
 
+    public List<String> getDurations() {
+        return durations;
+    }
+
+    public void setDurations(List<String> durations) {
+        this.durations = durations;
+    }
+
     public List<DirectorsBean> getDirectors() {
         return directors;
     }
@@ -160,9 +197,26 @@ public class MovieInfo {
         this.directors = directors;
     }
 
+    public List<String> getPubdates() {
+        return pubdates;
+    }
+
+    public void setPubdates(List<String> pubdates) {
+        this.pubdates = pubdates;
+    }
+
     public static class RatingBean {
         private int max;
         private double average;
+        /**
+         * 1 : 237
+         * 2 : 665
+         * 3 : 6915
+         * 4 : 20392
+         * 5 : 15184
+         */
+
+        private DetailsBean details;
         private String stars;
         private int min;
 
@@ -182,6 +236,14 @@ public class MovieInfo {
             this.average = average;
         }
 
+        public DetailsBean getDetails() {
+            return details;
+        }
+
+        public void setDetails(DetailsBean details) {
+            this.details = details;
+        }
+
         public String getStars() {
             return stars;
         }
@@ -196,6 +258,59 @@ public class MovieInfo {
 
         public void setMin(int min) {
             this.min = min;
+        }
+
+        public static class DetailsBean {
+            @SerializedName("1")
+            private int value1;
+            @SerializedName("2")
+            private int value2;
+            @SerializedName("3")
+            private int value3;
+            @SerializedName("4")
+            private int value4;
+            @SerializedName("5")
+            private int value5;
+
+            public int getValue1() {
+                return value1;
+            }
+
+            public void setValue1(int value1) {
+                this.value1 = value1;
+            }
+
+            public int getValue2() {
+                return value2;
+            }
+
+            public void setValue2(int value2) {
+                this.value2 = value2;
+            }
+
+            public int getValue3() {
+                return value3;
+            }
+
+            public void setValue3(int value3) {
+                this.value3 = value3;
+            }
+
+            public int getValue4() {
+                return value4;
+            }
+
+            public void setValue4(int value4) {
+                this.value4 = value4;
+            }
+
+            public int getValue5() {
+                return value5;
+            }
+
+            public void setValue5(int value5) {
+                this.value5 = value5;
+            }
         }
     }
 
@@ -230,24 +345,17 @@ public class MovieInfo {
     }
 
     public static class CastsBean {
-        private String alt;
         /**
-         * small : https://img3.doubanio.com/img/celebrity/small/17525.jpg
-         * large : https://img3.doubanio.com/img/celebrity/large/17525.jpg
-         * medium : https://img3.doubanio.com/img/celebrity/medium/17525.jpg
+         * small : http://img3.douban.com/img/celebrity/small/55195.jpg
+         * large : http://img3.douban.com/img/celebrity/large/55195.jpg
+         * medium : http://img3.douban.com/img/celebrity/medium/55195.jpg
          */
 
         private AvatarsBean avatars;
+        private String name_en;
         private String name;
+        private String alt;
         private String id;
-
-        public String getAlt() {
-            return alt;
-        }
-
-        public void setAlt(String alt) {
-            this.alt = alt;
-        }
 
         public AvatarsBean getAvatars() {
             return avatars;
@@ -257,12 +365,28 @@ public class MovieInfo {
             this.avatars = avatars;
         }
 
+        public String getName_en() {
+            return name_en;
+        }
+
+        public void setName_en(String name_en) {
+            this.name_en = name_en;
+        }
+
         public String getName() {
             return name;
         }
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getAlt() {
+            return alt;
+        }
+
+        public void setAlt(String alt) {
+            this.alt = alt;
         }
 
         public String getId() {
@@ -305,24 +429,17 @@ public class MovieInfo {
     }
 
     public static class DirectorsBean {
-        private String alt;
         /**
-         * small : https://img3.doubanio.com/img/celebrity/small/230.jpg
-         * large : https://img3.doubanio.com/img/celebrity/large/230.jpg
-         * medium : https://img3.doubanio.com/img/celebrity/medium/230.jpg
+         * small : http://img3.douban.com/img/celebrity/small/1374825155.63.jpg
+         * large : http://img3.douban.com/img/celebrity/large/1374825155.63.jpg
+         * medium : http://img3.douban.com/img/celebrity/medium/1374825155.63.jpg
          */
 
         private AvatarsBean avatars;
+        private String name_en;
         private String name;
+        private String alt;
         private String id;
-
-        public String getAlt() {
-            return alt;
-        }
-
-        public void setAlt(String alt) {
-            this.alt = alt;
-        }
 
         public AvatarsBean getAvatars() {
             return avatars;
@@ -332,12 +449,28 @@ public class MovieInfo {
             this.avatars = avatars;
         }
 
+        public String getName_en() {
+            return name_en;
+        }
+
+        public void setName_en(String name_en) {
+            this.name_en = name_en;
+        }
+
         public String getName() {
             return name;
         }
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getAlt() {
+            return alt;
+        }
+
+        public void setAlt(String alt) {
+            this.alt = alt;
         }
 
         public String getId() {
