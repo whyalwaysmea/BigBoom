@@ -5,6 +5,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.bean.WeeklyMovieInfo;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,3 +64,4 @@ public class WeeklyMoviesAdapter extends PagerAdapter{
         return roman.append(X[(num%100)/10]).append(I[num%10]).toString();
     }
 }
+

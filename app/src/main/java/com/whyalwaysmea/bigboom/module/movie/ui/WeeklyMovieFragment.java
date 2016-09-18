@@ -26,9 +26,9 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import rx.Observable;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * Created by Long
@@ -55,12 +55,12 @@ public class WeeklyMovieFragment extends MvpFragment<IWeeklyMoviesView, WeeklyMo
     public static WeeklyMovieFragment newInstance() {
 
         Bundle args = new Bundle();
-        
+
         WeeklyMovieFragment fragment = new WeeklyMovieFragment();
         fragment.setArguments(args);
         return fragment;
     }
-    
+
     @Override
     protected WeeklyMoviePresenterImp createPresenter(BaseView view) {
         return new WeeklyMoviePresenterImp(this);
@@ -84,8 +84,6 @@ public class WeeklyMovieFragment extends MvpFragment<IWeeklyMoviesView, WeeklyMo
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mNewMoviesAdapter);
         mRecyclerView.setOnLoadMoreListener(this);
-
-
     }
 
     @Override
@@ -113,15 +111,15 @@ public class WeeklyMovieFragment extends MvpFragment<IWeeklyMoviesView, WeeklyMo
     @Override
     public void setWeeklyData(WeeklyMovieInfo weeklyMovieInfo) {
         for (int i = 0; i < weeklyMovieInfo.getSubjects().size() + 2; i++) {
-            if(i == 0) {
-                mWeeklyMovieInfos.add(weeklyMovieInfo.getSubjects().get(weeklyMovieInfo.getSubjects().size()-1));
-            } else if(i == weeklyMovieInfo.getSubjects().size() + 1) {
+            if (i == 0) {
+                mWeeklyMovieInfos.add(weeklyMovieInfo.getSubjects().get(weeklyMovieInfo.getSubjects().size() - 1));
+            } else if (i == weeklyMovieInfo.getSubjects().size() + 1) {
                 mWeeklyMovieInfos.add(weeklyMovieInfo.getSubjects().get(0));
             } else {
                 mWeeklyMovieInfos.add(weeklyMovieInfo.getSubjects().get(i - 1));
             }
         }
-        if(weeklyMovieInfo.getSubjects().size() > 3) {
+        if (weeklyMovieInfo.getSubjects().size() > 3) {
             isAutoPlay = true;
         } else {
             isAutoPlay = false;
@@ -141,18 +139,9 @@ public class WeeklyMovieFragment extends MvpFragment<IWeeklyMoviesView, WeeklyMo
         mViewPagerSubscribe = Observable.interval(5, 5, TimeUnit.SECONDS)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Long>() {
+                .subscribe(new Action1<Long>() {
                     @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(Long aLong) {
+                    public void call(Long aLong) {
                         if (mWeeklyMovieInfos != null && mWeeklyMovieInfos.size() > 0 && isAutoPlay) {
                             mCurrentPage++;
                             mWeeklyViewPager.setCurrentItem(mCurrentPage);
@@ -165,7 +154,7 @@ public class WeeklyMovieFragment extends MvpFragment<IWeeklyMoviesView, WeeklyMo
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mViewPagerSubscribe.isUnsubscribed()) {
+        if (mViewPagerSubscribe.isUnsubscribed()) {
             mViewPagerSubscribe.unsubscribe();
         }
     }
@@ -182,7 +171,7 @@ public class WeeklyMovieFragment extends MvpFragment<IWeeklyMoviesView, WeeklyMo
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        if(mWeeklyViewPager.getCurrentItem() == 0) {
+        if (mWeeklyViewPager.getCurrentItem() == 0) {
             mCurrentPage = 1;
         }
         switch (state) {
