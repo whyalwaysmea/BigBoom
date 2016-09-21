@@ -6,12 +6,6 @@
               android:layout_height="match_parent">
 
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/weekly_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
-
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
@@ -19,7 +13,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-        <com.whyalwaysmea.bigboom.view.MyRecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

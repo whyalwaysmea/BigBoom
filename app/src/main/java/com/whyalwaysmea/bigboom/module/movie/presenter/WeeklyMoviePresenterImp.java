@@ -4,6 +4,7 @@ import com.whyalwaysmea.bigboom.App;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BasePresenter;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
+import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 import com.whyalwaysmea.bigboom.bean.WeeklyMovieInfo;
 import com.whyalwaysmea.bigboom.module.movie.model.IMovieListModel;
 import com.whyalwaysmea.bigboom.module.movie.model.MovieListModelImp;
@@ -40,6 +41,19 @@ public class WeeklyMoviePresenterImp extends BasePresenter<IWeeklyMoviesView> im
             mView.showToast(App.getApplication().getResources().getString(R.string.no_network));
         }
         mView.showLoading();
+        mMovieListModel.loadNewMovies(new OnLoadCompleteListener<MovieListResponse>() {
+            @Override
+            public void onLoadSussess(MovieListResponse movieListResponse) {
+                mView.hideLoading();
+                mView.setNewMoviesData(movieListResponse);
+            }
+
+            @Override
+            public void onLoadFailed(String error) {
+                mView.hideLoading();
+                mView.showToast(error);
+            }
+        });
     }
 
 

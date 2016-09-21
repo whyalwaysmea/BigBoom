@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/movie_detail_appbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <!--
+            app:contentScrim:  Toolbar被折叠到顶部固定时候的背景
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"：  视图滚动
+                        exitUntilCollapsed: 滚动退出屏幕，最后折叠在顶端。
+                        scroll: 所有想滚动出屏幕的view都需要设置这个flag
+                        enterAlwaysCollapsed: 当你的视图已经设置minHeight属性又使用此标志时，你的视图只能已最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度。
+                        enterAlways: 设置这个flag时，向下的滚动都会导致该view变为可见，启用快速“返回模式”
+            app:expandedTitleTextAppearance： The text appearance of the CollapsingToolbarLayout's title when it is fully 'expanded'
+            app:expandedTitleMarginStart：       设置扩张时候(还没有收缩时)title向左填充的距离。
+        -->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/movie_detail_toolbarlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginBottom="16dp"
+            app:expandedTitleMarginStart="24dp"
+            app:expandedTitleTextAppearance="?android:attr/textAppearanceMedium"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!--
+                app:layout_collapseParallaxMultiplier(视差因子) - 设置视差滚动因子，值为：0~1。
+                app:layout_collapseMode (折叠模式) - 有两个值:
+                    pin -  设置为这个模式时，当CollapsingToolbarLayout完全收缩后，Toolbar还可以保留在屏幕上。
+                    parallax - 设置为这个模式时，在内容滚动时，CollapsingToolbarLayout中的View（比如ImageView)也可以同时滚动，实现视差滚动效果，通常和layout_collapseParallaxMultiplier(设置视差因子)搭配使用。
+            -->
+
+            <ImageView
+                android:id="@+id/movie_detail_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/material_white"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.5"/>
+
+
+            <ImageView
+                android:id="@+id/movie_detail_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:transitionName="detail_img"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7"/>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:background="@color/material_black50"></FrameLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="scrollable"/>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,8 @@
 package com.whyalwaysmea.bigboom.module.movie.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
+import com.whyalwaysmea.bigboom.module.movie.ui.MovieDetailActivity;
 
 import java.util.List;
 
@@ -47,6 +51,16 @@ public class Top250MovieAdapter extends BaseAdapter<MovieInfo> {
             hotMovieHolder.mRatingBarHots.setRating((float) movieInfo.getRating().getAverage() / 2);
             hotMovieHolder.mTopMovieItemScore.setText("" + movieInfo.getRating().getAverage());
             ImageUtils.getInstance().display(hotMovieHolder.mTopMovieItemIcon, movieInfo.getImages().getLarge());
+
+            ((HotMovieHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, MovieDetailActivity.class);
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((MainActivity)mContext, hotMovieHolder.mTopMovieItemIcon, "detail_img");
+                    mContext.startActivity(intent, options.toBundle());
+                }
+            });
 
         }
     }
