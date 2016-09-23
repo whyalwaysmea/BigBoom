@@ -7,11 +7,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.whyalwaysmea.bigboom.base.BaseActivity;
-import com.whyalwaysmea.bigboom.module.movie.ui.MovieFragment;
+import com.whyalwaysmea.bigboom.module.movielist.ui.MovieFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +25,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     NavigationView mNavigationView;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+    private MovieFragment mFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void initView() {
-        addFragmentToStack(R.id.fl_content, MovieFragment.newInstance());
+        mFragment = MovieFragment.newInstance();
+        addFragmentToStack(R.id.fl_content, mFragment);
     }
 
     public void setToolbar(Toolbar toolbar) {
@@ -54,6 +57,27 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             toggle.syncState();
             mNavigationView.setNavigationItemSelectedListener(this);
         }
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        mFragment.onCreateOptionsMenu(menu, getMenuInflater());
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_search) {
+
+            return true;
+        }
+        mFragment.onOptionsItemSelected(item);
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

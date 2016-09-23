@@ -17,4 +17,7 @@
 
     <string name="new_movies">豆瓣电影新片榜</string>
     <string name="weekly_movies">豆瓣电影本周口碑榜</string>
+
+    <string name="action_search">搜索</string>
+    <string name="hint_search">搜索你感兴趣的电影、导演、演员</string>
 </resources>
