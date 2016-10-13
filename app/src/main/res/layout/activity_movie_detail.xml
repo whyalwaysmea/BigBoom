@@ -7,13 +7,15 @@
     android:background="@color/material_white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/movie_detail_appbarlayout"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="300dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:fitsSystemWindows="true">
 
         <!--
             app:contentScrim:  Toolbar被折叠到顶部固定时候的背景
@@ -46,10 +48,11 @@
                 android:id="@+id/movie_detail_bg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/material_white"
-                android:scaleType="centerCrop"
+                android:background="@color/material_red_300"
+                android:scaleType="fitXY"
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax"
+                android:layout_marginTop="-20dp"
                 app:layout_collapseParallaxMultiplier="0.5"/>
 
 
