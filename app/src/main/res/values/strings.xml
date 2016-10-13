@@ -10,9 +10,9 @@
     <array name="movie_titles">
         <item>正在热映</item>
         <item>将要上映</item>
-        <item>值得一看</item>
+        <!--<item>值得一看</item>-->
         <item>TOP250</item>
-        <item>北美票房榜单</item>
+        <!--<item>北美票房榜单</item>-->
     </array>
 
     <string name="new_movies">豆瓣电影新片榜</string>

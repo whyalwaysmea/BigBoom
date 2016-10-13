@@ -16,9 +16,8 @@ public abstract class MvpActivity<V extends BaseView, P extends BasePresenter<V>
 
     @Override
     protected void init() {
-        super.init();
         mPresenter = createPresenter(this);
-
+        super.init();
     }
 
 

@@ -3,8 +3,16 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
         <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
         <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
     </style>
 
+    <style name="AppTheme" parent="@style/BaseAppTheme" >
+        <!--状态栏透明-->
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 </resources>

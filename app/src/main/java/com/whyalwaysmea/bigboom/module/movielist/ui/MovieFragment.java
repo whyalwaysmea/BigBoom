@@ -55,7 +55,6 @@ public class MovieFragment extends BaseFragment {
     @Override
     protected void initView() {
         ((MainActivity) getActivity()).setToolbar(mToolbar);
-
     }
 
     @Override
@@ -64,14 +63,11 @@ public class MovieFragment extends BaseFragment {
         fragments = new ArrayList<>();
         fragments.add(InTheatersMovieListFragment.newInstance());
         fragments.add(ComingSoonFragment.newInstance());
-        fragments.add(WeeklyMovieFragment.newInstance());
-        for (int i = 0; i < titles.length-3; i++) {
-            fragments.add(Top250MovieListFragment.newInstance());
-
-        }
+//        fragments.add(WeeklyMovieFragment.newInstance());
+        fragments.add(Top250MovieListFragment.newInstance());
         mViewPager.setAdapter(new MainAdapter(getChildFragmentManager(), titles, fragments));
-        mViewPager.setOffscreenPageLimit(5);
-        mViewPager.setCurrentItem(2);
+        mViewPager.setOffscreenPageLimit(1);
+        mViewPager.setCurrentItem(0);
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.setSelectedTabIndicatorColor(getContext().getResources().getColor(R.color.material_white));

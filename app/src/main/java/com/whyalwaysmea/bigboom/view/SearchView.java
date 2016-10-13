@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 import com.whyalwaysmea.bigboom.R;
 
 /**
@@ -41,13 +42,30 @@ public class SearchView {
     private void initEvent() {
         RxView.clicks(mSearchBack).subscribe(aVoid -> mOnSearchClickListener.closeSearchView());
         RxView.clicks(mSearchClear).subscribe(aVoid -> mSearchInput.setText(""));
-        RxView.clicks(mSearchSure).subscribe(aVoid -> mOnSearchClickListener.searchInput());
+        RxView.clicks(mSearchSure).subscribe();
+        RxTextView.textChanges(mSearchInput).subscribe(this::OntextChanges);
 
     }
 
     public interface OnSearchClickListener {
         void closeSearchView();
-        void searchInput();
+        void searchInput(String s);
     }
 
+    private void OnSearch() {
+        if(mOnSearchClickListener != null && mSearchInput.length() > 0) {
+            String s = mSearchInput.getText().toString().trim();
+            mOnSearchClickListener.searchInput(s);
+        } else {
+
+        }
+    }
+
+    private void OntextChanges(CharSequence s) {
+        if(s.length() > 0) {
+            mSearchClear.setVisibility(View.VISIBLE);
+        } else {
+            mSearchClear.setVisibility(View.GONE);
+        }
+    }
 }

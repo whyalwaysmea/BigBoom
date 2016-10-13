@@ -34,7 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".module.moviedetail.ui.MovieDetailActivity">
+        <activity
+            android:name=".module.moviedetail.ui.MovieDetailActivity"
+            android:theme="@style/AppTheme.FullActionBar">
         </activity>
     </application>
 

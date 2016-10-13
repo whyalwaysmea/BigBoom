@@ -2,7 +2,6 @@ package com.whyalwaysmea.bigboom.module.movielist.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
@@ -56,12 +54,17 @@ public class Top250MovieAdapter extends BaseAdapter<MovieInfo> {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, MovieDetailActivity.class);
-                    ActivityOptionsCompat options = ActivityOptionsCompat.
-                            makeSceneTransitionAnimation((MainActivity)mContext, hotMovieHolder.mTopMovieItemIcon, "detail_img");
-                    mContext.startActivity(intent, options.toBundle());
+                    int[] location = new int[2];
+                    view.getLocationInWindow(location);
+                    final int cx = location[0] + view.getWidth() / 2;
+                    final int cy = location[1] + view.getHeight() / 2;
+
+                    intent.putExtra("X", cx);
+                    intent.putExtra("Y", cy);
+                    intent.putExtra("ID", movieInfo.getId());
+                    mContext.startActivity(intent);
                 }
             });
-
         }
     }
 

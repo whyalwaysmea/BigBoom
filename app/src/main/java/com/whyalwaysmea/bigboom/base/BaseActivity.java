@@ -2,6 +2,7 @@ package com.whyalwaysmea.bigboom.base;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,11 +23,12 @@ import com.whyalwaysmea.bigboom.utils.SystemBarTintManager;
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected Toolbar mToolbar;
+    protected Context mContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
+        mContext = this;
     }
 
     protected void init() {
@@ -48,7 +50,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     protected void initSystemBar() {
-        System.out.println("initSystemBar");
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 setTranslucentStatus(this, true);
