@@ -1,5 +1,6 @@
 package com.whyalwaysmea.bigboom;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.widget.FrameLayout;
 
 import com.whyalwaysmea.bigboom.base.BaseActivity;
 import com.whyalwaysmea.bigboom.module.movielist.ui.MovieFragment;
+import com.whyalwaysmea.bigboom.utils.StatusBarUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +44,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void initView() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            StatusBarUtil.setColorForDrawerLayout(this, mDrawerLayout, getResources().getColor(R.color.colorPrimaryDark));
+        }
+
+
         mFragment = MovieFragment.newInstance();
         addFragmentToStack(R.id.fl_content, mFragment);
     }

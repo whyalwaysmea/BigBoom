@@ -16,7 +16,7 @@
 
     <!--配色-->
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#3F51B5</color>
     <color name="colorAccent">#FF4081</color>
     <color name="accent">#ff8f00</color><!--#FF5722-->
     <color name="primary_text">#212121</color>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -50,19 +51,27 @@ public class Top250MovieAdapter extends BaseAdapter<MovieInfo> {
             hotMovieHolder.mTopMovieItemScore.setText("" + movieInfo.getRating().getAverage());
             ImageUtils.getInstance().display(hotMovieHolder.mTopMovieItemIcon, movieInfo.getImages().getLarge());
 
+            final int[] x = new int[1];
             ((HotMovieHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, MovieDetailActivity.class);
                     int[] location = new int[2];
                     view.getLocationInWindow(location);
-                    final int cx = location[0] + view.getWidth() / 2;
                     final int cy = location[1] + view.getHeight() / 2;
 
-                    intent.putExtra("X", cx);
+                    intent.putExtra("X", x[0]);
                     intent.putExtra("Y", cy);
                     intent.putExtra("ID", movieInfo.getId());
                     mContext.startActivity(intent);
+                }
+            });
+
+            ((HotMovieHolder) holder).itemView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    x[0] = (int) motionEvent.getX();
+                    return false;
                 }
             });
         }

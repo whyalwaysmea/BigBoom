@@ -13,8 +13,6 @@
     </style>
 
     <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme" parent="@style/BaseAppTheme" />
@@ -28,6 +26,11 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">@android:color/holo_red_dark</item>
+        <item name="android:titleTextColor">@color/material_black</item>
+    </style>
 
 
     <style name="myratingbar" parent="@android:style/Widget.RatingBar">
