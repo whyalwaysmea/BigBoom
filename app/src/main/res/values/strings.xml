@@ -22,4 +22,11 @@
     <string name="hint_search">搜索你感兴趣的电影、导演、演员</string>
     <string name="original_title">原名：</string>
     <string name="durations">片长：</string>
+    <string name="genres">类型：</string>
+    <string name="pubdates">上映时间：</string>
+    <string name="introduction">简介</string>
+    <string name="directors">导演</string>
+    <string name="casts">影人</string>
+    <string name="photos">剧照</string>
+    <string name="all_photos">全部剧照</string>
 </resources>

@@ -5,4 +5,7 @@
     <item name="recyclerview" type="id" />
     <item name="swipeRefreshLayout" type="id" />
     <item name="pullToRefreshRecyclerView" type="id" />
+
+    <item type="id" name="expandable_text"/>
+    <item type="id" name="expand_collapse"/>
 </resources>

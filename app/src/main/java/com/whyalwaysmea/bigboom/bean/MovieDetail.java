@@ -11,183 +11,236 @@ import java.util.List;
 
 public class MovieDetail {
 
-    /**
-     * aka : ["What's in the Darkness"]
-     * alt : https://movie.douban.com/subject/26433966/
-     * blooper_urls : []
-     * bloopers : []
-     * casts : [{"alt":"https://movie.douban.com/celebrity/1362252/","avatars":{"large":"https://img3.doubanio.com/img/celebrity/large/1473845518.63.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/1473845518.63.jpg","small":"https://img3.doubanio.com/img/celebrity/small/1473845518.63.jpg"},"id":"1362252","name":"苏晓彤","name_en":""},{"alt":"https://movie.douban.com/celebrity/1362253/","avatars":{"large":"https://img1.doubanio.com/img/celebrity/large/1473845735.57.jpg","medium":"https://img1.doubanio.com/img/celebrity/medium/1473845735.57.jpg","small":"https://img1.doubanio.com/img/celebrity/small/1473845735.57.jpg"},"id":"1362253","name":"郭笑","name_en":""},{"alt":"https://movie.douban.com/celebrity/1362254/","avatars":{"large":"https://img3.doubanio.com/img/celebrity/large/1473846076.82.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/1473846076.82.jpg","small":"https://img3.doubanio.com/img/celebrity/small/1473846076.82.jpg"},"id":"1362254","name":"陆琦蔚","name_en":""},{"alt":"https://movie.douban.com/celebrity/1311659/","avatars":{"large":"https://img1.doubanio.com/img/celebrity/large/20368.jpg","medium":"https://img1.doubanio.com/img/celebrity/medium/20368.jpg","small":"https://img1.doubanio.com/img/celebrity/small/20368.jpg"},"id":"1311659","name":"刘丹","name_en":"Dan Liu"}]
-     * clip_urls : []
-     * clips : []
-     * collect_count : 1259
-     * comments_count : 691
-     * countries : ["中国大陆"]
-     * directors : [{"alt":"https://movie.douban.com/celebrity/1350900/","avatars":{"large":"https://img3.doubanio.com/img/celebrity/large/1440326772.75.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/1440326772.75.jpg","small":"https://img3.doubanio.com/img/celebrity/small/1440326772.75.jpg"},"id":"1350900","name":"王一淳","name_en":"Yichun Wang"}]
-     * douban_site :
-     * durations : ["105分钟(公映版)","102分钟(导演版)","97分钟(电影节版)"]
-     * genres : ["剧情","犯罪","悬疑"]
-     * has_schedule : true
-     * has_ticket : true
-     * has_video : false
-     * id : 26433966
-     * images : {"large":"https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2387538436.jpg","medium":"https://img3.doubanio.com/view/movie_poster_cover/spst/public/p2387538436.jpg","small":"https://img3.doubanio.com/view/movie_poster_cover/ipst/public/p2387538436.jpg"}
-     * languages : ["汉语普通话"]
-     * mainland_pubdate : 2016-10-14
-     * mobile_url : https://movie.douban.com/subject/26433966/mobile
-     * original_title : 黑处有什么
-     * photos : [{"alt":"https://movie.douban.com/photos/photo/2319111008/","cover":"https://img1.doubanio.com/view/photo/albumcover/public/p2319111008.jpg","icon":"https://img1.doubanio.com/view/photo/icon/public/p2319111008.jpg","id":"2319111008","image":"https://img1.doubanio.com/view/photo/photo/public/p2319111008.jpg","thumb":"https://img1.doubanio.com/view/photo/thumb/public/p2319111008.jpg"},{"alt":"https://movie.douban.com/photos/photo/2319110281/","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2319110281.jpg","icon":"https://img3.doubanio.com/view/photo/icon/public/p2319110281.jpg","id":"2319110281","image":"https://img3.doubanio.com/view/photo/photo/public/p2319110281.jpg","thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2319110281.jpg"},{"alt":"https://movie.douban.com/photos/photo/2379701828/","cover":"https://img1.doubanio.com/view/photo/albumcover/public/p2379701828.jpg","icon":"https://img1.doubanio.com/view/photo/icon/public/p2379701828.jpg","id":"2379701828","image":"https://img1.doubanio.com/view/photo/photo/public/p2379701828.jpg","thumb":"https://img1.doubanio.com/view/photo/thumb/public/p2379701828.jpg"},{"alt":"https://movie.douban.com/photos/photo/2319111018/","cover":"https://img1.doubanio.com/view/photo/albumcover/public/p2319111018.jpg","icon":"https://img1.doubanio.com/view/photo/icon/public/p2319111018.jpg","id":"2319111018","image":"https://img1.doubanio.com/view/photo/photo/public/p2319111018.jpg","thumb":"https://img1.doubanio.com/view/photo/thumb/public/p2319111018.jpg"},{"alt":"https://movie.douban.com/photos/photo/2380652642/","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2380652642.jpg","icon":"https://img3.doubanio.com/view/photo/icon/public/p2380652642.jpg","id":"2380652642","image":"https://img3.doubanio.com/view/photo/photo/public/p2380652642.jpg","thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2380652642.jpg"},{"alt":"https://movie.douban.com/photos/photo/2380652628/","cover":"https://img1.doubanio.com/view/photo/albumcover/public/p2380652628.jpg","icon":"https://img1.doubanio.com/view/photo/icon/public/p2380652628.jpg","id":"2380652628","image":"https://img1.doubanio.com/view/photo/photo/public/p2380652628.jpg","thumb":"https://img1.doubanio.com/view/photo/thumb/public/p2380652628.jpg"},{"alt":"https://movie.douban.com/photos/photo/2319111263/","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2319111263.jpg","icon":"https://img3.doubanio.com/view/photo/icon/public/p2319111263.jpg","id":"2319111263","image":"https://img3.doubanio.com/view/photo/photo/public/p2319111263.jpg","thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2319111263.jpg"},{"alt":"https://movie.douban.com/photos/photo/2388895353/","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2388895353.jpg","icon":"https://img3.doubanio.com/view/photo/icon/public/p2388895353.jpg","id":"2388895353","image":"https://img3.doubanio.com/view/photo/photo/public/p2388895353.jpg","thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2388895353.jpg"},{"alt":"https://movie.douban.com/photos/photo/2388895342/","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2388895342.jpg","icon":"https://img3.doubanio.com/view/photo/icon/public/p2388895342.jpg","id":"2388895342","image":"https://img3.doubanio.com/view/photo/photo/public/p2388895342.jpg","thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2388895342.jpg"},{"alt":"https://movie.douban.com/photos/photo/2388895328/","cover":"https://img1.doubanio.com/view/photo/albumcover/public/p2388895328.jpg","icon":"https://img1.doubanio.com/view/photo/icon/public/p2388895328.jpg","id":"2388895328","image":"https://img1.doubanio.com/view/photo/photo/public/p2388895328.jpg","thumb":"https://img1.doubanio.com/view/photo/thumb/public/p2388895328.jpg"}]
-     * photos_count : 82
-     * popular_comments : [{"author":{"alt":"https://www.douban.com/people/ydyie/","avatar":"https://img1.doubanio.com/icon/u2126832-179.jpg","id":"2126832","name":"时间之葬","signature":"","uid":"ydyie"},"content":"窥见一个闭塞且无能的时代","created_at":"2015-10-20 19:27:18","id":"969738800","rating":{"max":5,"min":0,"value":4},"subject_id":"26433966","useful_count":7},{"author":{"alt":"https://www.douban.com/people/zntoborges/","avatar":"https://img3.doubanio.com/icon/u2905955-12.jpg","id":"2905955","name":"支离疏","signature":"铁罗汉，活金刚","uid":"zntoborges"},"content":"我个人非常喜欢，气质独特，但也有许多疑问。过几天会采访导演。","created_at":"2016-09-21 17:34:32","id":"1087727237","rating":{"max":5,"min":0,"value":4},"subject_id":"26433966","useful_count":17},{"author":{"alt":"https://www.douban.com/people/7542909/","avatar":"https://img3.doubanio.com/icon/u7542909-82.jpg","id":"7542909","name":"翻滚吧！蛋堡","signature":"谁要是再来害人定不饶他","uid":"7542909"},"content":"从女孩视角出发，对整个时代笼罩的压抑氛围作出展示，然而情感并未找到一个立足点，对主角成长的表述也过分暧昧模糊。","created_at":"2015-10-31 18:43:50","id":"972993894","rating":{"max":5,"min":0,"value":3},"subject_id":"26433966","useful_count":12},{"author":{"alt":"https://www.douban.com/people/shuixia1825/","avatar":"https://img1.doubanio.com/icon/u2673286-19.jpg","id":"2673286","name":"水怪","signature":"Help me,Bacchus","uid":"shuixia1825"},"content":"90年代的工厂社区版杀人回忆，远不止青春成长。全片弥漫着一个时代的性压抑以及温吞日常生活所掩盖的惊悚感。六七十年代赤色残余防空洞以及进行时人工湖所象征的犯罪现场也使得影片在更纵深的坐标体系中力度十足。","created_at":"2015-07-26 17:59:13","id":"944477817","rating":{"max":5,"min":0,"value":5},"subject_id":"26433966","useful_count":6}]
-     * popular_reviews : [{"alt":"https://movie.douban.com/review/7782679/","author":{"alt":"https://www.douban.com/people/MovieL/","avatar":"https://img3.doubanio.com/icon/u1128221-91.jpg","id":"1128221","name":"木卫二","signature":"公众号：MOViE木卫","uid":"MovieL"},"id":"7782679","rating":{"max":5,"min":0,"value":4},"subject_id":"26433966","summary":"【Spoiler Alert ！ 以下内容有小部分的剧情泄露，可能影响观看】  《黑处有什么》 自然会被归入\u201c饱受《杀人回忆》影响的系列电影\u201d当中。  我当初都过于肯定地认为，原型事件在前的《十二宫》，它也是照着《杀人回...","title":"告诉你一个秘密"},{"alt":"https://movie.douban.com/review/7598219/","author":{"alt":"https://www.douban.com/people/darlingtudai/","avatar":"https://img3.doubanio.com/icon/u3571728-440.jpg","id":"3571728","name":"刘小黛","signature":"美酒醇妇庶几完满。","uid":"darlingtudai"},"id":"7598219","rating":{"max":5,"min":0,"value":4},"subject_id":"26433966","summary":"文/刘小黛 公众号：抛开书本  《黑处有什么》不是一部普通的青春片，一如它的片名，黑处有深意。影片在叙事中没有直面当时的现实政治环境，而以青春记忆来反思我们这个社会一些根深蒂固的意识形态和青春成长环境，暗...","title":"被遗忘的工厂记忆"},{"alt":"https://movie.douban.com/review/8123590/","author":{"alt":"https://www.douban.com/people/4026585/","avatar":"https://img3.doubanio.com/icon/u4026585-2.jpg","id":"4026585","name":"杀手里昂Leon","signature":"到目前为止，电影是我唯一的情人","uid":"4026585"},"id":"8123590","rating":{"max":5,"min":0,"value":4},"subject_id":"26433966","summary":"采访、文/杀手里昂 文章来源：《电影》杂志10月刊  《黑处有什么》的剧本写完之后，王一淳拿给别人看，喜欢的人挺多，但就是没人掏钱拍。于是狠了狠心自掏腰包，花了300万拍完了这部电影。去年的FIRST青年影展上，王...","title":"专访\u2016王一淳：如果你好奇\u201c白银杀人案\u201d，这部电影给你讲"},{"alt":"https://movie.douban.com/review/8108112/","author":{"alt":"https://www.douban.com/people/zhangfan187/","avatar":"https://img3.doubanio.com/icon/u59626068-3.jpg","id":"59626068","name":"搬砖侠","signature":"搬完砖就可以继续拯救地球了！","uid":"zhangfan187"},"id":"8108112","rating":{"max":5,"min":0,"value":4},"subject_id":"26433966","summary":"《黑处有什么》是青年导演王一淳自编自导的第一部作品，本片于2015年7月获得了西宁FIRST青年电影展的最佳导演奖（上一任的得奖者是《心迷宫》的导演忻钰坤）。   本片的故事背景与《心迷宫》颇有些类似，导演都将故...","title":"九零年代回想录：少女青春里的杀人回忆"},{"alt":"https://movie.douban.com/review/8106800/","author":{"alt":"https://www.douban.com/people/69428274/","avatar":"https://img3.doubanio.com/icon/u69428274-12.jpg","id":"69428274","name":"肚腩少女","signature":"做自由的废物。","uid":"69428274"},"id":"8106800","rating":{"max":5,"min":0,"value":4},"subject_id":"26433966","summary":"写在前面： 首先要感谢宋丹辉小姐从first内部拿票，邀请我和老王今晚一同去观看电影《黑处有什么》的点映。有趣的是，这一次我再一次和朋友们唱起了反调\u2014\u2014电影结束后，我说，真不错呢。宋小姐和老王却一致认为，烂...","title":"赞扬《黑处有什么》，可能是我再一次在朋友圈唱反调"},{"alt":"https://movie.douban.com/review/7570603/","author":{"alt":"https://www.douban.com/people/meowarrier/","avatar":"https://img1.doubanio.com/icon/u31739532-88.jpg","id":"31739532","name":"森林里的小玄子","signature":"城市里的游牧人","uid":"meowarrier"},"id":"7570603","rating":{"max":5,"min":0,"value":4},"subject_id":"26433966","summary":"说到《黑处有什么》时，影迷们往往会将其与《杀人回忆》相提并论，但这样一部\u201c依附于\u201d名作之下的作品，却在评委会与影评人之间享有奇高的呼声，并最后一举拿下了FIRST最佳导演及影评人\u201c费比西\u201d奖，看来似乎有些...","title":"深翻九零年代"},{"alt":"https://movie.douban.com/review/8118909/","author":{"alt":"https://www.douban.com/people/57542378/","avatar":"https://img1.doubanio.com/icon/u57542378-8.jpg","id":"57542378","name":"梦里诗书","signature":"","uid":"57542378"},"id":"8118909","rating":{"max":5,"min":0,"value":3},"subject_id":"26433966","summary":"文/梦里诗书   青春与悬疑的结合，不得不说是电影《黑处有什么》一个颇为新颖的切入，怎料随着剧情的推进，奸杀案的悬疑色彩只是成为了假以的噱头，固然悬疑的黯淡使这样的故事只能算差强人意，但电影对少女情感的细...","title":"黑处只有青春"},{"alt":"https://movie.douban.com/review/8114333/","author":{"alt":"https://www.douban.com/people/62582526/","avatar":"https://img3.doubanio.com/icon/u62582526-4.jpg","id":"62582526","name":"独孤行之","signature":"关于青春的说法，一触即断","uid":"62582526"},"id":"8114333","rating":{"max":5,"min":0,"value":4},"subject_id":"26433966","summary":"       武汉点映，终于看了这部在去年First大放异彩的《黑处有什么》。总的来说，这是独属于大陆的《我的少女时代》，是一部披着犯罪悬疑类型片外衣而内核极富时代性的青春片。本是及格之作，本着鼓励小成本处女作自...","title":"真·我的少女时代"},{"alt":"https://movie.douban.com/review/8123372/","author":{"alt":"https://www.douban.com/people/kanghao413/","avatar":"https://img3.doubanio.com/icon/u4862207-20.jpg","id":"4862207","name":"Marilyn教父","signature":"通往宝座的路、总是滴血妖娆的","uid":"kanghao413"},"id":"8123372","rating":{"max":5,"min":0,"value":3},"subject_id":"26433966","summary":"受朋友邀看了点映、本着说良心话的原则、片子介于两至三颗星之间、最后鉴于是导演处女座、还是给三颗星吧、不能再多了...  话说、前天朋友兴奋地和我说、\u201c听说了么？有一片子特牛逼、你不是喜欢看棒子国的片儿么？...","title":"黑处到底有鸡毛啊？！"},{"alt":"https://movie.douban.com/review/8123349/","author":{"alt":"https://www.douban.com/people/97637940/","avatar":"https://img3.doubanio.com/icon/u97637940-3.jpg","id":"97637940","name":"谷城","signature":"刷片中","uid":"97637940"},"id":"8123349","rating":{"max":5,"min":0,"value":1},"subject_id":"26433966","summary":"我看的是点映场，看之前就觉的可能会跟想象的不大一样，没想到第一个场景就给我一个强烈的信号，这导演在侮辱观众的智商。一些类似于生活笔记的细节是导演刻意表现的，而真正的细节则显得廉价而粗糙。最可怕的是这些...","title":"\u201c别出新颖\u201d的犯罪青春片"}]
-     * pubdate : 2016-10-14
-     * pubdates : ["2015-07-23(FIRST青年电影展)","2016-10-14(中国大陆)"]
-     * rating : {"average":7,"details":{"1":11,"2":47,"3":260,"4":298,"5":62},"max":10,"min":0,"stars":"35"}
-     * ratings_count : 1140
-     * reviews_count : 39
-     * schedule_url : https://movie.douban.com/subject/26433966/cinema/
-     * share_url : https://m.douban.com/movie/subject/26433966
-     * subtype : movie
-     * summary : 1991年春夏之交，中原飞机厂家属区内，一起强奸杀人案打破了往日的平静……初二中等生曲靖和老留级生张雪的爸爸同为负责这起案子的警察，但有着迥异的办案风格：曲靖的爸爸出身法医，迂腐和小气的个性让他总是成为大家取笑的对象；张雪的爸爸是退伍军人，办案凭直觉，因为破案率高，是单位的红人……凶手很快被张雪爸爸抓到了，但相同的强奸杀人案再次发生……没人注意到被老师赶出教室的张雪再也没来上课……
-     * tags : ["悬疑","中国","青春","大陆","犯罪","2015","剧情","中国大陆","国产","成长"]
-     * title : 黑处有什么
-     * trailer_urls : ["http://vt1.doubanio.com/201610131502/b33a4b97623a2415773146d9d0481768/view/movie/M/302050106.mp4","http://vt1.doubanio.com/201610131502/d4d5f205842fcf31018e6d9c462c1dd8/view/movie/M/302040314.mp4","http://vt1.doubanio.com/201610131502/d4af83370ce464177233947d53835af4/view/movie/M/302040108.mp4","http://vt1.doubanio.com/201610131502/90a1df6cb9c312c22e727fad5f8ea3c1/view/movie/M/302030536.mp4"]
-     * trailers : [{"alt":"https://movie.douban.com/trailer/205106/","id":"205106","medium":"https://img3.doubanio.com/img/trailer/medium/2387548904.jpg?","resource_url":"http://vt1.doubanio.com/201610131502/b33a4b97623a2415773146d9d0481768/view/movie/M/302050106.mp4","small":"https://img3.doubanio.com/img/trailer/small/2387548904.jpg?","subject_id":"26433966","title":"预告片：荒诞性萌动版 (中文字幕)"},{"alt":"https://movie.douban.com/trailer/204314/","id":"204314","medium":"https://img3.doubanio.com/img/trailer/medium/2383097611.jpg?","resource_url":"http://vt1.doubanio.com/201610131502/d4d5f205842fcf31018e6d9c462c1dd8/view/movie/M/302040314.mp4","small":"https://img3.doubanio.com/img/trailer/small/2383097611.jpg?","subject_id":"26433966","title":"预告片：危机版 (中文字幕)"},{"alt":"https://movie.douban.com/trailer/204108/","id":"204108","medium":"https://img3.doubanio.com/img/trailer/medium/2382538743.jpg?","resource_url":"http://vt1.doubanio.com/201610131502/d4af83370ce464177233947d53835af4/view/movie/M/302040108.mp4","small":"https://img3.doubanio.com/img/trailer/small/2382538743.jpg?","subject_id":"26433966","title":"预告片：\u201c案发前\u201d版 (中文字幕)"},{"alt":"https://movie.douban.com/trailer/203536/","id":"203536","medium":"https://img3.doubanio.com/img/trailer/medium/2379722751.jpg?","resource_url":"http://vt1.doubanio.com/201610131502/90a1df6cb9c312c22e727fad5f8ea3c1/view/movie/M/302030536.mp4","small":"https://img3.doubanio.com/img/trailer/small/2379722751.jpg?","subject_id":"26433966","title":"先行版 (中文字幕)"}]
-     * videos : []
-     * website :
-     * wish_count : 7831
-     * writers : [{"alt":"https://movie.douban.com/celebrity/1350900/","avatars":{"large":"https://img3.doubanio.com/img/celebrity/large/1440326772.75.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/1440326772.75.jpg","small":"https://img3.doubanio.com/img/celebrity/small/1440326772.75.jpg"},"id":"1350900","name":"王一淳","name_en":"Yichun Wang"}]
-     * year : 2015
-     */
 
-    private String alt;
-    private int collect_count;
-    private int comments_count;
-    private String douban_site;
-    private boolean has_schedule;
-    private boolean has_ticket;
-    private boolean has_video;
-    private String id;
     /**
-     * large : https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2387538436.jpg
-     * medium : https://img3.doubanio.com/view/movie_poster_cover/spst/public/p2387538436.jpg
-     * small : https://img3.doubanio.com/view/movie_poster_cover/ipst/public/p2387538436.jpg
-     */
-
-    private ImagesBean images;
-    private String mainland_pubdate;
-    private String mobile_url;
-    private String original_title;
-    private int photos_count;
-    private String pubdate;
-    /**
-     * average : 7
-     * details : {"1":11,"2":47,"3":260,"4":298,"5":62}
      * max : 10
+     * average : 9.1
+     * details : {"1":523,"2":1353,"3":21719,"4":80048,"5":189541}
+     * stars : 45
      * min : 0
-     * stars : 35
      */
 
     private RatingBean rating;
-    private int ratings_count;
-    private int reviews_count;
-    private String schedule_url;
-    private String share_url;
-    private String subtype;
-    private String summary;
-    private String title;
-    private String website;
-    private int wish_count;
-    private String year;
-    private List<String> aka;
-    private List<?> blooper_urls;
-    private List<?> bloopers;
     /**
-     * alt : https://movie.douban.com/celebrity/1362252/
-     * avatars : {"large":"https://img3.doubanio.com/img/celebrity/large/1473845518.63.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/1473845518.63.jpg","small":"https://img3.doubanio.com/img/celebrity/small/1473845518.63.jpg"}
-     * id : 1362252
-     * name : 苏晓彤
-     * name_en :
+     * rating : {"max":10,"average":9.1,"details":{"1":523,"2":1353,"3":21719,"4":80048,"5":189541},"stars":"45","min":0}
+     * reviews_count : 1930
+     * videos : [{"source":{"literal":"qq","pic":"https://img3.doubanio.com/f/movie/38764466321ab88dfa19a1f826570367a19ce116/pics/movie/video-qq.png","name":"腾讯视频"},"sample_link":"http://v.qq.com/cover/f/fse52rd4klx7qn2.html?ptag=douban.movie","video_id":"","need_pay":false}]
+     * wish_count : 18964
+     * original_title : 西遊記大結局之仙履奇緣
+     * blooper_urls : []
+     * collect_count : 523957
+     * images : {"small":"https://img3.doubanio.com/view/movie_poster_cover/ipst/public/p648365452.jpg","large":"https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p648365452.jpg","medium":"https://img3.doubanio.com/view/movie_poster_cover/spst/public/p648365452.jpg"}
+     * douban_site :
+     * year : 1995
+     * popular_comments : [{"rating":{"max":5,"value":0,"min":0},"useful_count":597,"author":{"uid":"cat17fish1","avatar":"https://img3.doubanio.com/icon/u1754924-80.jpg","signature":"","alt":"https://www.douban.com/people/cat17fish1/","id":"1754924","name":"十七只猫和鱼"},"subject_id":"1292213","content":"25-30岁待业青年的精神寄托","created_at":"2010-12-11 10:07:01","id":"325148038"},{"rating":{"max":5,"value":5,"min":0},"useful_count":717,"author":{"uid":"crpily","avatar":"https://img3.doubanio.com/icon/u43686596-20.jpg","signature":"联系我时请注明世纪佳缘，谢谢。","alt":"https://www.douban.com/people/crpily/","id":"43686596","name":"凉水"},"subject_id":"1292213","content":"紫霞飘向太阳时、齐天大圣离开城门时，都哭成了傻逼。有多庆幸能踩着五彩祥云做你的盖世英雄，就有多遗憾没办法与你守护终身。喜欢的是五百年前的晶晶、还是给了自己三颗痣的紫霞；喜欢无拘无束敢爱敢恨的至尊宝、还是套上紧箍咒背影像狗的孙悟空？爱的命题究竟太空泛，恐怕还是要交给月光宝盒。","created_at":"2012-10-26 20:49:43","id":"595885905"},{"rating":{"max":5,"value":4,"min":0},"useful_count":378,"author":{"uid":"miuccia","avatar":"https://img3.doubanio.com/icon/u1303121-363.jpg","signature":"大无畏","alt":"https://www.douban.com/people/miuccia/","id":"1303121","name":"Miss Lucky"},"subject_id":"1292213","content":"其实很伤感","created_at":"2006-12-22 20:41:27","id":"8363859"},{"rating":{"max":5,"value":5,"min":0},"useful_count":234,"author":{"uid":"amutofade","avatar":"https://img3.doubanio.com/icon/u1306803-54.jpg","signature":"尽可能善待他人前提是取悦自己。","alt":"https://www.douban.com/people/amutofade/","id":"1306803","name":"宋阿慕"},"subject_id":"1292213","content":"大话西游成就了一个时代.这句话一点也没错.不管是好的方面还是不好的方面.|人试图化身为天地，这本身就是一种不自量力。","created_at":"2008-02-19 15:19:26","id":"31790549"}]
+     * alt : https://movie.douban.com/subject/1292213/
+     * id : 1292213
+     * mobile_url : https://movie.douban.com/subject/1292213/mobile
+     * photos_count : 804
+     * pubdate : 2014-10-24
+     * title : 大话西游之大圣娶亲
+     * do_count : null
+     * has_video : true
+     * share_url : https://m.douban.com/movie/subject/1292213
+     * seasons_count : null
+     * languages : ["粤语","汉语普通话"]
+     * schedule_url :
+     * writers : [{"avatars":{"small":"https://img3.doubanio.com/img/celebrity/small/45374.jpg","large":"https://img3.doubanio.com/img/celebrity/large/45374.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/45374.jpg"},"name_en":"Jeffrey Lau","name":"刘镇伟","alt":"https://movie.douban.com/celebrity/1274431/","id":"1274431"},{"avatars":{"small":"https://img1.doubanio.com/img/celebrity/small/12837.jpg","large":"https://img1.doubanio.com/img/celebrity/large/12837.jpg","medium":"https://img1.doubanio.com/img/celebrity/medium/12837.jpg"},"name_en":"Cheng'en Wu","name":"吴承恩","alt":"https://movie.douban.com/celebrity/1275984/","id":"1275984"}]
+     * pubdates : ["1995-02-04(香港)","2014-10-24(中国大陆)"]
+     * website :
+     * tags : ["经典","喜剧","爱情","香港","大话西游","搞笑","电影","中国","1995","1994"]
+     * has_schedule : false
+     * durations : ["95分钟"]
+     * genres : ["动作","冒险","喜剧"]
+     * collection : null
+     * trailers : [{"medium":"https://img3.doubanio.com/img/trailer/medium/2206035894.jpg?","title":"预告片：悲情版 (中文字幕)","subject_id":"1292213","alt":"https://movie.douban.com/trailer/164614/","small":"https://img3.doubanio.com/img/trailer/small/2206035894.jpg?","resource_url":"http://vt1.doubanio.com/201610171632/e0c0c6091d14b85b8dea638e8613be6f/view/movie/M/301640614.mp4","id":"164614"}]
+     * episodes_count : null
+     * trailer_urls : ["http://vt1.doubanio.com/201610171632/e0c0c6091d14b85b8dea638e8613be6f/view/movie/M/301640614.mp4"]
+     * has_ticket : false
+     * bloopers : []
+     * clip_urls : ["http://vt1.doubanio.com/201610171632/11fcb6d4061ff4a82bb55dd8fa64dc30/view/movie/M/301370557.mp4","http://vt1.doubanio.com/201610171632/de63b5ca7a15aba74b47d3b6d1bded9d/view/movie/M/301370556.mp4"]
+     * current_season : null
+     * casts : [{"avatars":{"small":"https://img3.doubanio.com/img/celebrity/small/47421.jpg","large":"https://img3.doubanio.com/img/celebrity/large/47421.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/47421.jpg"},"name_en":"Stephen Chow","name":"周星驰","alt":"https://movie.douban.com/celebrity/1048026/","id":"1048026"},{"avatars":{"small":"https://img3.doubanio.com/img/celebrity/small/45481.jpg","large":"https://img3.doubanio.com/img/celebrity/large/45481.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/45481.jpg"},"name_en":"Man Tat Ng","name":"吴孟达","alt":"https://movie.douban.com/celebrity/1016771/","id":"1016771"},{"avatars":{"small":"https://img1.doubanio.com/img/celebrity/small/5539.jpg","large":"https://img1.doubanio.com/img/celebrity/large/5539.jpg","medium":"https://img1.doubanio.com/img/celebrity/medium/5539.jpg"},"name_en":"Athena Chu","name":"朱茵","alt":"https://movie.douban.com/celebrity/1041734/","id":"1041734"},{"avatars":{"small":"https://img3.doubanio.com/img/celebrity/small/6774.jpg","large":"https://img3.doubanio.com/img/celebrity/large/6774.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/6774.jpg"},"name_en":"Ada Choi","name":"蔡少芬","alt":"https://movie.douban.com/celebrity/1050946/","id":"1050946"}]
+     * countries : ["香港","中国大陆"]
+     * mainland_pubdate : 2014-10-24
+     * photos : [{"thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2002649154.jpg","image":"https://img3.doubanio.com/view/photo/photo/public/p2002649154.jpg","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2002649154.jpg","alt":"https://movie.douban.com/photos/photo/2002649154/","id":"2002649154","icon":"https://img3.doubanio.com/view/photo/icon/public/p2002649154.jpg"},{"thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2002648846.jpg","image":"https://img3.doubanio.com/view/photo/photo/public/p2002648846.jpg","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2002648846.jpg","alt":"https://movie.douban.com/photos/photo/2002648846/","id":"2002648846","icon":"https://img3.doubanio.com/view/photo/icon/public/p2002648846.jpg"},{"thumb":"https://img1.doubanio.com/view/photo/thumb/public/p1512952229.jpg","image":"https://img1.doubanio.com/view/photo/photo/public/p1512952229.jpg","cover":"https://img1.doubanio.com/view/photo/albumcover/public/p1512952229.jpg","alt":"https://movie.douban.com/photos/photo/1512952229/","id":"1512952229","icon":"https://img1.doubanio.com/view/photo/icon/public/p1512952229.jpg"},{"thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2002649421.jpg","image":"https://img3.doubanio.com/view/photo/photo/public/p2002649421.jpg","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2002649421.jpg","alt":"https://movie.douban.com/photos/photo/2002649421/","id":"2002649421","icon":"https://img3.doubanio.com/view/photo/icon/public/p2002649421.jpg"},{"thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2002642965.jpg","image":"https://img3.doubanio.com/view/photo/photo/public/p2002642965.jpg","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2002642965.jpg","alt":"https://movie.douban.com/photos/photo/2002642965/","id":"2002642965","icon":"https://img3.doubanio.com/view/photo/icon/public/p2002642965.jpg"},{"thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2002647930.jpg","image":"https://img3.doubanio.com/view/photo/photo/public/p2002647930.jpg","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2002647930.jpg","alt":"https://movie.douban.com/photos/photo/2002647930/","id":"2002647930","icon":"https://img3.doubanio.com/view/photo/icon/public/p2002647930.jpg"},{"thumb":"https://img1.doubanio.com/view/photo/thumb/public/p2002647097.jpg","image":"https://img1.doubanio.com/view/photo/photo/public/p2002647097.jpg","cover":"https://img1.doubanio.com/view/photo/albumcover/public/p2002647097.jpg","alt":"https://movie.douban.com/photos/photo/2002647097/","id":"2002647097","icon":"https://img1.doubanio.com/view/photo/icon/public/p2002647097.jpg"},{"thumb":"https://img3.doubanio.com/view/photo/thumb/public/p459808006.jpg","image":"https://img3.doubanio.com/view/photo/photo/public/p459808006.jpg","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p459808006.jpg","alt":"https://movie.douban.com/photos/photo/459808006/","id":"459808006","icon":"https://img3.doubanio.com/view/photo/icon/public/p459808006.jpg"},{"thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2002646874.jpg","image":"https://img3.doubanio.com/view/photo/photo/public/p2002646874.jpg","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2002646874.jpg","alt":"https://movie.douban.com/photos/photo/2002646874/","id":"2002646874","icon":"https://img3.doubanio.com/view/photo/icon/public/p2002646874.jpg"},{"thumb":"https://img3.doubanio.com/view/photo/thumb/public/p2002647412.jpg","image":"https://img3.doubanio.com/view/photo/photo/public/p2002647412.jpg","cover":"https://img3.doubanio.com/view/photo/albumcover/public/p2002647412.jpg","alt":"https://movie.douban.com/photos/photo/2002647412/","id":"2002647412","icon":"https://img3.doubanio.com/view/photo/icon/public/p2002647412.jpg"}]
+     * summary : 至尊宝（周星驰）被月光宝盒带回到五百年前，遇见紫霞仙子（朱茵），被对方打上烙印成为对方的人，并发觉自己已变成孙悟空。
+     紫霞与青霞（朱茵）本是如来佛祖座前日月神灯的灯芯（白天是紫霞，晚上是青霞），二人虽然同一肉身却仇恨颇深，因此紫霞立下誓言，谁能拔出她手中的紫青宝剑，谁就是她的意中人。紫青宝剑被至尊宝于不经意间拔出，紫霞决定以身相许，却遭一心记挂白晶晶（莫文蔚）的至尊宝拒绝。后牛魔王救下迷失在沙漠中的紫霞，并逼紫霞与他成婚，关键时刻，至尊宝现身。©豆瓣
+     * clips : [{"medium":"https://img3.doubanio.com/img/trailer/medium/2023937673.jpg?","title":"片段","subject_id":"1292213","alt":"https://movie.douban.com/trailer/137557/","small":"https://img3.doubanio.com/img/trailer/small/2023937673.jpg?","resource_url":"http://vt1.doubanio.com/201610171632/11fcb6d4061ff4a82bb55dd8fa64dc30/view/movie/M/301370557.mp4","id":"137557"},{"medium":"https://img3.doubanio.com/img/trailer/medium/2023930814.jpg?","title":"片段 (中文字幕)","subject_id":"1292213","alt":"https://movie.douban.com/trailer/137556/","small":"https://img3.doubanio.com/img/trailer/small/2023930814.jpg?","resource_url":"http://vt1.doubanio.com/201610171632/de63b5ca7a15aba74b47d3b6d1bded9d/view/movie/M/301370556.mp4","id":"137556"}]
+     * subtype : movie
+     * directors : [{"avatars":{"small":"https://img3.doubanio.com/img/celebrity/small/45374.jpg","large":"https://img3.doubanio.com/img/celebrity/large/45374.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/45374.jpg"},"name_en":"Jeffrey Lau","name":"刘镇伟","alt":"https://movie.douban.com/celebrity/1274431/","id":"1274431"}]
+     * comments_count : 73454
+     * popular_reviews : [{"rating":{"max":5,"value":5,"min":0},"title":"工作两年后感悟的《大话西游》（转载 个人觉得很不错 所以贴上来)","subject_id":"1292213","author":{"uid":"dengdaigeduo","avatar":"https://img3.doubanio.com/icon/u2226766-5.jpg","signature":"","alt":"https://www.douban.com/people/dengdaigeduo/","id":"2226766","name":"等待戈多"},"summary":"这个世界上还有一个故事，叫做《大话西游》。   世界是巨大的枷锁，你不得不重复自己或是别人的生活。  记得长辈说过：年轻是一种罪过。他们说我们不成熟。   真切地为自己的不俗喝彩，在深切的郁闷中，突然就看懂了...","alt":"https://movie.douban.com/review/1427613/","id":"1427613"},{"rating":{"max":5,"value":5,"min":0},"title":"我们所不能抗拒的只有爱与死","subject_id":"1292213","author":{"uid":"drleesilentnigh","avatar":"https://img3.doubanio.com/icon/u1115813-141.jpg","signature":"不再减肥#","alt":"https://www.douban.com/people/drleesilentnigh/","id":"1115813","name":"我对你的无语简直能沉默整个宇宙"},"summary":"　　199X年。小学。东北某矿区职工电影院。 　　我跟很多小孩子挤在黑暗里看妖魔鬼怪。我们只是冲着孙悟空猪八戒来的。我不明白里面怎么会冒出来那么多女的跟孙悟空扯上瓜葛，原来都是妖精们或者女儿国的女儿们喜欢...","alt":"https://movie.douban.com/review/1385038/","id":"1385038"},{"rating":{"max":5,"value":5,"min":0},"title":"你理解大话西游片尾那句\u201c他好像一条狗\u201d吗？如果不能理解，那就是没看懂。","subject_id":"1292213","author":{"uid":"yoo_long","avatar":"https://img1.doubanio.com/icon/u1213556-29.jpg","signature":"曾经沧海难为水，除却云雨无乐趣","alt":"https://www.douban.com/people/yoo_long/","id":"1213556","name":"苗汉子"},"summary":"你在看大话西游的时候，如果笑得腹背抽筋，龇牙咧嘴，那么你很有幽默感。如果你看完了大话西游，你还笑得满地打滚，那么你其实什么都没看懂。如果你看完了大话，你忽然发现脸上不知什么时候已经有泪水，你总算看懂了...","alt":"https://movie.douban.com/review/5199026/","id":"5199026"},{"rating":{"max":5,"value":5,"min":0},"title":"《大话西游》里面爱情伦理观","subject_id":"1292213","author":{"uid":"drp2599","avatar":"https://img3.doubanio.com/icon/u3583794-46.jpg","signature":"微信公众号：爆裂核桃","alt":"https://www.douban.com/people/drp2599/","id":"3583794","name":"阿邓瑞平"},"summary":"《大话西游》是我最喜欢的一部有关于爱情的电影，完全符合我对爱情伦理的最本源的想法。符合我爱情伦理观的电影有两部，另一部是《屋顶上的轻骑兵》，那个我以前在豆瓣上曾经写过，更侧重于精神分析。其实《大话西游...","alt":"https://movie.douban.com/review/2084101/","id":"2084101"},{"rating":{"max":5,"value":4,"min":0},"title":"一生所爱","subject_id":"1292213","author":{"uid":"wildboy","avatar":"https://img1.doubanio.com/icon/u1018267-29.jpg","signature":"刘健一@哈WU稿 公众号ID：ha5gao","alt":"https://www.douban.com/people/wildboy/","id":"1018267","name":"阿七"},"summary":"拥有IPOD这种海量MP3的一种好处就是，你永远不知道下一刻在你耳机里会传出什么音乐。有些歌你放进去或许自己都忘记了。在某一个不经意的时候，当它回来，唤起的是一段记忆。一首歌是一个人、一件事、一段时光。   一...","alt":"https://movie.douban.com/review/1047688/","id":"1047688"},{"rating":{"max":5,"value":5,"min":0},"title":"不过是只受了诅咒的猴子。","subject_id":"1292213","author":{"uid":"xiaomaitalk","avatar":"https://img3.doubanio.com/icon/u1547732-70.jpg","signature":"深如海，静如湖。","alt":"https://www.douban.com/people/xiaomaitalk/","id":"1547732","name":"谢小麦"},"summary":"    周六的时候参加米兜组织的活动，到好北边的中国电影博物馆，看很久之前已经看过很多遍的《大话西游》。虽然路程远了一些，电影票还是好便宜；又赶上蜡像馆开幕，也算是不虚此行。     十多年前第一次看的时候，...","alt":"https://movie.douban.com/review/1455328/","id":"1455328"},{"rating":{"max":5,"value":5,"min":0},"title":"玩什么别玩剑","subject_id":"1292213","author":{"uid":"dd770523","avatar":"https://img1.doubanio.com/icon/u1715179-87.jpg","signature":"远方之外更有远方","alt":"https://www.douban.com/people/dd770523/","id":"1715179","name":"鱼·无"},"summary":"一个女人。 一个身材玲珑，风情不羁的女人。 一个天上有地下无，机敏跳脱，额头光洁而红唇饱满的女人。 她衣袂翩翩，青丝飘扬，贝齿如编。手腕上一串银铃，牵起天地间的靡靡之音，纵是天兵神将，都要元魂颠倒。 但她...","alt":"https://movie.douban.com/review/1307442/","id":"1307442"},{"rating":{"max":5,"value":5,"min":0},"title":"重温《大话西游》 (转)","subject_id":"1292213","author":{"uid":"liulang0808","avatar":"https://img3.doubanio.com/icon/u1362767-1.jpg","signature":"","alt":"https://www.douban.com/people/liulang0808/","id":"1362767","name":"shawn"},"summary":"昨晚夜静，重温《大话西游》   \u2014\u2014大笑，流泪，然后沉默。   　　我面对的是一部痛彻心肺的喜剧。   　　寓言篇故事已然存在，已然不可避免。   　　世界是巨大的枷锁，你不得不重复自己或是别人的生活。   　　记...","alt":"https://movie.douban.com/review/1222442/","id":"1222442"},{"rating":{"max":5,"value":5,"min":0},"title":"来一篇转的全剧本吧","subject_id":"1292213","author":{"uid":"anothers","avatar":"https://img1.doubanio.com/icon/u1637278-207.jpg","signature":"","alt":"https://www.douban.com/people/anothers/","id":"1637278","name":"喜宴"},"summary":"大话西游  （一）  观音：孙悟空，你这个畜牲，你本来答应如来佛祖护送你师傅唐三藏去取西经的，你居然跟牛魔王串通要吃你师傅，你知不知道你犯了弥天大罪？ 孙悟空：少罗嗦！你追了我三天三夜，因为你是女人我才不...","alt":"https://movie.douban.com/review/3115577/","id":"3115577"},{"rating":{"max":5,"value":5,"min":0},"title":"一万年太久","subject_id":"1292213","author":{"uid":"luoying6","avatar":"https://img3.doubanio.com/icon/u1107668-42.jpg","signature":"","alt":"https://www.douban.com/people/luoying6/","id":"1107668","name":"本来老六"},"summary":"　　大话西游二十年  　　二十年，那么就是一九九四年的事情。我已经吃不准看到的时候是几几年，但我非常确定两部都是去电影院出了票钱的。  　　顺便说说最近很流行的\u201c欠**一张票\u201d这种营销模式，大抵意思是之前也...","alt":"https://movie.douban.com/review/7170141/","id":"7170141"}]
+     * ratings_count : 389744
+     * aka : ["西游记完结篇仙履奇缘","齐天大圣西游记","大话东游之二","A Chinese Odyssey Part Two - Cinderella"]
+     */
+
+    private int reviews_count;
+    private int wish_count;
+    private String original_title;
+    private int collect_count;
+    /**
+     * small : https://img3.doubanio.com/view/movie_poster_cover/ipst/public/p648365452.jpg
+     * large : https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p648365452.jpg
+     * medium : https://img3.doubanio.com/view/movie_poster_cover/spst/public/p648365452.jpg
+     */
+
+    private ImagesBean images;
+    private String douban_site;
+    private String year;
+    private String alt;
+    private String id;
+    private String mobile_url;
+    private int photos_count;
+    private String pubdate;
+    private String title;
+    private Object do_count;
+    private boolean has_video;
+    private String share_url;
+    private Object seasons_count;
+    private String schedule_url;
+    private String website;
+    private boolean has_schedule;
+    private Object collection;
+    private Object episodes_count;
+    private boolean has_ticket;
+    private Object current_season;
+    private String mainland_pubdate;
+    private String summary;
+    private String subtype;
+    private int comments_count;
+    private int ratings_count;
+    /**
+     * source : {"literal":"qq","pic":"https://img3.doubanio.com/f/movie/38764466321ab88dfa19a1f826570367a19ce116/pics/movie/video-qq.png","name":"腾讯视频"}
+     * sample_link : http://v.qq.com/cover/f/fse52rd4klx7qn2.html?ptag=douban.movie
+     * video_id :
+     * need_pay : false
+     */
+
+    private List<VideosBean> videos;
+    private List<?> blooper_urls;
+    /**
+     * rating : {"max":5,"value":0,"min":0}
+     * useful_count : 597
+     * author : {"uid":"cat17fish1","avatar":"https://img3.doubanio.com/icon/u1754924-80.jpg","signature":"","alt":"https://www.douban.com/people/cat17fish1/","id":"1754924","name":"十七只猫和鱼"}
+     * subject_id : 1292213
+     * content : 25-30岁待业青年的精神寄托
+     * created_at : 2010-12-11 10:07:01
+     * id : 325148038
+     */
+
+    private List<PopularCommentsBean> popular_comments;
+    private List<String> languages;
+    /**
+     * avatars : {"small":"https://img3.doubanio.com/img/celebrity/small/45374.jpg","large":"https://img3.doubanio.com/img/celebrity/large/45374.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/45374.jpg"}
+     * name_en : Jeffrey Lau
+     * name : 刘镇伟
+     * alt : https://movie.douban.com/celebrity/1274431/
+     * id : 1274431
+     */
+
+    private List<WritersBean> writers;
+    private List<String> pubdates;
+    private List<String> tags;
+    private List<String> durations;
+    private List<String> genres;
+    /**
+     * medium : https://img3.doubanio.com/img/trailer/medium/2206035894.jpg?
+     * title : 预告片：悲情版 (中文字幕)
+     * subject_id : 1292213
+     * alt : https://movie.douban.com/trailer/164614/
+     * small : https://img3.doubanio.com/img/trailer/small/2206035894.jpg?
+     * resource_url : http://vt1.doubanio.com/201610171632/e0c0c6091d14b85b8dea638e8613be6f/view/movie/M/301640614.mp4
+     * id : 164614
+     */
+
+    private List<TrailersBean> trailers;
+    private List<String> trailer_urls;
+    private List<?> bloopers;
+    private List<String> clip_urls;
+    /**
+     * avatars : {"small":"https://img3.doubanio.com/img/celebrity/small/47421.jpg","large":"https://img3.doubanio.com/img/celebrity/large/47421.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/47421.jpg"}
+     * name_en : Stephen Chow
+     * name : 周星驰
+     * alt : https://movie.douban.com/celebrity/1048026/
+     * id : 1048026
      */
 
     private List<CastsBean> casts;
-    private List<?> clip_urls;
-    private List<?> clips;
     private List<String> countries;
     /**
-     * alt : https://movie.douban.com/celebrity/1350900/
-     * avatars : {"large":"https://img3.doubanio.com/img/celebrity/large/1440326772.75.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/1440326772.75.jpg","small":"https://img3.doubanio.com/img/celebrity/small/1440326772.75.jpg"}
-     * id : 1350900
-     * name : 王一淳
-     * name_en : Yichun Wang
-     */
-
-    private List<DirectorsBean> directors;
-    private List<String> durations;
-    private List<String> genres;
-    private List<String> languages;
-    /**
-     * alt : https://movie.douban.com/photos/photo/2319111008/
-     * cover : https://img1.doubanio.com/view/photo/albumcover/public/p2319111008.jpg
-     * icon : https://img1.doubanio.com/view/photo/icon/public/p2319111008.jpg
-     * id : 2319111008
-     * image : https://img1.doubanio.com/view/photo/photo/public/p2319111008.jpg
-     * thumb : https://img1.doubanio.com/view/photo/thumb/public/p2319111008.jpg
+     * thumb : https://img3.doubanio.com/view/photo/thumb/public/p2002649154.jpg
+     * image : https://img3.doubanio.com/view/photo/photo/public/p2002649154.jpg
+     * cover : https://img3.doubanio.com/view/photo/albumcover/public/p2002649154.jpg
+     * alt : https://movie.douban.com/photos/photo/2002649154/
+     * id : 2002649154
+     * icon : https://img3.doubanio.com/view/photo/icon/public/p2002649154.jpg
      */
 
     private List<PhotosBean> photos;
     /**
-     * author : {"alt":"https://www.douban.com/people/ydyie/","avatar":"https://img1.doubanio.com/icon/u2126832-179.jpg","id":"2126832","name":"时间之葬","signature":"","uid":"ydyie"}
-     * content : 窥见一个闭塞且无能的时代
-     * created_at : 2015-10-20 19:27:18
-     * id : 969738800
-     * rating : {"max":5,"min":0,"value":4}
-     * subject_id : 26433966
-     * useful_count : 7
+     * medium : https://img3.doubanio.com/img/trailer/medium/2023937673.jpg?
+     * title : 片段
+     * subject_id : 1292213
+     * alt : https://movie.douban.com/trailer/137557/
+     * small : https://img3.doubanio.com/img/trailer/small/2023937673.jpg?
+     * resource_url : http://vt1.doubanio.com/201610171632/11fcb6d4061ff4a82bb55dd8fa64dc30/view/movie/M/301370557.mp4
+     * id : 137557
      */
 
-    private List<PopularCommentsBean> popular_comments;
+    private List<ClipsBean> clips;
     /**
-     * alt : https://movie.douban.com/review/7782679/
-     * author : {"alt":"https://www.douban.com/people/MovieL/","avatar":"https://img3.doubanio.com/icon/u1128221-91.jpg","id":"1128221","name":"木卫二","signature":"公众号：MOViE木卫","uid":"MovieL"}
-     * id : 7782679
-     * rating : {"max":5,"min":0,"value":4}
-     * subject_id : 26433966
-     * summary : 【Spoiler Alert ！ 以下内容有小部分的剧情泄露，可能影响观看】  《黑处有什么》 自然会被归入“饱受《杀人回忆》影响的系列电影”当中。  我当初都过于肯定地认为，原型事件在前的《十二宫》，它也是照着《杀人回...
-     * title : 告诉你一个秘密
+     * avatars : {"small":"https://img3.doubanio.com/img/celebrity/small/45374.jpg","large":"https://img3.doubanio.com/img/celebrity/large/45374.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/45374.jpg"}
+     * name_en : Jeffrey Lau
+     * name : 刘镇伟
+     * alt : https://movie.douban.com/celebrity/1274431/
+     * id : 1274431
+     */
+
+    private List<CastsBean> directors;
+    /**
+     * rating : {"max":5,"value":5,"min":0}
+     * title : 工作两年后感悟的《大话西游》（转载 个人觉得很不错 所以贴上来)
+     * subject_id : 1292213
+     * author : {"uid":"dengdaigeduo","avatar":"https://img3.doubanio.com/icon/u2226766-5.jpg","signature":"","alt":"https://www.douban.com/people/dengdaigeduo/","id":"2226766","name":"等待戈多"}
+     * summary : 这个世界上还有一个故事，叫做《大话西游》。   世界是巨大的枷锁，你不得不重复自己或是别人的生活。  记得长辈说过：年轻是一种罪过。他们说我们不成熟。   真切地为自己的不俗喝彩，在深切的郁闷中，突然就看懂了...
+     * alt : https://movie.douban.com/review/1427613/
+     * id : 1427613
      */
 
     private List<PopularReviewsBean> popular_reviews;
-    private List<String> pubdates;
-    private List<String> tags;
-    private List<String> trailer_urls;
-    /**
-     * alt : https://movie.douban.com/trailer/205106/
-     * id : 205106
-     * medium : https://img3.doubanio.com/img/trailer/medium/2387548904.jpg?
-     * resource_url : http://vt1.doubanio.com/201610131502/b33a4b97623a2415773146d9d0481768/view/movie/M/302050106.mp4
-     * small : https://img3.doubanio.com/img/trailer/small/2387548904.jpg?
-     * subject_id : 26433966
-     * title : 预告片：荒诞性萌动版 (中文字幕)
-     */
+    private List<String> aka;
 
-    private List<TrailersBean> trailers;
-    private List<?> videos;
-    /**
-     * alt : https://movie.douban.com/celebrity/1350900/
-     * avatars : {"large":"https://img3.doubanio.com/img/celebrity/large/1440326772.75.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/1440326772.75.jpg","small":"https://img3.doubanio.com/img/celebrity/small/1440326772.75.jpg"}
-     * id : 1350900
-     * name : 王一淳
-     * name_en : Yichun Wang
-     */
-
-    private List<WritersBean> writers;
-
-    public String getAlt() {
-        return alt;
+    public RatingBean getRating() {
+        return rating;
     }
 
-    public void setAlt(String alt) {
-        this.alt = alt;
+    public void setRating(RatingBean rating) {
+        this.rating = rating;
+    }
+
+    public int getReviews_count() {
+        return reviews_count;
+    }
+
+    public void setReviews_count(int reviews_count) {
+        this.reviews_count = reviews_count;
+    }
+
+    public int getWish_count() {
+        return wish_count;
+    }
+
+    public void setWish_count(int wish_count) {
+        this.wish_count = wish_count;
+    }
+
+    public String getOriginal_title() {
+        return original_title;
+    }
+
+    public void setOriginal_title(String original_title) {
+        this.original_title = original_title;
     }
 
     public int getCollect_count() {
@@ -198,12 +251,12 @@ public class MovieDetail {
         this.collect_count = collect_count;
     }
 
-    public int getComments_count() {
-        return comments_count;
+    public ImagesBean getImages() {
+        return images;
     }
 
-    public void setComments_count(int comments_count) {
-        this.comments_count = comments_count;
+    public void setImages(ImagesBean images) {
+        this.images = images;
     }
 
     public String getDouban_site() {
@@ -214,28 +267,20 @@ public class MovieDetail {
         this.douban_site = douban_site;
     }
 
-    public boolean isHas_schedule() {
-        return has_schedule;
+    public String getYear() {
+        return year;
     }
 
-    public void setHas_schedule(boolean has_schedule) {
-        this.has_schedule = has_schedule;
+    public void setYear(String year) {
+        this.year = year;
     }
 
-    public boolean isHas_ticket() {
-        return has_ticket;
+    public String getAlt() {
+        return alt;
     }
 
-    public void setHas_ticket(boolean has_ticket) {
-        this.has_ticket = has_ticket;
-    }
-
-    public boolean isHas_video() {
-        return has_video;
-    }
-
-    public void setHas_video(boolean has_video) {
-        this.has_video = has_video;
+    public void setAlt(String alt) {
+        this.alt = alt;
     }
 
     public String getId() {
@@ -246,36 +291,12 @@ public class MovieDetail {
         this.id = id;
     }
 
-    public ImagesBean getImages() {
-        return images;
-    }
-
-    public void setImages(ImagesBean images) {
-        this.images = images;
-    }
-
-    public String getMainland_pubdate() {
-        return mainland_pubdate;
-    }
-
-    public void setMainland_pubdate(String mainland_pubdate) {
-        this.mainland_pubdate = mainland_pubdate;
-    }
-
     public String getMobile_url() {
         return mobile_url;
     }
 
     public void setMobile_url(String mobile_url) {
         this.mobile_url = mobile_url;
-    }
-
-    public String getOriginal_title() {
-        return original_title;
-    }
-
-    public void setOriginal_title(String original_title) {
-        this.original_title = original_title;
     }
 
     public int getPhotos_count() {
@@ -294,36 +315,28 @@ public class MovieDetail {
         this.pubdate = pubdate;
     }
 
-    public RatingBean getRating() {
-        return rating;
+    public String getTitle() {
+        return title;
     }
 
-    public void setRating(RatingBean rating) {
-        this.rating = rating;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public int getRatings_count() {
-        return ratings_count;
+    public Object getDo_count() {
+        return do_count;
     }
 
-    public void setRatings_count(int ratings_count) {
-        this.ratings_count = ratings_count;
+    public void setDo_count(Object do_count) {
+        this.do_count = do_count;
     }
 
-    public int getReviews_count() {
-        return reviews_count;
+    public boolean isHas_video() {
+        return has_video;
     }
 
-    public void setReviews_count(int reviews_count) {
-        this.reviews_count = reviews_count;
-    }
-
-    public String getSchedule_url() {
-        return schedule_url;
-    }
-
-    public void setSchedule_url(String schedule_url) {
-        this.schedule_url = schedule_url;
+    public void setHas_video(boolean has_video) {
+        this.has_video = has_video;
     }
 
     public String getShare_url() {
@@ -334,28 +347,20 @@ public class MovieDetail {
         this.share_url = share_url;
     }
 
-    public String getSubtype() {
-        return subtype;
+    public Object getSeasons_count() {
+        return seasons_count;
     }
 
-    public void setSubtype(String subtype) {
-        this.subtype = subtype;
+    public void setSeasons_count(Object seasons_count) {
+        this.seasons_count = seasons_count;
     }
 
-    public String getSummary() {
-        return summary;
+    public String getSchedule_url() {
+        return schedule_url;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSchedule_url(String schedule_url) {
+        this.schedule_url = schedule_url;
     }
 
     public String getWebsite() {
@@ -366,28 +371,92 @@ public class MovieDetail {
         this.website = website;
     }
 
-    public int getWish_count() {
-        return wish_count;
+    public boolean isHas_schedule() {
+        return has_schedule;
     }
 
-    public void setWish_count(int wish_count) {
-        this.wish_count = wish_count;
+    public void setHas_schedule(boolean has_schedule) {
+        this.has_schedule = has_schedule;
     }
 
-    public String getYear() {
-        return year;
+    public Object getCollection() {
+        return collection;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setCollection(Object collection) {
+        this.collection = collection;
     }
 
-    public List<String> getAka() {
-        return aka;
+    public Object getEpisodes_count() {
+        return episodes_count;
     }
 
-    public void setAka(List<String> aka) {
-        this.aka = aka;
+    public void setEpisodes_count(Object episodes_count) {
+        this.episodes_count = episodes_count;
+    }
+
+    public boolean isHas_ticket() {
+        return has_ticket;
+    }
+
+    public void setHas_ticket(boolean has_ticket) {
+        this.has_ticket = has_ticket;
+    }
+
+    public Object getCurrent_season() {
+        return current_season;
+    }
+
+    public void setCurrent_season(Object current_season) {
+        this.current_season = current_season;
+    }
+
+    public String getMainland_pubdate() {
+        return mainland_pubdate;
+    }
+
+    public void setMainland_pubdate(String mainland_pubdate) {
+        this.mainland_pubdate = mainland_pubdate;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getSubtype() {
+        return subtype;
+    }
+
+    public void setSubtype(String subtype) {
+        this.subtype = subtype;
+    }
+
+    public int getComments_count() {
+        return comments_count;
+    }
+
+    public void setComments_count(int comments_count) {
+        this.comments_count = comments_count;
+    }
+
+    public int getRatings_count() {
+        return ratings_count;
+    }
+
+    public void setRatings_count(int ratings_count) {
+        this.ratings_count = ratings_count;
+    }
+
+    public List<VideosBean> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<VideosBean> videos) {
+        this.videos = videos;
     }
 
     public List<?> getBlooper_urls() {
@@ -398,68 +467,12 @@ public class MovieDetail {
         this.blooper_urls = blooper_urls;
     }
 
-    public List<?> getBloopers() {
-        return bloopers;
+    public List<PopularCommentsBean> getPopular_comments() {
+        return popular_comments;
     }
 
-    public void setBloopers(List<?> bloopers) {
-        this.bloopers = bloopers;
-    }
-
-    public List<CastsBean> getCasts() {
-        return casts;
-    }
-
-    public void setCasts(List<CastsBean> casts) {
-        this.casts = casts;
-    }
-
-    public List<?> getClip_urls() {
-        return clip_urls;
-    }
-
-    public void setClip_urls(List<?> clip_urls) {
-        this.clip_urls = clip_urls;
-    }
-
-    public List<?> getClips() {
-        return clips;
-    }
-
-    public void setClips(List<?> clips) {
-        this.clips = clips;
-    }
-
-    public List<String> getCountries() {
-        return countries;
-    }
-
-    public void setCountries(List<String> countries) {
-        this.countries = countries;
-    }
-
-    public List<DirectorsBean> getDirectors() {
-        return directors;
-    }
-
-    public void setDirectors(List<DirectorsBean> directors) {
-        this.directors = directors;
-    }
-
-    public List<String> getDurations() {
-        return durations;
-    }
-
-    public void setDurations(List<String> durations) {
-        this.durations = durations;
-    }
-
-    public List<String> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<String> genres) {
-        this.genres = genres;
+    public void setPopular_comments(List<PopularCommentsBean> popular_comments) {
+        this.popular_comments = popular_comments;
     }
 
     public List<String> getLanguages() {
@@ -470,28 +483,12 @@ public class MovieDetail {
         this.languages = languages;
     }
 
-    public List<PhotosBean> getPhotos() {
-        return photos;
+    public List<WritersBean> getWriters() {
+        return writers;
     }
 
-    public void setPhotos(List<PhotosBean> photos) {
-        this.photos = photos;
-    }
-
-    public List<PopularCommentsBean> getPopular_comments() {
-        return popular_comments;
-    }
-
-    public void setPopular_comments(List<PopularCommentsBean> popular_comments) {
-        this.popular_comments = popular_comments;
-    }
-
-    public List<PopularReviewsBean> getPopular_reviews() {
-        return popular_reviews;
-    }
-
-    public void setPopular_reviews(List<PopularReviewsBean> popular_reviews) {
-        this.popular_reviews = popular_reviews;
+    public void setWriters(List<WritersBean> writers) {
+        this.writers = writers;
     }
 
     public List<String> getPubdates() {
@@ -510,12 +507,20 @@ public class MovieDetail {
         this.tags = tags;
     }
 
-    public List<String> getTrailer_urls() {
-        return trailer_urls;
+    public List<String> getDurations() {
+        return durations;
     }
 
-    public void setTrailer_urls(List<String> trailer_urls) {
-        this.trailer_urls = trailer_urls;
+    public void setDurations(List<String> durations) {
+        this.durations = durations;
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
     }
 
     public List<TrailersBean> getTrailers() {
@@ -526,66 +531,108 @@ public class MovieDetail {
         this.trailers = trailers;
     }
 
-    public List<?> getVideos() {
-        return videos;
+    public List<String> getTrailer_urls() {
+        return trailer_urls;
     }
 
-    public void setVideos(List<?> videos) {
-        this.videos = videos;
+    public void setTrailer_urls(List<String> trailer_urls) {
+        this.trailer_urls = trailer_urls;
     }
 
-    public List<WritersBean> getWriters() {
-        return writers;
+    public List<?> getBloopers() {
+        return bloopers;
     }
 
-    public void setWriters(List<WritersBean> writers) {
-        this.writers = writers;
+    public void setBloopers(List<?> bloopers) {
+        this.bloopers = bloopers;
     }
 
-    public static class ImagesBean {
-        private String large;
-        private String medium;
-        private String small;
+    public List<String> getClip_urls() {
+        return clip_urls;
+    }
 
-        public String getLarge() {
-            return large;
-        }
+    public void setClip_urls(List<String> clip_urls) {
+        this.clip_urls = clip_urls;
+    }
 
-        public void setLarge(String large) {
-            this.large = large;
-        }
+    public List<CastsBean> getCasts() {
+        return casts;
+    }
 
-        public String getMedium() {
-            return medium;
-        }
+    public void setCasts(List<CastsBean> casts) {
+        this.casts = casts;
+    }
 
-        public void setMedium(String medium) {
-            this.medium = medium;
-        }
+    public List<String> getCountries() {
+        return countries;
+    }
 
-        public String getSmall() {
-            return small;
-        }
+    public void setCountries(List<String> countries) {
+        this.countries = countries;
+    }
 
-        public void setSmall(String small) {
-            this.small = small;
-        }
+    public List<PhotosBean> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<PhotosBean> photos) {
+        this.photos = photos;
+    }
+
+    public List<ClipsBean> getClips() {
+        return clips;
+    }
+
+    public void setClips(List<ClipsBean> clips) {
+        this.clips = clips;
+    }
+
+    public List<CastsBean> getDirectors() {
+        return directors;
+    }
+
+    public void setDirectors(List<CastsBean> directors) {
+        this.directors = directors;
+    }
+
+    public List<PopularReviewsBean> getPopular_reviews() {
+        return popular_reviews;
+    }
+
+    public void setPopular_reviews(List<PopularReviewsBean> popular_reviews) {
+        this.popular_reviews = popular_reviews;
+    }
+
+    public List<String> getAka() {
+        return aka;
+    }
+
+    public void setAka(List<String> aka) {
+        this.aka = aka;
     }
 
     public static class RatingBean {
+        private float max;
         private float average;
         /**
-         * 1 : 11
-         * 2 : 47
-         * 3 : 260
-         * 4 : 298
-         * 5 : 62
+         * 1 : 523
+         * 2 : 1353
+         * 3 : 21719
+         * 4 : 80048
+         * 5 : 189541
          */
 
         private DetailsBean details;
-        private float max;
-        private float min;
         private String stars;
+        private int min;
+
+        public float getMax() {
+            return max;
+        }
+
+        public void setMax(float max) {
+            this.max = max;
+        }
 
         public float getAverage() {
             return average;
@@ -603,28 +650,20 @@ public class MovieDetail {
             this.details = details;
         }
 
-        public float getMax() {
-            return max;
-        }
-
-        public void setMax(float max) {
-            this.max = max;
-        }
-
-        public float getMin() {
-            return min;
-        }
-
-        public void setMin(float min) {
-            this.min = min;
-        }
-
         public String getStars() {
             return stars;
         }
 
         public void setStars(String stars) {
             this.stars = stars;
+        }
+
+        public int getMin() {
+            return min;
+        }
+
+        public void setMin(int min) {
+            this.min = min;
         }
 
         public static class DetailsBean {
@@ -681,254 +720,150 @@ public class MovieDetail {
         }
     }
 
-    public static class CastsBean {
-        private String alt;
-        /**
-         * large : https://img3.doubanio.com/img/celebrity/large/1473845518.63.jpg
-         * medium : https://img3.doubanio.com/img/celebrity/medium/1473845518.63.jpg
-         * small : https://img3.doubanio.com/img/celebrity/small/1473845518.63.jpg
-         */
+    public static class ImagesBean {
+        private String small;
+        private String large;
+        private String medium;
 
-        private AvatarsBean avatars;
-        private String id;
-        private String name;
-        private String name_en;
-
-        public String getAlt() {
-            return alt;
+        public String getSmall() {
+            return small;
         }
 
-        public void setAlt(String alt) {
-            this.alt = alt;
+        public void setSmall(String small) {
+            this.small = small;
         }
 
-        public AvatarsBean getAvatars() {
-            return avatars;
+        public String getLarge() {
+            return large;
         }
 
-        public void setAvatars(AvatarsBean avatars) {
-            this.avatars = avatars;
+        public void setLarge(String large) {
+            this.large = large;
         }
 
-        public String getId() {
-            return id;
+        public String getMedium() {
+            return medium;
         }
 
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getName_en() {
-            return name_en;
-        }
-
-        public void setName_en(String name_en) {
-            this.name_en = name_en;
-        }
-
-        public static class AvatarsBean {
-            private String large;
-            private String medium;
-            private String small;
-
-            public String getLarge() {
-                return large;
-            }
-
-            public void setLarge(String large) {
-                this.large = large;
-            }
-
-            public String getMedium() {
-                return medium;
-            }
-
-            public void setMedium(String medium) {
-                this.medium = medium;
-            }
-
-            public String getSmall() {
-                return small;
-            }
-
-            public void setSmall(String small) {
-                this.small = small;
-            }
+        public void setMedium(String medium) {
+            this.medium = medium;
         }
     }
 
-    public static class DirectorsBean {
-        private String alt;
+    public static class VideosBean {
         /**
-         * large : https://img3.doubanio.com/img/celebrity/large/1440326772.75.jpg
-         * medium : https://img3.doubanio.com/img/celebrity/medium/1440326772.75.jpg
-         * small : https://img3.doubanio.com/img/celebrity/small/1440326772.75.jpg
+         * literal : qq
+         * pic : https://img3.doubanio.com/f/movie/38764466321ab88dfa19a1f826570367a19ce116/pics/movie/video-qq.png
+         * name : 腾讯视频
          */
 
-        private AvatarsBean avatars;
-        private String id;
-        private String name;
-        private String name_en;
+        private SourceBean source;
+        private String sample_link;
+        private String video_id;
+        private boolean need_pay;
 
-        public String getAlt() {
-            return alt;
+        public SourceBean getSource() {
+            return source;
         }
 
-        public void setAlt(String alt) {
-            this.alt = alt;
+        public void setSource(SourceBean source) {
+            this.source = source;
         }
 
-        public AvatarsBean getAvatars() {
-            return avatars;
+        public String getSample_link() {
+            return sample_link;
         }
 
-        public void setAvatars(AvatarsBean avatars) {
-            this.avatars = avatars;
+        public void setSample_link(String sample_link) {
+            this.sample_link = sample_link;
         }
 
-        public String getId() {
-            return id;
+        public String getVideo_id() {
+            return video_id;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setVideo_id(String video_id) {
+            this.video_id = video_id;
         }
 
-        public String getName() {
-            return name;
+        public boolean isNeed_pay() {
+            return need_pay;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setNeed_pay(boolean need_pay) {
+            this.need_pay = need_pay;
         }
 
-        public String getName_en() {
-            return name_en;
-        }
+        public static class SourceBean {
+            private String literal;
+            private String pic;
+            private String name;
 
-        public void setName_en(String name_en) {
-            this.name_en = name_en;
-        }
-
-        public static class AvatarsBean {
-            private String large;
-            private String medium;
-            private String small;
-
-            public String getLarge() {
-                return large;
+            public String getLiteral() {
+                return literal;
             }
 
-            public void setLarge(String large) {
-                this.large = large;
+            public void setLiteral(String literal) {
+                this.literal = literal;
             }
 
-            public String getMedium() {
-                return medium;
+            public String getPic() {
+                return pic;
             }
 
-            public void setMedium(String medium) {
-                this.medium = medium;
+            public void setPic(String pic) {
+                this.pic = pic;
             }
 
-            public String getSmall() {
-                return small;
+            public String getName() {
+                return name;
             }
 
-            public void setSmall(String small) {
-                this.small = small;
+            public void setName(String name) {
+                this.name = name;
             }
-        }
-    }
-
-    public static class PhotosBean {
-        private String alt;
-        private String cover;
-        private String icon;
-        private String id;
-        private String image;
-        private String thumb;
-
-        public String getAlt() {
-            return alt;
-        }
-
-        public void setAlt(String alt) {
-            this.alt = alt;
-        }
-
-        public String getCover() {
-            return cover;
-        }
-
-        public void setCover(String cover) {
-            this.cover = cover;
-        }
-
-        public String getIcon() {
-            return icon;
-        }
-
-        public void setIcon(String icon) {
-            this.icon = icon;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getImage() {
-            return image;
-        }
-
-        public void setImage(String image) {
-            this.image = image;
-        }
-
-        public String getThumb() {
-            return thumb;
-        }
-
-        public void setThumb(String thumb) {
-            this.thumb = thumb;
         }
     }
 
     public static class PopularCommentsBean {
         /**
-         * alt : https://www.douban.com/people/ydyie/
-         * avatar : https://img1.doubanio.com/icon/u2126832-179.jpg
-         * id : 2126832
-         * name : 时间之葬
-         * signature :
-         * uid : ydyie
-         */
-
-        private AuthorBean author;
-        private String content;
-        private String created_at;
-        private String id;
-        /**
          * max : 5
+         * value : 0
          * min : 0
-         * value : 4
          */
 
         private RatingBean rating;
-        private String subject_id;
         private int useful_count;
+        /**
+         * uid : cat17fish1
+         * avatar : https://img3.doubanio.com/icon/u1754924-80.jpg
+         * signature :
+         * alt : https://www.douban.com/people/cat17fish1/
+         * id : 1754924
+         * name : 十七只猫和鱼
+         */
+
+        private AuthorBean author;
+        private String subject_id;
+        private String content;
+        private String created_at;
+        private String id;
+
+        public RatingBean getRating() {
+            return rating;
+        }
+
+        public void setRating(RatingBean rating) {
+            this.rating = rating;
+        }
+
+        public int getUseful_count() {
+            return useful_count;
+        }
+
+        public void setUseful_count(int useful_count) {
+            this.useful_count = useful_count;
+        }
 
         public AuthorBean getAuthor() {
             return author;
@@ -936,6 +871,14 @@ public class MovieDetail {
 
         public void setAuthor(AuthorBean author) {
             this.author = author;
+        }
+
+        public String getSubject_id() {
+            return subject_id;
+        }
+
+        public void setSubject_id(String subject_id) {
+            this.subject_id = subject_id;
         }
 
         public String getContent() {
@@ -962,44 +905,50 @@ public class MovieDetail {
             this.id = id;
         }
 
-        public RatingBean getRating() {
-            return rating;
-        }
+        public static class RatingBean {
+            private int max;
+            private int value;
+            private int min;
 
-        public void setRating(RatingBean rating) {
-            this.rating = rating;
-        }
+            public int getMax() {
+                return max;
+            }
 
-        public String getSubject_id() {
-            return subject_id;
-        }
+            public void setMax(int max) {
+                this.max = max;
+            }
 
-        public void setSubject_id(String subject_id) {
-            this.subject_id = subject_id;
-        }
+            public int getValue() {
+                return value;
+            }
 
-        public int getUseful_count() {
-            return useful_count;
-        }
+            public void setValue(int value) {
+                this.value = value;
+            }
 
-        public void setUseful_count(int useful_count) {
-            this.useful_count = useful_count;
+            public int getMin() {
+                return min;
+            }
+
+            public void setMin(int min) {
+                this.min = min;
+            }
         }
 
         public static class AuthorBean {
-            private String alt;
+            private String uid;
             private String avatar;
+            private String signature;
+            private String alt;
             private String id;
             private String name;
-            private String signature;
-            private String uid;
 
-            public String getAlt() {
-                return alt;
+            public String getUid() {
+                return uid;
             }
 
-            public void setAlt(String alt) {
-                this.alt = alt;
+            public void setUid(String uid) {
+                this.uid = uid;
             }
 
             public String getAvatar() {
@@ -1008,6 +957,22 @@ public class MovieDetail {
 
             public void setAvatar(String avatar) {
                 this.avatar = avatar;
+            }
+
+            public String getSignature() {
+                return signature;
+            }
+
+            public void setSignature(String signature) {
+                this.signature = signature;
+            }
+
+            public String getAlt() {
+                return alt;
+            }
+
+            public void setAlt(String alt) {
+                this.alt = alt;
             }
 
             public String getId() {
@@ -1025,309 +990,21 @@ public class MovieDetail {
             public void setName(String name) {
                 this.name = name;
             }
-
-            public String getSignature() {
-                return signature;
-            }
-
-            public void setSignature(String signature) {
-                this.signature = signature;
-            }
-
-            public String getUid() {
-                return uid;
-            }
-
-            public void setUid(String uid) {
-                this.uid = uid;
-            }
-        }
-
-        public static class RatingBean {
-            private int max;
-            private int min;
-            private int value;
-
-            public int getMax() {
-                return max;
-            }
-
-            public void setMax(int max) {
-                this.max = max;
-            }
-
-            public int getMin() {
-                return min;
-            }
-
-            public void setMin(int min) {
-                this.min = min;
-            }
-
-            public int getValue() {
-                return value;
-            }
-
-            public void setValue(int value) {
-                this.value = value;
-            }
-        }
-    }
-
-    public static class PopularReviewsBean {
-        private String alt;
-        /**
-         * alt : https://www.douban.com/people/MovieL/
-         * avatar : https://img3.doubanio.com/icon/u1128221-91.jpg
-         * id : 1128221
-         * name : 木卫二
-         * signature : 公众号：MOViE木卫
-         * uid : MovieL
-         */
-
-        private AuthorBean author;
-        private String id;
-        /**
-         * max : 5
-         * min : 0
-         * value : 4
-         */
-
-        private RatingBean rating;
-        private String subject_id;
-        private String summary;
-        private String title;
-
-        public String getAlt() {
-            return alt;
-        }
-
-        public void setAlt(String alt) {
-            this.alt = alt;
-        }
-
-        public AuthorBean getAuthor() {
-            return author;
-        }
-
-        public void setAuthor(AuthorBean author) {
-            this.author = author;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public RatingBean getRating() {
-            return rating;
-        }
-
-        public void setRating(RatingBean rating) {
-            this.rating = rating;
-        }
-
-        public String getSubject_id() {
-            return subject_id;
-        }
-
-        public void setSubject_id(String subject_id) {
-            this.subject_id = subject_id;
-        }
-
-        public String getSummary() {
-            return summary;
-        }
-
-        public void setSummary(String summary) {
-            this.summary = summary;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public static class AuthorBean {
-            private String alt;
-            private String avatar;
-            private String id;
-            private String name;
-            private String signature;
-            private String uid;
-
-            public String getAlt() {
-                return alt;
-            }
-
-            public void setAlt(String alt) {
-                this.alt = alt;
-            }
-
-            public String getAvatar() {
-                return avatar;
-            }
-
-            public void setAvatar(String avatar) {
-                this.avatar = avatar;
-            }
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getSignature() {
-                return signature;
-            }
-
-            public void setSignature(String signature) {
-                this.signature = signature;
-            }
-
-            public String getUid() {
-                return uid;
-            }
-
-            public void setUid(String uid) {
-                this.uid = uid;
-            }
-        }
-
-        public static class RatingBean {
-            private int max;
-            private int min;
-            private int value;
-
-            public int getMax() {
-                return max;
-            }
-
-            public void setMax(int max) {
-                this.max = max;
-            }
-
-            public int getMin() {
-                return min;
-            }
-
-            public void setMin(int min) {
-                this.min = min;
-            }
-
-            public int getValue() {
-                return value;
-            }
-
-            public void setValue(int value) {
-                this.value = value;
-            }
-        }
-    }
-
-    public static class TrailersBean {
-        private String alt;
-        private String id;
-        private String medium;
-        private String resource_url;
-        private String small;
-        private String subject_id;
-        private String title;
-
-        public String getAlt() {
-            return alt;
-        }
-
-        public void setAlt(String alt) {
-            this.alt = alt;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getMedium() {
-            return medium;
-        }
-
-        public void setMedium(String medium) {
-            this.medium = medium;
-        }
-
-        public String getResource_url() {
-            return resource_url;
-        }
-
-        public void setResource_url(String resource_url) {
-            this.resource_url = resource_url;
-        }
-
-        public String getSmall() {
-            return small;
-        }
-
-        public void setSmall(String small) {
-            this.small = small;
-        }
-
-        public String getSubject_id() {
-            return subject_id;
-        }
-
-        public void setSubject_id(String subject_id) {
-            this.subject_id = subject_id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
         }
     }
 
     public static class WritersBean {
-        private String alt;
         /**
-         * large : https://img3.doubanio.com/img/celebrity/large/1440326772.75.jpg
-         * medium : https://img3.doubanio.com/img/celebrity/medium/1440326772.75.jpg
-         * small : https://img3.doubanio.com/img/celebrity/small/1440326772.75.jpg
+         * small : https://img3.doubanio.com/img/celebrity/small/45374.jpg
+         * large : https://img3.doubanio.com/img/celebrity/large/45374.jpg
+         * medium : https://img3.doubanio.com/img/celebrity/medium/45374.jpg
          */
 
         private AvatarsBean avatars;
-        private String id;
-        private String name;
         private String name_en;
-
-        public String getAlt() {
-            return alt;
-        }
-
-        public void setAlt(String alt) {
-            this.alt = alt;
-        }
+        private String name;
+        private String alt;
+        private String id;
 
         public AvatarsBean getAvatars() {
             return avatars;
@@ -1335,22 +1012,6 @@ public class MovieDetail {
 
         public void setAvatars(AvatarsBean avatars) {
             this.avatars = avatars;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
         }
 
         public String getName_en() {
@@ -1361,10 +1022,42 @@ public class MovieDetail {
             this.name_en = name_en;
         }
 
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getAlt() {
+            return alt;
+        }
+
+        public void setAlt(String alt) {
+            this.alt = alt;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
         public static class AvatarsBean {
+            private String small;
             private String large;
             private String medium;
-            private String small;
+
+            public String getSmall() {
+                return small;
+            }
+
+            public void setSmall(String small) {
+                this.small = small;
+            }
 
             public String getLarge() {
                 return large;
@@ -1381,6 +1074,132 @@ public class MovieDetail {
             public void setMedium(String medium) {
                 this.medium = medium;
             }
+        }
+    }
+
+    public static class TrailersBean {
+        private String medium;
+        private String title;
+        private String subject_id;
+        private String alt;
+        private String small;
+        private String resource_url;
+        private String id;
+
+        public String getMedium() {
+            return medium;
+        }
+
+        public void setMedium(String medium) {
+            this.medium = medium;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getSubject_id() {
+            return subject_id;
+        }
+
+        public void setSubject_id(String subject_id) {
+            this.subject_id = subject_id;
+        }
+
+        public String getAlt() {
+            return alt;
+        }
+
+        public void setAlt(String alt) {
+            this.alt = alt;
+        }
+
+        public String getSmall() {
+            return small;
+        }
+
+        public void setSmall(String small) {
+            this.small = small;
+        }
+
+        public String getResource_url() {
+            return resource_url;
+        }
+
+        public void setResource_url(String resource_url) {
+            this.resource_url = resource_url;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+    }
+
+    public static class CastsBean {
+        /**
+         * small : https://img3.doubanio.com/img/celebrity/small/47421.jpg
+         * large : https://img3.doubanio.com/img/celebrity/large/47421.jpg
+         * medium : https://img3.doubanio.com/img/celebrity/medium/47421.jpg
+         */
+
+        private AvatarsBean avatars;
+        private String name_en;
+        private String name;
+        private String alt;
+        private String id;
+
+        public AvatarsBean getAvatars() {
+            return avatars;
+        }
+
+        public void setAvatars(AvatarsBean avatars) {
+            this.avatars = avatars;
+        }
+
+        public String getName_en() {
+            return name_en;
+        }
+
+        public void setName_en(String name_en) {
+            this.name_en = name_en;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getAlt() {
+            return alt;
+        }
+
+        public void setAlt(String alt) {
+            this.alt = alt;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public static class AvatarsBean {
+            private String small;
+            private String large;
+            private String medium;
 
             public String getSmall() {
                 return small;
@@ -1388,6 +1207,397 @@ public class MovieDetail {
 
             public void setSmall(String small) {
                 this.small = small;
+            }
+
+            public String getLarge() {
+                return large;
+            }
+
+            public void setLarge(String large) {
+                this.large = large;
+            }
+
+            public String getMedium() {
+                return medium;
+            }
+
+            public void setMedium(String medium) {
+                this.medium = medium;
+            }
+        }
+    }
+
+    public static class PhotosBean {
+        private String thumb;
+        private String image;
+        private String cover;
+        private String alt;
+        private String id;
+        private String icon;
+
+        public String getThumb() {
+            return thumb;
+        }
+
+        public void setThumb(String thumb) {
+            this.thumb = thumb;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+
+        public String getCover() {
+            return cover;
+        }
+
+        public void setCover(String cover) {
+            this.cover = cover;
+        }
+
+        public String getAlt() {
+            return alt;
+        }
+
+        public void setAlt(String alt) {
+            this.alt = alt;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getIcon() {
+            return icon;
+        }
+
+        public void setIcon(String icon) {
+            this.icon = icon;
+        }
+    }
+
+    public static class ClipsBean {
+        private String medium;
+        private String title;
+        private String subject_id;
+        private String alt;
+        private String small;
+        private String resource_url;
+        private String id;
+
+        public String getMedium() {
+            return medium;
+        }
+
+        public void setMedium(String medium) {
+            this.medium = medium;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getSubject_id() {
+            return subject_id;
+        }
+
+        public void setSubject_id(String subject_id) {
+            this.subject_id = subject_id;
+        }
+
+        public String getAlt() {
+            return alt;
+        }
+
+        public void setAlt(String alt) {
+            this.alt = alt;
+        }
+
+        public String getSmall() {
+            return small;
+        }
+
+        public void setSmall(String small) {
+            this.small = small;
+        }
+
+        public String getResource_url() {
+            return resource_url;
+        }
+
+        public void setResource_url(String resource_url) {
+            this.resource_url = resource_url;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+    }
+
+    public static class DirectorsBean {
+        /**
+         * small : https://img3.doubanio.com/img/celebrity/small/45374.jpg
+         * large : https://img3.doubanio.com/img/celebrity/large/45374.jpg
+         * medium : https://img3.doubanio.com/img/celebrity/medium/45374.jpg
+         */
+
+        private AvatarsBean avatars;
+        private String name_en;
+        private String name;
+        private String alt;
+        private String id;
+
+        public AvatarsBean getAvatars() {
+            return avatars;
+        }
+
+        public void setAvatars(AvatarsBean avatars) {
+            this.avatars = avatars;
+        }
+
+        public String getName_en() {
+            return name_en;
+        }
+
+        public void setName_en(String name_en) {
+            this.name_en = name_en;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getAlt() {
+            return alt;
+        }
+
+        public void setAlt(String alt) {
+            this.alt = alt;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public static class AvatarsBean {
+            private String small;
+            private String large;
+            private String medium;
+
+            public String getSmall() {
+                return small;
+            }
+
+            public void setSmall(String small) {
+                this.small = small;
+            }
+
+            public String getLarge() {
+                return large;
+            }
+
+            public void setLarge(String large) {
+                this.large = large;
+            }
+
+            public String getMedium() {
+                return medium;
+            }
+
+            public void setMedium(String medium) {
+                this.medium = medium;
+            }
+        }
+    }
+
+    public static class PopularReviewsBean {
+        /**
+         * max : 5
+         * value : 5
+         * min : 0
+         */
+
+        private RatingBean rating;
+        private String title;
+        private String subject_id;
+        /**
+         * uid : dengdaigeduo
+         * avatar : https://img3.doubanio.com/icon/u2226766-5.jpg
+         * signature :
+         * alt : https://www.douban.com/people/dengdaigeduo/
+         * id : 2226766
+         * name : 等待戈多
+         */
+
+        private AuthorBean author;
+        private String summary;
+        private String alt;
+        private String id;
+
+        public RatingBean getRating() {
+            return rating;
+        }
+
+        public void setRating(RatingBean rating) {
+            this.rating = rating;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getSubject_id() {
+            return subject_id;
+        }
+
+        public void setSubject_id(String subject_id) {
+            this.subject_id = subject_id;
+        }
+
+        public AuthorBean getAuthor() {
+            return author;
+        }
+
+        public void setAuthor(AuthorBean author) {
+            this.author = author;
+        }
+
+        public String getSummary() {
+            return summary;
+        }
+
+        public void setSummary(String summary) {
+            this.summary = summary;
+        }
+
+        public String getAlt() {
+            return alt;
+        }
+
+        public void setAlt(String alt) {
+            this.alt = alt;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public static class RatingBean {
+            private int max;
+            private int value;
+            private int min;
+
+            public int getMax() {
+                return max;
+            }
+
+            public void setMax(int max) {
+                this.max = max;
+            }
+
+            public int getValue() {
+                return value;
+            }
+
+            public void setValue(int value) {
+                this.value = value;
+            }
+
+            public int getMin() {
+                return min;
+            }
+
+            public void setMin(int min) {
+                this.min = min;
+            }
+        }
+
+        public static class AuthorBean {
+            private String uid;
+            private String avatar;
+            private String signature;
+            private String alt;
+            private String id;
+            private String name;
+
+            public String getUid() {
+                return uid;
+            }
+
+            public void setUid(String uid) {
+                this.uid = uid;
+            }
+
+            public String getAvatar() {
+                return avatar;
+            }
+
+            public void setAvatar(String avatar) {
+                this.avatar = avatar;
+            }
+
+            public String getSignature() {
+                return signature;
+            }
+
+            public void setSignature(String signature) {
+                this.signature = signature;
+            }
+
+            public String getAlt() {
+                return alt;
+            }
+
+            public void setAlt(String alt) {
+                this.alt = alt;
+            }
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
             }
         }
     }

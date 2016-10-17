@@ -25,24 +25,27 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     protected Context mContext;
     protected boolean mUseAnimation;
     private int mLastPosition = -1;
+    protected LayoutInflater mLayoutInflater;
 
 
     public BaseAdapter(Context context, List<T> data) {
         this.mContext = context;
         this.mData = data;
+        this.mLayoutInflater = LayoutInflater.from(context);
     }
 
     public BaseAdapter(Context context, List<T> data, boolean useAnimation) {
         this.mContext = context;
         this.mData = data;
         this.mUseAnimation = useAnimation;
+        this.mLayoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == TYPE_EMPTY) {
             View emptyView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_empty, parent, false);
-            return new BaseViewHolder(emptyView);
+            return new EmptyViewHolder(emptyView);
         }
         return onCreateNormalViewHolder(parent, viewType);
 
@@ -55,11 +58,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         if(mUseAnimation) {
             setAnimation(holder.itemView, position);
         }
-        bindData(holder, position);
+        holder.bindData(position);
     }
-
-    protected abstract void bindData(BaseViewHolder holder, int position);
-
 
     @Override
     public int getItemCount() {

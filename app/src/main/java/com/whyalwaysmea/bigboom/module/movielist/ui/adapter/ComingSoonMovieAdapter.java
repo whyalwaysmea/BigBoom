@@ -24,8 +24,6 @@ import butterknife.BindView;
 public class ComingSoonMovieAdapter extends BaseAdapter<MovieInfo> {
 
 
-
-
     public ComingSoonMovieAdapter(Context context, List<MovieInfo> data, boolean useAnimation) {
         super(context, data, useAnimation);
     }
@@ -34,33 +32,6 @@ public class ComingSoonMovieAdapter extends BaseAdapter<MovieInfo> {
     protected BaseViewHolder onCreateNormalViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.coming_soon_movie_item, parent, false);
         return new ComingSoonHolder(view);
-    }
-
-    @Override
-    protected void bindData(BaseViewHolder holder, int position) {
-        if(holder instanceof ComingSoonHolder) {
-            MovieInfo movieInfo = mData.get(position);
-            ComingSoonHolder comingSoonHolder = (ComingSoonHolder) holder;
-            ImageUtils.getInstance().display(comingSoonHolder.mComingSoonMoviePic, movieInfo.getImages().getLarge());
-            comingSoonHolder.mComingSoonMovieName.setText(movieInfo.getTitle());
-            comingSoonHolder.mComingSoonMovieType.setText("类别：" + movieInfo.getGenres().toString());
-            StringBuffer sb = new StringBuffer();
-            sb.append("主演：");
-            for (int i = 0; i < movieInfo.getCasts().size(); i++) {
-                if(i != movieInfo.getCasts().size() - 1) {
-                    sb.append(movieInfo.getCasts().get(i).getName() + "/");
-                } else {
-                    sb.append(movieInfo.getCasts().get(i).getName());
-                }
-            }
-            if(movieInfo.getCasts() != null && movieInfo.getCasts().size() >0) {
-                comingSoonHolder.mComingSoonMoviePerformer.setText(sb.toString());
-            }
-
-            if(movieInfo.getDirectors() != null && movieInfo.getDirectors().size() > 0) {
-                comingSoonHolder.mComingSoonMovieDirectors.setText("导演：" + movieInfo.getDirectors().get(0).getName());
-            }
-        }
     }
 
     class ComingSoonHolder extends BaseViewHolder {
@@ -79,6 +50,30 @@ public class ComingSoonMovieAdapter extends BaseAdapter<MovieInfo> {
 
         public ComingSoonHolder(View itemView) {
             super(itemView);
+        }
+
+        @Override
+        public void bindData(int position) {
+            MovieInfo movieInfo = mData.get(position);
+            ImageUtils.getInstance().display(mComingSoonMoviePic, movieInfo.getImages().getLarge());
+            mComingSoonMovieName.setText(movieInfo.getTitle());
+            mComingSoonMovieType.setText("类别：" + movieInfo.getGenres().toString());
+            StringBuffer sb = new StringBuffer();
+            sb.append("主演：");
+            for (int i = 0; i < movieInfo.getCasts().size(); i++) {
+                if(i != movieInfo.getCasts().size() - 1) {
+                    sb.append(movieInfo.getCasts().get(i).getName() + "/");
+                } else {
+                    sb.append(movieInfo.getCasts().get(i).getName());
+                }
+            }
+            if(movieInfo.getCasts() != null && movieInfo.getCasts().size() >0) {
+                mComingSoonMoviePerformer.setText(sb.toString());
+            }
+
+            if(movieInfo.getDirectors() != null && movieInfo.getDirectors().size() > 0) {
+                mComingSoonMovieDirectors.setText("导演：" + movieInfo.getDirectors().get(0).getName());
+            }
         }
     }
 

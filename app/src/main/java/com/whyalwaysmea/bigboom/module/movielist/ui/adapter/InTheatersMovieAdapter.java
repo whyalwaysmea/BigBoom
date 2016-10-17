@@ -35,17 +35,6 @@ public class InTheatersMovieAdapter extends BaseAdapter<MovieInfo> {
         return new InTheaterHolder(view);
     }
 
-    @Override
-    protected void bindData(BaseViewHolder holder, int position) {
-        if(holder instanceof InTheaterHolder) {
-            MovieInfo movieInfo = mData.get(position);
-            InTheaterHolder inTheaterHolder = (InTheaterHolder) holder;
-            ImageUtils.getInstance().display(inTheaterHolder.mMovieItemPhoto, movieInfo.getImages().getLarge());
-            inTheaterHolder.mMovieItemName.setText(movieInfo.getTitle());
-            inTheaterHolder.mTopMovieItemScore.setText("" + movieInfo.getRating().getAverage());
-            inTheaterHolder.mRatingBarHots.setRating((float) movieInfo.getRating().getAverage());
-        }
-    }
 
     class InTheaterHolder extends BaseViewHolder {
 
@@ -60,6 +49,15 @@ public class InTheatersMovieAdapter extends BaseAdapter<MovieInfo> {
 
         public InTheaterHolder(View itemView) {
             super(itemView);
+        }
+
+        @Override
+        public void bindData(int position) {
+            MovieInfo movieInfo = mData.get(position);
+            ImageUtils.getInstance().display(mMovieItemPhoto, movieInfo.getImages().getLarge());
+            mMovieItemName.setText(movieInfo.getTitle());
+            mTopMovieItemScore.setText("" + movieInfo.getRating().getAverage());
+            mRatingBarHots.setRating((float) movieInfo.getRating().getAverage());
         }
 
     }

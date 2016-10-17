@@ -9,11 +9,12 @@ import butterknife.ButterKnife;
  * Created by Long
  * on 2016/9/12.
  */
-public class BaseViewHolder extends RecyclerView.ViewHolder {
+public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
     public BaseViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-
     }
+
+    public abstract void bindData(int position);
 }

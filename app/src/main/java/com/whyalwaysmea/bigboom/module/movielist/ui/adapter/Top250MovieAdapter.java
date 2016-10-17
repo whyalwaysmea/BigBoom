@@ -38,45 +38,6 @@ public class Top250MovieAdapter extends BaseAdapter<MovieInfo> {
         return new HotMovieHolder(view);
     }
 
-    @Override
-    protected void bindData(BaseViewHolder holder, int position) {
-        if (holder instanceof HotMovieHolder) {
-            HotMovieHolder hotMovieHolder = (HotMovieHolder) holder;
-            MovieInfo movieInfo = mData.get(position);
-
-            hotMovieHolder.mTopMovieItemName.setText(movieInfo.getTitle());
-            hotMovieHolder.mTopMovieItemOriginalName.setText(movieInfo.getOriginal_title());
-            hotMovieHolder.mTopMovieItemDate.setText(mContext.getResources().getString(R.string.start_data) + movieInfo.getYear());
-            hotMovieHolder.mRatingBarHots.setRating((float) movieInfo.getRating().getAverage() / 2);
-            hotMovieHolder.mTopMovieItemScore.setText("" + movieInfo.getRating().getAverage());
-            ImageUtils.getInstance().display(hotMovieHolder.mTopMovieItemIcon, movieInfo.getImages().getLarge());
-
-            final int[] x = new int[1];
-            ((HotMovieHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(mContext, MovieDetailActivity.class);
-                    int[] location = new int[2];
-                    view.getLocationInWindow(location);
-                    final int cy = location[1] + view.getHeight() / 2;
-
-                    intent.putExtra("X", x[0]);
-                    intent.putExtra("Y", cy);
-                    intent.putExtra("ID", movieInfo.getId());
-                    mContext.startActivity(intent);
-                }
-            });
-
-            ((HotMovieHolder) holder).itemView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    x[0] = (int) motionEvent.getX();
-                    return false;
-                }
-            });
-        }
-    }
-
 
     class HotMovieHolder extends BaseViewHolder {
 
@@ -95,6 +56,42 @@ public class Top250MovieAdapter extends BaseAdapter<MovieInfo> {
 
         public HotMovieHolder(View itemView) {
             super(itemView);
+        }
+
+        @Override
+        public void bindData(int position) {
+            MovieInfo movieInfo = mData.get(position);
+
+            mTopMovieItemName.setText(movieInfo.getTitle());
+            mTopMovieItemOriginalName.setText(movieInfo.getOriginal_title());
+            mTopMovieItemDate.setText(mContext.getResources().getString(R.string.start_data) + movieInfo.getYear());
+            mRatingBarHots.setRating((float) movieInfo.getRating().getAverage() / 2);
+            mTopMovieItemScore.setText("" + movieInfo.getRating().getAverage());
+            ImageUtils.getInstance().display(mTopMovieItemIcon, movieInfo.getImages().getLarge());
+
+            final int[] x = new int[1];
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, MovieDetailActivity.class);
+                    int[] location = new int[2];
+                    view.getLocationInWindow(location);
+                    final int cy = location[1] + view.getHeight() / 2;
+
+                    intent.putExtra("X", x[0]);
+                    intent.putExtra("Y", cy);
+                    intent.putExtra("ID", movieInfo.getId());
+                    mContext.startActivity(intent);
+                }
+            });
+
+            itemView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    x[0] = (int) motionEvent.getX();
+                    return false;
+                }
+            });
         }
     }
 

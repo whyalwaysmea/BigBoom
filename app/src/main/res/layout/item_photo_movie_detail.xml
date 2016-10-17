@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/movie_item_photo"
+        android:scaleType="centerCrop"
+        android:layout_width="220dp"
+        android:layout_height="140dp"/>
+
+    <TextView
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:id="@+id/all_movie_photo"
+        android:text="@string/all_photos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

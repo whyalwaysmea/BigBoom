@@ -10,6 +10,9 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.content.res.AppCompatResources;
+import android.support.v7.widget.AppCompatRatingBar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -17,18 +20,24 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.BitmapTypeRequest;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.presenter.MovieDetailPresenterImp;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CastAdapter;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.MoviePhotoAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.view.IMovieDetailView;
 import com.whyalwaysmea.bigboom.utils.MeasureUtil;
 import com.whyalwaysmea.bigboom.utils.StatusBarUtil;
+import com.whyalwaysmea.bigboom.view.ExpandableTextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,18 +58,38 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     CoordinatorLayout mRootView;
     @BindView(R.id.progress)
     ContentLoadingProgressBar mProgress;
-    @BindView(R.id.pubdate)
-    TextView mPubdate;
+    @BindView(R.id.genres)
+    TextView mGenres;
     @BindView(R.id.original_title)
     TextView mOriginalTitle;
     @BindView(R.id.durations)
     TextView mDurations;
     @BindView(R.id.fab)
     FloatingActionButton mFab;
+    @BindView(R.id.pubdates)
+    TextView mPubdates;
+    @BindView(R.id.average_rating)
+    TextView mAverageRating;
+    @BindView(R.id.ratingBar_hots)
+    AppCompatRatingBar mRatingBarHots;
+    @BindView(R.id.rating_nums)
+    TextView mRatingNums;
+    @BindView(R.id.rating_layout)
+    LinearLayout mRatingLayout;
+    @BindView(R.id.expand_text_view)
+    ExpandableTextView mExpandTextView;
+    @BindView(R.id.directors_recyclerview)
+    RecyclerView mDirectorsRecyclerview;
+    @BindView(R.id.photos_recyclerview)
+    RecyclerView mPhotosRecyclerview;
 
     private int mX, mY;
     private String mId;
-    private BitmapTypeRequest<String> mStringBitmapTypeRequest;
+
+    private LinearLayoutManager mCastLayoutManager, mPhotoLayoutManager;
+    private List<MovieDetail.CastsBean> mCastsBeanList;
+    private CastAdapter mCastAdapter;
+    private MoviePhotoAdapter mMoviePhotoAdapter;
 
     @Override
     protected MovieDetailPresenterImp createPresenter(BaseView view) {
@@ -114,6 +143,13 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
             }
         });
 
+        mCastLayoutManager = new LinearLayoutManager(this);
+        mCastLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mDirectorsRecyclerview.setLayoutManager(mCastLayoutManager);
+
+        mPhotoLayoutManager = new LinearLayoutManager(this);
+        mPhotoLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mPhotosRecyclerview.setLayoutManager(mPhotoLayoutManager);
     }
 
 
@@ -121,16 +157,50 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     public void setDetailData(MovieDetail detailData) {
         ImageUtils.getInstance().display(mMovieDetailBg, detailData.getImages().getLarge());
         mToolbar.setTitle(detailData.getTitle());
-        StringBuffer sbPubdate = new StringBuffer();
-        sbPubdate.append(detailData.getYear());
+        StringBuffer sbGenres = new StringBuffer();
         for (int i = 0; i < detailData.getGenres().size(); i++) {
-            sbPubdate.append("/");
-            sbPubdate.append(detailData.getGenres().get(i));
+            if (i != detailData.getGenres().size() - 1) {
+                sbGenres.append(detailData.getGenres().get(i) + "/");
+            } else {
+                sbGenres.append(detailData.getGenres().get(i));
+            }
         }
-        mPubdate.setText(sbPubdate.toString());
+        mGenres.setText(getString(R.string.genres) + sbGenres.toString());
 
+        StringBuffer sbPubdates = new StringBuffer();
+        for (int i = 0; i < detailData.getPubdates().size(); i++) {
+            if (i != detailData.getPubdates().size() - 1) {
+                sbPubdates.append(detailData.getPubdates().get(i) + "/");
+            } else {
+                sbPubdates.append(detailData.getPubdates().get(i));
+            }
+        }
+        mPubdates.setText(getString(R.string.pubdates) + sbPubdates.toString());
+
+        StringBuffer sbDurations = new StringBuffer();
+        for (int i = 0; i < detailData.getDurations().size(); i++) {
+            if (i != detailData.getDurations().size() - 1) {
+                sbDurations.append(detailData.getDurations().get(i) + "/");
+            } else {
+                sbDurations.append(detailData.getDurations().get(i));
+            }
+        }
+        mDurations.setText(getString(R.string.durations) + sbDurations.toString());
         mOriginalTitle.setText(getString(R.string.original_title) + detailData.getOriginal_title());
-        mDurations.setText(getString(R.string.durations) + detailData.getDurations().get(0));
+
+        mAverageRating.setText("" + detailData.getRating().getAverage());
+        mRatingNums.setText("" + detailData.getRatings_count());
+        mRatingBarHots.setRating(detailData.getRating().getAverage());
+        mExpandTextView.setText(detailData.getSummary());
+
+        mCastsBeanList = new ArrayList<>();
+        mCastsBeanList.addAll(detailData.getDirectors());
+        mCastsBeanList.addAll(detailData.getCasts());
+        mCastAdapter = new CastAdapter(this, mCastsBeanList);
+        mDirectorsRecyclerview.setAdapter(mCastAdapter);
+
+        mMoviePhotoAdapter = new MoviePhotoAdapter(this, detailData.getPhotos());
+        mPhotosRecyclerview.setAdapter(mMoviePhotoAdapter);
     }
 
     // 动画

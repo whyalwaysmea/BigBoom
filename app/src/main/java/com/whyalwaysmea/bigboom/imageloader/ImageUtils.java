@@ -38,6 +38,11 @@ public class ImageUtils {
         mLoaderInterface.display(imageView, url, loadingImg, errorImg);
     }
 
+    public void display(ImageView imageView, int resId) {
+        mLoaderInterface.display(imageView, resId);
+
+    }
+
     public void displayCircleImg(ImageView imageView, int resId) {
 
         mLoaderInterface.displayCircleImg(imageView, resId);

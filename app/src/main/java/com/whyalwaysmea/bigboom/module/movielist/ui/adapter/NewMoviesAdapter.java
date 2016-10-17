@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.whyalwaysmea.bigboom.R;
-import com.whyalwaysmea.bigboom.base.BaseViewHolder;
+import com.whyalwaysmea.bigboom.base.EmptyViewHolder;
 import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.bean.WeeklyMovieInfo;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
@@ -58,7 +58,7 @@ public class NewMoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == TYPE_EMPTY) {
             View emptyView = LayoutInflater.from(mContext).inflate(R.layout.layout_empty, parent, false);
-            return new BaseViewHolder(emptyView);
+            return new EmptyViewHolder(emptyView);
         } else if(viewType == TYPE_ALL) {
             View viewPagerView = LayoutInflater.from(mContext).inflate(R.layout.weekly_movies_viewpager, parent, false);
             return new WeeklyMoviesHolder(viewPagerView);
