@@ -15,6 +15,11 @@
         <!--<item>北美票房榜单</item>-->
     </array>
 
+    <array name="comment_titles">
+        <item>影评</item>
+        <item>短评</item>
+    </array>
+
     <string name="new_movies">豆瓣电影新片榜</string>
     <string name="weekly_movies">豆瓣电影本周口碑榜</string>
 

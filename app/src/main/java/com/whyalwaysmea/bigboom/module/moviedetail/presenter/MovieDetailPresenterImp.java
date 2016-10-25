@@ -35,14 +35,11 @@ public class MovieDetailPresenterImp extends BasePresenter<IMovieDetailView> imp
 
     @Override
     public void onLoadSussess(MovieDetail movieDetail) {
-        System.out.println("onLoadSussess");
         mView.hideLoading();
         mView.setDetailData(movieDetail);
     }
 
     @Override
     public void onLoadFailed(String error) {
-        System.out.println("error： " + error);
-
     }
 }

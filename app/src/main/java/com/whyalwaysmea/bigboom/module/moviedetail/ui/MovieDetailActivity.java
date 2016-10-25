@@ -7,7 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatRatingBar;
@@ -24,12 +25,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.whyalwaysmea.bigboom.R;
+import com.whyalwaysmea.bigboom.base.BaseFragment;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.presenter.MovieDetailPresenterImp;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CastAdapter;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CommentPageAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.MoviePhotoAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.view.IMovieDetailView;
 import com.whyalwaysmea.bigboom.utils.MeasureUtil;
@@ -58,14 +61,13 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     CoordinatorLayout mRootView;
     @BindView(R.id.progress)
     ContentLoadingProgressBar mProgress;
+
     @BindView(R.id.genres)
     TextView mGenres;
     @BindView(R.id.original_title)
     TextView mOriginalTitle;
     @BindView(R.id.durations)
     TextView mDurations;
-    @BindView(R.id.fab)
-    FloatingActionButton mFab;
     @BindView(R.id.pubdates)
     TextView mPubdates;
     @BindView(R.id.average_rating)
@@ -82,6 +84,12 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     RecyclerView mDirectorsRecyclerview;
     @BindView(R.id.photos_recyclerview)
     RecyclerView mPhotosRecyclerview;
+    @BindView(R.id.id_stickynavlayout_indicator)
+    TabLayout mTabLayout;
+    @BindView(R.id.id_stickynavlayout_viewpager)
+    ViewPager mCommentViewpage;
+//    @BindView(R.id.nsv)
+//    NestedScrollView mNsv;
 
     private int mX, mY;
     private String mId;
@@ -127,6 +135,12 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
         }
 
         mToolbar.setNavigationIcon(AppCompatResources.getDrawable(this, R.drawable.ic_action_clear));
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
 
         mX = getIntent().getIntExtra("X", 0);
@@ -150,12 +164,26 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
         mPhotoLayoutManager = new LinearLayoutManager(this);
         mPhotoLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mPhotosRecyclerview.setLayoutManager(mPhotoLayoutManager);
+
+        String[] titles = getResources().getStringArray(R.array.comment_titles);
+        List<BaseFragment> fragments = new ArrayList<>();
+        fragments.add(ReviewFragment.newInstance(mId));
+        fragments.add(CommentFragment.newInstance());
+        mCommentViewpage.setAdapter(new CommentPageAdapter(getSupportFragmentManager(), titles, fragments));
+        mCommentViewpage.setOffscreenPageLimit(1);
+        mCommentViewpage.setCurrentItem(0);
+        mTabLayout.setupWithViewPager(mCommentViewpage);
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        mTabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
+
     }
 
 
     @Override
     public void setDetailData(MovieDetail detailData) {
         ImageUtils.getInstance().display(mMovieDetailBg, detailData.getImages().getLarge());
+
+
         mToolbar.setTitle(detailData.getTitle());
         StringBuffer sbGenres = new StringBuffer();
         for (int i = 0; i < detailData.getGenres().size(); i++) {
