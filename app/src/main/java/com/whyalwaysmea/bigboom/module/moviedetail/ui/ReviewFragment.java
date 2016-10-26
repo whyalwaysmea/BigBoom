@@ -13,23 +13,21 @@ import com.whyalwaysmea.bigboom.base.MvpFragment;
 import com.whyalwaysmea.bigboom.bean.Review;
 import com.whyalwaysmea.bigboom.module.moviedetail.presenter.MovieReviewPresenterImp;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.ReviewAdapter;
-import com.whyalwaysmea.bigboom.module.moviedetail.view.IMovieView;
+import com.whyalwaysmea.bigboom.module.moviedetail.view.IMovieReviewView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-import static com.whyalwaysmea.bigboom.R.id.lv;
-
 /**
  * Created by Long
  * on 2016/10/18.
  */
 
-public class ReviewFragment extends MvpFragment<IMovieView, MovieReviewPresenterImp> implements IMovieView{
+public class ReviewFragment extends MvpFragment<IMovieReviewView, MovieReviewPresenterImp> implements IMovieReviewView {
 
-    @BindView(lv)
+    @BindView(R.id.lv)
     RecyclerView mRecyclerview;
 
     private LinearLayoutManager mLinearLayoutManager;

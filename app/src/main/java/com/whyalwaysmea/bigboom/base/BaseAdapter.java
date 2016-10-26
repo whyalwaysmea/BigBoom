@@ -44,11 +44,15 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == TYPE_EMPTY) {
-            View emptyView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_empty, parent, false);
-            return new EmptyViewHolder(emptyView);
+            return onCreateEmptyViewHolder(parent, viewType);
         }
         return onCreateNormalViewHolder(parent, viewType);
 
+    }
+
+    protected BaseViewHolder onCreateEmptyViewHolder(ViewGroup parent, int viewType) {
+        View emptyView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_empty, parent, false);
+        return new EmptyViewHolder(emptyView);
     }
 
     protected abstract BaseViewHolder onCreateNormalViewHolder(ViewGroup parent, int viewType);

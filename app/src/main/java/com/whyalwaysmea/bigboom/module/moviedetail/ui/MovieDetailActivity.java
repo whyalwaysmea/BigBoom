@@ -168,7 +168,7 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
         String[] titles = getResources().getStringArray(R.array.comment_titles);
         List<BaseFragment> fragments = new ArrayList<>();
         fragments.add(ReviewFragment.newInstance(mId));
-        fragments.add(CommentFragment.newInstance());
+        fragments.add(CommentFragment.newInstance(mId));
         mCommentViewpage.setAdapter(new CommentPageAdapter(getSupportFragmentManager(), titles, fragments));
         mCommentViewpage.setOffscreenPageLimit(1);
         mCommentViewpage.setCurrentItem(0);

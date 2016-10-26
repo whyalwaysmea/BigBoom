@@ -12,4 +12,5 @@ import com.whyalwaysmea.bigboom.bean.Review;
 public interface IMovieReviewModel extends BaseModel {
 
     void loadMovieReview(String id, OnLoadCompleteListener<Review> loadCompleteListener);
+
 }

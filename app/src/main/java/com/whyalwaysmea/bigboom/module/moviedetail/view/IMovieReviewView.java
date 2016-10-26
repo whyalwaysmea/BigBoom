@@ -10,6 +10,6 @@ import java.util.List;
  * on 2016/10/24.
  */
 
-public interface IMovieView extends BaseView{
+public interface IMovieReviewView extends BaseView{
     void setReviewData(List<Review.ReviewsBean> reviewData);
 }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
+import com.whyalwaysmea.bigboom.base.EmptyViewHolder;
 import com.whyalwaysmea.bigboom.bean.Review;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 
@@ -32,6 +33,12 @@ public class ReviewAdapter extends BaseAdapter<Review.ReviewsBean> {
     protected BaseViewHolder onCreateNormalViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(R.layout.item_review, parent, false);
         return new ReviewHolder(view);
+    }
+
+    @Override
+    protected BaseViewHolder onCreateEmptyViewHolder(ViewGroup parent, int viewType) {
+        View view = mLayoutInflater.inflate(R.layout.empty_no_content, parent, false);
+        return new EmptyViewHolder(view);
     }
 
     class ReviewHolder extends BaseViewHolder {

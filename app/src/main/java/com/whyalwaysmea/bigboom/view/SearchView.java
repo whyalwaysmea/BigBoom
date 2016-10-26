@@ -1,14 +1,19 @@
 package com.whyalwaysmea.bigboom.view;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.whyalwaysmea.bigboom.R;
+import com.whyalwaysmea.bigboom.utils.MeasureUtil;
 
 /**
  * Created by Long
@@ -24,9 +29,12 @@ public class SearchView {
     private EditText mSearchInput;
     private OnSearchClickListener mOnSearchClickListener;
 
-    public SearchView(Context context, OnSearchClickListener onSearchClickListener) {
+    private View showAtView;
+
+    public SearchView(Context context, View view, OnSearchClickListener onSearchClickListener) {
         this.mContext = context;
         this.mOnSearchClickListener = onSearchClickListener;
+        this.showAtView = view;
         initView();
         initEvent();
     }
@@ -37,6 +45,14 @@ public class SearchView {
         mSearchClear = (ImageView) view.findViewById(R.id.search_clear);
         mSearchSure = (ImageView) view.findViewById(R.id.search_sure);
         mSearchInput = (EditText) view.findViewById(R.id.search_input);
+
+        PopupWindow popupWindow = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.showAtLocation(showAtView, Gravity.NO_GRAVITY, 0, MeasureUtil.getStatusBarHeight(mContext));
+
     }
 
     private void initEvent() {

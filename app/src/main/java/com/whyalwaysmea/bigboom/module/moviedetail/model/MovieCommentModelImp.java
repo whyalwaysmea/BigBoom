@@ -1,8 +1,9 @@
 package com.whyalwaysmea.bigboom.module.moviedetail.model;
 
+import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
-import com.whyalwaysmea.bigboom.bean.Review;
+import com.whyalwaysmea.bigboom.bean.Comment;
 import com.whyalwaysmea.bigboom.http.ApiManager;
 import com.whyalwaysmea.bigboom.http.HttpMethods;
 
@@ -13,28 +14,21 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by Long
- * on 2016/10/24.
+ * on 2016/10/26.
  */
 
-public class MovieReviewModelImp implements IMovieReviewModel {
+public class MovieCommentModelImp implements IMovieCommentModel {
 
-    private Subscription mSubscription;
-
-    @Override
-    public void onDestroy() {
-        if(mSubscription != null && mSubscription.isUnsubscribed()) {
-            mSubscription.unsubscribe();
-        }
-    }
+    private Subscription mSubscribe;
 
     @Override
-    public void loadMovieReview(String id, OnLoadCompleteListener<Review> loadCompleteListener) {
+    public void loadMovieComments(String id, OnLoadCompleteListener<Comment> loadCompleteListener) {
         ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
-        mSubscription = apiManager.getReview(id, Constants.ID.APIKEY)
+        mSubscribe = apiManager.getComment(id, Constants.ID.APIKEY)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Review>() {
+                .subscribe(new Subscriber<Comment>() {
                     @Override
                     public void onCompleted() {
 
@@ -42,18 +36,23 @@ public class MovieReviewModelImp implements IMovieReviewModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        if(loadCompleteListener != null) {
-                            loadCompleteListener.onLoadFailed(e.getMessage());
-                        }
+                        KLog.e(e.getMessage());
+
                     }
 
                     @Override
-                    public void onNext(Review review) {
-                        if(review.getTotal() > 0 && loadCompleteListener != null) {
-                            loadCompleteListener.onLoadSussess(review);
+                    public void onNext(Comment comment) {
+                        if(comment.getComments() != null && loadCompleteListener != null) {
+                            loadCompleteListener.onLoadSussess(comment);
                         }
                     }
                 });
     }
 
+    @Override
+    public void onDestroy() {
+        if(mSubscribe != null && mSubscribe.isUnsubscribed()) {
+            mSubscribe.unsubscribe();
+        }
+    }
 }

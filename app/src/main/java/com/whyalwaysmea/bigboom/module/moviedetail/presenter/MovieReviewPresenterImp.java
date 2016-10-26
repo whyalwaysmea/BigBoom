@@ -7,7 +7,7 @@ import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.Review;
 import com.whyalwaysmea.bigboom.module.moviedetail.model.IMovieReviewModel;
 import com.whyalwaysmea.bigboom.module.moviedetail.model.MovieReviewModelImp;
-import com.whyalwaysmea.bigboom.module.moviedetail.view.IMovieView;
+import com.whyalwaysmea.bigboom.module.moviedetail.view.IMovieReviewView;
 import com.whyalwaysmea.bigboom.utils.NetworkUtils;
 
 /**
@@ -15,12 +15,12 @@ import com.whyalwaysmea.bigboom.utils.NetworkUtils;
  * on 2016/10/24.
  */
 
-public class MovieReviewPresenterImp extends BasePresenter<IMovieView> implements IMovieReviewPresenter, OnLoadCompleteListener<Review> {
+public class MovieReviewPresenterImp extends BasePresenter<IMovieReviewView> implements IMovieReviewPresenter, OnLoadCompleteListener<Review> {
 
     private IMovieReviewModel mIMovieReviewModel;
 
-    public MovieReviewPresenterImp(IMovieView iMovieView) {
-        super(iMovieView);
+    public MovieReviewPresenterImp(IMovieReviewView iMovieReviewView) {
+        super(iMovieReviewView);
         mIMovieReviewModel = new MovieReviewModelImp();
     }
 

@@ -1,5 +1,6 @@
 package com.whyalwaysmea.bigboom.http;
 
+import com.whyalwaysmea.bigboom.bean.Comment;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 import com.whyalwaysmea.bigboom.bean.Review;
@@ -36,4 +37,7 @@ public interface ApiManager {
 
     @GET("subject/{id}/reviews")
     Observable<Review> getReview(@Path("id") String id, @Query("apikey") String apikey);
+
+    @GET("subject/{id}/comments")
+    Observable<Comment> getComment(@Path("id") String id, @Query("apikey") String apikey);
 }
