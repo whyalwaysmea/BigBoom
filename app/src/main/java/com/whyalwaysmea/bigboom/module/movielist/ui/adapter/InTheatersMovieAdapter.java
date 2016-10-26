@@ -1,7 +1,9 @@
 package com.whyalwaysmea.bigboom.module.movielist.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,6 +15,7 @@ import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.MovieDetailActivity;
 
 import java.util.List;
 
@@ -58,6 +61,30 @@ public class InTheatersMovieAdapter extends BaseAdapter<MovieInfo> {
             mMovieItemName.setText(movieInfo.getTitle());
             mTopMovieItemScore.setText("" + movieInfo.getRating().getAverage());
             mRatingBarHots.setRating((float) movieInfo.getRating().getAverage());
+
+            final int[] x = new int[1];
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, MovieDetailActivity.class);
+                    int[] location = new int[2];
+                    view.getLocationInWindow(location);
+                    final int cy = location[1] + view.getHeight() / 2;
+
+                    intent.putExtra("X", x[0]);
+                    intent.putExtra("Y", cy);
+                    intent.putExtra("ID", movieInfo.getId());
+                    mContext.startActivity(intent);
+                }
+            });
+
+            itemView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    x[0] = (int) motionEvent.getX();
+                    return false;
+                }
+            });
         }
 
     }
