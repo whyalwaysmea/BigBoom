@@ -1,7 +1,5 @@
 package com.whyalwaysmea.bigboom.module.movielist.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
@@ -90,27 +87,12 @@ public class MovieFragment extends BaseFragment {
 
     private void showSearch() {
         SearchView searchView = new SearchView(mContext, mToolbar, new SearchView.OnSearchClickListener() {
-            @Override
-            public void closeSearchView() {
-
-            }
 
             @Override
             public void searchInput(String s) {
 
             }
         });
-
-        final WindowManager.LayoutParams lp = ((Activity)mContext).getWindow().getAttributes();
-        ValueAnimator animator = ValueAnimator.ofFloat(1f, 0.7f);
-        animator.setDuration(500);
-        animator.addUpdateListener(animation -> {
-            lp.alpha = (float) animation.getAnimatedValue();
-            lp.dimAmount = (float) animation.getAnimatedValue();
-            ((Activity)mContext).getWindow().setAttributes(lp);
-            ((Activity)mContext).getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        });
-        animator.start();
 
     }
 

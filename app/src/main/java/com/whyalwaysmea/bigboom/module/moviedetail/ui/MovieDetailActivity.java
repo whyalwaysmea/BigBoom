@@ -88,8 +88,6 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     TabLayout mTabLayout;
     @BindView(R.id.id_stickynavlayout_viewpager)
     ViewPager mCommentViewpage;
-//    @BindView(R.id.nsv)
-//    NestedScrollView mNsv;
 
     private int mX, mY;
     private String mId;
@@ -182,8 +180,6 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     @Override
     public void setDetailData(MovieDetail detailData) {
         ImageUtils.getInstance().display(mMovieDetailBg, detailData.getImages().getLarge());
-
-
         mToolbar.setTitle(detailData.getTitle());
         StringBuffer sbGenres = new StringBuffer();
         for (int i = 0; i < detailData.getGenres().size(); i++) {

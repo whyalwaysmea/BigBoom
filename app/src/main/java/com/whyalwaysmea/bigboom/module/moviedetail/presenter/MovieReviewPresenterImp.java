@@ -37,7 +37,7 @@ public class MovieReviewPresenterImp extends BasePresenter<IMovieReviewView> imp
     @Override
     public void onLoadSussess(Review review) {
         mView.hideLoading();
-        mView.setReviewData(review.getReviews());
+        mView.setReviewData(review);
     }
 
     @Override

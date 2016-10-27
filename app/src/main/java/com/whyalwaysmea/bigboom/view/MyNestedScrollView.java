@@ -1,9 +1,7 @@
 package com.whyalwaysmea.bigboom.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.widget.NestedScrollView;
@@ -13,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 
-import com.whyalwaysmea.bigboom.R;
+import com.socks.library.KLog;
 
 import java.util.ArrayList;
 
@@ -40,10 +38,6 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
      */
     public static final String FLAG_HASTRANSPARANCY = "-hastransparancy";
 
-    /**
-     * Default height of the shadow peeking out below the stuck view.
-     */
-    private static final int DEFAULT_SHADOW_HEIGHT = 10; // dp;
 
     private ArrayList<View> stickyViews;
     private View currentlyStickingView;
@@ -53,8 +47,6 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
     private boolean clippingToPadding;
     private boolean clipToPaddingHasBeenSet;
 
-    private int mShadowHeight;
-    private Drawable mShadowDrawable;
 
     private final Runnable invalidateRunnable = new Runnable() {
 
@@ -82,42 +74,13 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
     public MyNestedScrollView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setup();
-
-        TypedArray a = context.obtainStyledAttributes(attrs,
-                R.styleable.StickyScrollView, defStyle, 0);
-
-        final float density = context.getResources().getDisplayMetrics().density;
-        int defaultShadowHeightInPix = (int) (DEFAULT_SHADOW_HEIGHT * density + 0.5f);
-
-        mShadowHeight = a.getDimensionPixelSize(
-                R.styleable.StickyScrollView_stuckShadowHeight,
-                defaultShadowHeightInPix);
-
-        int shadowDrawableRes = a.getResourceId(
-                R.styleable.StickyScrollView_stuckShadowDrawable, -1);
-
-        if (shadowDrawableRes != -1) {
-            mShadowDrawable = context.getResources().getDrawable(
-                    shadowDrawableRes);
-        }
-
-        a.recycle();
-
-    }
-
-    /**
-     * Sets the height of the shadow drawable in pixels.
-     *
-     * @param height
-     */
-    public void setShadowHeight(int height) {
-        mShadowHeight = height;
     }
 
 
     public void setup(){
         stickyViews = new ArrayList<View>();
     }
+
 
     private int getLeftForViewRelativeOnlyChild(View v){
         int left = v.getLeft();
@@ -164,6 +127,24 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         notifyHierarchyChanged();
     }
 
+    /**
+     * 该属性的解释:
+     * Defines whether the ViewGroup will clip its drawing surface so as to exclude the padding area.
+     * 什么意思呢?就是说:
+     * clipToPadding属性定义了是否允许ViewGroup在padding中绘制,该值默认为true,即不允许.
+     * 所以若我们给ListView设置了android:paddingTop="70dip" android:paddingBottom="70dip"
+     * 那么我们可以看到ListView的头部以上和尾部以下都占有70大小的padding,在滑动ListView的过程
+     * 中这个padding当然是存在的.在padding部分是看不到ListView的item的,本质上是在这两部分没有绘制
+     * 我们的ListView
+     * 假若我们此时为ListView设置属性android:clipToPadding="false",同样再滑动ListView此时可以
+     * 发现在ListView的头部以上和尾部以下都占有70大小的padding部分依然可以显示我们的ListView的
+     * item,本质上是在这两部分绘制了我们的ListView
+     *
+     * 该属性很适合的应用场景:
+     * 设置ListView的第一个(最后一个)Item距离屏幕TOP(BOTTOM)有一段距离的情况
+     *
+     * @param clipToPadding
+     */
     @Override
     public void setClipToPadding(boolean clipToPadding) {
         super.setClipToPadding(clipToPadding);
@@ -208,31 +189,18 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
             canvas.save();
             canvas.translate(getPaddingLeft() + stickyViewLeftOffset, getScrollY() + stickyViewTopOffset + (clippingToPadding ? getPaddingTop() : 0));
 
-            canvas.clipRect(0, (clippingToPadding ? -stickyViewTopOffset : 0),
-                    getWidth() - stickyViewLeftOffset,
-                    currentlyStickingView.getHeight() + mShadowHeight + 1);
-
-            if (mShadowDrawable != null) {
-                int left = 0;
-                int right = currentlyStickingView.getWidth();
-                int top = currentlyStickingView.getHeight();
-                int bottom = currentlyStickingView.getHeight() + mShadowHeight;
-                mShadowDrawable.setBounds(left, top, right, bottom);
-                mShadowDrawable.draw(canvas);
-            }
-
             canvas.clipRect(0, (clippingToPadding ? -stickyViewTopOffset : 0), getWidth(), currentlyStickingView.getHeight());
-            if(getStringTagForView(currentlyStickingView).contains(FLAG_HASTRANSPARANCY)){
-                showView(currentlyStickingView);
-                currentlyStickingView.draw(canvas);
-                hideView(currentlyStickingView);
-            }else{
-                currentlyStickingView.draw(canvas);
-            }
+            // 关键
+            currentlyStickingView.draw(canvas);
             canvas.restore();
         }
     }
 
+    /**
+     * 触摸事件分发
+     * @param ev
+     * @return
+     */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if(ev.getAction()==MotionEvent.ACTION_DOWN){
@@ -256,31 +224,7 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         return super.dispatchTouchEvent(ev);
     }
 
-    private boolean hasNotDoneActionDown = true;
 
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        if(redirectTouchesToStickyView){
-            ev.offsetLocation(0, ((getScrollY() + stickyViewTopOffset) - getTopForViewRelativeOnlyChild(currentlyStickingView)));
-        }
-
-        if(ev.getAction()==MotionEvent.ACTION_DOWN){
-            hasNotDoneActionDown = false;
-        }
-
-        if(hasNotDoneActionDown){
-            MotionEvent down = MotionEvent.obtain(ev);
-            down.setAction(MotionEvent.ACTION_DOWN);
-            super.onTouchEvent(down);
-            hasNotDoneActionDown = false;
-        }
-
-        if(ev.getAction()==MotionEvent.ACTION_UP || ev.getAction()==MotionEvent.ACTION_CANCEL){
-            hasNotDoneActionDown = true;
-        }
-
-        return super.onTouchEvent(ev);
-    }
 
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
@@ -288,9 +232,13 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         doTheStickyThing();
     }
 
+    /**
+     *
+     */
     private void doTheStickyThing() {
         View viewThatShouldStick = null;
         View approachingView = null;
+        // 遍历stick view
         for(View v : stickyViews){
             int viewTop = getTopForViewRelativeOnlyChild(v) - getScrollY() + (clippingToPadding ? 0 : getPaddingTop());
             if(viewTop<=0){
@@ -318,7 +266,12 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         }
     }
 
+    /**
+     * 开始固定View
+     * @param viewThatShouldStick
+     */
     private void startStickingView(View viewThatShouldStick) {
+        KLog.e("startStickingView");
         currentlyStickingView = viewThatShouldStick;
         if(getStringTagForView(currentlyStickingView).contains(FLAG_HASTRANSPARANCY)){
             hideView(currentlyStickingView);
@@ -328,7 +281,13 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         }
     }
 
+
+    /**
+     * 结束固定View
+     */
     private void stopStickingCurrentlyStickingView() {
+        KLog.e("stopStickingCurrentlyStickingView");
+
         if(getStringTagForView(currentlyStickingView).contains(FLAG_HASTRANSPARANCY)){
             showView(currentlyStickingView);
         }
@@ -336,12 +295,6 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         removeCallbacks(invalidateRunnable);
     }
 
-    /**
-     * Notify that the sticky attribute has been added or removed from one or more views in the View hierarchy
-     */
-    public void notifyStickyAttributeChanged(){
-        notifyHierarchyChanged();
-    }
 
     private void notifyHierarchyChanged(){
         if(currentlyStickingView!=null){
@@ -353,6 +306,10 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         invalidate();
     }
 
+    /**
+     * 找到那个stick view
+     * @param v
+     */
     private void findStickyViews(View v) {
         if(v instanceof ViewGroup){
             ViewGroup vg = (ViewGroup)v;
@@ -372,12 +329,22 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         }
     }
 
+    /**
+     * 获取view的tag值
+     * @param v
+     * @return
+     */
     private String getStringTagForView(View v){
         Object tagObject = v.getTag();
         return String.valueOf(tagObject);
     }
 
+    /**
+     * 隐藏View
+     * @param v
+     */
     private void hideView(View v) {
+        KLog.e("hideView");
         if(Build.VERSION.SDK_INT>=11){
             v.setAlpha(0);
         }else{
@@ -388,7 +355,13 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         }
     }
 
+    /**
+     * 显示View
+     * @param v
+     */
     private void showView(View v) {
+        KLog.e("showView");
+
         if(Build.VERSION.SDK_INT>=11){
             v.setAlpha(1);
         }else{

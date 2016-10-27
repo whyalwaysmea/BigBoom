@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/activity_review_detail"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_white"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/movie_detail_toolbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:fitsSystemWindows="true"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/review_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/material_black70"
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:transitionName="shareName"
+                android:id="@+id/author_avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/review_title"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/header_img"/>
+
+            <TextView
+                android:id="@+id/author_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/review_title"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@id/author_avatar"
+                android:textColor="@color/material_black70"
+                tools:text="名字"/>
+
+            <TextView
+                android:id="@+id/review_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/author_name"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@id/author_avatar"
+                tools:text="2016年10月27日 14:05:00"/>
+
+            <TextView
+                android:id="@+id/review_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/author_avatar"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/material_black70"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/to_top"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right|bottom"
+        app:backgroundTint="@color/material_deep_orange_a400"
+        android:layout_margin="15dp"
+        android:src="@drawable/ic_top"
+        app:layout_behavior="com.whyalwaysmea.bigboom.view.ScrollAwareFABBehaviorDefault"/>
+
+</android.support.design.widget.CoordinatorLayout>
+

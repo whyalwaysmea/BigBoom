@@ -53,6 +53,8 @@ public class Top250MovieAdapter extends BaseAdapter<MovieInfo> {
         AppCompatRatingBar mRatingBarHots;
         @BindView(R.id.top_movie_item_score)
         TextView mTopMovieItemScore;
+        @BindView(R.id.ranking)
+        TextView mRanking;
 
         public HotMovieHolder(View itemView) {
             super(itemView);
@@ -68,6 +70,20 @@ public class Top250MovieAdapter extends BaseAdapter<MovieInfo> {
             mRatingBarHots.setRating((float) movieInfo.getRating().getAverage() / 2);
             mTopMovieItemScore.setText("" + movieInfo.getRating().getAverage());
             ImageUtils.getInstance().display(mTopMovieItemIcon, movieInfo.getImages().getLarge());
+            if(position == 0) {
+                mRanking.setTextColor(mContext.getResources().getColor(R.color.material_orange_a700));
+            } else if(position == 1){
+                mRanking.setTextColor(mContext.getResources().getColor(R.color.material_orange_a200));
+
+            } else if(position == 2) {
+                mRanking.setTextColor(mContext.getResources().getColor(R.color.material_orange_a100));
+
+            } else {
+                mRanking.setTextColor(mContext.getResources().getColor(android.R.color.darker_gray));
+
+            }
+
+            mRanking.setText(position + 1 + "");
 
             final int[] x = new int[1];
             itemView.setOnClickListener(new View.OnClickListener() {

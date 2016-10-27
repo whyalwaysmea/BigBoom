@@ -27,18 +27,23 @@
 
         <activity
             android:name=".MainActivity"
-            android:theme="@style/BaseAppTheme"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/BaseAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".module.moviedetail.ui.MovieDetailActivity"
-            android:theme="@style/AppTheme.FullActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar">
+        </activity>
+        <activity android:name=".module.moviedetail.ui.ReviewDetailActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.FullActionBar">
         </activity>
     </application>
 

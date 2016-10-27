@@ -1,17 +1,23 @@
 package com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.base.EmptyViewHolder;
 import com.whyalwaysmea.bigboom.bean.Review;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.ReviewDetailActivity;
 
 import java.util.List;
 
@@ -24,6 +30,15 @@ import butterknife.BindView;
 
 public class ReviewAdapter extends BaseAdapter<Review.ReviewsBean> {
 
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
+
+    private String movieTitle;
 
     public ReviewAdapter(Context context, List<Review.ReviewsBean> data) {
         super(context, data);
@@ -71,6 +86,19 @@ public class ReviewAdapter extends BaseAdapter<Review.ReviewsBean> {
             mContent.setText(review.getSummary());
             ImageUtils.getInstance().displayCircleImg(mAvatart, review.getAuthor().getAvatar());
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, ReviewDetailActivity.class);
+                    intent.putExtra(Constants.KEY.REVIEW, review);
+                    if(!TextUtils.isEmpty(getMovieTitle())) {
+                        intent.putExtra(Constants.KEY.TITLE, getMovieTitle());
+                    }
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) mContext, mAvatart , "shareName");
+                    mContext.startActivity(intent, options.toBundle());
+                }
+            });
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.whyalwaysmea.bigboom.view;
 
+import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Gravity;
@@ -30,6 +32,7 @@ public class SearchView {
     private OnSearchClickListener mOnSearchClickListener;
 
     private View showAtView;
+    private PopupWindow mPopupWindow;
 
     public SearchView(Context context, View view, OnSearchClickListener onSearchClickListener) {
         this.mContext = context;
@@ -46,17 +49,43 @@ public class SearchView {
         mSearchSure = (ImageView) view.findViewById(R.id.search_sure);
         mSearchInput = (EditText) view.findViewById(R.id.search_input);
 
-        PopupWindow popupWindow = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT,
+        mPopupWindow = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.setFocusable(true);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.showAtLocation(showAtView, Gravity.NO_GRAVITY, 0, MeasureUtil.getStatusBarHeight(mContext));
+        mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+        mPopupWindow.setFocusable(true);
+        mPopupWindow.setOutsideTouchable(true);
+        mPopupWindow.showAtLocation(showAtView, Gravity.NO_GRAVITY, 0, MeasureUtil.getStatusBarHeight(mContext));
+
+        final WindowManager.LayoutParams lp = ((Activity)mContext).getWindow().getAttributes();
+        ValueAnimator animator = ValueAnimator.ofFloat(1f, 0.3f);
+        animator.setDuration(500);
+        animator.addUpdateListener(animation -> {
+            lp.alpha = (float) animation.getAnimatedValue();
+            lp.dimAmount = (float) animation.getAnimatedValue();
+            ((Activity)mContext).getWindow().setAttributes(lp);
+            ((Activity)mContext).getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        });
+        animator.start();
+
+        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                ValueAnimator animator = ValueAnimator.ofFloat(0.7f, 1f);
+                animator.setDuration(500);
+                animator.addUpdateListener(animation -> {
+                    lp.alpha = (float) animation.getAnimatedValue();
+                    lp.dimAmount = (float) animation.getAnimatedValue();
+                    ((Activity)mContext).getWindow().setAttributes(lp);
+                    ((Activity)mContext).getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                });
+                animator.start();
+            }
+        });
 
     }
 
     private void initEvent() {
-        RxView.clicks(mSearchBack).subscribe(aVoid -> mOnSearchClickListener.closeSearchView());
+        RxView.clicks(mSearchBack).subscribe(aVoid -> closeSearchView());
         RxView.clicks(mSearchClear).subscribe(aVoid -> mSearchInput.setText(""));
         RxView.clicks(mSearchSure).subscribe();
         RxTextView.textChanges(mSearchInput).subscribe(this::OntextChanges);
@@ -64,8 +93,11 @@ public class SearchView {
     }
 
     public interface OnSearchClickListener {
-        void closeSearchView();
         void searchInput(String s);
+    }
+
+    private void closeSearchView() {
+        mPopupWindow.dismiss();
     }
 
     private void OnSearch() {

@@ -26,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/avatart"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentLeft="true"/>
 
             <TextView
@@ -40,6 +40,21 @@
                 android:textColor="@color/material_black"
                 android:textSize="14sp"/>
 
+            <TextView
+                android:id="@+id/useful_num"
+                android:layout_marginRight="5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_toLeftOf="@id/useful_num"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:src="@drawable/icon_agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 

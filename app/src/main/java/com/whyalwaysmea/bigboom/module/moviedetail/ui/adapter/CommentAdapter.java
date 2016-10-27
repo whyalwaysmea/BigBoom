@@ -42,6 +42,8 @@ public class CommentAdapter extends BaseAdapter<Comment.CommentsBean> {
         TextView mName;
         @BindView(R.id.content)
         TextView mContent;
+        @BindView(R.id.useful_num)
+        TextView mUsefulNum;
 
         public CommentViewHolder(View itemView) {
             super(itemView);
@@ -54,6 +56,12 @@ public class CommentAdapter extends BaseAdapter<Comment.CommentsBean> {
             ImageUtils.getInstance().displayCircleImg(mAvatart, commentsBean.getAuthor().getAvatar());
             mName.setText(commentsBean.getAuthor().getName());
             mContent.setText(commentsBean.getContent());
+            if(commentsBean.getUseful_count() > 1000) {
+                mUsefulNum.setText("" + commentsBean.getUseful_count() / 1000 + "." + commentsBean.getUseful_count() % 1000 / 100 + "k");
+
+            } else {
+                mUsefulNum.setText("" + commentsBean.getUseful_count());
+            }
         }
     }
 }

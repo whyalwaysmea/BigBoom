@@ -78,7 +78,8 @@ public class ReviewFragment extends MvpFragment<IMovieReviewView, MovieReviewPre
 
 
     @Override
-    public void setReviewData(List<Review.ReviewsBean> review) {
-        mReviewAdapter.addData(review);
+    public void setReviewData(Review review) {
+        mReviewAdapter.addData(review.getReviews());
+        mReviewAdapter.setMovieTitle(review.getSubject().getTitle());
     }
 }
