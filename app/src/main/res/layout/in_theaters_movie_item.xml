@@ -4,12 +4,12 @@
                                     app:cardBackgroundColor="@color/material_white"
                                     app:cardCornerRadius="5dp"
                                     android:layout_width="match_parent"
-                                    android:layout_height="220dp">
+                                    android:layout_height="210dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="vertical"
                   android:layout_width="match_parent"
-                  android:layout_height="200dp">
+                  android:layout_height="210dp">
 
         <ImageView
             android:id="@+id/movie_item_photo"

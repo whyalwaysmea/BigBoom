@@ -8,6 +8,7 @@ import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -155,8 +156,8 @@ public class ReviewDetailActivity extends BaseActivity {
     protected void initData() {
         String title = getIntent().getStringExtra(Constants.KEY.TITLE);
         mToolbar.setTitle(title);
-        setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(AppCompatResources.getDrawable(this, R.drawable.icon_back));
+        setSupportActionBar(mToolbar);
 
         mReviewTitle.setText(mReviewsBean.getTitle());
         mAuthorName.setText(mReviewsBean.getAuthor().getName());
@@ -170,4 +171,11 @@ public class ReviewDetailActivity extends BaseActivity {
     public void toTop() {
         mNsv.smoothScrollTo(0, 0);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.share, menu);
+        return true;
+    }
+
 }

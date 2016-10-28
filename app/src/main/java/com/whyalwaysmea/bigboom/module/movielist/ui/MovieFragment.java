@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
+import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseFragment;
+import com.whyalwaysmea.bigboom.utils.KeyBoardUtils;
 import com.whyalwaysmea.bigboom.view.SearchView;
 
 import java.util.ArrayList;
@@ -90,7 +92,9 @@ public class MovieFragment extends BaseFragment {
 
             @Override
             public void searchInput(String s) {
-
+                boolean showSoftInput = KeyBoardUtils.isShowSoftInput(mContext);
+                KLog.e("showSoftInput : " + showSoftInput);
+                KLog.e("search");
             }
         });
 

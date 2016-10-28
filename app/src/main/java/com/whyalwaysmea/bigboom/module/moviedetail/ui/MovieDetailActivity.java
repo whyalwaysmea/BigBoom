@@ -1,6 +1,8 @@
 package com.whyalwaysmea.bigboom.module.moviedetail.ui;
 
 import android.animation.Animator;
+import android.content.Intent;
+import android.graphics.drawable.Animatable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +17,8 @@ import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.WindowManager;
@@ -24,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.socks.library.KLog;
+import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseFragment;
 import com.whyalwaysmea.bigboom.base.BaseView;
@@ -116,6 +122,7 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
         StatusBarUtil.setTransparent(this);
         initView();
         initData();
+
     }
 
     @Override
@@ -132,6 +139,7 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
             layoutParams.topMargin = MeasureUtil.getStatusBarHeight(this);
         }
 
+        setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(AppCompatResources.getDrawable(this, R.drawable.ic_action_clear));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,6 +291,34 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
             animator.start();
         } else {
             finish();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        KLog.e("onCreateOptionsMenu");
+        getMenuInflater().inflate(R.menu.share, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            case R.id.action_share:
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    if (item.getIcon() instanceof Animatable) {
+                        ((Animatable) item.getIcon()).start();
+                    }
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

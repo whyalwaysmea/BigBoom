@@ -15,6 +15,7 @@ import android.widget.PopupWindow;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.whyalwaysmea.bigboom.R;
+import com.whyalwaysmea.bigboom.utils.KeyBoardUtils;
 import com.whyalwaysmea.bigboom.utils.MeasureUtil;
 
 /**
@@ -82,12 +83,14 @@ public class SearchView {
             }
         });
 
+        KeyBoardUtils.toggleSoftInput(mContext);
+
     }
 
     private void initEvent() {
         RxView.clicks(mSearchBack).subscribe(aVoid -> closeSearchView());
         RxView.clicks(mSearchClear).subscribe(aVoid -> mSearchInput.setText(""));
-        RxView.clicks(mSearchSure).subscribe();
+        RxView.clicks(mSearchSure).subscribe(aVoid -> OnSearch());
         RxTextView.textChanges(mSearchInput).subscribe(this::OntextChanges);
 
     }

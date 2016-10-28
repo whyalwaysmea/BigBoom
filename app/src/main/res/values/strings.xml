@@ -24,6 +24,7 @@
     <string name="weekly_movies">豆瓣电影本周口碑榜</string>
 
     <string name="action_search">搜索</string>
+    <string name="share">分享</string>
     <string name="hint_search">搜索你感兴趣的电影、导演、演员</string>
     <string name="original_title">原名：</string>
     <string name="durations">片长：</string>
