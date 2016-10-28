@@ -3,8 +3,8 @@ package com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.text.TextUtils;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -89,16 +89,36 @@ public class ReviewAdapter extends BaseAdapter<Review.ReviewsBean> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Bundle bundle = captureValues(mAvatart);
                     Intent intent = new Intent(mContext, ReviewDetailActivity.class);
                     intent.putExtra(Constants.KEY.REVIEW, review);
+                    intent.putExtra(Constants.KEY.TITLE, getMovieTitle());
+                    intent.putExtra(Constants.KEY.VIEW_INFO, bundle);
+                    mContext.startActivity(intent);
+                    ((Activity)mContext).overridePendingTransition(0, 0);
+
+                    /*Intent intent = new Intent(mContext, ReviewDetailActivity.class);
+                    intent.putExtra(Constants.KEY.REVIEW, review);
+                    intent.putExtra(Constants.KEY.TITLE, getMovieTitle());
                     if(!TextUtils.isEmpty(getMovieTitle())) {
                         intent.putExtra(Constants.KEY.TITLE, getMovieTitle());
                     }
                     ActivityOptionsCompat options = ActivityOptionsCompat.
                             makeSceneTransitionAnimation((Activity) mContext, mAvatart , "shareName");
-                    mContext.startActivity(intent, options.toBundle());
+                    mContext.startActivity(intent, options.toBundle());*/
                 }
             });
         }
+    }
+
+    private Bundle captureValues(@NonNull View view) {
+        Bundle b = new Bundle();
+        int[] screenLocation = new int[2];
+        view.getLocationOnScreen(screenLocation);
+        b.putInt(Constants.VIEW.LEFT, screenLocation[0]);
+        b.putInt(Constants.VIEW.TOP, screenLocation[1]);
+        b.putInt(Constants.VIEW.WIDTH, view.getWidth());
+        b.putInt(Constants.VIEW.HEIGHT, view.getHeight());
+        return b;
     }
 }

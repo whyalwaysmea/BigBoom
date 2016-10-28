@@ -1,7 +1,9 @@
 package com.whyalwaysmea.bigboom.imageloader;
 
+import android.content.Context;
 import android.widget.ImageView;
 
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.whyalwaysmea.bigboom.imageloader.glide.GlideImageLoader;
 
 /**
@@ -51,6 +53,10 @@ public class ImageUtils {
     public void displayCircleImg(ImageView imageView, String url) {
 
         mLoaderInterface.displayCircleImg(imageView, url);
+    }
+
+    public void displayCircleImg(Context context,String url, GlideDrawableImageViewTarget glideDrawableImageViewTarget) {
+        mLoaderInterface.displayCircleImg(context, url, glideDrawableImageViewTarget);
     }
 
     private static final class SingletonHolder {

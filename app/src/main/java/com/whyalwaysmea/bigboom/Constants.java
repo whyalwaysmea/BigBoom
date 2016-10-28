@@ -19,5 +19,13 @@ public class Constants {
         public static final String ID = "id";
         public static final String REVIEW = "review";
         public static final String TITLE = "title";
+        public static final String VIEW_INFO = "view_info";
+    }
+
+    public static class VIEW {
+        public static final String LEFT = "left";
+        public static final String TOP = "top";
+        public static final String WIDTH = "width";
+        public static final String HEIGHT = "height";
     }
 }

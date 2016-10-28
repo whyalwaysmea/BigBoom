@@ -49,6 +49,7 @@
                 android:textSize="20sp"/>
 
             <ImageView
+                android:visibility="invisible"
                 android:transitionName="shareName"
                 android:id="@+id/author_avatar"
                 android:layout_width="40dp"

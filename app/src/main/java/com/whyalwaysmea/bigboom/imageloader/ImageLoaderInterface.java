@@ -1,6 +1,9 @@
 package com.whyalwaysmea.bigboom.imageloader;
 
+import android.content.Context;
 import android.widget.ImageView;
+
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 /**
  * Created by Long
@@ -14,6 +17,8 @@ public interface ImageLoaderInterface {
     void display(ImageView imageView, int resId, int loadingImg, int errorImg);
 
     void displayCircleImg(ImageView imageView, int resId);
+
+    void displayCircleImg(Context context, String url, GlideDrawableImageViewTarget glideDrawableImageViewTarget);
 
     void displayCircleImg(ImageView imageView, String url);
 }

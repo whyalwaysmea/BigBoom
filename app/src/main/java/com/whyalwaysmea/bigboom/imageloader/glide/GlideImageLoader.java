@@ -1,10 +1,12 @@
 package com.whyalwaysmea.bigboom.imageloader.glide;
 
+import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.imageloader.ImageLoaderInterface;
 
@@ -93,7 +95,20 @@ public class GlideImageLoader implements ImageLoaderInterface{
                 .into(imageView);
     }
 
-    // 设置动态转换， 圆角
+    // 设置动态转换， 圆形
+    @Override
+    public void displayCircleImg(Context context, String url, GlideDrawableImageViewTarget glideDrawableImageViewTarget) {
+        if (glideDrawableImageViewTarget == null) {
+            throw new IllegalArgumentException("argument error");
+        }
+        Glide.with(context)
+                .load(url)
+                .transform(new GlideCircleTransform(context))
+                .into(glideDrawableImageViewTarget);
+    }
+
+
+    // 设置动态转换， 圆形
     @Override
     public void displayCircleImg(ImageView imageView, String url) {
         if (imageView == null) {

@@ -12,6 +12,7 @@
     <style name="AppTheme.FullActionBar" parent="@style/BaseAppTheme">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowIsTranslucent">true</item>
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
     </style>
 
 </resources>
