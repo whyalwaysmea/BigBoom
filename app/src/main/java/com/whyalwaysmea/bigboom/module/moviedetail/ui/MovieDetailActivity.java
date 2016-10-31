@@ -28,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseFragment;
@@ -42,6 +41,7 @@ import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CommentPageAdapter
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.MoviePhotoAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.view.IMovieDetailView;
 import com.whyalwaysmea.bigboom.utils.MeasureUtil;
+import com.whyalwaysmea.bigboom.utils.ShareUtils;
 import com.whyalwaysmea.bigboom.utils.StatusBarUtil;
 import com.whyalwaysmea.bigboom.view.ExpandableTextView;
 
@@ -102,6 +102,7 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     private List<MovieDetail.CastsBean> mCastsBeanList;
     private CastAdapter mCastAdapter;
     private MoviePhotoAdapter mMoviePhotoAdapter;
+    private MovieDetail mMovieDetail;
 
     @Override
     protected MovieDetailPresenterImp createPresenter(BaseView view) {
@@ -187,6 +188,8 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
 
     @Override
     public void setDetailData(MovieDetail detailData) {
+        mMovieDetail = detailData;
+
         ImageUtils.getInstance().display(mMovieDetailBg, detailData.getImages().getLarge());
         mToolbar.setTitle(detailData.getTitle());
         StringBuffer sbGenres = new StringBuffer();
@@ -296,7 +299,6 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        KLog.e("onCreateOptionsMenu");
         getMenuInflater().inflate(R.menu.share, menu);
         return true;
     }
@@ -310,6 +312,13 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             case R.id.action_share:
+                StringBuilder sb = new StringBuilder();
+                sb.append(getString(R.string.your_friend));
+                sb.append(getString(R.string.share_movie));
+                sb.append(mMovieDetail.getTitle());
+                sb.append(getString(R.string.share_end));
+                sb.append(mMovieDetail.getShare_url());
+                ShareUtils.share(this, sb.toString(), null);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     if (item.getIcon() instanceof Animatable) {

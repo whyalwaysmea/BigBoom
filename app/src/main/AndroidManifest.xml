@@ -41,9 +41,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
-        <activity android:name=".module.moviedetail.ui.ReviewDetailActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AppTheme.FullActionBar">
+        <activity
+            android:name=".module.moviedetail.ui.ReviewDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar">
+        </activity>
+        <activity android:name=".module.moviedetail.ui.PhotoListActivity">
+        </activity>
+        <activity android:name=".module.moviedetail.ui.PhotoActivity">
+        </activity>
+        <activity android:name=".module.moviedetail.ui.CastDetailActivity">
         </activity>
     </application>
 

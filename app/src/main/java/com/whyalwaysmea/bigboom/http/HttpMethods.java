@@ -2,6 +2,7 @@ package com.whyalwaysmea.bigboom.http;
 
 import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.App;
+import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.utils.NetworkUtils;
 
 import java.io.File;
@@ -23,6 +24,11 @@ import okio.BufferedSource;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Long
@@ -44,6 +50,18 @@ public class HttpMethods {
                 .build();
 
         return retrofit.create(serviceClazz);
+    }
+
+    public static ApiManager createService() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(getOkHttpClient())
+                .baseUrl(Constants.URL.MOVIE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        ApiManager apiManager = retrofit.create(ApiManager.class);
+        return apiManager;
     }
 
     public static OkHttpClient getOkHttpClient() {
@@ -136,5 +154,12 @@ public class HttpMethods {
             return response;
         }
     };
+
+    public static void toSubscribe(Observable o, Subscription s) {
+        o.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((Subscriber) s);
+    }
 
 }

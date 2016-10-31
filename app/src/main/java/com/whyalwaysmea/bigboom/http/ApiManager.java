@@ -1,5 +1,8 @@
 package com.whyalwaysmea.bigboom.http;
 
+import com.whyalwaysmea.bigboom.bean.CastDetail;
+import com.whyalwaysmea.bigboom.bean.CastPhoto;
+import com.whyalwaysmea.bigboom.bean.CastWork;
 import com.whyalwaysmea.bigboom.bean.Comment;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
@@ -40,4 +43,13 @@ public interface ApiManager {
 
     @GET("subject/{id}/comments")
     Observable<Comment> getComment(@Path("id") String id, @Query("apikey") String apikey);
+
+    @GET("celebrity/{id}")
+    Observable<CastDetail> getCastDetail(@Path("id") String id,  @Query("apikey") String apikey);
+
+    @GET("celebrity/{id}/photos")
+    Observable<CastPhoto> getCastPhoto(@Path("id") String id, @Query("start") int start, @Query("apikey") String apikey);
+
+    @GET("celebrity/{id}/works")
+    Observable<CastWork> getCastWorks(@Path("id") String id, @Query("start") int start, @Query("apikey") String apikey);
 }
