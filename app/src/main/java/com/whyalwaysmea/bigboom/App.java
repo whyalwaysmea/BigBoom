@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.socks.library.KLog;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.imageloader.glide.GlideImageLoader;
 
@@ -13,6 +15,7 @@ import com.whyalwaysmea.bigboom.imageloader.glide.GlideImageLoader;
  */
 public class App extends Application{
     private static App application;
+    public static RefWatcher sRefWatcher;
 
     @Override
     public void onCreate() {
@@ -24,6 +27,13 @@ public class App extends Application{
 
         // 初始化log
         KLog.init(BuildConfig.DEBUG, "Boom");
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        sRefWatcher = LeakCanary.install(this);
 
     }
 

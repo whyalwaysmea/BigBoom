@@ -370,8 +370,8 @@ public class CastWork {
             }
 
             public static class RatingBean {
-                private int max;
-                private int average;
+                private float max;
+                private float average;
                 /**
                  * 1 : 0
                  * 2 : 0
@@ -382,21 +382,21 @@ public class CastWork {
 
                 private DetailsBean details;
                 private String stars;
-                private int min;
+                private float min;
 
-                public int getMax() {
+                public float getMax() {
                     return max;
                 }
 
-                public void setMax(int max) {
+                public void setMax(float max) {
                     this.max = max;
                 }
 
-                public int getAverage() {
+                public float getAverage() {
                     return average;
                 }
 
-                public void setAverage(int average) {
+                public void setAverage(float average) {
                     this.average = average;
                 }
 
@@ -416,11 +416,11 @@ public class CastWork {
                     this.stars = stars;
                 }
 
-                public int getMin() {
+                public float getMin() {
                     return min;
                 }
 
-                public void setMin(int min) {
+                public void setMin(float min) {
                     this.min = min;
                 }
 

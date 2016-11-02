@@ -23,7 +23,7 @@ public class CastPresenterImp extends BasePresenter<ICastDetailView> implements 
     }
 
     @Override
-    public void getCastDetail(String id, OnLoadCompleteListener<CastDetail> castDetailOnLoadCompleteListener) {
+    public void getCastDetail(String id) {
         mCastDetailModel.loadCastDetails(id, new OnLoadCompleteListener<CastDetail>() {
             @Override
             public void onLoadSussess(CastDetail castDetail) {
@@ -41,12 +41,12 @@ public class CastPresenterImp extends BasePresenter<ICastDetailView> implements 
 
 
     @Override
-    public void getCastWorks(String id, int start, OnLoadCompleteListener<CastWork> workOnLoadCompleteListener) {
+    public void getCastWorks(String id, int start) {
         mCastDetailModel.loadCastWorks(id, start, new OnLoadCompleteListener<CastWork>() {
             @Override
             public void onLoadSussess(CastWork castWork) {
                 mView.hideLoading();
-                mView.showWorks(castWork);
+                mView.showDetail(castWork);
             }
 
             @Override

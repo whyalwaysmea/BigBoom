@@ -1,8 +1,6 @@
 package com.whyalwaysmea.bigboom.module.moviedetail.view;
 
 import com.whyalwaysmea.bigboom.base.BaseView;
-import com.whyalwaysmea.bigboom.bean.CastDetail;
-import com.whyalwaysmea.bigboom.bean.CastWork;
 
 /**
  * Created by Long
@@ -10,8 +8,6 @@ import com.whyalwaysmea.bigboom.bean.CastWork;
  */
 
 public interface ICastDetailView extends BaseView {
-    void showDetail(CastDetail castDetail);
-
-    void showWorks(CastWork castWork);
+    void showDetail(Object o);
 
 }

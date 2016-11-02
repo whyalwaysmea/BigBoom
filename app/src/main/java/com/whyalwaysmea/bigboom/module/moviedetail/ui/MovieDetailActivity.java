@@ -36,7 +36,7 @@ import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.presenter.MovieDetailPresenterImp;
-import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CastAdapter;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.MovicDetailCastAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CommentPageAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.MoviePhotoAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.view.IMovieDetailView;
@@ -100,7 +100,7 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
 
     private LinearLayoutManager mCastLayoutManager, mPhotoLayoutManager;
     private List<MovieDetail.CastsBean> mCastsBeanList;
-    private CastAdapter mCastAdapter;
+    private MovicDetailCastAdapter mMovicDetailCastAdapter;
     private MoviePhotoAdapter mMoviePhotoAdapter;
     private MovieDetail mMovieDetail;
 
@@ -140,7 +140,6 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
             layoutParams.topMargin = MeasureUtil.getStatusBarHeight(this);
         }
 
-        setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(AppCompatResources.getDrawable(this, R.drawable.ic_action_clear));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +191,7 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
 
         ImageUtils.getInstance().display(mMovieDetailBg, detailData.getImages().getLarge());
         mToolbar.setTitle(detailData.getTitle());
+        setSupportActionBar(mToolbar);
         StringBuffer sbGenres = new StringBuffer();
         for (int i = 0; i < detailData.getGenres().size(); i++) {
             if (i != detailData.getGenres().size() - 1) {
@@ -231,8 +231,8 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
         mCastsBeanList = new ArrayList<>();
         mCastsBeanList.addAll(detailData.getDirectors());
         mCastsBeanList.addAll(detailData.getCasts());
-        mCastAdapter = new CastAdapter(this, mCastsBeanList);
-        mDirectorsRecyclerview.setAdapter(mCastAdapter);
+        mMovicDetailCastAdapter = new MovicDetailCastAdapter(this, mCastsBeanList);
+        mDirectorsRecyclerview.setAdapter(mMovicDetailCastAdapter);
 
         mMoviePhotoAdapter = new MoviePhotoAdapter(this, detailData.getPhotos());
         mPhotosRecyclerview.setAdapter(mMoviePhotoAdapter);

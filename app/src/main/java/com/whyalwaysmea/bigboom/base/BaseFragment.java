@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.leakcanary.RefWatcher;
+import com.whyalwaysmea.bigboom.App;
+
 import butterknife.ButterKnife;
 
 /**
@@ -48,5 +51,10 @@ public abstract class BaseFragment extends Fragment{
     protected abstract void initData();
 
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RefWatcher refWatcher = App.sRefWatcher;
+        refWatcher.watch(this);
+    }
 }

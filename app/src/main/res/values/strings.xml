@@ -42,4 +42,5 @@
     <string name="personal_profile">个人简介</string>
     <string name="personal_works">代表作品</string>
     <string name="all_works">所有作品</string>
+    <string name="all_cast_photos">全部照片</string>
 </resources>

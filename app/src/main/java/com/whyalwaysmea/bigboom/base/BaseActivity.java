@@ -3,10 +3,12 @@ package com.whyalwaysmea.bigboom.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 /**
  * Created by Long
@@ -39,5 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         fragmentTransaction.commitAllowingStateLoss();
     }
 
+    protected void showSnackbar(View v, String msg) {
+        Snackbar.make(v, msg, Snackbar.LENGTH_SHORT).show();
+    }
 
 }

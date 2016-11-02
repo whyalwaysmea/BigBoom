@@ -11,7 +11,6 @@ public abstract class MvpActivity<V extends BaseView, P extends BasePresenter<V>
     protected P mPresenter;
 
 
-
     protected abstract P createPresenter(BaseView view);
 
     @Override
