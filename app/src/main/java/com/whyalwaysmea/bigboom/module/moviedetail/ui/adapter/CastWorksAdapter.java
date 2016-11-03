@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.bean.CastWork;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
+import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
 import java.util.List;
 
@@ -25,6 +25,9 @@ import butterknife.BindView;
 
 public class CastWorksAdapter extends BaseAdapter<CastWork.WorksBean> {
 
+    public static final int FIRST_STICKY_VIEW = 1;
+    public static final int HAS_STICKY_VIEW = 2;
+    public static final int NONE_STICKY_VIEW = 3;
 
     public CastWorksAdapter(Context context, List<CastWork.WorksBean> data) {
         super(context, data);
@@ -46,6 +49,8 @@ public class CastWorksAdapter extends BaseAdapter<CastWork.WorksBean> {
         AppCompatRatingBar mRatingBarHots;
         @BindView(R.id.top_movie_item_score)
         TextView mTopMovieItemScore;
+        @BindView(R.id.year)
+        TextView mMovieYear;
 
         public CastWorksViewHolder(View itemView) {
             super(itemView);
@@ -59,8 +64,23 @@ public class CastWorksAdapter extends BaseAdapter<CastWork.WorksBean> {
             mMovieItemName.setText(worksBean.getSubject().getTitle());
             mRatingBarHots.setRating(worksBean.getSubject().getRating().getAverage());
             mTopMovieItemScore.setText(worksBean.getSubject().getRating().getAverage() + "");
-
-            KLog.e("add data " + position);
+            mMovieYear.setText(worksBean.getSubject().getYear() + "");
+            if(position == 0) {
+                mMovieYear.setPadding(DensityUtils.dp2px(mContext, 10), 0 , DensityUtils.dp2px(mContext, 10), 0);
+                mMovieYear.setVisibility(View.VISIBLE);
+                itemView.setTag(FIRST_STICKY_VIEW);
+            } else {
+                CastWork.WorksBean oldWorksBean = mData.get(position - 1);
+                if(oldWorksBean.getSubject().getYear().equals(worksBean.getSubject().getYear())) {
+                    mMovieYear.setVisibility(View.GONE);
+                    itemView.setTag(NONE_STICKY_VIEW);
+                } else {
+                    mMovieYear.setPadding(DensityUtils.dp2px(mContext, 10), 0 , DensityUtils.dp2px(mContext, 10), 0);
+                    mMovieYear.setVisibility(View.VISIBLE);
+                    itemView.setTag(HAS_STICKY_VIEW);
+                }
+            }
+            itemView.setContentDescription("" + worksBean.getSubject().getYear());
         }
     }
 }

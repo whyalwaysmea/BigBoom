@@ -6,10 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
@@ -20,6 +20,7 @@ import com.whyalwaysmea.bigboom.module.moviedetail.presenter.CastPresenterImp;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CastAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CastWorksAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.view.ICastDetailView;
+import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,8 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
     RecyclerView mWorksRecyclerview;
     @BindView(R.id.all_works)
     TextView mAllWorks;
+    @BindView(R.id.year)
+    TextView mYear;
 
     private String mCastId;
 
@@ -70,7 +73,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
     @Override
     protected void initData() {
         mCastId = getIntent().getStringExtra(Constants.KEY.CASTID);
-        if(!TextUtils.isEmpty(mCastId)) {
+        if (!TextUtils.isEmpty(mCastId)) {
             mPresenter.getCastDetail(mCastId);
             mPresenter.getCastWorks(mCastId, 10);
         }
@@ -86,7 +89,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
         mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                if(position == 0) {
+                if (position == 0) {
                     return 2;
                 } else {
                     return 1;
@@ -102,6 +105,40 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
         mCastWorksAdapter = new CastWorksAdapter(this, new ArrayList<>());
         mWorksRecyclerview.setLayoutManager(mLinearLayoutManager);
         mWorksRecyclerview.setAdapter(mCastWorksAdapter);
+
+        mWorksRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                // 获取到固定的view
+                View stickyInfoView = recyclerView.findChildViewUnder(10, DensityUtils.dp2px(mContext, 80));
+
+                if (stickyInfoView != null && stickyInfoView.getContentDescription() != null) {
+                    mYear.setText(String.valueOf(stickyInfoView.getContentDescription()));
+                }
+
+                // Get the sticky view's translationY by the first view below the sticky's height.
+                View transInfoView = recyclerView.findChildViewUnder(
+                        DensityUtils.dp2px(mContext, 165), DensityUtils.dp2px(mContext, 80));
+
+                if (transInfoView != null && transInfoView.getTag() != null) {
+                    int transViewStatus = (int) transInfoView.getTag();
+                    int dealtX = transInfoView.getLeft() - mYear.getMeasuredWidth();
+                    if (transViewStatus == CastWorksAdapter.HAS_STICKY_VIEW) {
+                        // If the first view below the sticky's height scroll off the screen,
+                        // then recovery the sticky view's translationY.
+                        if (transInfoView.getLeft() > 0 && transInfoView.getLeft() < mYear.getMeasuredWidth() + 10) {
+                            mYear.setTranslationX(dealtX);
+                        } else {
+                            mYear.setTranslationX(0);
+                        }
+                    } else if (transViewStatus == CastWorksAdapter.NONE_STICKY_VIEW) {
+                        mYear.setTranslationX(0);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -112,7 +149,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
 
     @Override
     public void showDetail(Object o) {
-        if(o instanceof CastDetail) {
+        if (o instanceof CastDetail) {
             CastDetail castDetail = (CastDetail) o;
             mToolbar.setTitle(castDetail.getName());
             mName.setText(castDetail.getName());
@@ -120,10 +157,10 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
             mProfileContent.setText(castDetail.getSummary());
 
             mCastAdapter.addData(castDetail.getPhotos());
-        } else if(o instanceof CastWork) {
+        } else if (o instanceof CastWork) {
             CastWork castWork = (CastWork) o;
             mCastWorksAdapter.addData(castWork.getWorks());
-            KLog.e("add works");
+            mAllWorks.setText(mContext.getResources().getString(R.string.all_works, castWork.getTotal() + ""));
         }
     }
 }

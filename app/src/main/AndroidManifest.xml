@@ -50,7 +50,8 @@
         </activity>
         <activity android:name=".module.moviedetail.ui.PhotoActivity">
         </activity>
-        <activity android:name=".module.moviedetail.ui.CastDetailActivity">
+        <activity android:name=".module.moviedetail.ui.CastDetailActivity"
+                  android:theme="@style/AppTheme.FullActionBar">
         </activity>
     </application>
 
