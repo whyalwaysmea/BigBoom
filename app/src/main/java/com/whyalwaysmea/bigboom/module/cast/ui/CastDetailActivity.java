@@ -1,4 +1,4 @@
-package com.whyalwaysmea.bigboom.module.moviedetail.ui;
+package com.whyalwaysmea.bigboom.module.cast.ui;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,11 +16,12 @@ import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.CastDetail;
 import com.whyalwaysmea.bigboom.bean.CastWork;
-import com.whyalwaysmea.bigboom.module.moviedetail.presenter.CastPresenterImp;
-import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CastAdapter;
-import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CastWorksAdapter;
-import com.whyalwaysmea.bigboom.module.moviedetail.view.ICastDetailView;
+import com.whyalwaysmea.bigboom.module.cast.presenter.CastPresenterImp;
+import com.whyalwaysmea.bigboom.module.cast.ui.adapter.CastAdapter;
+import com.whyalwaysmea.bigboom.module.cast.ui.adapter.CastWorksAdapter;
+import com.whyalwaysmea.bigboom.module.cast.view.ICastDetailView;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
+import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 
 import java.util.ArrayList;
 
@@ -97,6 +98,8 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
             }
         });
         mPhotosRecyclerview.setLayoutManager(mGridLayoutManager);
+        mPhotosRecyclerview.addItemDecoration(new GridMarginDecoration(mContext.getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration2)));
+
         mCastAdapter = new CastAdapter(this, new ArrayList<>());
         mPhotosRecyclerview.setAdapter(mCastAdapter);
 
@@ -157,6 +160,8 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
             mProfileContent.setText(castDetail.getSummary());
 
             mCastAdapter.addData(castDetail.getPhotos());
+            mCastAdapter.setCastId(mCastId);
+            mCastAdapter.setCastName(castDetail.getName());
         } else if (o instanceof CastWork) {
             CastWork castWork = (CastWork) o;
             mCastWorksAdapter.addData(castWork.getWorks());

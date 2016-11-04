@@ -14,7 +14,7 @@ import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
-import com.whyalwaysmea.bigboom.module.moviedetail.ui.CastDetailActivity;
+import com.whyalwaysmea.bigboom.module.cast.ui.CastDetailActivity;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
 import java.util.List;

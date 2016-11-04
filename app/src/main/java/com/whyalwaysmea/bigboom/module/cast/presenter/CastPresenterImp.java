@@ -1,12 +1,12 @@
-package com.whyalwaysmea.bigboom.module.moviedetail.presenter;
+package com.whyalwaysmea.bigboom.module.cast.presenter;
 
 import com.whyalwaysmea.bigboom.base.BasePresenter;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.CastDetail;
 import com.whyalwaysmea.bigboom.bean.CastWork;
-import com.whyalwaysmea.bigboom.module.moviedetail.model.CastDetailModelImp;
-import com.whyalwaysmea.bigboom.module.moviedetail.model.ICastDetailModel;
-import com.whyalwaysmea.bigboom.module.moviedetail.view.ICastDetailView;
+import com.whyalwaysmea.bigboom.module.cast.model.CastDetailModelImp;
+import com.whyalwaysmea.bigboom.module.cast.model.ICastDetailModel;
+import com.whyalwaysmea.bigboom.module.cast.view.ICastDetailView;
 
 /**
  * Created by Long

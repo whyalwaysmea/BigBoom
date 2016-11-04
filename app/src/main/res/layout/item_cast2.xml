@@ -7,10 +7,7 @@
     <ImageView
         android:id="@+id/photo"
         android:scaleType="centerCrop"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
         android:layout_width="130dp"
-        android:layout_marginBottom="5dp"
         android:layout_height="match_parent"/>
 
 

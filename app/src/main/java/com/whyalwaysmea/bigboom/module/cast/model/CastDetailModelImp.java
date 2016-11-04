@@ -1,4 +1,4 @@
-package com.whyalwaysmea.bigboom.module.moviedetail.model;
+package com.whyalwaysmea.bigboom.module.cast.model;
 
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;

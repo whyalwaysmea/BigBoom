@@ -46,12 +46,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
-        <activity android:name=".module.moviedetail.ui.PhotoListActivity">
+        <activity android:name=".module.cast.ui.PhotoListActivity">
         </activity>
-        <activity android:name=".module.moviedetail.ui.PhotoActivity">
+        <activity android:name=".module.cast.ui.PhotoActivity">
         </activity>
-        <activity android:name=".module.moviedetail.ui.CastDetailActivity"
-                  android:theme="@style/AppTheme.FullActionBar">
+        <activity
+            android:name=".module.cast.ui.CastDetailActivity"
+            android:theme="@style/AppTheme.FullActionBar">
+        </activity>
+        <activity android:name=".module.cast.ui.CastInfoActivity">
         </activity>
     </application>
 

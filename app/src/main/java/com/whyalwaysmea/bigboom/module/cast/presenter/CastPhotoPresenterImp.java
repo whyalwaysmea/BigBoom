@@ -1,18 +1,18 @@
-package com.whyalwaysmea.bigboom.module.moviedetail.presenter;
+package com.whyalwaysmea.bigboom.module.cast.presenter;
 
 import com.whyalwaysmea.bigboom.base.BasePresenter;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.CastPhoto;
-import com.whyalwaysmea.bigboom.module.moviedetail.model.CastPhotoModelImp;
-import com.whyalwaysmea.bigboom.module.moviedetail.model.ICastPhotoModel;
-import com.whyalwaysmea.bigboom.module.moviedetail.view.ICastPhotoView;
+import com.whyalwaysmea.bigboom.module.cast.model.CastPhotoModelImp;
+import com.whyalwaysmea.bigboom.module.cast.model.ICastPhotoModel;
+import com.whyalwaysmea.bigboom.module.cast.view.ICastPhotoView;
 
 /**
  * Created by Long
  * on 2016/10/31.
  */
 
-public class CastPhotoPresenterImp extends BasePresenter<ICastPhotoView> implements ICastPhotoModel, OnLoadCompleteListener<CastPhoto> {
+public class CastPhotoPresenterImp extends BasePresenter<ICastPhotoView> implements ICastPhotoPresenter, OnLoadCompleteListener<CastPhoto> {
 
     private ICastPhotoModel mPhotoModel;
 
@@ -21,11 +21,6 @@ public class CastPhotoPresenterImp extends BasePresenter<ICastPhotoView> impleme
         mPhotoModel = new CastPhotoModelImp();
     }
 
-
-    @Override
-    public void loadCastPhoto(String id, int start, OnLoadCompleteListener<CastPhoto> photoOnLoadCompleteListener) {
-        mPhotoModel.loadCastPhoto(id, start, this);
-    }
 
     @Override
     public void onLoadSussess(CastPhoto castPhoto) {
@@ -37,5 +32,10 @@ public class CastPhotoPresenterImp extends BasePresenter<ICastPhotoView> impleme
     public void onLoadFailed(String error) {
         mView.hideLoading();
         mView.showToast(error);
+    }
+
+    @Override
+    public void getCastPhoto(String id, int start) {
+        mPhotoModel.loadCastPhoto(id, start, this);
     }
 }

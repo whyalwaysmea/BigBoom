@@ -1,4 +1,4 @@
-package com.whyalwaysmea.bigboom.module.moviedetail.ui;
+package com.whyalwaysmea.bigboom.module.cast.ui;
 
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;

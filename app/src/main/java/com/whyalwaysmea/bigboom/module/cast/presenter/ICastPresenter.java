@@ -1,4 +1,4 @@
-package com.whyalwaysmea.bigboom.module.moviedetail.presenter;
+package com.whyalwaysmea.bigboom.module.cast.presenter;
 
 /**
  * Created by Long

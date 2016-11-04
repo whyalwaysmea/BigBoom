@@ -41,9 +41,9 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
 
     private ArrayList<View> stickyViews;
     private View currentlyStickingView;
+    private boolean redirectTouchesToStickyView;
     private float stickyViewTopOffset;
     private int stickyViewLeftOffset;
-    private boolean redirectTouchesToStickyView;
     private boolean clippingToPadding;
     private boolean clipToPaddingHasBeenSet;
 
@@ -185,10 +185,10 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
+        KLog.e("dispatchDraw");
         if(currentlyStickingView != null){
             canvas.save();
             canvas.translate(getPaddingLeft() + stickyViewLeftOffset, getScrollY() + stickyViewTopOffset + (clippingToPadding ? getPaddingTop() : 0));
-
             canvas.clipRect(0, (clippingToPadding ? -stickyViewTopOffset : 0), getWidth(), currentlyStickingView.getHeight());
             // 关键
             currentlyStickingView.draw(canvas);
@@ -240,8 +240,10 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
         View approachingView = null;
         // 遍历stick view
         for(View v : stickyViews){
+            // 判断是否达到顶部     stickyView距离Top的距离 - Y轴滑动的距离  + paddingTop的距离
             int viewTop = getTopForViewRelativeOnlyChild(v) - getScrollY() + (clippingToPadding ? 0 : getPaddingTop());
             if(viewTop<=0){
+                // 到达了顶部
                 if(viewThatShouldStick==null || viewTop>(getTopForViewRelativeOnlyChild(viewThatShouldStick) - getScrollY() + (clippingToPadding ? 0 : getPaddingTop()))){
                     viewThatShouldStick = v;
                 }
@@ -271,7 +273,6 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
      * @param viewThatShouldStick
      */
     private void startStickingView(View viewThatShouldStick) {
-        KLog.e("startStickingView");
         currentlyStickingView = viewThatShouldStick;
         if(getStringTagForView(currentlyStickingView).contains(FLAG_HASTRANSPARANCY)){
             hideView(currentlyStickingView);
@@ -286,8 +287,6 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
      * 结束固定View
      */
     private void stopStickingCurrentlyStickingView() {
-        KLog.e("stopStickingCurrentlyStickingView");
-
         if(getStringTagForView(currentlyStickingView).contains(FLAG_HASTRANSPARANCY)){
             showView(currentlyStickingView);
         }

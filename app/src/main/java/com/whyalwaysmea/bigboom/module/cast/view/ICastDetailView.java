@@ -1,4 +1,4 @@
-package com.whyalwaysmea.bigboom.module.moviedetail.view;
+package com.whyalwaysmea.bigboom.module.cast.view;
 
 import com.whyalwaysmea.bigboom.base.BaseView;
 
