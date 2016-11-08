@@ -6,9 +6,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.socks.library.KLog;
+import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseActivity;
+import com.whyalwaysmea.bigboom.bean.CastPhoto;
 import com.whyalwaysmea.bigboom.view.HackyViewPager;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +38,10 @@ public class PhotoActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        List<CastPhoto.PhotosBean> stringExtra = (List<CastPhoto.PhotosBean>) getIntent().getSerializableExtra(Constants.KEY.PHOTOT_URL);
+        int position = getIntent().getIntExtra(Constants.KEY.POSITION, 0);
+        KLog.e("position : " + position);
+        KLog.e("stringExtra : " + stringExtra.size());
 
     }
 

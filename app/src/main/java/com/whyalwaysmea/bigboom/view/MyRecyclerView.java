@@ -18,6 +18,9 @@ public class MyRecyclerView extends RecyclerView {
     private int addItemCount;
     private OnLoadMoreListener mOnLoadMoreListener;
 
+    private boolean isLoadMoreEnabled = true;
+
+
     public MyRecyclerView(Context context) {
         super(context);
         initView();
@@ -45,9 +48,12 @@ public class MyRecyclerView extends RecyclerView {
                  * SCROLL_STATE_FLING --> 表示手已经离开屏幕，靠惯性滑动
                  * SCROLL_STATE_TOUCH_SCROLL  --> 表示在用手滑动
                  */
-                if(newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPosition + addItemCount == recyclerView.getAdapter().getItemCount()) {
+
+                if(newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPosition + addItemCount >= recyclerView.getAdapter().getItemCount()
+                        && isLoadMoreEnabled) {
                     if(mOnLoadMoreListener != null) {
                         mOnLoadMoreListener.onLoadMore();
+                        isLoadMoreEnabled = false;
                     }
                 }
             }
@@ -81,5 +87,9 @@ public class MyRecyclerView extends RecyclerView {
 
     public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
         mOnLoadMoreListener = onLoadMoreListener;
+    }
+
+    public void enableLoadMore() {
+        isLoadMoreEnabled = true;
     }
 }

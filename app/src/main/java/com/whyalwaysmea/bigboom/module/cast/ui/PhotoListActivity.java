@@ -1,9 +1,11 @@
 package com.whyalwaysmea.bigboom.module.cast.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.widget.LinearLayout;
 
 import com.whyalwaysmea.bigboom.Constants;
@@ -11,12 +13,21 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.CastPhoto;
+import com.whyalwaysmea.bigboom.eventbus.RxBus;
 import com.whyalwaysmea.bigboom.module.cast.presenter.CastPhotoPresenterImp;
+import com.whyalwaysmea.bigboom.module.cast.ui.adapter.PhotoAdapter;
 import com.whyalwaysmea.bigboom.module.cast.view.ICastPhotoView;
+import com.whyalwaysmea.bigboom.service.ImageService;
+import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.subscriptions.CompositeSubscription;
 
 public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPresenterImp> implements ICastPhotoView, MyRecyclerView.OnLoadMoreListener {
 
@@ -31,8 +42,11 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
     LinearLayout mActivityPhotoList;
 
     private int start;
-    private GridLayoutManager mGridLayoutManager;
+    private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
     private String mId;
+    private PhotoAdapter mPhotoAdapter;
+
+    private CompositeSubscription rxSubscriptions = new CompositeSubscription();
 
     @Override
     protected CastPhotoPresenterImp createPresenter(BaseView view) {
@@ -52,15 +66,28 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
     protected void initData() {
         mId = getIntent().getStringExtra(Constants.KEY.CASTID);
         mPresenter.getCastPhoto(mId, start);
+
+        mPhotoAdapter = new PhotoAdapter(this, new ArrayList<>());
+        mPhotosRecyclerview.setAdapter(mPhotoAdapter);
+
+        subscribeDownloadEvent();
+
     }
 
     @Override
     protected void initView() {
-        mGridLayoutManager = new GridLayoutManager(this, 3);
-        mPhotosRecyclerview.setLayoutManager(mGridLayoutManager);
+        mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        mPhotosRecyclerview.setLayoutManager(mStaggeredGridLayoutManager);
         mPhotosRecyclerview.setOnLoadMoreListener(this);
+        mPhotosRecyclerview.addItemDecoration(new GridMarginDecoration(getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration2)));
+
+        mSwiperefreshlayout.setEnabled(false);
 
         String castName = getIntent().getStringExtra(Constants.KEY.CAST_NAME);
+        if (!TextUtils.isEmpty(castName)) {
+            mToolbar.setTitle(castName);
+            setSupportActionBar(mToolbar);
+        }
 
 
     }
@@ -68,8 +95,27 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
 
     @Override
     public void showPhotos(CastPhoto castPhoto) {
+        Intent intent = new Intent(this, ImageService.class);
+        intent.putExtra(Constants.KEY.CAST_PHOTO, castPhoto);
+        startService(intent);
+
 
     }
+
+    private void subscribeDownloadEvent() {
+        rxSubscriptions.add(RxBus.getInstance().toObservable(CastPhoto.class)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<CastPhoto>() {
+                    @Override
+                    public void call(CastPhoto castPhoto) {
+                        mPhotoAdapter.addData(castPhoto.getPhotos());
+                        if (start != 0 ) {
+                            mPhotosRecyclerview.enableLoadMore();
+                        }
+                    }
+                }));
+    }
+
 
     @Override
     public void showLoading() {
@@ -86,6 +132,15 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
 
     @Override
     public void onLoadMore() {
+        start += 20;
+        mPresenter.getCastPhoto(mId, start);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!rxSubscriptions.isUnsubscribed()) {
+            rxSubscriptions.unsubscribe();
+        }
     }
 }

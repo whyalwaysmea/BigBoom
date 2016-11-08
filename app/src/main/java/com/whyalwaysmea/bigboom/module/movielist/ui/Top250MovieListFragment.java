@@ -92,6 +92,7 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
         mTop250Movies.addAll(movieListResponse.getSubjects());
         mTop250MovieAdapter.notifyDataSetChanged();
         start = movieListResponse. getCount();
+        mRecyclerView.enableLoadMore();
     }
 
 

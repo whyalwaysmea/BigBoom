@@ -185,7 +185,6 @@ public class MyNestedScrollView extends NestedScrollView implements NestedScroll
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        KLog.e("dispatchDraw");
         if(currentlyStickingView != null){
             canvas.save();
             canvas.translate(getPaddingLeft() + stickyViewLeftOffset, getScrollY() + stickyViewTopOffset + (clippingToPadding ? getPaddingTop() : 0));

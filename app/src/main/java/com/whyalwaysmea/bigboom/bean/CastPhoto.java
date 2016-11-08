@@ -207,6 +207,8 @@ public class CastPhoto implements Serializable{
         private String next_photo;
         private String subject_id;
         private String desc;
+        private int width;
+        private int height;
 
         public int getPhotos_count() {
             return photos_count;
@@ -358,6 +360,22 @@ public class CastPhoto implements Serializable{
 
         public void setDesc(String desc) {
             this.desc = desc;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public void setWidth(int width) {
+            this.width = width;
+        }
+
+        public int getHeight() {
+            return height;
+        }
+
+        public void setHeight(int height) {
+            this.height = height;
         }
 
         public static class AuthorBean implements Serializable{

@@ -46,7 +46,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
-        <activity android:name=".module.cast.ui.PhotoListActivity">
+        <activity android:name=".module.cast.ui.PhotoListActivity"
+                  android:theme="@style/AppTheme.FullActionBar">
         </activity>
         <activity android:name=".module.cast.ui.PhotoActivity">
         </activity>
@@ -56,6 +57,10 @@
         </activity>
         <activity android:name=".module.cast.ui.CastInfoActivity">
         </activity>
+
+
+        <service android:name=".service.ImageService">
+        </service>
     </application>
 
 </manifest>

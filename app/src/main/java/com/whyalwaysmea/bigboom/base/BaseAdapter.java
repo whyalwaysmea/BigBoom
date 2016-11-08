@@ -101,7 +101,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
             mData = new ArrayList<>();
         }
         mData.addAll(data);
-        notifyDataSetChanged();
+        notifyItemRangeInserted(getItemCount(), data.size());
     }
 
     public void addData(int pos, T item) {

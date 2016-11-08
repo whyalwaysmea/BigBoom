@@ -36,6 +36,7 @@ public class CastPhotoPresenterImp extends BasePresenter<ICastPhotoView> impleme
 
     @Override
     public void getCastPhoto(String id, int start) {
+        mView.showLoading();
         mPhotoModel.loadCastPhoto(id, start, this);
     }
 }

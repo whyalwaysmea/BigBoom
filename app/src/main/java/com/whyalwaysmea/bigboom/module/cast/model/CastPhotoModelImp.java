@@ -31,12 +31,10 @@ public class CastPhotoModelImp implements ICastPhotoModel {
                     @Override
                     public void onCompleted() {
 
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        photoOnLoadCompleteListener.onLoadFailed(e.getMessage());
 
                     }
 
