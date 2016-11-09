@@ -1,6 +1,5 @@
 package com.whyalwaysmea.bigboom.module.moviedetail.model;
 
-import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.Comment;
@@ -36,7 +35,6 @@ public class MovieCommentModelImp implements IMovieCommentModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        KLog.e(e.getMessage());
 
                     }
 

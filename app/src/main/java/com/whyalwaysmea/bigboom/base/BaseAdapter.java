@@ -62,6 +62,14 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         if(mUseAnimation) {
             setAnimation(holder.itemView, position);
         }
+        if(mOnClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnClickListener.setOnItemClickListener(v, position);
+                }
+            });
+        }
         holder.bindData(position);
     }
 
@@ -122,5 +130,19 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         }
         mData.remove(pos);
         notifyItemRemoved(pos);
+    }
+
+    public interface OnClickListener {
+        void setOnItemClickListener(View view, int position);
+    }
+
+    private OnClickListener mOnClickListener;
+
+    public OnClickListener getOnClickListener() {
+        return mOnClickListener;
+    }
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        mOnClickListener = onClickListener;
     }
 }

@@ -52,4 +52,5 @@ public interface ApiManager {
 
     @GET("celebrity/{id}/works")
     Observable<CastWork> getCastWorks(@Path("id") String id, @Query("start") int start, @Query("apikey") String apikey);
+
 }

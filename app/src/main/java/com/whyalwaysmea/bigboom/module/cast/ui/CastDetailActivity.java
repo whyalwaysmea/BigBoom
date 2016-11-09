@@ -1,5 +1,6 @@
 package com.whyalwaysmea.bigboom.module.cast.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
@@ -28,6 +30,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.whyalwaysmea.bigboom.R.id.profile_layout;
+
 public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresenterImp> implements ICastDetailView {
 
     @BindView(R.id.toolbar)
@@ -40,7 +44,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
     TextView mNameEn;
     @BindView(R.id.profile_content)
     TextView mProfileContent;
-    @BindView(R.id.profile_layout)
+    @BindView(profile_layout)
     FrameLayout mProfileLayout;
     @BindView(R.id.works_recyclerview)
     RecyclerView mWorksRecyclerview;
@@ -50,6 +54,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
     TextView mYear;
 
     private String mCastId;
+    private CastDetail mCastDetail;
 
     private GridLayoutManager mGridLayoutManager;
     private LinearLayoutManager mLinearLayoutManager;
@@ -76,7 +81,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
         mCastId = getIntent().getStringExtra(Constants.KEY.CASTID);
         if (!TextUtils.isEmpty(mCastId)) {
             mPresenter.getCastDetail(mCastId);
-            mPresenter.getCastWorks(mCastId, 10);
+            mPresenter.getCastWorks(mCastId, 0);
         }
     }
 
@@ -84,6 +89,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
     protected void initView() {
         mToolbar.setNavigationIcon(R.drawable.icon_back);
         setSupportActionBar(mToolbar);
+        RxToolbar.navigationClicks(mToolbar).subscribe(aVoid -> finish());
 
         mGridLayoutManager = new GridLayoutManager(this, 2);
         mGridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -142,6 +148,22 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
                 }
             }
         });
+
+        mProfileLayout.setOnClickListener(v -> {
+            if(mCastDetail != null) {
+                Intent intent = new Intent(mContext, CastInfoActivity.class);
+                intent.putExtra(Constants.KEY.CAST, mCastDetail);
+                startActivity(intent);
+            }
+        });
+
+        mAllWorks.setOnClickListener(v -> {
+            if(mCastId != null) {
+                Intent intent = new Intent(mContext, AllWorksActivity.class);
+                intent.putExtra(Constants.KEY.CASTID, mCastId);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -154,6 +176,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
     public void showDetail(Object o) {
         if (o instanceof CastDetail) {
             CastDetail castDetail = (CastDetail) o;
+            mCastDetail = castDetail;
             mToolbar.setTitle(castDetail.getName());
             mName.setText(castDetail.getName());
             mNameEn.setText(castDetail.getName_en());

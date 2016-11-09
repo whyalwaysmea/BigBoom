@@ -2,6 +2,7 @@ package com.whyalwaysmea.bigboom.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * on 2016/10/31.
  */
 
-public class CastDetail {
+public class CastDetail implements Serializable{
 
 
     private String website;
@@ -186,7 +187,7 @@ public class CastDetail {
         this.aka = aka;
     }
 
-    public static class AvatarsBean {
+    public static class AvatarsBean implements Serializable{
         private String small;
         private String large;
         private String medium;
@@ -216,7 +217,7 @@ public class CastDetail {
         }
     }
 
-    public static class WorksBean {
+    public static class WorksBean implements Serializable{
         /**
          * rating : {"max":10,"average":9.5,"details":{"1":28,"2":74,"3":1305,"4":7043,"5":29529},"stars":"50","min":0}
          * genres : ["剧情","动作","历史"]
@@ -255,7 +256,7 @@ public class CastDetail {
             this.roles = roles;
         }
 
-        public static class SubjectBean {
+        public static class SubjectBean implements Serializable{
             /**
              * max : 10
              * average : 9.5
@@ -431,7 +432,7 @@ public class CastDetail {
                 this.pubdates = pubdates;
             }
 
-            public static class RatingBean {
+            public static class RatingBean implements Serializable{
                 private int max;
                 private double average;
                 /**
@@ -486,7 +487,7 @@ public class CastDetail {
                     this.min = min;
                 }
 
-                public static class DetailsBean {
+                public static class DetailsBean implements Serializable{
                     @SerializedName("1")
                     private int value1;
                     @SerializedName("2")
@@ -540,7 +541,7 @@ public class CastDetail {
                 }
             }
 
-            public static class ImagesBean {
+            public static class ImagesBean implements Serializable{
                 private String small;
                 private String large;
                 private String medium;
@@ -570,7 +571,7 @@ public class CastDetail {
                 }
             }
 
-            public static class CastsBean {
+            public static class CastsBean implements Serializable{
                 /**
                  * small : https://img1.doubanio.com/img/celebrity/small/1351923505.88.jpg
                  * large : https://img1.doubanio.com/img/celebrity/large/1351923505.88.jpg
@@ -623,7 +624,7 @@ public class CastDetail {
                     this.id = id;
                 }
 
-                public static class AvatarsBean {
+                public static class AvatarsBean implements Serializable{
                     private String small;
                     private String large;
                     private String medium;
@@ -654,7 +655,7 @@ public class CastDetail {
                 }
             }
 
-            public static class DirectorsBean {
+            public static class DirectorsBean implements Serializable{
                 /**
                  * small : https://img1.doubanio.com/f/movie/ca527386eb8c4e325611e22dfcb04cc116d6b423/pics/movie/celebrity-default-small.png
                  * large : https://img3.doubanio.com/f/movie/63acc16ca6309ef191f0378faf793d1096a3e606/pics/movie/celebrity-default-large.png
@@ -707,7 +708,7 @@ public class CastDetail {
                     this.id = id;
                 }
 
-                public static class AvatarsBean {
+                public static class AvatarsBean implements Serializable{
                     private String small;
                     private String large;
                     private String medium;
@@ -740,7 +741,7 @@ public class CastDetail {
         }
     }
 
-    public static class PhotosBean {
+    public static class PhotosBean implements Serializable{
         private String thumb;
         private String image;
         private String cover;

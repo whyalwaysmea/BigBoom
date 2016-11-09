@@ -1,9 +1,11 @@
 package com.whyalwaysmea.bigboom.imageloader;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.bumptech.glide.request.target.Target;
 import com.whyalwaysmea.bigboom.imageloader.glide.GlideImageLoader;
 
 /**
@@ -24,6 +26,10 @@ public class ImageUtils {
 
     public static ImageUtils getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    private static final class SingletonHolder {
+        private static final ImageUtils INSTANCE = new ImageUtils();
     }
 
     public void init(ImageLoaderInterface imageLoaderInterface) {
@@ -59,8 +65,8 @@ public class ImageUtils {
         mLoaderInterface.displayCircleImg(context, url, glideDrawableImageViewTarget);
     }
 
-    private static final class SingletonHolder {
-        private static final ImageUtils INSTANCE = new ImageUtils();
+    public void displayAsBitmap(Context context, String url, Target<Bitmap> bitmapTarget) {
+        mLoaderInterface.displayAsBitmap(context, url, bitmapTarget);
     }
 
 }

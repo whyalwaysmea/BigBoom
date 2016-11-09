@@ -3,9 +3,10 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".App"
@@ -46,21 +47,30 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
-        <activity android:name=".module.cast.ui.PhotoListActivity"
-                  android:theme="@style/AppTheme.FullActionBar">
-        </activity>
-        <activity android:name=".module.cast.ui.PhotoActivity">
-        </activity>
+        <activity
+            android:name=".module.cast.ui.PhotoListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar"/>
+        <activity
+            android:name=".module.cast.ui.PhotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar"/>
         <activity
             android:name=".module.cast.ui.CastDetailActivity"
-            android:theme="@style/AppTheme.FullActionBar">
-        </activity>
-        <activity android:name=".module.cast.ui.CastInfoActivity">
-        </activity>
-
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar"/>
+        <activity
+            android:name=".module.cast.ui.CastInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar"/>
 
         <service android:name=".service.ImageService">
         </service>
+
+        <activity android:name=".module.cast.ui.AllWorksActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.FullActionBar">
+        </activity>
     </application>
 
 </manifest>

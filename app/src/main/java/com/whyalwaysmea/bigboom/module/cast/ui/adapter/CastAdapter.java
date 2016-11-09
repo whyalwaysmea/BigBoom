@@ -22,6 +22,7 @@ import com.whyalwaysmea.bigboom.module.cast.ui.PhotoActivity;
 import com.whyalwaysmea.bigboom.module.cast.ui.PhotoListActivity;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -109,7 +110,11 @@ public class CastAdapter extends BaseAdapter<CastDetail.PhotosBean> {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(mContext, PhotoActivity.class);
-                        intent.putExtra(Constants.KEY.PHOTOT_URL, mData.get(position).getCover());
+                        intent.putExtra(Constants.KEY.PHOTOT_URL, (Serializable) mData);
+                        intent.putExtra(Constants.KEY.POSITION, position);
+                        intent.putExtra(Constants.KEY.CASTID, castId);
+                        intent.putExtra(Constants.KEY.CAST_NAME, castName);
+
                         mContext.startActivity(intent);
                     }
                 });

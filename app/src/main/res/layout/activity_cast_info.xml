@@ -3,29 +3,195 @@
     android:id="@+id/activity_cast_info"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
 
     <include
-        layout="@layout/widge_toolbar" />
+        layout="@layout/widge_toolbar"/>
 
-    <TextView
-        android:textSize="18sp"
-        android:id="@+id/name"
-        android:textColor="@color/material_black"
-        android:layout_margin="15dp"
-        android:layout_marginTop="20dp"
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
-    <TextView
-        android:id="@+id/name_en"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/material_black60"
+                android:textSize="18sp"
+                tools:text="利空动静分离快速打击"/>
+
+            <TextView
+                android:id="@+id/name_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"
+                tools:text="skdljfldk"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/sex"
+
+                    android:textSize="12sp"/>
+
+
+                <TextView
+                    android:id="@+id/sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="47dp"
+                    android:gravity="center_vertical"
+
+                    android:textSize="12sp"
+                    tools:text="男"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/constellation"
+
+                    android:textSize="12sp"/>
+
+
+                <TextView
+                    android:id="@+id/constellation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="47dp"
+                    android:gravity="center_vertical"
+
+                    android:textSize="12sp"
+                    tools:text="巨蟹座"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+
+                    android:text="@string/birthday"
+                    android:textSize="12sp"/>
+
+
+                <TextView
+                    android:id="@+id/birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="23dp"
+                    android:gravity="center_vertical"
+                    android:textSize="12sp"
+
+                    tools:text="巨蟹座"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/birthplace"
+
+                    android:textSize="12sp"/>
+
+
+                <TextView
+                    android:id="@+id/birthplace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="35dp"
+                    android:gravity="center_vertical"
+
+                    android:textSize="12sp"
+                    tools:text="仕多副食店"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/more_name_t"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/more_name"
+                    android:textSize="12sp"/>
+
+
+                <TextView
+                    android:id="@+id/more_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/more_name_t"
+                    android:textSize="12sp"
+                    tools:text="打算离开房间，数量扩大解放，是的立法看似简单数量的看法，"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/material_black55"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 
 </LinearLayout>

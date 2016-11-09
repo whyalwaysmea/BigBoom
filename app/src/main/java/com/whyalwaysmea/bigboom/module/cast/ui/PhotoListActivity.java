@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.LinearLayout;
 
+import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
@@ -22,6 +23,7 @@ import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +47,7 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
     private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
     private String mId;
     private PhotoAdapter mPhotoAdapter;
+    private CastPhoto mCastPhoto;
 
     private CompositeSubscription rxSubscriptions = new CompositeSubscription();
 
@@ -69,7 +72,12 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
 
         mPhotoAdapter = new PhotoAdapter(this, new ArrayList<>());
         mPhotosRecyclerview.setAdapter(mPhotoAdapter);
-
+        mPhotoAdapter.setOnClickListener((view, position) -> {
+            Intent intent = new Intent(mContext, PhotoActivity.class);
+            intent.putExtra(Constants.KEY.CAST_PHOTO, mCastPhoto);
+            intent.putExtra(Constants.KEY.POSITION, position);
+            mContext.startActivity(intent);
+        });
         subscribeDownloadEvent();
 
     }
@@ -86,15 +94,24 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
         String castName = getIntent().getStringExtra(Constants.KEY.CAST_NAME);
         if (!TextUtils.isEmpty(castName)) {
             mToolbar.setTitle(castName);
+            mToolbar.setNavigationIcon(R.drawable.icon_back);
             setSupportActionBar(mToolbar);
+            RxToolbar.navigationClicks(mToolbar).subscribe(aVoid -> finish());
+
         }
-
-
     }
 
 
     @Override
     public void showPhotos(CastPhoto castPhoto) {
+        if(start == 0) {
+            mCastPhoto = castPhoto;
+        } else {
+            List<CastPhoto.PhotosBean> photos = mCastPhoto.getPhotos();
+            photos.addAll(castPhoto.getPhotos());
+            mCastPhoto.setPhotos(photos);
+        }
+
         Intent intent = new Intent(this, ImageService.class);
         intent.putExtra(Constants.KEY.CAST_PHOTO, castPhoto);
         startService(intent);

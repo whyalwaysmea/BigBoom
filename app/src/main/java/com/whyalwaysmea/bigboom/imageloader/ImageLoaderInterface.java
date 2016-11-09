@@ -1,9 +1,11 @@
 package com.whyalwaysmea.bigboom.imageloader;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.bumptech.glide.request.target.Target;
 
 /**
  * Created by Long
@@ -21,4 +23,6 @@ public interface ImageLoaderInterface {
     void displayCircleImg(Context context, String url, GlideDrawableImageViewTarget glideDrawableImageViewTarget);
 
     void displayCircleImg(ImageView imageView, String url);
+
+    void displayAsBitmap(Context context, String url, Target<Bitmap> bitmapTarget);
 }

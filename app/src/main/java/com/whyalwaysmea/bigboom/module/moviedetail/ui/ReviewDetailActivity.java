@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseActivity;
@@ -158,6 +159,8 @@ public class ReviewDetailActivity extends BaseActivity {
         mToolbar.setTitle(title);
         mToolbar.setNavigationIcon(AppCompatResources.getDrawable(this, R.drawable.icon_back));
         setSupportActionBar(mToolbar);
+        RxToolbar.navigationClicks(mToolbar).subscribe(aVoid -> finish());
+
 
         mReviewTitle.setText(mReviewsBean.getTitle());
         mAuthorName.setText(mReviewsBean.getAuthor().getName());

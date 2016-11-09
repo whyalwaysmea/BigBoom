@@ -26,6 +26,7 @@
     <color name="background_color">#E1E6EB</color>
     <color name="item_color">#FAFAFA</color>
     <color name="fab_color">#99ff8f00</color>
+    <color name="line">#8d9093</color>
 
     <color name="material_amber_100">#ffecb3</color>
     <color name="material_amber_200">#ffe082</color>

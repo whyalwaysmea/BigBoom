@@ -1,6 +1,7 @@
 package com.whyalwaysmea.bigboom.imageloader.glide;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableTypeRequest;
@@ -14,7 +15,7 @@ import com.whyalwaysmea.bigboom.imageloader.ImageLoaderInterface;
  * Created by Long
  * on 2016/9/1.
  */
-public class GlideImageLoader implements ImageLoaderInterface{
+public class GlideImageLoader implements ImageLoaderInterface {
 
 
     @Override
@@ -119,4 +120,16 @@ public class GlideImageLoader implements ImageLoaderInterface{
                 .transform(new GlideCircleTransform(imageView.getContext()))
                 .into(imageView);
     }
+
+    @Override
+    public void displayAsBitmap(Context context, String url, com.bumptech.glide.request.target.Target<Bitmap> bitmapTarget) {
+        if (context == null) {
+            throw new IllegalArgumentException("argument error");
+        }
+        Glide.with(context)
+                .load(url)
+                .asBitmap()
+                .into(bitmapTarget);
+    }
+
 }
