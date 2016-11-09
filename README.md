@@ -1,6 +1,7 @@
 # BigBoom
 RxJava &amp; Retrofit &amp; MVP
 
+这是一个根据豆瓣电影API接口所做的电影资讯的App
 
 //TODO
 - [x] Retrofit的封装
@@ -10,3 +11,8 @@ RxJava &amp; Retrofit &amp; MVP
 - [x] 轮播图的实现 [RxJava 实现ViewPager的轮播图](http://www.jianshu.com/p/cc88ab20f991)
 - [ ] 侧滑菜单DrawerLayout和NavigationView的使用
 - [ ] RecyclerView
+
+
+
+
+
