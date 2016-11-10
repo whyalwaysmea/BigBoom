@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AllWorksActivity extends MvpActivity<ICastDetailView, CastPresenterImp> implements ICastDetailView {
+public class AllWorksActivity extends MvpActivity<ICastDetailView, CastPresenterImp> implements ICastDetailView, MyRecyclerView.OnLoadMoreListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -56,6 +56,7 @@ public class AllWorksActivity extends MvpActivity<ICastDetailView, CastPresenter
 
         mAllWorksAdapter = new AllWorksAdapter(this, new ArrayList<>(), true);
         mAllWorksRecyclerview.setAdapter(mAllWorksAdapter);
+        mAllWorksRecyclerview.setOnLoadMoreListener(this);
 
         mToolbar.setTitle(R.string.all_work);
         setSupportActionBar(mToolbar);
@@ -86,6 +87,15 @@ public class AllWorksActivity extends MvpActivity<ICastDetailView, CastPresenter
             CastWork castWork = (CastWork) o;
             mAllWorksAdapter.addData(castWork.getWorks());
             mSwiperefreshlayout.setEnabled(false);
+            if((start + castWork.getCount()) < castWork.getTotal()) {
+                mAllWorksRecyclerview.enableLoadMore();
+            }
         }
+    }
+
+    @Override
+    public void onLoadMore() {
+        start += 20;
+        mPresenter.getCastWorks(mCastId, start);
     }
 }

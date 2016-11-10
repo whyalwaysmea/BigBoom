@@ -1,6 +1,7 @@
 package com.whyalwaysmea.bigboom.module.cast.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.bean.CastWork;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.MovieDetailActivity;
 
 import java.util.List;
 
@@ -78,6 +80,23 @@ public class AllWorksAdapter extends BaseAdapter<CastWork.WorksBean> {
             }
             mRatingBarHots.setRating(worksBean.getSubject().getRating().getAverage());
             mWrokRating.setText("" + worksBean.getSubject().getRating().getAverage());
+            mRoles.removeAllViews();
+            for (int i = 0; i < worksBean.getRoles().size(); i++) {
+                TextView tv = new TextView(mContext);
+                tv.setText(worksBean.getRoles().get(i));
+                tv.setPadding(0, 10, 10, 10);
+                mRoles.addView(tv);
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tv.getLayoutParams();
+                layoutParams.setMargins(0, 10, 10, 10);
+                tv.setLayoutParams(layoutParams);
+                tv.setBackgroundColor(mContext.getResources().getColor(R.color.material_black30));
+            }
+
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(mContext, MovieDetailActivity.class);
+                intent.putExtra("ID", worksBean.getSubject().getId());
+                mContext.startActivity(intent);
+            });
         }
     }
 }
