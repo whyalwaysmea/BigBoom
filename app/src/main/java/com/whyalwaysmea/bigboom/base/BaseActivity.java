@@ -30,10 +30,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
     }
 
-    protected abstract void initData();
-
     protected abstract void initView();
 
+    protected abstract void initData();
 
     protected void addFragmentToStack(int containerViewId, Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

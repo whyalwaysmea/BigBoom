@@ -21,6 +21,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     protected static final int TYPE_EMPTY = 0;
     protected static final int TYPE_DEFAULT = 1;
+    protected static int emptyLayout = R.layout.default_empty_layout;
     protected List<T> mData;
     protected Context mContext;
     protected boolean mUseAnimation;
@@ -51,7 +52,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     }
 
     protected BaseViewHolder onCreateEmptyViewHolder(ViewGroup parent, int viewType) {
-        View emptyView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_empty, parent, false);
+        View emptyView = LayoutInflater.from(parent.getContext()).inflate(emptyLayout, parent, false);
         return new EmptyViewHolder(emptyView);
     }
 
@@ -88,6 +89,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         } else {
             return TYPE_DEFAULT;
         }
+    }
+
+    public void setEmptyView(int emptyLayout) {
+        this.emptyLayout = emptyLayout;
     }
 
 

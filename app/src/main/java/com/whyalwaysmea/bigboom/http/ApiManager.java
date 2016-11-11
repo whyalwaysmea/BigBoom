@@ -6,6 +6,7 @@ import com.whyalwaysmea.bigboom.bean.CastWork;
 import com.whyalwaysmea.bigboom.bean.Comment;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
+import com.whyalwaysmea.bigboom.bean.MoviePhoto;
 import com.whyalwaysmea.bigboom.bean.Review;
 import com.whyalwaysmea.bigboom.bean.WeeklyMovieInfo;
 
@@ -43,6 +44,9 @@ public interface ApiManager {
 
     @GET("subject/{id}/comments")
     Observable<Comment> getComment(@Path("id") String id, @Query("apikey") String apikey);
+
+    @GET("subject/{id}/photos")
+    Observable<MoviePhoto> getMoviePhoto(@Path("id") String id, @Query("start") int start, @Query("apikey") String apikey);
 
     @GET("celebrity/{id}")
     Observable<CastDetail> getCastDetail(@Path("id") String id,  @Query("apikey") String apikey);

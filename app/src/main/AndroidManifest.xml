@@ -67,7 +67,12 @@
         <service android:name=".service.ImageService">
         </service>
 
-        <activity android:name=".module.cast.ui.AllWorksActivity"
+        <activity
+            android:name=".module.cast.ui.AllWorksActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar">
+        </activity>
+        <activity android:name=".module.moviedetail.ui.MoviePhotoListActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme.FullActionBar">
         </activity>

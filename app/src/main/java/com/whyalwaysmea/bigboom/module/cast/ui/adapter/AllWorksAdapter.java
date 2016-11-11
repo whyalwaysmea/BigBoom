@@ -84,12 +84,13 @@ public class AllWorksAdapter extends BaseAdapter<CastWork.WorksBean> {
             for (int i = 0; i < worksBean.getRoles().size(); i++) {
                 TextView tv = new TextView(mContext);
                 tv.setText(worksBean.getRoles().get(i));
-                tv.setPadding(0, 10, 10, 10);
+                tv.setPadding(10, 5, 10, 5);
                 mRoles.addView(tv);
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tv.getLayoutParams();
                 layoutParams.setMargins(0, 10, 10, 10);
                 tv.setLayoutParams(layoutParams);
-                tv.setBackgroundColor(mContext.getResources().getColor(R.color.material_black30));
+                tv.setTextSize(12);
+                tv.setBackgroundColor(mContext.getResources().getColor(R.color.material_black10));
             }
 
             itemView.setOnClickListener(v -> {

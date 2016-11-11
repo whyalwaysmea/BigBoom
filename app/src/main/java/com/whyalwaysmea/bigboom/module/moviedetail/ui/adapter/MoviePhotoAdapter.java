@@ -1,16 +1,20 @@
 package com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.MoviePhotoListActivity;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
 import java.util.List;
@@ -23,6 +27,8 @@ import butterknife.BindView;
  */
 
 public class MoviePhotoAdapter extends BaseAdapter<MovieDetail.PhotosBean> {
+
+    private String movieId;
 
     public MoviePhotoAdapter(Context context, List<MovieDetail.PhotosBean> data) {
         super(context, data);
@@ -59,10 +65,26 @@ public class MoviePhotoAdapter extends BaseAdapter<MovieDetail.PhotosBean> {
             } else if (position == getItemCount() - 1) {
                 mAllMoviePhoto.setVisibility(View.VISIBLE);
                 ImageUtils.getInstance().display(mMovieItemPhoto, R.drawable.white_bg);
+                itemView.setOnClickListener(v -> {
+                    if(!TextUtils.isEmpty(getMovieId())) {
+                        Intent intent = new Intent(mContext, MoviePhotoListActivity.class);
+                        intent.putExtra(Constants.KEY.ID, getMovieId());
+                        mContext.startActivity(intent);
+                    }
+
+                });
             } else {
                 mAllMoviePhoto.setVisibility(View.GONE);
                 ImageUtils.getInstance().display(mMovieItemPhoto, mData.get(position).getImage());
             }
         }
+    }
+
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 }

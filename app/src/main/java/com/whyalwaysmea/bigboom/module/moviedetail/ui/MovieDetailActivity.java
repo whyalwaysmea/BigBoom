@@ -236,6 +236,7 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
 
         mMoviePhotoAdapter = new MoviePhotoAdapter(this, detailData.getPhotos());
         mPhotosRecyclerview.setAdapter(mMoviePhotoAdapter);
+        mMoviePhotoAdapter.setMovieId(detailData.getId());
     }
 
     // 动画
