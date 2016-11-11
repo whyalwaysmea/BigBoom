@@ -14,6 +14,7 @@ import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.MoviePhotoActivity;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.MoviePhotoListActivity;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
@@ -65,6 +66,12 @@ public class MoviePhotoAdapter extends BaseAdapter<MovieDetail.PhotosBean> {
             } else if (position == getItemCount() - 1) {
                 mAllMoviePhoto.setVisibility(View.VISIBLE);
                 ImageUtils.getInstance().display(mMovieItemPhoto, R.drawable.white_bg);
+            } else {
+                mAllMoviePhoto.setVisibility(View.GONE);
+                ImageUtils.getInstance().display(mMovieItemPhoto, mData.get(position).getImage());
+            }
+
+            if(position == getItemCount() - 1) {
                 itemView.setOnClickListener(v -> {
                     if(!TextUtils.isEmpty(getMovieId())) {
                         Intent intent = new Intent(mContext, MoviePhotoListActivity.class);
@@ -74,8 +81,15 @@ public class MoviePhotoAdapter extends BaseAdapter<MovieDetail.PhotosBean> {
 
                 });
             } else {
-                mAllMoviePhoto.setVisibility(View.GONE);
-                ImageUtils.getInstance().display(mMovieItemPhoto, mData.get(position).getImage());
+                itemView.setOnClickListener(v -> {
+                    if(!TextUtils.isEmpty(getMovieId())) {
+                        Intent intent = new Intent(mContext, MoviePhotoActivity.class);
+                        intent.putExtra(Constants.KEY.ID, getMovieId());
+                        intent.putExtra(Constants.KEY.PHOTOT_URL, mData.get(position).getImage());
+                        intent.putExtra(Constants.KEY.POSITION, position);
+                        mContext.startActivity(intent);
+                    }
+                });
             }
         }
     }

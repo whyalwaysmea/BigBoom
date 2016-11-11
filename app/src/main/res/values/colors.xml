@@ -27,6 +27,7 @@
     <color name="item_color">#FAFAFA</color>
     <color name="fab_color">#99ff8f00</color>
     <color name="line">#8d9093</color>
+    <color name="toolbar_bg_drak">#1d1c1b</color>
 
     <color name="material_amber_100">#ffecb3</color>
     <color name="material_amber_200">#ffe082</color>

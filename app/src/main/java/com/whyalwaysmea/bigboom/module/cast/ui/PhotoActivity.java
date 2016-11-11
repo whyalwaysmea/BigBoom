@@ -118,6 +118,7 @@ public class PhotoActivity extends  MvpActivity<ICastPhotoView, CastPhotoPresent
 
     @Override
     protected void initView() {
+        mToolbar.setBackground(mContext.getResources().getDrawable(R.drawable.toolbar_drak_bg));
         mPhotoAdapter = new PhotoAdapter();
         RxViewPager.pageSelections(mViewPager).subscribe(new Action1<Integer>() {
             @Override
