@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +19,7 @@ import com.whyalwaysmea.bigboom.bean.MoviePhoto;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.presenter.MoviePhotoListPresenterImp;
 import com.whyalwaysmea.bigboom.module.moviedetail.view.IMoviePhotoListView;
+import com.whyalwaysmea.bigboom.utils.DownLoadUtils;
 import com.whyalwaysmea.bigboom.view.HackyViewPager;
 
 import butterknife.BindView;
@@ -36,6 +39,7 @@ public class MoviePhotoActivity extends MvpActivity<IMoviePhotoListView, MoviePh
     private PhotoAdapter mPhotoAdapter;
     private int start;
     private int position;
+    private StringBuffer sbDes;
 
     @Override
     protected MoviePhotoListPresenterImp createPresenter(BaseView view) {
@@ -64,6 +68,7 @@ public class MoviePhotoActivity extends MvpActivity<IMoviePhotoListView, MoviePh
     @Override
     protected void initData() {
 
+        sbDes = new StringBuffer();
         mMovieId = getIntent().getStringExtra(Constants.KEY.ID);
         position = getIntent().getIntExtra(Constants.KEY.POSITION, 0);
         mPresenter.getMoviePhotoList(mMovieId, start);
@@ -75,6 +80,9 @@ public class MoviePhotoActivity extends MvpActivity<IMoviePhotoListView, MoviePh
         mMoviePhoto = moviePhoto;
         mPhotoAdapter.notifyDataSetChanged();
         mToolbar.setTitle(mMoviePhoto.getSubject().getTitle());
+        if(sbDes.length() == 0) {
+            sbDes.append(mMoviePhoto.getSubject().getTitle());
+        }
     }
 
     private class PhotoAdapter extends PagerAdapter {
@@ -113,5 +121,35 @@ public class MoviePhotoActivity extends MvpActivity<IMoviePhotoListView, MoviePh
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.down, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.download_photo) {
+            DownLoadUtils.saveImage(mContext, sbDes.toString() + "(" + (mViewPager.getCurrentItem() + 1) + ")", mCurrentBitmap, new DownLoadUtils.DownloadListener() {
+                @Override
+                public void success() {
+                    showSnackbar(mToolbar, getResources().getString(R.string.download_success));
+                }
+
+                @Override
+                public void failed() {
+                    showSnackbar(mToolbar, getResources().getString(R.string.download_failed));
+                }
+
+                @Override
+                public void exists() {
+                    showSnackbar(mToolbar, getResources().getString(R.string.download_exists));
+                }
+            });
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

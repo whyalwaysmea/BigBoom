@@ -1,5 +1,6 @@
 package com.whyalwaysmea.bigboom.module.moviedetail.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -57,6 +58,12 @@ public class MoviePhotoListActivity extends MvpActivity<IMoviePhotoListView, Mov
         mMoviePhotoRecyclerview.addItemDecoration(new GridMarginDecoration(mContext.getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration2)));
         mMoviePhotoListAdapter = new MoviePhotoListAdapter(this, new ArrayList<>(), true);
         mMoviePhotoRecyclerview.setAdapter(mMoviePhotoListAdapter);
+        mMoviePhotoListAdapter.setOnClickListener((view, position) -> {
+            Intent intent = new Intent(mContext, MoviePhotoActivity.class);
+            intent.putExtra(Constants.KEY.ID, mMovieId);
+            intent.putExtra(Constants.KEY.POSITION, position);
+            mContext.startActivity(intent);
+        });
         mSwiperefreshlayout.setEnabled(false);
 
         setSupportActionBar(mToolbar);

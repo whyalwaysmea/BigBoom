@@ -36,6 +36,9 @@ public interface ApiManager {
     @GET("new_movies")
     Observable<MovieListResponse> getNewMovies(@Query("apikey") String apikey);
 
+    @GET("search")
+    Observable<MovieListResponse> getSearchMovieList(@Query("start") int start, @Query("q") String keyWords, @Query("apikey") String apikey);
+
     @GET("subject/{id}")
     Observable<MovieDetail> getSubject(@Path("id") String id, @Query("apikey") String apikey);
 

@@ -34,6 +34,7 @@ public class SearchView {
 
     private View showAtView;
     private PopupWindow mPopupWindow;
+    private View mView;
 
     public SearchView(Context context, View view, OnSearchClickListener onSearchClickListener) {
         this.mContext = context;
@@ -44,19 +45,24 @@ public class SearchView {
     }
 
     private void initView() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.search_view, null);
-        mSearchBack = (ImageView) view.findViewById(R.id.search_back);
-        mSearchClear = (ImageView) view.findViewById(R.id.search_clear);
-        mSearchSure = (ImageView) view.findViewById(R.id.search_sure);
-        mSearchInput = (EditText) view.findViewById(R.id.search_input);
+        mView = LayoutInflater.from(mContext).inflate(R.layout.search_view, null);
+        mSearchBack = (ImageView) mView.findViewById(R.id.search_back);
+        mSearchClear = (ImageView) mView.findViewById(R.id.search_clear);
+        mSearchSure = (ImageView) mView.findViewById(R.id.search_sure);
+        mSearchInput = (EditText) mView.findViewById(R.id.search_input);
 
-        mPopupWindow = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT,
+        mPopupWindow = new PopupWindow(mView, WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT, true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
         mPopupWindow.setFocusable(true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.showAtLocation(showAtView, Gravity.NO_GRAVITY, 0, MeasureUtil.getStatusBarHeight(mContext));
 
+        KeyBoardUtils.toggleSoftInput(mContext);
+
+    }
+
+    public void setTransparent() {
         final WindowManager.LayoutParams lp = ((Activity)mContext).getWindow().getAttributes();
         ValueAnimator animator = ValueAnimator.ofFloat(1f, 0.3f);
         animator.setDuration(500);
@@ -71,7 +77,7 @@ public class SearchView {
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                ValueAnimator animator = ValueAnimator.ofFloat(0.7f, 1f);
+                ValueAnimator animator = ValueAnimator.ofFloat(0.3f, 1f);
                 animator.setDuration(500);
                 animator.addUpdateListener(animation -> {
                     lp.alpha = (float) animation.getAnimatedValue();
@@ -82,9 +88,6 @@ public class SearchView {
                 animator.start();
             }
         });
-
-        KeyBoardUtils.toggleSoftInput(mContext);
-
     }
 
     private void initEvent() {
@@ -107,6 +110,7 @@ public class SearchView {
         if(mOnSearchClickListener != null && mSearchInput.length() > 0) {
             String s = mSearchInput.getText().toString().trim();
             mOnSearchClickListener.searchInput(s);
+            disMiss();
         } else {
 
         }
@@ -118,5 +122,10 @@ public class SearchView {
         } else {
             mSearchClear.setVisibility(View.GONE);
         }
+    }
+
+    public void disMiss() {
+        mPopupWindow.dismiss();
+        mView = null;
     }
 }

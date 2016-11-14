@@ -19,6 +19,7 @@ import rx.schedulers.Schedulers;
 public class MovieListModelImp implements IMovieListModel {
 
     private Subscription mSubscribe;
+    private Subscription mSearchMovieList;
 
     @Override
     public void loadTop250(int start, int count, OnLoadCompleteListener<MovieListResponse> listener) {
@@ -114,6 +115,35 @@ public class MovieListModelImp implements IMovieListModel {
     }
 
     @Override
+    public void getSearchMovieList(int start,String keyWords, OnLoadCompleteListener<MovieListResponse> listener) {
+        ApiManager apiManager = HttpMethods.createService();
+        mSearchMovieList = apiManager.getSearchMovieList(start, keyWords, Constants.ID.APIKEY)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<MovieListResponse>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(MovieListResponse movieListResponse) {
+                        if (null != listener && movieListResponse.getCount() > 0) {
+                            listener.onLoadSussess(movieListResponse);
+                        } else {
+                            listener.onLoadFailed("无更多数据 ヾﾉ≧∀≦)o");
+                        }
+                    }
+                });
+    }
+
+    @Override
     public void loadWeeklyMovies(OnLoadCompleteListener<WeeklyMovieInfo> listener) {
         ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
         mSubscribe = apiManager.getWeeklyMovie(Constants.ID.APIKEY)
@@ -179,6 +209,11 @@ public class MovieListModelImp implements IMovieListModel {
         if(null != mSubscribe && mSubscribe.isUnsubscribed()) {
             mSubscribe.unsubscribe();
         }
+        if(null != mSearchMovieList && mSearchMovieList.isUnsubscribed()) {
+            mSearchMovieList.unsubscribe();
+        }
+
+
     }
 
 }

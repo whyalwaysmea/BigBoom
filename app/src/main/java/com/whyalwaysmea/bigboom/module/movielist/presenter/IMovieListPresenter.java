@@ -15,4 +15,6 @@ public interface IMovieListPresenter {
 
     // 即将上映
     void loadComingSoon(int start, int count);
+
+    void getSearchMovieList(int start,String keyWords);
 }

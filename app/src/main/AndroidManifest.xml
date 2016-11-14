@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:name=".App"
@@ -77,7 +78,23 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
-        <activity android:name=".module.moviedetail.ui.MoviePhotoActivity">
+        <activity
+            android:name=".module.moviedetail.ui.MoviePhotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar"/>
+        <activity
+            android:name=".module.movielist.ui.SearchMovieListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar"/>
+
+        <!-- 必须初始化 -->
+        <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".module.player.MoviePlayerActivity">
         </activity>
     </application>
 

@@ -26,6 +26,7 @@ public class Constants {
         public static final String REVIEW = "review";
         public static final String TITLE = "title";
         public static final String VIEW_INFO = "view_info";
+        public static final String SEARCH_KEY = "search_key";
     }
 
     public static class VIEW {

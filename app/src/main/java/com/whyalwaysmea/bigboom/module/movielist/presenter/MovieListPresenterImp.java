@@ -61,6 +61,12 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
     }
 
     @Override
+    public void getSearchMovieList(int start, String keyWords) {
+        mView.showLoading();
+        mMovieListModel.getSearchMovieList(start, keyWords, this);
+    }
+
+    @Override
     public void onLoadSussess(MovieListResponse movieInfo) {
         mView.hideLoading();
         mView.setData(movieInfo);

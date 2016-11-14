@@ -85,7 +85,6 @@ public class MoviePhotoAdapter extends BaseAdapter<MovieDetail.PhotosBean> {
                     if(!TextUtils.isEmpty(getMovieId())) {
                         Intent intent = new Intent(mContext, MoviePhotoActivity.class);
                         intent.putExtra(Constants.KEY.ID, getMovieId());
-                        intent.putExtra(Constants.KEY.PHOTOT_URL, mData.get(position).getImage());
                         intent.putExtra(Constants.KEY.POSITION, position);
                         mContext.startActivity(intent);
                     }

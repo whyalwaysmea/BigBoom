@@ -19,6 +19,8 @@ public interface IMovieListModel extends BaseModel{
 
     void loadComingSoon(int start, int count, OnLoadCompleteListener<MovieListResponse> listener);
 
+    void getSearchMovieList(int start, String keyWords, OnLoadCompleteListener<MovieListResponse> listener);
+
     void loadWeeklyMovies(OnLoadCompleteListener<WeeklyMovieInfo> listener);
 
     void loadNewMovies(OnLoadCompleteListener<MovieListResponse> listener);

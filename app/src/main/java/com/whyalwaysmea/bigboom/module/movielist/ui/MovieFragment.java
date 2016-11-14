@@ -1,5 +1,6 @@
 package com.whyalwaysmea.bigboom.module.movielist.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,11 +12,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
-import com.socks.library.KLog;
+import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseFragment;
-import com.whyalwaysmea.bigboom.utils.KeyBoardUtils;
+import com.whyalwaysmea.bigboom.module.player.MoviePlayerActivity;
 import com.whyalwaysmea.bigboom.view.SearchView;
 
 import java.util.ArrayList;
@@ -81,22 +82,21 @@ public class MovieFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.action_search) {
-            showSearch();
+//            showSearch();
+            Intent intent = new Intent(mContext, MoviePlayerActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void showSearch() {
-        SearchView searchView = new SearchView(mContext, mToolbar, new SearchView.OnSearchClickListener() {
-
-            @Override
-            public void searchInput(String s) {
-                boolean showSoftInput = KeyBoardUtils.isShowSoftInput(mContext);
-                KLog.e("showSoftInput : " + showSoftInput);
-                KLog.e("search");
-            }
+        SearchView searchView = new SearchView(mContext, mToolbar, s -> {
+            Intent intent = new Intent(mContext, SearchMovieListActivity.class);
+            intent.putExtra(Constants.KEY.SEARCH_KEY, s.toString());
+            mContext.startActivity(intent);
         });
+        searchView.setTransparent();
 
     }
 
