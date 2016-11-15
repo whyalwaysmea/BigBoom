@@ -1,16 +1,27 @@
 package com.whyalwaysmea.bigboom.module.player;
 
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.socks.library.KLog;
+import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseActivity;
+import com.whyalwaysmea.bigboom.base.BaseAdapter;
+import com.whyalwaysmea.bigboom.bean.MovieDetail;
+import com.whyalwaysmea.bigboom.bean.MovieVideo;
+import com.whyalwaysmea.bigboom.module.player.adapter.MovieVideoAdapter;
+import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,10 +42,15 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
     @BindView(R.id.load_rate)
     TextView mLoadRate;
 
+    @BindView(R.id.video_recyclerview)
+    RecyclerView mVideoRecyclerview;
+
     private CustomMediaController mCustomMediaController;
     private MediaController mMediaController;
-    private String path = "http://baobab.wdjcdn.com/145076769089714.mp4";
     private Uri uri;
+
+    private MovieVideoAdapter mMovieVideoAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,23 +72,50 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
 
     @Override
     protected void initView() {
-        mVideoView = (VideoView) findViewById(R.id.buffer);
-        mMediaController= new MediaController(this);
-        mCustomMediaController=new CustomMediaController(this,mVideoView,this);
+        mMediaController = new MediaController(this);
+        mCustomMediaController = new CustomMediaController(this, mVideoView, this);
         mCustomMediaController.setVideoName("白火锅 x 红火锅");
-        mProbar = (ProgressBar) findViewById(R.id.probar);
-        mDownloadRate = (TextView) findViewById(R.id.download_rate);
-        mLoadRate = (TextView) findViewById(R.id.load_rate);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        mVideoRecyclerview.setLayoutManager(gridLayoutManager);
+        mVideoRecyclerview.addItemDecoration(new GridMarginDecoration(getResources().getDimensionPixelOffset(R.dimen.gridlayout_margin_decoration2)));
     }
 
     @Override
     protected void initData() {
-        uri = Uri.parse(path);
-        if(uri == null)
+        MovieDetail movieDetail = (MovieDetail) getIntent().getSerializableExtra(Constants.KEY.MOVIE_URLS);
+        List<MovieVideo> movieVideoList = new ArrayList<>();
+        for (int i = 0; i < movieDetail.getClips().size(); i++) {
+            MovieDetail.ClipsBean clipsBean = movieDetail.getClips().get(i);
+            movieVideoList.add(new MovieVideo(clipsBean.getResource_url(), clipsBean.getMedium(), clipsBean.getTitle()));
+        }
+
+        for (int i = 0; i < movieDetail.getTrailers().size(); i++) {
+            MovieDetail.TrailersBean clipsBean = movieDetail.getTrailers().get(i);
+            movieVideoList.add(new MovieVideo(clipsBean.getResource_url(), clipsBean.getMedium(), clipsBean.getTitle()));
+        }
+
+        for (int i = 0; i < movieDetail.getBloopers().size(); i++) {
+            MovieDetail.ClipsBean clipsBean = movieDetail.getBloopers().get(i);
+            movieVideoList.add(new MovieVideo(clipsBean.getResource_url(), clipsBean.getMedium(), clipsBean.getTitle()));
+        }
+
+
+        mMovieVideoAdapter = new MovieVideoAdapter(this, movieVideoList);
+        mVideoRecyclerview.setAdapter(mMovieVideoAdapter);
+
+        if(movieVideoList.isEmpty()) {
             return ;
+        }
+
+        uri = Uri.parse(movieVideoList.get(4).getUrl());
+        mMovieVideoAdapter.setPlayingPosition(4);
+        mMovieVideoAdapter.notifyDataSetChanged();
+
         mVideoView.setVideoURI(uri);//设置视频播放地址
-        mVideoView.setMediaController(mCustomMediaController);
         mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_HIGH);//高画质
+
+        mVideoView.setMediaController(mCustomMediaController);
+        KLog.e("small");
         mMediaController.show(5000);
         mVideoView.requestFocus();
         mVideoView.setOnInfoListener(this);
@@ -83,6 +126,28 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
                 mediaPlayer.setPlaybackSpeed(1.0f);
             }
         });
+
+        mMovieVideoAdapter.setOnClickListener(new BaseAdapter.OnClickListener() {
+            @Override
+            public void setOnItemClickListener(View view, int position) {
+                mVideoView.stopPlayback();
+                mVideoView.setVideoURI(Uri.parse(movieVideoList.get(position).getUrl()));
+                mVideoView.start();
+                mMovieVideoAdapter.setPlayingPosition(position);
+                mMovieVideoAdapter.notifyDataSetChanged();
+            }
+        });
+
+        mVideoView.setOnCompletionListener(mp -> {
+            if(mMovieVideoAdapter.getPlayingPosition() < (movieVideoList.size() - 1)) {
+                int playingPosition = mMovieVideoAdapter.getPlayingPosition();
+                mVideoView.setVideoURI(Uri.parse(movieVideoList.get(playingPosition + 1).getUrl()));
+                mVideoView.start();
+                mMovieVideoAdapter.setPlayingPosition(playingPosition + 1);
+                mMovieVideoAdapter.notifyDataSetChanged();
+            }
+        });
+
     }
 
     @Override
@@ -117,12 +182,4 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
     }
 
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        //屏幕切换时，设置全屏
-        if (mVideoView != null){
-            mVideoView.setVideoLayout(VideoView.VIDEO_LAYOUT_SCALE, 0);
-        }
-        super.onConfigurationChanged(newConfig);
-    }
 }

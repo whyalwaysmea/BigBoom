@@ -28,7 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.whyalwaysmea.bigboom.MainActivity;
+import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseFragment;
 import com.whyalwaysmea.bigboom.base.BaseView;
@@ -36,10 +36,11 @@ import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.presenter.MovieDetailPresenterImp;
-import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.MovicDetailCastAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CommentPageAdapter;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.MovicDetailCastAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.MoviePhotoAdapter;
 import com.whyalwaysmea.bigboom.module.moviedetail.view.IMovieDetailView;
+import com.whyalwaysmea.bigboom.module.player.MoviePlayerActivity;
 import com.whyalwaysmea.bigboom.utils.MeasureUtil;
 import com.whyalwaysmea.bigboom.utils.ShareUtils;
 import com.whyalwaysmea.bigboom.utils.StatusBarUtil;
@@ -310,7 +311,11 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startActivity(new Intent(this, MainActivity.class));
+//                startActivity(new Intent(this, MainActivity.class));
+                Intent intent = new Intent(mContext, MoviePlayerActivity.class);
+                intent.putExtra(Constants.KEY.MOVIE_URLS, mMovieDetail);
+                startActivity(intent);
+
                 return true;
             case R.id.action_share:
                 StringBuilder sb = new StringBuilder();

@@ -2,6 +2,7 @@ package com.whyalwaysmea.bigboom.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * on 2016/10/13.
  */
 
-public class MovieDetail {
+public class MovieDetail implements Serializable{
 
 
     /**
@@ -156,7 +157,7 @@ public class MovieDetail {
 
     private List<TrailersBean> trailers;
     private List<String> trailer_urls;
-    private List<?> bloopers;
+    private List<ClipsBean> bloopers;
     private List<String> clip_urls;
     /**
      * avatars : {"small":"https://img3.doubanio.com/img/celebrity/small/47421.jpg","large":"https://img3.doubanio.com/img/celebrity/large/47421.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/47421.jpg"}
@@ -539,11 +540,11 @@ public class MovieDetail {
         this.trailer_urls = trailer_urls;
     }
 
-    public List<?> getBloopers() {
+    public List<ClipsBean> getBloopers() {
         return bloopers;
     }
 
-    public void setBloopers(List<?> bloopers) {
+    public void setBloopers(List<ClipsBean> bloopers) {
         this.bloopers = bloopers;
     }
 
@@ -611,7 +612,7 @@ public class MovieDetail {
         this.aka = aka;
     }
 
-    public static class RatingBean {
+    public static class RatingBean implements Serializable{
         private float max;
         private float average;
         /**
@@ -666,7 +667,7 @@ public class MovieDetail {
             this.min = min;
         }
 
-        public static class DetailsBean {
+        public static class DetailsBean implements Serializable{
             @SerializedName("1")
             private int value1;
             @SerializedName("2")
@@ -720,7 +721,7 @@ public class MovieDetail {
         }
     }
 
-    public static class ImagesBean {
+    public static class ImagesBean implements Serializable{
         private String small;
         private String large;
         private String medium;
@@ -750,7 +751,7 @@ public class MovieDetail {
         }
     }
 
-    public static class VideosBean {
+    public static class VideosBean implements Serializable{
         /**
          * literal : qq
          * pic : https://img3.doubanio.com/f/movie/38764466321ab88dfa19a1f826570367a19ce116/pics/movie/video-qq.png
@@ -794,7 +795,7 @@ public class MovieDetail {
             this.need_pay = need_pay;
         }
 
-        public static class SourceBean {
+        public static class SourceBean implements Serializable{
             private String literal;
             private String pic;
             private String name;
@@ -825,7 +826,7 @@ public class MovieDetail {
         }
     }
 
-    public static class PopularCommentsBean {
+    public static class PopularCommentsBean implements Serializable{
         /**
          * max : 5
          * value : 0
@@ -905,7 +906,7 @@ public class MovieDetail {
             this.id = id;
         }
 
-        public static class RatingBean {
+        public static class RatingBean implements Serializable{
             private int max;
             private int value;
             private int min;
@@ -935,7 +936,7 @@ public class MovieDetail {
             }
         }
 
-        public static class AuthorBean {
+        public static class AuthorBean implements Serializable{
             private String uid;
             private String avatar;
             private String signature;
@@ -993,7 +994,7 @@ public class MovieDetail {
         }
     }
 
-    public static class WritersBean {
+    public static class WritersBean implements Serializable{
         /**
          * small : https://img3.doubanio.com/img/celebrity/small/45374.jpg
          * large : https://img3.doubanio.com/img/celebrity/large/45374.jpg
@@ -1046,7 +1047,7 @@ public class MovieDetail {
             this.id = id;
         }
 
-        public static class AvatarsBean {
+        public static class AvatarsBean implements Serializable{
             private String small;
             private String large;
             private String medium;
@@ -1077,7 +1078,7 @@ public class MovieDetail {
         }
     }
 
-    public static class TrailersBean {
+    public static class TrailersBean implements Serializable{
         private String medium;
         private String title;
         private String subject_id;
@@ -1143,7 +1144,7 @@ public class MovieDetail {
         }
     }
 
-    public static class CastsBean {
+    public static class CastsBean implements Serializable{
         /**
          * small : https://img3.doubanio.com/img/celebrity/small/47421.jpg
          * large : https://img3.doubanio.com/img/celebrity/large/47421.jpg
@@ -1196,7 +1197,7 @@ public class MovieDetail {
             this.id = id;
         }
 
-        public static class AvatarsBean {
+        public static class AvatarsBean implements Serializable{
             private String small;
             private String large;
             private String medium;
@@ -1227,7 +1228,7 @@ public class MovieDetail {
         }
     }
 
-    public static class PhotosBean {
+    public static class PhotosBean implements Serializable{
         private String thumb;
         private String image;
         private String cover;
@@ -1284,7 +1285,7 @@ public class MovieDetail {
         }
     }
 
-    public static class ClipsBean {
+    public static class ClipsBean implements Serializable{
         private String medium;
         private String title;
         private String subject_id;
@@ -1350,7 +1351,7 @@ public class MovieDetail {
         }
     }
 
-    public static class DirectorsBean {
+    public static class DirectorsBean implements Serializable{
         /**
          * small : https://img3.doubanio.com/img/celebrity/small/45374.jpg
          * large : https://img3.doubanio.com/img/celebrity/large/45374.jpg
@@ -1403,7 +1404,7 @@ public class MovieDetail {
             this.id = id;
         }
 
-        public static class AvatarsBean {
+        public static class AvatarsBean implements Serializable{
             private String small;
             private String large;
             private String medium;
@@ -1434,7 +1435,7 @@ public class MovieDetail {
         }
     }
 
-    public static class PopularReviewsBean {
+    public static class PopularReviewsBean implements Serializable{
         /**
          * max : 5
          * value : 5
@@ -1514,7 +1515,7 @@ public class MovieDetail {
             this.id = id;
         }
 
-        public static class RatingBean {
+        public static class RatingBean implements Serializable{
             private int max;
             private int value;
             private int min;
@@ -1544,7 +1545,7 @@ public class MovieDetail {
             }
         }
 
-        public static class AuthorBean {
+        public static class AuthorBean implements Serializable{
             private String uid;
             private String avatar;
             private String signature;

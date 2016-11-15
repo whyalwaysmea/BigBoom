@@ -27,6 +27,7 @@ public class Constants {
         public static final String TITLE = "title";
         public static final String VIEW_INFO = "view_info";
         public static final String SEARCH_KEY = "search_key";
+        public static final String MOVIE_URLS = "movie_urls";
     }
 
     public static class VIEW {
@@ -34,5 +35,11 @@ public class Constants {
         public static final String TOP = "top";
         public static final String WIDTH = "width";
         public static final String HEIGHT = "height";
+    }
+
+    public static class CONFIG {
+        public static final int ORIENTATION_LANDSCAPE = 2;
+        public static final int ORIENTATION_PORTRAIT = 1;
+
     }
 }

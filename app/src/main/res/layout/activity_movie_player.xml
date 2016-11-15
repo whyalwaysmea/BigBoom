@@ -4,18 +4,33 @@
                 android:layout_height="match_parent">
 
     <io.vov.vitamio.widget.CenterLayout
+        android:id="@+id/centerlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/material_black"
         android:orientation="vertical">
 
         <io.vov.vitamio.widget.VideoView
             android:id="@+id/buffer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="240dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"/>
     </io.vov.vitamio.widget.CenterLayout>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_below="@id/centerlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/video_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -45,4 +60,14 @@
             android:text=""
             android:textColor="#FFFFFF"/>
     </LinearLayout>
+
+
+    <ImageView
+        android:src="@drawable/icon_back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

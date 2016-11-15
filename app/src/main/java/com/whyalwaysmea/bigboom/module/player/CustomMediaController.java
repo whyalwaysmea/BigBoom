@@ -29,7 +29,7 @@ import io.vov.vitamio.widget.VideoView;
  * on 2016/11/14.
  */
 
-public class CustomMediaController  extends MediaController {
+public class CustomMediaController extends MediaController {
     private static final int HIDEFRAM = 0;//控制提示窗口的显示
 
     private GestureDetector mGestureDetector;
@@ -56,15 +56,11 @@ public class CustomMediaController  extends MediaController {
     //当前亮度
     private float mBrightness = -1f;
 
+    private boolean isFullScreen;
+
 
     //返回监听
-    private View.OnClickListener backListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            if (activity != null) {
-                activity.finish();
-            }
-        }
-    };
+    private View.OnClickListener backListener;
 
     private Handler myHandler = new Handler() {
         @Override
@@ -92,18 +88,15 @@ public class CustomMediaController  extends MediaController {
 
     }
 
+
     @Override
     protected View makeControllerView() {
         //此处的   mymediacontroller  为我们自定义控制器的布局文件名称
         View v = LayoutInflater.from(getContext()).inflate(R.layout.layout_media_controller, null);
         v.setMinimumHeight(controllerWidth);
         //获取控件
-        img_back = (ImageButton) v.findViewById(getResources().getIdentifier("mediacontroller_top_back", "id",
-
-                context.getPackageName()));
-        mFileName = (TextView) v.findViewById(getResources().getIdentifier("mediacontroller_filename", "id",
-
-                context.getPackageName()));
+        img_back = (ImageButton) v.findViewById(R.id.mediacontroller_top_back);
+        mFileName = (TextView) v.findViewById(R.id.mediacontroller_filename);
 
         if (mFileName != null) {
             mFileName.setText(videoname);
@@ -124,12 +117,14 @@ public class CustomMediaController  extends MediaController {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        System.out.println("MYApp-MyMediaController-dispatchKeyEvent");
         return true;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if(!isFullScreen)
+            return super.onTouchEvent(event);
+
         if (mGestureDetector.onTouchEvent(event)) return true;
         // 处理手势结束
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
@@ -263,7 +258,6 @@ public class CustomMediaController  extends MediaController {
             // 显示
             mVolumeBrightnessLayout.setVisibility(VISIBLE);
             mOperationTv.setVisibility(VISIBLE);
-
         }
 
 
@@ -332,5 +326,17 @@ public class CustomMediaController  extends MediaController {
             } else {
                 videoView.start();
             }
+    }
+
+    public void setBackListener(OnClickListener backListener) {
+        this.backListener = backListener;
+    }
+
+    public boolean isFullScreen() {
+        return isFullScreen;
+    }
+
+    public void setFullScreen(boolean fullScreen) {
+        isFullScreen = fullScreen;
     }
 }

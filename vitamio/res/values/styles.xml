@@ -8,7 +8,7 @@
         <item name="android:minHeight">13dip</item>
         <item name="android:maxHeight">13dip</item>
         <item name="android:thumb">@drawable/scrubber_control_selector_holo</item>
-        <item name="android:thumbOffset">16dip</item>
+        <item name="android:thumbOffset">8dip</item>
         <item name="android:paddingLeft">16dip</item>
         <item name="android:paddingRight">16dip</item>
     </style>

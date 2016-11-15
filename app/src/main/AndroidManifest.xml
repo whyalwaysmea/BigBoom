@@ -94,7 +94,8 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".module.player.MoviePlayerActivity">
+        <activity android:name=".module.player.MoviePlayerActivity"
+                android:screenOrientation="portrait">
         </activity>
     </application>
 
