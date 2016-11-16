@@ -2,9 +2,11 @@ package com.whyalwaysmea.bigboom.module.player;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.SwitchCompat;
 import android.view.Display;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
@@ -18,10 +20,14 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.R;
 
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
+import master.flame.danmaku.danmaku.model.android.DanmakuContext;
+import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
+import master.flame.danmaku.ui.widget.DanmakuView;
 
 
 /**
@@ -58,6 +64,11 @@ public class CustomMediaController extends MediaController {
 
     private boolean isFullScreen;
 
+    private DanmakuContext mDanmakuContext;
+    private BaseDanmakuParser mParser;
+    private DanmakuView mDanmakuView;
+
+
 
     //返回监听
     private View.OnClickListener backListener;
@@ -74,6 +85,8 @@ public class CustomMediaController extends MediaController {
             }
         }
     };
+    private RelativeLayout mControllerLayout;
+    private ImageView mFullScreen;
 
 
     //videoview 用于对视频进行控制的等，activity为了退出
@@ -107,32 +120,58 @@ public class CustomMediaController extends MediaController {
         mOperationTv = (TextView) v.findViewById(R.id.operation_tv);
         mOperationTv.setVisibility(View.GONE);
         mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        mMaxVolume = mAudioManager
-                .getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        mMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+
+        mControllerLayout = (RelativeLayout) v.findViewById(R.id.bottom_layout);
+        SwitchCompat danmuSwitch = (SwitchCompat) v.findViewById(R.id.danmuSwitch);
+        danmuSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked) {
+                mDanmakuView.prepare(mParser, mDanmakuContext);
+                mDanmakuView.show();
+            } else {
+                mDanmakuView.hide();
+            }
+        });
+
+        mFullScreen = (ImageView) v.findViewById(R.id.full_screen);
+        mFullScreen.setOnClickListener(v1 -> {
+            if(activity.getRequestedOrientation()!= ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            }
+        });
 
         //注册事件监听
         img_back.setOnClickListener(backListener);
+
+        v.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (mGestureDetector.onTouchEvent(event)) {
+                    return true;
+                }
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        endGesture();
+                        break;
+                }
+                return false;
+            }
+        });
+
         return v;
+    }
+
+    public void initDanmu(DanmakuView mDanmakuView, DanmakuContext danmakuContext, BaseDanmakuParser mParser) {
+        this.mDanmakuView = mDanmakuView;
+        this.mDanmakuContext = danmakuContext;
+        this.mParser = mParser;
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         return true;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if(!isFullScreen)
-            return super.onTouchEvent(event);
-
-        if (mGestureDetector.onTouchEvent(event)) return true;
-        // 处理手势结束
-        switch (event.getAction() & MotionEvent.ACTION_MASK) {
-            case MotionEvent.ACTION_UP:
-                endGesture();
-                break;
-        }
-        return super.onTouchEvent(event);
     }
 
     /**
@@ -189,6 +228,7 @@ public class CustomMediaController extends MediaController {
             } else if (mOldX < windowWidth * 1.0 / 4.0) {// 左边滑动 屏幕 1/4
                 onBrightnessSlide((mOldY - y) / windowHeight);
             }
+            KLog.e("滑动。。。");
             return super.onScroll(e1, e2, distanceX, distanceY);
         }
 
@@ -227,13 +267,13 @@ public class CustomMediaController extends MediaController {
         else if (index < 0)
             index = 0;
         if (index >= 10) {
-//            mOperationBg.setImageResource(R.drawable.volmn_100);
+            mOperationBg.setImageResource(R.drawable.volmn_100);
         } else if (index >= 5 && index < 10) {
-//            mOperationBg.setImageResource(R.drawable.volmn_60);
+            mOperationBg.setImageResource(R.drawable.volmn_60);
         } else if (index > 0 && index < 5) {
-//            mOperationBg.setImageResource(R.drawable.volmn_30);
+            mOperationBg.setImageResource(R.drawable.volmn_30);
         } else {
-//            mOperationBg.setImageResource(R.drawable.volmn_no);
+            mOperationBg.setImageResource(R.drawable.volmn_no);
         }
         //DecimalFormat    df   = new DecimalFormat("######0.00");
         mOperationTv.setText((int) (((double) index / mMaxVolume) * 100) + "%");
@@ -270,7 +310,7 @@ public class CustomMediaController extends MediaController {
         activity.getWindow().setAttributes(lpa);
 
         mOperationTv.setText((int) (lpa.screenBrightness * 100) + "%");
-        /*if (lpa.screenBrightness * 100 >= 90) {
+        if (lpa.screenBrightness * 100 >= 90) {
             mOperationBg.setImageResource(R.drawable.light_100);
         } else if (lpa.screenBrightness * 100 >= 80 && lpa.screenBrightness * 100 < 90) {
             mOperationBg.setImageResource(R.drawable.light_90);
@@ -288,7 +328,7 @@ public class CustomMediaController extends MediaController {
             mOperationBg.setImageResource(R.drawable.light_30);
         } else if (lpa.screenBrightness * 100 >= 10 && lpa.screenBrightness * 100 < 20) {
             mOperationBg.setImageResource(R.drawable.light_20);
-        }*/
+        }
 
     }
 
@@ -339,4 +379,24 @@ public class CustomMediaController extends MediaController {
     public void setFullScreen(boolean fullScreen) {
         isFullScreen = fullScreen;
     }
+
+    public void showControllerView() {
+        if(mControllerLayout != null) {
+            mControllerLayout.setVisibility(VISIBLE);
+        }
+        if(mFullScreen != null) {
+            mFullScreen.setVisibility(GONE);
+        }
+    }
+
+    public void hideControllerView() {
+        if(mControllerLayout != null) {
+            mControllerLayout.setVisibility(GONE);
+        }
+
+        if(mFullScreen != null) {
+            mFullScreen.setVisibility(VISIBLE);
+        }
+    }
+
 }

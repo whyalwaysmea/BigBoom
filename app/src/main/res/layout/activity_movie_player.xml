@@ -14,14 +14,14 @@
         <io.vov.vitamio.widget.VideoView
             android:id="@+id/buffer"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"/>
     </io.vov.vitamio.widget.CenterLayout>
 
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_below="@id/centerlayout"
+        android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -62,12 +62,9 @@
     </LinearLayout>
 
 
-    <ImageView
-        android:src="@drawable/icon_back"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_height="wrap_content"/>
+    <master.flame.danmaku.ui.widget.DanmakuView
+        android:id="@+id/danmakuView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

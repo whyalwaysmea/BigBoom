@@ -61,5 +61,10 @@ dependencies {
     // leakcanary
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
+    // vitamio
     compile project(':vitamio2')
+
+    //DanmakuFlame
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.5.6'
 }
