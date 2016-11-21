@@ -9,7 +9,7 @@
         android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f1f1eb"
+        android:background="?android:colorBackground"
         android:scrollbars="none"/>
 
 </FrameLayout>

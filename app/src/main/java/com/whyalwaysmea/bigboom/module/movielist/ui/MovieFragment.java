@@ -16,7 +16,6 @@ import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseFragment;
-import com.whyalwaysmea.bigboom.module.player.MoviePlayerActivity;
 import com.whyalwaysmea.bigboom.view.SearchView;
 
 import java.util.ArrayList;
@@ -82,9 +81,7 @@ public class MovieFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.action_search) {
-//            showSearch();
-            Intent intent = new Intent(mContext, MoviePlayerActivity.class);
-            startActivity(intent);
+            showSearch();
             return true;
         }
         return super.onOptionsItemSelected(item);

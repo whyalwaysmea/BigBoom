@@ -68,14 +68,18 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
 
     @Override
     public void onLoadSussess(MovieListResponse movieInfo) {
-        mView.hideLoading();
-        mView.setData(movieInfo);
+        if(mView != null) {
+            mView.hideLoading();
+            mView.setData(movieInfo);
+        }
     }
 
 
     @Override
     public void onLoadFailed(String error) {
-        mView.hideLoading();
-        mView.showToast(error);
+        if(mView != null) {
+            mView.hideLoading();
+            mView.showToast(error);
+        }
     }
 }

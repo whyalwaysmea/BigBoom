@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_white"
+    android:background="?android:colorBackground"
     >
 
     <android.support.design.widget.AppBarLayout
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textColor="@color/material_black70"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="20sp"/>
 
             <ImageView
@@ -66,7 +66,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="3dp"
                 android:layout_toRightOf="@id/author_avatar"
-                android:textColor="@color/material_black70"
+                android:textColor="?android:textColorPrimary"
                 tools:text="名字"/>
 
             <TextView
@@ -88,7 +88,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:lineSpacingMultiplier="1.2"
-                android:textColor="@color/material_black70"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="16sp"/>
 
         </RelativeLayout>
@@ -100,7 +100,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="right|bottom"
-        app:backgroundTint="@color/material_deep_orange_a400"
+        android:textColor="?android:textColorPrimary"
         android:layout_margin="15dp"
         android:src="@drawable/ic_top"
         app:layout_behavior="com.whyalwaysmea.bigboom.view.ScrollAwareFABBehaviorDefault"/>

@@ -5,7 +5,7 @@
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    app:cardBackgroundColor="@color/material_white"
+                                    app:cardBackgroundColor="?android:colorBackground"
                                     app:cardElevation="2dp"
                                     app:cardMaxElevation="2dp"
                                     android:layout_marginTop="@dimen/card_margin"
@@ -24,7 +24,7 @@
             android:textSize="16sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/material_black"/>
+            android:textColor="?attr/primaryTextDarkColor"/>
 
 
         <RelativeLayout
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/avatart"
-                android:textColor="@color/material_black"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="14sp"/>
 
             <TextView
@@ -65,7 +65,7 @@
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/material_black70"/>
+            android:textColor="?android:textColorPrimary"/>
 
 
         <TextView

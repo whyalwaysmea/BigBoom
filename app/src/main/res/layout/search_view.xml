@@ -15,7 +15,7 @@
         android:layout_marginTop="4dp"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/material_white"
+        app:cardBackgroundColor="?android:colorBackground"
         app:cardElevation="2dp"
         app:cardMaxElevation="2dp">
 

@@ -21,6 +21,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="?android:colorBackground"
         app:headerLayout="@layout/main_header"
         app:menu="@menu/main_navigation"/>
 

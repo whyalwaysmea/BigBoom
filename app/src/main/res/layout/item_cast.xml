@@ -17,7 +17,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:maxLength="6"
-        android:textColor="@color/material_black60"
+        android:textColor="?android:textColorPrimary"
         android:id="@+id/cast_item_name"
         android:gravity="center"
         android:layout_width="wrap_content"

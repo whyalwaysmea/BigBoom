@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.widget.FrameLayout;
 
 import com.whyalwaysmea.bigboom.base.BaseActivity;
 import com.whyalwaysmea.bigboom.module.movielist.ui.MovieFragment;
+import com.whyalwaysmea.bigboom.utils.SPUtils;
 import com.whyalwaysmea.bigboom.utils.StatusBarUtil;
 
 import butterknife.BindView;
@@ -28,6 +30,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     private MovieFragment mFragment;
+    private SPUtils mSpUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void initView() {
+        mSpUtils = new SPUtils(this, Constants.SP.SHARED_PREFERENCES_NAME);
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            StatusBarUtil.setColorForDrawerLayout(this, mDrawerLayout, getResources().getColor(R.color.colorPrimary), 0);
+            if(mSpUtils.getBoolean(Constants.SP.THEME)) {
+                StatusBarUtil.setColorForDrawerLayout(this, mDrawerLayout, getResources().getColor(R.color.primary_night), 0);
+            } else {
+                StatusBarUtil.setColorForDrawerLayout(this, mDrawerLayout, getResources().getColor(R.color.colorPrimary), 0);
+            }
         }
 
         mFragment = MovieFragment.newInstance();
@@ -95,7 +104,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            mSpUtils.putBoolean(Constants.SP.THEME, true);
         } else if (id == R.id.nav_send) {
 
         }

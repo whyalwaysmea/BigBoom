@@ -18,4 +18,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <ImageView
+        android:id="@+id/movie_item_play"
+        android:visibility="gone"
+        android:src="@drawable/ic_trailer_play"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

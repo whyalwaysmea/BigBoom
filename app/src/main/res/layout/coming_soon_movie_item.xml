@@ -6,7 +6,7 @@
     android:layout_margin="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/material_white"
+    app:cardBackgroundColor="?android:colorBackground"
     app:cardElevation="2dp"
     app:cardMaxElevation="2dp"
     app:cardCornerRadius="5dp"
@@ -43,7 +43,7 @@
                 android:id="@+id/coming_soon_movie_name"
                 android:textSize="16sp"
                 tools:text="十六大开发建设力度看风景"
-                android:textColor="@color/material_black"
+                android:textColor="?android:textColorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

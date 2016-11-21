@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="24°"
-            android:textColor="@android:color/white"
+            android:textColor="?android:colorBackground"
             android:textSize="45sp"/>
 
         <RelativeLayout

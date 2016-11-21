@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="?android:colorBackground"
     android:orientation="vertical">
 
     <include
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/material_black60"
+                android:textColor="?attr/primaryTextDarkColor"
                 android:textSize="18sp"
                 tools:text="利空动静分离快速打击"/>
 
@@ -186,7 +186,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:lineSpacingExtra="3dp"
-                android:textColor="@color/material_black55"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="14sp"/>
 
         </LinearLayout>

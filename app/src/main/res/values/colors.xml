@@ -17,7 +17,7 @@
     <!--配色-->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#3F51B5</color>
-    <color name="colorAccent">@color/material_teal_500</color>
+    <color name="colorAccent">#009688</color>
     <color name="accent">#ff8f00</color><!--#FF5722-->
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
@@ -28,6 +28,7 @@
     <color name="fab_color">#99ff8f00</color>
     <color name="line">#8d9093</color>
     <color name="toolbar_bg_drak">#1d1c1b</color>
+    <color name="primaryTextColor">#99000000</color>
 
     <color name="material_amber_100">#ffecb3</color>
     <color name="material_amber_200">#ffe082</color>

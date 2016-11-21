@@ -40,6 +40,11 @@ public class Constants {
     public static class CONFIG {
         public static final int ORIENTATION_LANDSCAPE = 2;
         public static final int ORIENTATION_PORTRAIT = 1;
+    }
+
+    public static class SP {
+        public static final String SHARED_PREFERENCES_NAME = "BIG_BOOM";
+        public static final String THEME = "theme";
 
     }
 }

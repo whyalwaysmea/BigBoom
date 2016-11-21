@@ -15,8 +15,11 @@
         android:id="@+id/all_photo"
         android:visibility="visible"
         android:text="@string/all_cast_photos"
+        android:textColor="?android:textColorPrimary"
+        android:background="?android:colorBackground"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

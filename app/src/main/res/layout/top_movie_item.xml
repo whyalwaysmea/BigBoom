@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        app:cardBackgroundColor="@color/material_white"
+        app:cardBackgroundColor="?android:colorBackground"
         app:cardCornerRadius="5dp">
 
         <LinearLayout
@@ -75,7 +75,7 @@
                     android:id="@+id/top_movie_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/material_black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp"
                     tools:text="这个杀手不太冷"/>
 
@@ -125,10 +125,7 @@
                         android:gravity="center"
                         android:textSize="12sp"
                         tools:text="5.8"/>
-
                 </LinearLayout>
-
-
             </LinearLayout>
 
 

@@ -1,6 +1,7 @@
 package com.whyalwaysmea.bigboom.module.player;
 
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseActivity;
@@ -334,6 +336,11 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
         mLoadRate.setText(percent + "%");
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        KLog.e("hahaha");
+    }
 
     @Override
     protected void onDestroy() {
