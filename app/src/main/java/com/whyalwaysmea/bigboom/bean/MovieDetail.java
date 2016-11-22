@@ -155,7 +155,7 @@ public class MovieDetail implements Serializable{
      * id : 164614
      */
 
-    private List<TrailersBean> trailers;
+    private List<ClipsBean> trailers;
     private List<String> trailer_urls;
     private List<ClipsBean> bloopers;
     private List<String> clip_urls;
@@ -524,11 +524,11 @@ public class MovieDetail implements Serializable{
         this.genres = genres;
     }
 
-    public List<TrailersBean> getTrailers() {
+    public List<ClipsBean> getTrailers() {
         return trailers;
     }
 
-    public void setTrailers(List<TrailersBean> trailers) {
+    public void setTrailers(List<ClipsBean> trailers) {
         this.trailers = trailers;
     }
 
@@ -1078,71 +1078,6 @@ public class MovieDetail implements Serializable{
         }
     }
 
-    public static class TrailersBean implements Serializable{
-        private String medium;
-        private String title;
-        private String subject_id;
-        private String alt;
-        private String small;
-        private String resource_url;
-        private String id;
-
-        public String getMedium() {
-            return medium;
-        }
-
-        public void setMedium(String medium) {
-            this.medium = medium;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getSubject_id() {
-            return subject_id;
-        }
-
-        public void setSubject_id(String subject_id) {
-            this.subject_id = subject_id;
-        }
-
-        public String getAlt() {
-            return alt;
-        }
-
-        public void setAlt(String alt) {
-            this.alt = alt;
-        }
-
-        public String getSmall() {
-            return small;
-        }
-
-        public void setSmall(String small) {
-            this.small = small;
-        }
-
-        public String getResource_url() {
-            return resource_url;
-        }
-
-        public void setResource_url(String resource_url) {
-            this.resource_url = resource_url;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-    }
 
     public static class CastsBean implements Serializable{
         /**

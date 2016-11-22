@@ -16,6 +16,10 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
@@ -52,6 +56,7 @@ import master.flame.danmaku.danmaku.model.android.SpannedCacheStuffer;
 import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 import master.flame.danmaku.danmaku.parser.IDataSource;
 import master.flame.danmaku.ui.widget.DanmakuView;
+import rx.Observable;
 
 public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnInfoListener, MediaPlayer.OnBufferingUpdateListener {
 
@@ -97,6 +102,11 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
             }
         }
     };
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient mClient;
 
 
     @Override
@@ -116,6 +126,9 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
         initView();
         initData();
         initDanma();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -133,21 +146,16 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
     protected void initData() {
         MovieDetail movieDetail = (MovieDetail) getIntent().getSerializableExtra(Constants.KEY.MOVIE_URLS);
         List<MovieVideo> movieVideoList = new ArrayList<>();
-        for (int i = 0; i < movieDetail.getClips().size(); i++) {
-            MovieDetail.ClipsBean clipsBean = movieDetail.getClips().get(i);
-            movieVideoList.add(new MovieVideo(clipsBean.getResource_url(), clipsBean.getMedium(), clipsBean.getTitle()));
-        }
 
-        for (int i = 0; i < movieDetail.getTrailers().size(); i++) {
-            MovieDetail.TrailersBean clipsBean = movieDetail.getTrailers().get(i);
-            movieVideoList.add(new MovieVideo(clipsBean.getResource_url(), clipsBean.getMedium(), clipsBean.getTitle()));
-        }
-
-        for (int i = 0; i < movieDetail.getBloopers().size(); i++) {
-            MovieDetail.ClipsBean clipsBean = movieDetail.getBloopers().get(i);
-            movieVideoList.add(new MovieVideo(clipsBean.getResource_url(), clipsBean.getMedium(), clipsBean.getTitle()));
-        }
-
+        List<MovieDetail.ClipsBean> clipsBeanList = new ArrayList<>();
+        clipsBeanList.addAll(movieDetail.getBloopers());
+        clipsBeanList.addAll(movieDetail.getTrailers());
+        clipsBeanList.addAll(movieDetail.getClips());
+        Observable.from(clipsBeanList)
+                .subscribe(clipsBean -> {
+                    movieVideoList.add(new MovieVideo(clipsBean.getResource_url(), clipsBean.getMedium(), clipsBean.getTitle()));
+                });
+        
 
         mMovieVideoAdapter = new MovieVideoAdapter(this, movieVideoList);
         mVideoRecyclerview.setAdapter(mMovieVideoAdapter);
@@ -280,6 +288,7 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
 
     /**
      * 创建解析器对象，解析输入流
+     *
      * @param stream
      * @return
      */
@@ -350,5 +359,41 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
             mDanmakuView.release();
             mDanmakuView = null;
         }
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("MoviePlayer Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient.connect();
+        AppIndex.AppIndexApi.start(mClient, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(mClient, getIndexApiAction());
+        mClient.disconnect();
     }
 }

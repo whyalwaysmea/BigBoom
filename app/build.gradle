@@ -67,4 +67,5 @@ dependencies {
 
     //DanmakuFlame
     compile 'com.github.ctiao:DanmakuFlameMaster:0.5.6'
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }
