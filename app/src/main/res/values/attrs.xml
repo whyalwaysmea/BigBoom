@@ -2,5 +2,5 @@
 <resources>
     <attr name="primaryTextDarkColor" format="reference|color"/>
     <attr name="primaryTextColor" format="reference|color"/>
-
+    <attr name="shadow" format="reference|color" />
 </resources>

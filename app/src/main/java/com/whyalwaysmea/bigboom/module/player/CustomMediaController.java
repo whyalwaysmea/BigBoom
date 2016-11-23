@@ -20,7 +20,6 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.R;
 
 import io.vov.vitamio.widget.MediaController;
@@ -228,7 +227,6 @@ public class CustomMediaController extends MediaController {
             } else if (mOldX < windowWidth * 1.0 / 4.0) {// 左边滑动 屏幕 1/4
                 onBrightnessSlide((mOldY - y) / windowHeight);
             }
-            KLog.e("滑动。。。");
             return super.onScroll(e1, e2, distanceX, distanceY);
         }
 

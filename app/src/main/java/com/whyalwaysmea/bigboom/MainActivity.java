@@ -1,19 +1,24 @@
 package com.whyalwaysmea.bigboom;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.whyalwaysmea.bigboom.base.BaseActivity;
+import com.whyalwaysmea.bigboom.module.menu.GithubActivity;
 import com.whyalwaysmea.bigboom.module.movielist.ui.MovieFragment;
 import com.whyalwaysmea.bigboom.utils.SPUtils;
 import com.whyalwaysmea.bigboom.utils.StatusBarUtil;
@@ -51,6 +56,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             if(mSpUtils.getBoolean(Constants.SP.THEME)) {
+                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 StatusBarUtil.setColorForDrawerLayout(this, mDrawerLayout, getResources().getColor(R.color.primary_night), 0);
             } else {
                 StatusBarUtil.setColorForDrawerLayout(this, mDrawerLayout, getResources().getColor(R.color.colorPrimary), 0);
@@ -59,6 +65,27 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         mFragment = MovieFragment.newInstance();
         addFragmentToStack(R.id.fl_content, mFragment);
+
+        MenuItem menuItem = mNavigationView.getMenu().findItem(R.id.nav_theme);
+        SwitchCompat mThemeSwitch = (SwitchCompat) MenuItemCompat.getActionView(menuItem).findViewById(R.id.view_switch);
+        if(mSpUtils.getBoolean(Constants.SP.THEME)) {
+            mThemeSwitch.setChecked(true);
+        }
+        mThemeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            mSpUtils.putBoolean(Constants.SP.THEME, isChecked);
+            mThemeSwitch.setChecked(isChecked);
+            if (isChecked) {
+                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        });
+
+        LinearLayout headerLayout = (LinearLayout) mNavigationView.getHeaderView(0).findViewById(R.id.header_layout);
+        headerLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, GithubActivity.class);
+            startActivity(intent);
+        });
     }
 
     public void setToolbar(Toolbar toolbar) {
@@ -98,15 +125,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+
         } else if (id == R.id.nav_bookshelf) {
+
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            mSpUtils.putBoolean(Constants.SP.THEME, true);
-        } else if (id == R.id.nav_send) {
 
         }
 

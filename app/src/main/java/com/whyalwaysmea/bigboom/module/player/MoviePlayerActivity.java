@@ -155,7 +155,6 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
                 .subscribe(clipsBean -> {
                     movieVideoList.add(new MovieVideo(clipsBean.getResource_url(), clipsBean.getMedium(), clipsBean.getTitle()));
                 });
-        
 
         mMovieVideoAdapter = new MovieVideoAdapter(this, movieVideoList);
         mVideoRecyclerview.setAdapter(mMovieVideoAdapter);

@@ -59,4 +59,11 @@
     <string name="birthday">出生日期:</string>
     <string name="birthplace">出生地:</string>
     <string name="more_name">更多中文名:</string>
+
+    <string name="browsing_history">浏览记录</string>
+    <string name="home">首页</string>
+    <string name="bug">ヾ(Ő∀Ő๑)ﾉ</string>
+    <string name="theme">夜间模式</string>
+    <string name="about">关于</string>
+    <string name="download_manager">下载管理</string>
 </resources>

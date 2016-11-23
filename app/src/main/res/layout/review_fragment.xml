@@ -10,6 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:colorBackground"
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:overScrollMode="never"
         android:scrollbars="none"/>
 
 </FrameLayout>

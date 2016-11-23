@@ -12,6 +12,7 @@
         <item name="android:divider">@color/divider</item>
         <item name="primaryTextDarkColor">@color/material_black</item>
         <item name="primaryTextColor">@color/primaryTextColor</item>
+        <item name="shadow">@drawable/shadow_bg</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

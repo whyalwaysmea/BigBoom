@@ -7,5 +7,7 @@
         <item name="colorAccent">@color/colorAccentNight</item>
         <item name="primaryTextDarkColor">@color/primaryTextDarkColorNight</item>
         <item name="primaryTextColor">@color/primaryTextColorNight</item>
+        <item name="shadow">@drawable/shadow_bg_dark</item>
+
     </style>
 </resources>

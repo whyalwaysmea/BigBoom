@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:title="Home"/>
+            android:title="@string/home"/>
         <item
             android:id="@+id/nav_bookshelf"
-            android:title="Bookshelf"/>
+            android:title="@string/browsing_history"/>
         <item
             android:id="@+id/nav_slideshow"
-            android:title="Slideshow"/>
+            android:title="@string/about"/>
         <item
             android:id="@+id/nav_manage"
-            android:title="Tools"/>
+            android:title="@string/bug"/>
+
+        <item
+            android:id="@+id/download_manager"
+            android:title="@string/download_manager" />
+
+        <item
+            android:id="@+id/nav_theme"
+            android:title="Theme"
+            app:actionLayout="@layout/theme_switch" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:title="Share"/>
-            <item
-                android:id="@+id/nav_send"
-                android:title="Send"/>
-        </menu>
-    </item>
 </menu>

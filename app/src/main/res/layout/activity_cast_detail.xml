@@ -55,6 +55,7 @@
                     android:layout_height="wrap_content"/>
 
                 <ImageView
+                    android:id="@+id/collect_cast"
                     android:src="@drawable/icon_collect_yes"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"

@@ -42,7 +42,6 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
         if(!NetworkUtils.isConnected(App.getApplication())) {
             mView.hideLoading();
             mView.showToast(App.getApplication().getResources().getString(R.string.no_network));
-
         }
         mView.showLoading();
         mMovieListModel.loadInTheaters(city, this);

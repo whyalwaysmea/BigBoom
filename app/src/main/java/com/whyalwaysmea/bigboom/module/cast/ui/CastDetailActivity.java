@@ -9,15 +9,20 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
+import com.whyalwasymea.bigboom.dao.DBCastDao;
+import com.whyalwasymea.bigboom.dao.DaoSession;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.CastDetail;
 import com.whyalwaysmea.bigboom.bean.CastWork;
+import com.whyalwaysmea.bigboom.bean.db.DBCast;
+import com.whyalwaysmea.bigboom.db.DBManager;
 import com.whyalwaysmea.bigboom.module.cast.presenter.CastPresenterImp;
 import com.whyalwaysmea.bigboom.module.cast.ui.adapter.CastAdapter;
 import com.whyalwaysmea.bigboom.module.cast.ui.adapter.CastWorksAdapter;
@@ -26,9 +31,11 @@ import com.whyalwaysmea.bigboom.utils.DensityUtils;
 import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.whyalwaysmea.bigboom.R.id.profile_layout;
 
@@ -52,6 +59,8 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
     TextView mAllWorks;
     @BindView(R.id.year)
     TextView mYear;
+    @BindView(R.id.collect_cast)
+    ImageView mCollectCast;
 
     private String mCastId;
     private CastDetail mCastDetail;
@@ -150,7 +159,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
         });
 
         mProfileLayout.setOnClickListener(v -> {
-            if(mCastDetail != null) {
+            if (mCastDetail != null) {
                 Intent intent = new Intent(mContext, CastInfoActivity.class);
                 intent.putExtra(Constants.KEY.CAST, mCastDetail);
                 startActivity(intent);
@@ -158,12 +167,28 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
         });
 
         mAllWorks.setOnClickListener(v -> {
-            if(mCastId != null) {
+            if (mCastId != null) {
                 Intent intent = new Intent(mContext, AllWorksActivity.class);
                 intent.putExtra(Constants.KEY.CASTID, mCastId);
                 startActivity(intent);
             }
         });
+
+
+    }
+
+    @OnClick(R.id.collect_cast)
+    public void collectCast() {
+        DaoSession daoSession = DBManager.getInstance().getDaoSession();
+        DBCastDao dbCastDao = daoSession.getDBCastDao();
+        List<DBCast> list = dbCastDao.queryBuilder().where(DBCastDao.Properties.CastId.eq(mCastDetail.getId())).build().list();
+        if(list.isEmpty()) {
+            DBCast dbCast = new DBCast();
+            dbCast.setCastId(mCastDetail.getId());
+            dbCast.setImgUrl(mCastDetail.getPhotos().get(0).getImage());
+            dbCastDao.insert(dbCast);
+        }
+
     }
 
     @Override
@@ -185,6 +210,8 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
             mCastAdapter.addData(castDetail.getPhotos());
             mCastAdapter.setCastId(mCastId);
             mCastAdapter.setCastName(castDetail.getName());
+
+            collectCast();
         } else if (o instanceof CastWork) {
             CastWork castWork = (CastWork) o;
             mCastWorksAdapter.addData(castWork.getWorks());

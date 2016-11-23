@@ -28,12 +28,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.whyalwasymea.bigboom.dao.DBMovieDao;
+import com.whyalwasymea.bigboom.dao.DaoSession;
 import com.whyalwaysmea.bigboom.MainActivity;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseFragment;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
+import com.whyalwaysmea.bigboom.bean.db.DBMovie;
+import com.whyalwaysmea.bigboom.db.DBManager;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.presenter.MovieDetailPresenterImp;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.adapter.CommentPageAdapter;
@@ -104,6 +108,8 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     private MovicDetailCastAdapter mMovicDetailCastAdapter;
     private MoviePhotoAdapter mMoviePhotoAdapter;
     private MovieDetail mMovieDetail;
+    private DaoSession mDaoSession;
+    private DBMovieDao mDbMovieDao;
 
     @Override
     protected MovieDetailPresenterImp createPresenter(BaseView view) {
@@ -189,6 +195,17 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     @Override
     public void setDetailData(MovieDetail detailData) {
         mMovieDetail = detailData;
+
+        mDaoSession = DBManager.getInstance().getDaoSession();
+        mDbMovieDao = mDaoSession.getDBMovieDao();
+        List<DBMovie> list = mDbMovieDao.queryBuilder().where(DBMovieDao.Properties.MovieId.eq(mMovieDetail.getId())).build().list();
+        if(list.isEmpty()) {
+            DBMovie movie = new DBMovie();
+            movie.setMovieId(mMovieDetail.getId());
+            movie.setImgUrl(mMovieDetail.getImages().getLarge());
+            mDbMovieDao.insert(movie);
+        }
+
 
         ImageUtils.getInstance().display(mMovieDetailBg, detailData.getImages().getLarge());
         mToolbar.setTitle(detailData.getTitle());
@@ -338,5 +355,12 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDaoSession = null;
+        mDbMovieDao = null;
     }
 }
