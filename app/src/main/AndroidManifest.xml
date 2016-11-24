@@ -106,7 +106,11 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
 
-        <activity android:name=".module.menu.GithubActivity">
+        <activity android:name=".module.menu.ui.GithubActivity">
+        </activity>
+        <activity android:name=".module.menu.ui.HistoryActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.FullActionBar">
         </activity>
     </application>
 

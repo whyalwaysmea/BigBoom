@@ -1,4 +1,4 @@
-package com.whyalwaysmea.bigboom.module.menu;
+package com.whyalwaysmea.bigboom.module.menu.ui;
 
 import android.os.Bundle;
 import android.webkit.WebView;

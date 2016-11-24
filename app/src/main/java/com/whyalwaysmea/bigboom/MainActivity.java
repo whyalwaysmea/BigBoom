@@ -18,7 +18,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.whyalwaysmea.bigboom.base.BaseActivity;
-import com.whyalwaysmea.bigboom.module.menu.GithubActivity;
+import com.whyalwaysmea.bigboom.module.menu.ui.GithubActivity;
+import com.whyalwaysmea.bigboom.module.menu.ui.HistoryActivity;
 import com.whyalwaysmea.bigboom.module.movielist.ui.MovieFragment;
 import com.whyalwaysmea.bigboom.utils.SPUtils;
 import com.whyalwaysmea.bigboom.utils.StatusBarUtil;
@@ -126,12 +127,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         if (id == R.id.nav_home) {
 
-        } else if (id == R.id.nav_bookshelf) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.browsing_history) {
+            Intent intent = new Intent(mContext, HistoryActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

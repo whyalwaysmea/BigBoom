@@ -7,13 +7,13 @@
             android:id="@+id/nav_home"
             android:title="@string/home"/>
         <item
-            android:id="@+id/nav_bookshelf"
+            android:id="@+id/browsing_history"
             android:title="@string/browsing_history"/>
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/about"
             android:title="@string/about"/>
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/bug"
             android:title="@string/bug"/>
 
         <item
