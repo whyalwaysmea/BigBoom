@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
@@ -68,7 +69,9 @@ public class HistoryAdapter extends BaseAdapter<HistoryBean> {
         if (getCastSize() > 0) {
             itemCount++;
         }
-
+        KLog.e("itemCount == " + itemCount);
+        KLog.e("getMovieSize == " + getMovieSize());
+        KLog.e("getCastSize == " + getCastSize());
         return itemCount;
     }
 
@@ -87,9 +90,16 @@ public class HistoryAdapter extends BaseAdapter<HistoryBean> {
             mItemPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
             if(getMovieSize() > 0 && position <= getMovieSize()) {
                 ImageUtils.getInstance().display(mItemPhoto, mData.get(position - 1).getImgUrl()) ;
-            } else if(getCastSize() > 0 && position > getMovieSize() + 1 ) {
-                ImageUtils.getInstance().display(mItemPhoto, mData.get(position - 2).getImgUrl()) ;
+            } else if(getCastSize() > 0 && position > (getMovieSize() > 0 ? getMovieSize() + 1 : 0)) {
+                ImageUtils.getInstance().display(mItemPhoto, mData.get(getMovieSize() > 0 ? position - 2 : position - 1).getImgUrl());
             }
+            mItemPhoto.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    mOnLongClickListener.setOnLongItemClickListener(v, position);
+                    return true;
+                }
+            });
         }
     }
 

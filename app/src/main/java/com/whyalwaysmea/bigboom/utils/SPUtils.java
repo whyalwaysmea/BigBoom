@@ -14,6 +14,7 @@ public class SPUtils {
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
 
+
     /**
      * SPUtils构造函数
      * <p>在Application中初始化</p>

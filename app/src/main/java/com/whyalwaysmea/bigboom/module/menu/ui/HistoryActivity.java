@@ -2,10 +2,11 @@ package com.whyalwaysmea.bigboom.module.menu.ui;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.Toolbar;
 
-import com.socks.library.KLog;
+import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
@@ -24,7 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterImp> implements IHistoryView {
+public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterImp> implements IHistoryView, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -53,6 +54,7 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationOnClickListener(v -> finish());
 
+        mSwiperefreshlayout.setOnRefreshListener(this);
 
     }
 
@@ -65,8 +67,34 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
         mRecyclerview.setAdapter(mHistoryAdapter);
         mRecyclerview.addItemDecoration(new GridMarginDecoration(mContext.getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration)));
 
-        mPresenter.getHistoryMovies(0);
-        mPresenter.getHistoryCasts(0);
+        mPresenter.getHistoryMovies();
+        mPresenter.getHistoryCasts();
+
+        mHistoryAdapter.setOnLongClickListener((view, position) -> {
+            new AlertDialog.Builder(mContext)
+                    .setMessage(R.string.del_browsing_history)
+                    .setNegativeButton(R.string.cancle, (dialog, which) -> {
+                        dialog.dismiss();
+                    })
+                    .setPositiveButton(R.string.confirm, (dialog, which) -> {
+                        del(position);
+                    })
+                    .create()
+                    .show();
+
+        });
+    }
+
+    private void del(int position) {
+        HistoryBean historyBean = null;
+        if(mHistoryAdapter.getMovieSize() > 0 && position <= mHistoryAdapter.getMovieSize()) {
+            historyBean = mHistoryBeanList.get(position - 1);
+        }else if(mHistoryAdapter.getCastSize() > 0 && position > (mHistoryAdapter.getMovieSize() > 0 ? mHistoryAdapter.getMovieSize() + 1 : 0)) {
+            historyBean = mHistoryBeanList.get(mHistoryAdapter.getMovieSize() > 0 ? position - 2 : position - 1);
+        }
+        if(historyBean != null) {
+            mPresenter.delHistory(historyBean);
+        }
     }
 
     @Override
@@ -90,9 +118,8 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
     public void showMovies(List<DBMovie> movies) {
         for (int i = 0; i < movies.size(); i++) {
             DBMovie dbMovie = movies.get(i);
-            mHistoryBeanList.add(new HistoryBean(dbMovie.getId(), dbMovie.getMovieId(), 1, dbMovie.getImgUrl()));
+            mHistoryBeanList.add(new HistoryBean(dbMovie.getId(), dbMovie.getMovieId(), Constants.TYPE.MOVIE, dbMovie.getImgUrl()));
         }
-        KLog.e("movies === " + movies.size());
         mHistoryAdapter.setMovieSize(movies.size());
         mHistoryAdapter.notifyDataSetChanged();
     }
@@ -101,10 +128,28 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
     public void showCasts(List<DBCast> casts) {
         for (int i = 0; i < casts.size(); i++) {
             DBCast cast = casts.get(i);
-            mHistoryBeanList.add(new HistoryBean(cast.getId(), cast.getCastId(), 2, cast.getImgUrl()));
+            mHistoryBeanList.add(new HistoryBean(cast.getId(), cast.getCastId(), Constants.TYPE.CAST, cast.getImgUrl()));
         }
-        KLog.e("casts === " + casts.size());
+
         mHistoryAdapter.setCastSize(casts.size());
         mHistoryAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void delHistorySuccess() {
+        mHistoryBeanList.clear();
+        mHistoryAdapter.setCastSize(0);
+        mHistoryAdapter.setMovieSize(0);
+        mHistoryAdapter.notifyDataSetChanged();
+        mPresenter.getHistoryMovies();
+        mPresenter.getHistoryCasts();
+    }
+
+    @Override
+    public void onRefresh() {
+        mHistoryBeanList.clear();
+        mHistoryAdapter.notifyDataSetChanged();
+        mPresenter.getHistoryMovies();
+        mPresenter.getHistoryCasts();
     }
 }

@@ -45,6 +45,10 @@ public class Constants {
     public static class SP {
         public static final String SHARED_PREFERENCES_NAME = "BIG_BOOM";
         public static final String THEME = "theme";
+    }
 
+    public static class TYPE {
+        public static final int MOVIE = 1;
+        public static final int CAST = 2;
     }
 }

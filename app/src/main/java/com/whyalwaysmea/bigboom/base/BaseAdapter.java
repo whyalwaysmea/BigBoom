@@ -71,14 +71,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
                 }
             });
         }
+
         holder.bindData(position);
     }
 
     @Override
     public int getItemCount() {
-        if(mData.isEmpty()) {
-            return 1;
-        }
         return mData.size();
     }
 
@@ -141,7 +139,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         void setOnItemClickListener(View view, int position);
     }
 
-    private OnClickListener mOnClickListener;
+    public interface OnLongClickListener {
+        void setOnLongItemClickListener(View view, int position);
+    }
+
+    protected OnLongClickListener mOnLongClickListener;
+
+    protected OnClickListener mOnClickListener;
 
     public OnClickListener getOnClickListener() {
         return mOnClickListener;
@@ -149,5 +153,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     public void setOnClickListener(OnClickListener onClickListener) {
         mOnClickListener = onClickListener;
+    }
+
+    public OnLongClickListener getOnLongClickListener() {
+        return mOnLongClickListener;
+    }
+
+    public void setOnLongClickListener(OnLongClickListener onLongClickListener) {
+        mOnLongClickListener = onLongClickListener;
     }
 }

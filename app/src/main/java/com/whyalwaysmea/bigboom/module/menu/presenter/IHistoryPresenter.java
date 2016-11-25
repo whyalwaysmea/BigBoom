@@ -1,5 +1,7 @@
 package com.whyalwaysmea.bigboom.module.menu.presenter;
 
+import com.whyalwaysmea.bigboom.bean.db.HistoryBean;
+
 /**
  * Created by Long
  * on 2016/11/24.
@@ -7,7 +9,9 @@ package com.whyalwaysmea.bigboom.module.menu.presenter;
 
 public interface IHistoryPresenter  {
 
-    void getHistoryMovies(int start);
+    void getHistoryMovies();
 
-    void getHistoryCasts(int start);
+    void getHistoryCasts();
+
+    void delHistory(HistoryBean historyBean);
 }

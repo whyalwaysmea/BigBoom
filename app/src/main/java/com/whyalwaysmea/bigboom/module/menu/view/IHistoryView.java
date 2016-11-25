@@ -16,4 +16,6 @@ public interface IHistoryView extends BaseView {
     void showMovies(List<DBMovie>movies);
 
     void showCasts(List<DBCast> casts);
+
+    void delHistorySuccess();
 }

@@ -87,6 +87,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             Intent intent = new Intent(mContext, GithubActivity.class);
             startActivity(intent);
         });
+
     }
 
     public void setToolbar(Toolbar toolbar) {

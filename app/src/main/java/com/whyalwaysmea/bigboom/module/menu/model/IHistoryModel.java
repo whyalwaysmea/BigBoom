@@ -4,6 +4,7 @@ import com.whyalwaysmea.bigboom.base.BaseModel;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.db.DBCast;
 import com.whyalwaysmea.bigboom.bean.db.DBMovie;
+import com.whyalwaysmea.bigboom.bean.db.HistoryBean;
 
 import java.util.List;
 
@@ -14,7 +15,9 @@ import java.util.List;
 
 public interface IHistoryModel extends BaseModel {
 
-    void getMovieHistory(int start, OnLoadCompleteListener<List<DBMovie>> completeListener);
+    void getMovieHistory(OnLoadCompleteListener<List<DBMovie>> completeListener);
 
-    void getCastHistory(int start, OnLoadCompleteListener<List<DBCast>> completeListener);
+    void getCastHistory(OnLoadCompleteListener<List<DBCast>> completeListener);
+
+    void delHistory(HistoryBean historyBean, OnLoadCompleteListener<Boolean> listener);
 }

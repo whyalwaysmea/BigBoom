@@ -61,6 +61,10 @@
     <string name="more_name">更多中文名:</string>
     <string name="movie">电影</string>
 
+    <string name="del_browsing_history">是否删除浏览记录?</string>
+    <string name="confirm">确实</string>
+    <string name="cancle">取消</string>
+
     <string name="browsing_history">浏览记录</string>
     <string name="home">首页</string>
     <string name="bug">ヾ(Ő∀Ő๑)ﾉ</string>
