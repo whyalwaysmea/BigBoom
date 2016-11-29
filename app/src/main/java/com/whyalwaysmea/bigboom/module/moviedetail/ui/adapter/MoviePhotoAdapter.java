@@ -117,7 +117,7 @@ public class MoviePhotoAdapter extends BaseAdapter<MovieDetail.PhotosBean> {
                 } else {
                     mMovieItemPlay.setVisibility(View.GONE);
                     mAllMoviePhoto.setVisibility(View.GONE);
-                    ImageUtils.getInstance().display(mMovieItemPhoto, mData.get(position).getImage());
+                    ImageUtils.getInstance().display(mMovieItemPhoto, mData.get(position - 1).getImage());
                 }
 
                 itemView.setOnClickListener(v -> {

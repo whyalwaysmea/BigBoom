@@ -28,6 +28,7 @@ public class Constants {
         public static final String VIEW_INFO = "view_info";
         public static final String SEARCH_KEY = "search_key";
         public static final String MOVIE_URLS = "movie_urls";
+        public static final String CURRENT_TIME = "current_time";
     }
 
     public static class VIEW {

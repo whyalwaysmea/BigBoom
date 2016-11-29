@@ -1,7 +1,6 @@
 package com.whyalwaysmea.bigboom.module.player;
 
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,11 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.socks.library.KLog;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseActivity;
@@ -102,12 +96,8 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
             }
         }
     };
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient mClient;
-
+    private int mOldPosition;
+    private long mOldPlayTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,13 +112,17 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
         Vitamio.isInitialized(this);
 
         setContentView(R.layout.activity_movie_player);
+        if(savedInstanceState != null) {
+            mOldPosition = savedInstanceState.getInt(Constants.KEY.POSITION);
+            mOldPlayTime = savedInstanceState.getLong(Constants.KEY.CURRENT_TIME);
+        }
+
+
+
         ButterKnife.bind(this);
         initView();
         initData();
         initDanma();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -163,14 +157,15 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
             return;
         }
 
-        uri = Uri.parse(movieVideoList.get(4).getUrl());
-        mMovieVideoAdapter.setPlayingPosition(4);
+        uri = Uri.parse(movieVideoList.get(mOldPosition).getUrl());
+        mMovieVideoAdapter.setPlayingPosition(mOldPosition);
         mMovieVideoAdapter.notifyDataSetChanged();
 
         mVideoView.setVideoURI(uri);//设置视频播放地址
         mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_HIGH);//高画质
 
         mVideoView.setMediaController(mCustomMediaController);
+        mVideoView.seekTo(mOldPlayTime);
         mMediaController.show(5000);
         mVideoView.requestFocus();
         mVideoView.setOnInfoListener(this);
@@ -280,7 +275,6 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
             });
         }
         mDanmakuView.showFPS(false);
-//        mDanmakuView.prepare(mParser, mDanmakuContext);
         mCustomMediaController.initDanmu(mDanmakuView, mDanmakuContext, mParser);
         mDanmakuView.enableDanmakuDrawingCache(true);
     }
@@ -340,15 +334,17 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(Constants.KEY.POSITION, mMovieVideoAdapter.getPlayingPosition());
+        outState.putLong(Constants.KEY.CURRENT_TIME, mVideoView.getCurrentPosition());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
         mLoadRate.setText(percent + "%");
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        KLog.e("hahaha");
-    }
 
     @Override
     protected void onDestroy() {
@@ -360,39 +356,4 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
         }
     }
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("MoviePlayer Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        mClient.connect();
-        AppIndex.AppIndexApi.start(mClient, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(mClient, getIndexApiAction());
-        mClient.disconnect();
-    }
 }
