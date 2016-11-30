@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:name=".App"
@@ -98,10 +97,14 @@
             android:name=".module.player.MoviePlayerActivity"
             android:screenOrientation="portrait">
         </activity>
-
         <activity android:name=".module.menu.ui.GithubActivity">
         </activity>
-        <activity android:name=".module.menu.ui.HistoryActivity"
+        <activity
+            android:name=".module.menu.ui.HistoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullActionBar">
+        </activity>
+        <activity android:name=".module.menu.ui.DownloadManagerActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme.FullActionBar">
         </activity>

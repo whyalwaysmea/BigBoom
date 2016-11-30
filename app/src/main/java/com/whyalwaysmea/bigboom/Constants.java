@@ -1,5 +1,7 @@
 package com.whyalwaysmea.bigboom;
 
+import android.os.Environment;
+
 /**
  * Created by Long
  * on 2016/9/1.
@@ -7,7 +9,7 @@ package com.whyalwaysmea.bigboom;
 public class Constants {
     public static class URL {
         public static final String MOVIE = "https://api.douban.com/v2/movie/";
-
+        public static final String DOWNLOAD_URL = Environment.getExternalStorageDirectory().getPath() + "/bigboom";
     }
 
     public static class ID {

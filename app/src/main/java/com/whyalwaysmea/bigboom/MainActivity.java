@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.whyalwaysmea.bigboom.base.BaseActivity;
+import com.whyalwaysmea.bigboom.module.menu.ui.DownloadManagerActivity;
 import com.whyalwaysmea.bigboom.module.menu.ui.GithubActivity;
 import com.whyalwaysmea.bigboom.module.menu.ui.HistoryActivity;
 import com.whyalwaysmea.bigboom.module.movielist.ui.MovieFragment;
@@ -130,6 +131,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         } else if (id == R.id.browsing_history) {
             Intent intent = new Intent(mContext, HistoryActivity.class);
+            startActivity(intent);
+        } else if(id == R.id.download_manager) {
+            Intent intent = new Intent(mContext, DownloadManagerActivity.class);
             startActivity(intent);
         }
 

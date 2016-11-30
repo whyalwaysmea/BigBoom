@@ -12,5 +12,4 @@ import com.whyalwaysmea.bigboom.bean.CastPhoto;
 public interface ICastPhotoModel extends BaseModel{
 
     void loadCastPhoto(String id, int start, OnLoadCompleteListener<CastPhoto> photoOnLoadCompleteListener);
-
 }

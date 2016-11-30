@@ -3,152 +3,156 @@
     android:id="@+id/activity_cast_detail"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?android:colorBackground"
+    android:orientation="vertical">
 
 
     <include
-        layout="@layout/widge_toolbar" />
+        layout="@layout/widge_toolbar"/>
 
-
-    <com.whyalwaysmea.bigboom.view.FlexibleScrollView
-        android:background="?android:colorBackground"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <com.whyalwaysmea.bigboom.view.FlexibleScrollView
+            android:id="@+id/content_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/photos_recyclerview"
-                android:paddingLeft="10dp"
-                android:paddingRight="15dp"
-                android:paddingTop="20dp"
-                android:layout_marginBottom="10dp"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="270dp" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/name"
-                    android:textSize="18sp"
-                    tools:text="名字"
-                    android:textColor="?android:textColorPrimary"
-                    android:layout_margin="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:textSize="12sp"
-                    android:id="@+id/name_en"
-                    tools:text="name_en"
-                    android:layout_below="@id/name"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <ImageView
-                    android:id="@+id/collect_cast"
-                    android:src="@drawable/icon_collect_yes"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_centerVertical="true"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"/>
-
-            </RelativeLayout>
-
-
-
-            <TextView
-                android:textSize="12sp"
-                android:text="@string/personal_profile"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
-            <FrameLayout
-                android:id="@+id/profile_layout"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/profile_content"
-                    android:textColor="?android:textColorPrimary"
-                    android:textSize="14sp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="start"
-                    android:maxLines="3"
-                    android:ellipsize="end"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <ImageView
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="center_vertical|right"
-                    android:src="@drawable/icon_right_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </FrameLayout>
-
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/works_recyclerview"
+                    android:id="@+id/photos_recyclerview"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="230dp">
-                </android.support.v7.widget.RecyclerView>
+                    android:layout_height="270dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="20dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="18sp"
+                        tools:text="名字"/>
+
+                    <TextView
+                        android:id="@+id/name_en"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="12sp"
+                        tools:text="name_en"/>
+
+                    <ImageView
+                        android:id="@+id/collect_cast"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/icon_collect_yes"/>
+
+                </RelativeLayout>
+
 
                 <TextView
-                    android:id="@+id/year"
-                    android:text="2015"
-                    android:paddingLeft="10dp"
-                    android:textSize="12sp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:paddingRight="10dp"
-                    android:background="?android:colorBackground"
                     android:layout_width="wrap_content"
-                    android:layout_height="27dp"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/personal_profile"
+                    android:textSize="12sp"/>
 
-            </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/profile_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/profile_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:maxLines="3"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/icon_right_more"/>
+
+                </FrameLayout>
 
 
-            <View
-                android:background="#8d9093"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/all_works"
-                android:text="@string/all_works"
-                android:drawableRight="@drawable/icon_right_more"
-                android:drawablePadding="5dp"
-                android:gravity="left"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/works_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp"
+                        android:layout_marginTop="10dp">
+                    </android.support.v7.widget.RecyclerView>
 
-        </LinearLayout>
-    </com.whyalwaysmea.bigboom.view.FlexibleScrollView>
+                    <TextView
+                        android:id="@+id/year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="27dp"
+                        android:layout_marginTop="10dp"
+                        android:background="?android:colorBackground"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="2015"
+                        android:textSize="12sp"/>
 
+                </FrameLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#8d9093"/>
+
+                <TextView
+                    android:id="@+id/all_works"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/icon_right_more"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:text="@string/all_works"/>
+            </LinearLayout>
+        </com.whyalwaysmea.bigboom.view.FlexibleScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

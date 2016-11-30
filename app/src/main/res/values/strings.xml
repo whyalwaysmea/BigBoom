@@ -62,6 +62,7 @@
     <string name="movie">电影</string>
 
     <string name="del_browsing_history">是否删除浏览记录?</string>
+    <string name="del">删除</string>
     <string name="confirm">确实</string>
     <string name="cancle">取消</string>
 

@@ -10,10 +10,10 @@ import java.util.List;
 
 /**
  * Created by Long
- * on 2016/11/24.
+ * on 2016/11/30.
  */
 
-public interface IHistoryModel extends BaseModel {
+public interface IHistoryModel extends BaseModel{
 
     void getMovieHistory(OnLoadCompleteListener<List<DBMovie>> completeListener);
 

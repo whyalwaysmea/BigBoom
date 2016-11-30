@@ -11,7 +11,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -70,8 +69,6 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     AppBarLayout mMovieDetailAppbarlayout;
     @BindView(R.id.root_view)
     CoordinatorLayout mRootView;
-    @BindView(R.id.progress)
-    ContentLoadingProgressBar mProgress;
 
     @BindView(R.id.genres)
     TextView mGenres;
@@ -151,7 +148,7 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                finish();
             }
         });
 
@@ -304,13 +301,11 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     @Override
     public void showLoading() {
         super.showLoading();
-        mProgress.show();
     }
 
     @Override
     public void hideLoading() {
         super.hideLoading();
-        mProgress.hide();
     }
 
     @Override

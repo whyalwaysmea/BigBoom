@@ -2,6 +2,7 @@ package com.whyalwaysmea.bigboom.module.cast.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +29,7 @@ import com.whyalwaysmea.bigboom.module.cast.ui.adapter.CastAdapter;
 import com.whyalwaysmea.bigboom.module.cast.ui.adapter.CastWorksAdapter;
 import com.whyalwaysmea.bigboom.module.cast.view.ICastDetailView;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
+import com.whyalwaysmea.bigboom.view.FlexibleScrollView;
 import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 
 import java.util.ArrayList;
@@ -61,6 +63,10 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
     TextView mYear;
     @BindView(R.id.collect_cast)
     ImageView mCollectCast;
+    @BindView(R.id.swiperefreshlayout)
+    SwipeRefreshLayout mSwiperefreshlayout;
+    @BindView(R.id.content_view)
+    FlexibleScrollView mContentView;
 
     private String mCastId;
     private CastDetail mCastDetail;
@@ -182,7 +188,7 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
         DaoSession daoSession = DBManager.getInstance().getDaoSession();
         DBCastDao dbCastDao = daoSession.getDBCastDao();
         List<DBCast> list = dbCastDao.queryBuilder().where(DBCastDao.Properties.CastId.eq(mCastDetail.getId())).build().list();
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             DBCast dbCast = new DBCast();
             dbCast.setCastId(mCastDetail.getId());
             dbCast.setImgUrl(mCastDetail.getPhotos().get(0).getImage());
@@ -217,5 +223,19 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
             mCastWorksAdapter.addData(castWork.getWorks());
             mAllWorks.setText(mContext.getResources().getString(R.string.all_works, castWork.getTotal() + ""));
         }
+    }
+
+    @Override
+    public void showLoading() {
+        super.showLoading();
+        mSwiperefreshlayout.post(() -> mSwiperefreshlayout.setRefreshing(true));
+    }
+
+    @Override
+    public void hideLoading() {
+        super.hideLoading();
+        mSwiperefreshlayout.post(() -> mSwiperefreshlayout.setRefreshing(false));
+        mSwiperefreshlayout.setEnabled(true);
+        mContentView.setVisibility(View.VISIBLE);
     }
 }

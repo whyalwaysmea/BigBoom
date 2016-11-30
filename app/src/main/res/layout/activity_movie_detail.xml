@@ -261,13 +261,4 @@
     </com.whyalwaysmea.bigboom.view.MyNestedScrollView>
 
 
-    <android.support.v4.widget.ContentLoadingProgressBar
-        android:id="@+id/progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/colorPrimaryDark"/>
-
-
 </android.support.design.widget.CoordinatorLayout>

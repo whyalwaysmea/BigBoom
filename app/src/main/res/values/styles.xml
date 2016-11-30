@@ -50,5 +50,9 @@
         <attr name="collapseDrawable" format="reference"/>
     </declare-styleable>
 
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/material_black</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+    </style>
 
 </resources>

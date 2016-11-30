@@ -14,6 +14,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.jakewharton.rxbinding.support.v4.view.RxViewPager;
 import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
+import com.tbruyelle.rxpermissions.RxPermissions;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
@@ -24,6 +25,7 @@ import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.cast.presenter.CastPhotoPresenterImp;
 import com.whyalwaysmea.bigboom.module.cast.view.ICastPhotoView;
 import com.whyalwaysmea.bigboom.utils.DownLoadUtils;
+import com.whyalwaysmea.bigboom.utils.PermissionUtil;
 import com.whyalwaysmea.bigboom.view.HackyViewPager;
 
 import java.util.ArrayList;
@@ -134,7 +136,6 @@ public class PhotoActivity extends  MvpActivity<ICastPhotoView, CastPhotoPresent
     }
 
 
-
     @Override
     public void showPhotos(CastPhoto castPhoto) {
         mPhotosList.addAll(castPhoto.getPhotos());
@@ -189,22 +190,32 @@ public class PhotoActivity extends  MvpActivity<ICastPhotoView, CastPhotoPresent
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.download_photo) {
-            DownLoadUtils.saveImage(mContext, sbDes.toString() + "(" + (mViewPager.getCurrentItem() + 1) + ")", mCurrentBitmap, new DownLoadUtils.DownloadListener() {
+            PermissionUtil.externalStorage(new PermissionUtil.RequestPermission() {
                 @Override
-                public void success() {
-                    showSnackbar(mToolbar, getResources().getString(R.string.download_success));
+                public void onRequestPermissionSuccess() {
+                    DownLoadUtils.saveImage(mContext, sbDes.toString() + "(" + (mViewPager.getCurrentItem() + 1) + ")", mCurrentBitmap, new DownLoadUtils.DownloadListener() {
+                        @Override
+                        public void success() {
+                            showSnackbar(mToolbar, getResources().getString(R.string.download_success));
+                        }
+
+                        @Override
+                        public void failed() {
+                            showSnackbar(mToolbar, getResources().getString(R.string.download_failed));
+                        }
+
+                        @Override
+                        public void exists() {
+                            showSnackbar(mToolbar, getResources().getString(R.string.download_exists));
+                        }
+                    });
                 }
 
                 @Override
-                public void failed() {
-                    showSnackbar(mToolbar, getResources().getString(R.string.download_failed));
-                }
+                public void onRequestPermissionFailed() {
 
-                @Override
-                public void exists() {
-                    showSnackbar(mToolbar, getResources().getString(R.string.download_exists));
                 }
-            });
+            }, new RxPermissions(this));
         }
         return super.onOptionsItemSelected(item);
     }

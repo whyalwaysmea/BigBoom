@@ -1,5 +1,6 @@
 package com.whyalwaysmea.bigboom.module.menu.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -13,9 +14,11 @@ import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.db.DBCast;
 import com.whyalwaysmea.bigboom.bean.db.DBMovie;
 import com.whyalwaysmea.bigboom.bean.db.HistoryBean;
+import com.whyalwaysmea.bigboom.module.cast.ui.CastDetailActivity;
 import com.whyalwaysmea.bigboom.module.menu.presenter.HistoryPresenterImp;
 import com.whyalwaysmea.bigboom.module.menu.ui.adapter.HistoryAdapter;
 import com.whyalwaysmea.bigboom.module.menu.view.IHistoryView;
+import com.whyalwaysmea.bigboom.module.moviedetail.ui.MovieDetailActivity;
 import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 
@@ -81,7 +84,24 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
                     })
                     .create()
                     .show();
+        });
 
+        mHistoryAdapter.setOnClickListener((view, position) -> {
+            HistoryBean historyBean = null;
+            if(mHistoryAdapter.getMovieSize() > 0 && position <= mHistoryAdapter.getMovieSize()) {
+                historyBean = mHistoryBeanList.get(position - 1);
+            }else if(mHistoryAdapter.getCastSize() > 0 && position > (mHistoryAdapter.getMovieSize() > 0 ? mHistoryAdapter.getMovieSize() + 1 : 0)) {
+                historyBean = mHistoryBeanList.get(mHistoryAdapter.getMovieSize() > 0 ? position - 2 : position - 1);
+            }
+            if(historyBean != null && historyBean.getType() == Constants.TYPE.MOVIE) {
+                Intent intent = new Intent(mContext, MovieDetailActivity.class);
+                intent.putExtra("ID", historyBean.getHistoryId());
+                startActivity(intent);
+            } else if(historyBean != null && historyBean.getType() == Constants.TYPE.CAST) {
+                Intent intent = new Intent(mContext, CastDetailActivity.class);
+                intent.putExtra(Constants.KEY.CASTID, historyBean.getHistoryId());
+                startActivity(intent);
+            }
         });
     }
 
