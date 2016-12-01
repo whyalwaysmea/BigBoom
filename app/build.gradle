@@ -41,6 +41,8 @@ greendao {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:1.10.19"
+
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:cardview-v7:24.2.0'
     compile 'com.android.support:design:24.2.0'
@@ -69,14 +71,11 @@ dependencies {
     // leakcanary
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
     // vitamio
     compile project(':vitamio2')
-
     //DanmakuFlame
     compile 'com.github.ctiao:DanmakuFlameMaster:0.5.6'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
-
     //greenDAO
     compile 'org.greenrobot:greendao:3.2.0'
 }
