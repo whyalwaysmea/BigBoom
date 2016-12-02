@@ -69,4 +69,8 @@ public class ImageUtils {
         mLoaderInterface.displayAsBitmap(context, url, bitmapTarget);
     }
 
+    public void displayImgWithBlur(ImageView imageView, int resId) {
+        mLoaderInterface.displayImgWithBlur(imageView, resId);
+    }
+
 }
