@@ -1,7 +1,6 @@
 package com.whyalwaysmea.bigboom.module.menu.ui.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +8,10 @@ import android.view.ViewGroup;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseAdapter;
 import com.whyalwaysmea.bigboom.base.BaseViewHolder;
+import com.whyalwaysmea.bigboom.bean.DownloadPhoto;
 import com.whyalwaysmea.bigboom.view.RatioImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -20,12 +21,14 @@ import butterknife.BindView;
  * on 2016/11/30.
  */
 
-public class DownloadPhotoAdapter extends BaseAdapter<Bitmap> {
+public class DownloadPhotoAdapter extends BaseAdapter<DownloadPhoto> {
 
     private boolean isDel;
+    private List<Integer> delPositions;
 
-    public DownloadPhotoAdapter(Context context, List<Bitmap> data) {
+    public DownloadPhotoAdapter(Context context, List<DownloadPhoto> data) {
         super(context, data);
+        delPositions = new ArrayList<>();
     }
 
     @Override
@@ -49,10 +52,21 @@ public class DownloadPhotoAdapter extends BaseAdapter<Bitmap> {
 
         @Override
         public void bindData(int position) {
-            mItemPhoto.setImageBitmap(mData.get(position));
+            DownloadPhoto downloadPhoto = mData.get(position);
+            mItemPhoto.setImageBitmap(downloadPhoto.getBitmap());
             if(isDel()) {
                 mItemCheckbox.setVisibility(View.VISIBLE);
+                mItemCheckbox.setChecked(downloadPhoto.isCheck());
+                mItemCheckbox.setOnCheckedChangeListener((compoundButton, b) -> {
+                    if(b) {
+                        delPositions.add(position);
+                    } else {
+                        delPositions.remove(Integer.valueOf(position));
+                    }
+                });
                 mItemPhoto.setOnClickListener(v -> mItemCheckbox.setChecked(!mItemCheckbox.isChecked()));
+            } else {
+                mItemCheckbox.setVisibility(View.GONE);
             }
         }
     }
@@ -63,5 +77,13 @@ public class DownloadPhotoAdapter extends BaseAdapter<Bitmap> {
 
     public void setDel(boolean del) {
         isDel = del;
+    }
+
+    public List<Integer> getDelPositions() {
+        return delPositions;
+    }
+
+    public void setDelPositions(List<Integer> delPositions) {
+        this.delPositions = delPositions;
     }
 }

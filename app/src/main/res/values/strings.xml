@@ -61,15 +61,17 @@
     <string name="more_name">更多中文名:</string>
     <string name="movie">电影</string>
 
+    <string name="del_download_photo">是否删除所选择的图片?</string>
+
     <string name="del_browsing_history">是否删除浏览记录?</string>
     <string name="del">删除</string>
-    <string name="confirm">确实</string>
+    <string name="confirm">确定</string>
     <string name="cancle">取消</string>
 
     <string name="browsing_history">浏览记录</string>
     <string name="home">首页</string>
     <string name="bug">ヾ(Ő∀Ő๑)ﾉ</string>
-    <string name="theme">夜间模式</string>
+    <string name="theme">主题</string>
     <string name="about">关于</string>
     <string name="download_manager">下载管理</string>
 </resources>

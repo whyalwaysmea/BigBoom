@@ -6,10 +6,12 @@ import android.graphics.BitmapFactory;
 
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.whyalwaysmea.bigboom.base.BasePresenter;
+import com.whyalwaysmea.bigboom.bean.DownloadPhoto;
 import com.whyalwaysmea.bigboom.module.menu.view.IDownloadManagerView;
 import com.whyalwaysmea.bigboom.utils.DownLoadUtils;
 import com.whyalwaysmea.bigboom.utils.PermissionUtil;
 
+import java.io.File;
 import java.util.List;
 
 import rx.Observable;
@@ -37,7 +39,6 @@ public class DownloadManagerPresenterImp extends BasePresenter<IDownloadManagerV
             public void onRequestPermissionSuccess() {
                 List<String> pictures = DownLoadUtils.getPictures();
                 if(pictures == null || pictures.isEmpty()) {
-                    mView.showToast("No Photo");
                     mView.hideLoading();
                     return ;
                 }
@@ -45,14 +46,15 @@ public class DownloadManagerPresenterImp extends BasePresenter<IDownloadManagerV
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .map(new Func1<String, Bitmap>() {
+                        .map(new Func1<String, DownloadPhoto>() {
                             @Override
-                            public Bitmap call(String s) {
-                                return  BitmapFactory.decodeFile(s);
+                            public DownloadPhoto call(String s) {
+                                Bitmap bitmap = BitmapFactory.decodeFile(s);
+                                return  new DownloadPhoto(s, bitmap, false);
                             }
                         })
                         .toList()
-                        .subscribe(new Subscriber<List<Bitmap>>() {
+                        .subscribe(new Subscriber<List<DownloadPhoto>>() {
                             @Override
                             public void onCompleted() {
 
@@ -64,7 +66,7 @@ public class DownloadManagerPresenterImp extends BasePresenter<IDownloadManagerV
                             }
 
                             @Override
-                            public void onNext(List<Bitmap> bitmaps) {
+                            public void onNext(List<DownloadPhoto> bitmaps) {
                                 mView.showDownloadPhotos(bitmaps);
                                 mView.hideLoading();
                             }
@@ -80,5 +82,41 @@ public class DownloadManagerPresenterImp extends BasePresenter<IDownloadManagerV
 
 
 
+    }
+
+    @Override
+    public void delDownloadPhotos(List<Integer> delPosition, List<DownloadPhoto> downloadPhotos) {
+        mView.showLoading();
+        Observable.from(delPosition)
+                .map(new Func1<Integer, Boolean>() {
+                    @Override
+                    public Boolean call(Integer integer) {
+                        DownloadPhoto downloadPhoto = downloadPhotos.get(integer);
+                        File file = new File(downloadPhoto.getUrl());
+                        if(file.exists()) {
+                            boolean delete = file.delete();
+                            return delete;
+                        }
+                        return false;
+                    }
+                })
+                .toList()
+                .subscribe(new Subscriber<List<Boolean>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<Boolean> booleen) {
+                        mView.delDownloadPhotos();
+                        mView.hideLoading();
+                    }
+                });
     }
 }

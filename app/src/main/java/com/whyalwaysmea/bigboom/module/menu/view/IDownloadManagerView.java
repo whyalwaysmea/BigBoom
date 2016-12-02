@@ -1,8 +1,7 @@
 package com.whyalwaysmea.bigboom.module.menu.view;
 
-import android.graphics.Bitmap;
-
 import com.whyalwaysmea.bigboom.base.BaseView;
+import com.whyalwaysmea.bigboom.bean.DownloadPhoto;
 
 import java.util.List;
 
@@ -13,6 +12,7 @@ import java.util.List;
 
 public interface IDownloadManagerView extends BaseView{
 
-    void showDownloadPhotos(List<Bitmap> bitmaps);
+    void showDownloadPhotos(List<DownloadPhoto> bitmaps);
 
+    void delDownloadPhotos();
 }

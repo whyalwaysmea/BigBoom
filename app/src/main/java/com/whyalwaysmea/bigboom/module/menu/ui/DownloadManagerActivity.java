@@ -1,8 +1,8 @@
 package com.whyalwaysmea.bigboom.module.menu.ui;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
+import com.whyalwaysmea.bigboom.bean.DownloadPhoto;
 import com.whyalwaysmea.bigboom.module.menu.presenter.DownloadManagerPresenterImp;
 import com.whyalwaysmea.bigboom.module.menu.ui.adapter.DownloadPhotoAdapter;
 import com.whyalwaysmea.bigboom.module.menu.view.IDownloadManagerView;
@@ -33,7 +34,7 @@ public class DownloadManagerActivity extends MvpActivity<IDownloadManagerView, D
     SwipeRefreshLayout mSwiperefreshlayout;
 
     private DownloadPhotoAdapter mDownloadPhotoAdapter;
-    private List<Bitmap> mBitmaps;
+    private List<DownloadPhoto> mBitmaps;
     private GridLayoutManager mGridLayoutManager;
 
     @Override
@@ -83,11 +84,6 @@ public class DownloadManagerActivity extends MvpActivity<IDownloadManagerView, D
         mSwiperefreshlayout.post(() -> mSwiperefreshlayout.setRefreshing(false));
     }
 
-    @Override
-    public void showDownloadPhotos(List<Bitmap> bitmaps) {
-        mBitmaps.addAll(bitmaps);
-        mDownloadPhotoAdapter.notifyDataSetChanged();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,9 +95,39 @@ public class DownloadManagerActivity extends MvpActivity<IDownloadManagerView, D
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if(itemId == R.id.download_manager_del) {
-            mDownloadPhotoAdapter.setDel(true);
-            mDownloadPhotoAdapter.notifyDataSetChanged();
+            if(mDownloadPhotoAdapter.isDel() && mDownloadPhotoAdapter.getDelPositions().size() > 0) {
+                new AlertDialog.Builder(mContext)
+                        .setMessage(R.string.del_download_photo)
+                        .setNegativeButton(R.string.cancle, (dialog, which) -> {
+                            dialog.dismiss();
+                        })
+                        .setPositiveButton(R.string.confirm, (dialog, which) -> {
+                            mPresenter.delDownloadPhotos(mDownloadPhotoAdapter.getDelPositions(), mDownloadPhotoAdapter.getData());
+                        })
+                        .create()
+                        .show();
+            } else if(mDownloadPhotoAdapter.isDel() && mDownloadPhotoAdapter.getDelPositions().size() == 0) {
+                mDownloadPhotoAdapter.setDel(false);
+                mDownloadPhotoAdapter.notifyDataSetChanged();
+            } else {
+                mDownloadPhotoAdapter.setDel(true);
+                mDownloadPhotoAdapter.notifyDataSetChanged();
+            }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showDownloadPhotos(List<DownloadPhoto> bitmaps) {
+        mBitmaps.addAll(bitmaps);
+        mDownloadPhotoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void delDownloadPhotos() {
+        mBitmaps.clear();
+        mDownloadPhotoAdapter.notifyDataSetChanged();
+        mDownloadPhotoAdapter.setDel(false);
+        mPresenter.getDownloadPhotos(this);
     }
 }
