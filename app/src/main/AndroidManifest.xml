@@ -97,7 +97,9 @@
             android:name=".module.player.MoviePlayerActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.menu.ui.GithubActivity">
+        <activity android:name=".module.menu.ui.GithubActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.FullActionBar">
         </activity>
         <activity
             android:name=".module.menu.ui.HistoryActivity"
