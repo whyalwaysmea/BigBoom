@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/activity_splash"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    tools:context="com.whyalwaysmea.bigboom.module.menu.ui.SplashActivity">
+
+    <me.wangyuwei.particleview.ParticleView
+        android:id="@+id/particleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:pv_background_color="?attr/colorPrimary"
+        app:pv_host_text="电影"
+        app:pv_host_text_anim_time="400"
+
+        app:pv_particle_text="资讯"
+        app:pv_particle_text_size="16sp"
+        app:pv_spread_anim_time="200"
+        app:pv_text_anim_time="600"
+        app:pv_text_color="#FFF" />
+
+</RelativeLayout>

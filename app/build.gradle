@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.whyalwasymea.bigboom"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -83,4 +83,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
     //greenDAO
     compile 'org.greenrobot:greendao:3.2.0'
+
+    compile 'me.wangyuwei:ParticleView:1.0.4'
 }
