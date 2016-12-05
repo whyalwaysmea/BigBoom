@@ -10,7 +10,8 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_layout"
@@ -18,13 +19,14 @@
             android:layout_height="280dp"
             app:contentScrim="?attr/colorPrimary"
             android:fitsSystemWindows="true"
-            app:expandedTitleMarginEnd="48dp"
-            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="16dp"
+            app:expandedTitleMarginStart="16dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/img"
                 android:scaleType="fitXY"
+                android:fitsSystemWindows="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -56,6 +58,7 @@
                             android:text="@string/whyalwaysmea"
                             android:textColor="#ffffff"
                             android:textSize="16sp"
+                            android:layout_marginLeft="15dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -64,6 +67,7 @@
                             android:layout_marginTop="3dp"
                             android:text="Android开发工程师"
                             android:textColor="#ffffff"
+                            android:layout_marginLeft="15dp"
                             android:textSize="13sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -76,7 +80,6 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/header_img" />
                 </RelativeLayout>
-
 
 
                 <TextView
@@ -106,99 +109,30 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingRight="15dp"
         android:fillViewport="true"
         android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <TextView
+            <LinearLayout
+                android:orientation="vertical"
                 android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/about_app"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:padding="10dp"
-                android:textSize="16sp"
-                android:text="哈哈哈哈哈哈哈哈哈"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
+            </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

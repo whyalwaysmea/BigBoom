@@ -132,16 +132,6 @@ public class GlideImageLoader implements ImageLoaderInterface {
                 .into(bitmapTarget);
     }
 
-    @Override
-    public void displayImgWithBlur(ImageView imageView, int resId) {
-        if (imageView == null) {
-            throw new IllegalArgumentException("argument error");
-        }
-        Glide.with(imageView.getContext())
-                .load(resId)
-                .transform(new BlurTransformation(imageView.getContext()))
-                .into(imageView);
-    }
 
 
 }

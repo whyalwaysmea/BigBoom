@@ -25,6 +25,4 @@ public interface ImageLoaderInterface {
     void displayCircleImg(ImageView imageView, String url);
 
     void displayAsBitmap(Context context, String url, Target<Bitmap> bitmapTarget);
-
-    void displayImgWithBlur(ImageView imageView, int resId);
 }

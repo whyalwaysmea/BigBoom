@@ -76,4 +76,6 @@
     <string name="download_manager">下载管理</string>
 
     <string name="whyalwaysmea">why always me a</string>
+    <string name="about_app">这是一个关于电影资讯的app，其中的数据来源于豆瓣开放接口(API)服务</string>
+    <string name="version">版本号：%s</string>
 </resources>

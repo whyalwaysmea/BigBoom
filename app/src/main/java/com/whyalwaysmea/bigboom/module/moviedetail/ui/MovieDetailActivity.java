@@ -55,11 +55,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
 
+import static com.whyalwaysmea.bigboom.R.id.movie_detail_bg;
 import static com.whyalwaysmea.bigboom.R.id.toolbar;
 
 public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDetailPresenterImp> implements IMovieDetailView {
 
-    @BindView(R.id.movie_detail_bg)
+    @BindView(movie_detail_bg)
     ImageView mMovieDetailBg;
     @BindView(toolbar)
     Toolbar mToolbar;
@@ -137,11 +138,12 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
 
     @Override
     protected void initView() {
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             // 设置Toolbar对顶部的距离
-            final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mToolbar
+            final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mMovieDetailBg
                     .getLayoutParams();
-            layoutParams.topMargin = MeasureUtil.getStatusBarHeight(this);
+            layoutParams.topMargin = -MeasureUtil.getStatusBarHeight(this);
+            mMovieDetailBg.setLayoutParams(layoutParams);
         }
 
         mToolbar.setNavigationIcon(AppCompatResources.getDrawable(this, R.drawable.ic_action_clear));
