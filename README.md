@@ -14,6 +14,25 @@ RxJava &amp; Retrofit &amp; MVP
 - [x] Activity跳转动画兼容5.0以下[TransitionHelper](https://github.com/ImmortalZ/TransitionHelper)
 
 
+
+## 开源技术
+1. [Rxjava](https://github.com/ReactiveX/RxJava)
+2. [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+3. [Retrofit](https://github.com/square/retrofit)
+4. [Glide](https://github.com/bumptech/glide)
+5. [Butter Knife](https://github.com/JakeWharton/butterknife)
+6. [greenDAO](https://github.com/greenrobot/greenDAO)
+>greenDAO is a light & fast ORM solution for Android that maps objects to SQLite databases.
+7. [ParticleView](https://github.com/JeasonWong/Particle)  
+>It's a cool animation which can use in splash or somewhere else.
+8. [okhttp3](https://github.com/square/okhttp)
+9. [DanmakuFlameMaster](https://github.com/Bilibili/DanmakuFlameMaster)
+>Android开源弹幕引擎·烈焰弹幕使
+10. [vitamio2](https://www.vitamio.org/)
+>Vitamio 是一款 Android 与 iOS 平台上的全能多媒体开发框架
+11. [leakcanary](https://github.com/square/leakcanary)
+>A memory leak detection library for Android and Java.
+
 ## 效果图
 
 <img src="screenshot/1.jpg" width = 400>
