@@ -65,6 +65,12 @@ public class AboutActivity extends BaseActivity {
             FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) mImg.getLayoutParams();
             params.topMargin = -MeasureUtil.getStatusBarHeight(this);
             mImg.setLayoutParams(params);
+        } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+            // 设置Toolbar对顶部的距离
+            final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) toolbar
+                    .getLayoutParams();
+            layoutParams.topMargin = MeasureUtil.getStatusBarHeight(this);
         }
         initView();
         initData();

@@ -152,6 +152,7 @@ public class MoviePlayerActivity extends BaseActivity implements MediaPlayer.OnI
 
         mMovieVideoAdapter = new MovieVideoAdapter(this);
         mVideoRecyclerview.setAdapter(mMovieVideoAdapter);
+        mMovieVideoAdapter.addData(movieVideoList);
 
         if (movieVideoList.isEmpty()) {
             return;

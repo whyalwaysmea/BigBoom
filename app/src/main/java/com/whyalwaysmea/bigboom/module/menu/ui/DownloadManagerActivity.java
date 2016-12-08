@@ -18,7 +18,6 @@ import com.whyalwaysmea.bigboom.module.menu.ui.adapter.DownloadPhotoAdapter;
 import com.whyalwaysmea.bigboom.module.menu.view.IDownloadManagerView;
 import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,7 +33,6 @@ public class DownloadManagerActivity extends MvpActivity<IDownloadManagerView, D
     SwipeRefreshLayout mSwiperefreshlayout;
 
     private DownloadPhotoAdapter mDownloadPhotoAdapter;
-    private List<DownloadPhoto> mBitmaps;
     private GridLayoutManager mGridLayoutManager;
 
     @Override
@@ -48,7 +46,6 @@ public class DownloadManagerActivity extends MvpActivity<IDownloadManagerView, D
 
     @Override
     protected void initView() {
-        mBitmaps = new ArrayList<>();
         mDownloadPhotoAdapter = new DownloadPhotoAdapter(this);
         mGridLayoutManager = new GridLayoutManager(this, 2);
         mDownloadRecyclerview.addItemDecoration(new GridMarginDecoration(getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration2)));
@@ -119,7 +116,7 @@ public class DownloadManagerActivity extends MvpActivity<IDownloadManagerView, D
 
     @Override
     public void showDownloadPhotos(List<DownloadPhoto> bitmaps) {
-        mDownloadPhotoAdapter.addData(mBitmaps);
+        mDownloadPhotoAdapter.addData(bitmaps);
         mDownloadPhotoAdapter.notifyDataSetChanged();
     }
 

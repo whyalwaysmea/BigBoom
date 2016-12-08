@@ -15,8 +15,19 @@ RxJava &amp; Retrofit &amp; MVP
 
 
 ## 效果图
-![](http://upload-images.jianshu.io/upload_images/293077-4288a73c37fd16f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![电影详情页.gif](http://upload-images.jianshu.io/upload_images/293077-63ee09c2fa3fb7ab.gif?imageMogr2/auto-orient/strip)
-
-![演员详情页.gif](http://upload-images.jianshu.io/upload_images/293077-8373c8c05ad02f8b.gif?imageMogr2/auto-orient/strip)
+<img src="screenshot/1.PNG" width = 200>
+<img src="screenshot/2.PNG" width = 200>
+<img src="screenshot/3.PNG" width = 200>
+<img src="screenshot/4.PNG" width = 200>
+<img src="screenshot/5.PNG" width = 200>
+<img src="screenshot/6.PNG" width = 200>
+<img src="screenshot/7.PNG" width = 200>
+<img src="screenshot/8.PNG" width = 200>
+<img src="screenshot/9.PNG" width = 200>
+<img src="screenshot/10.PNG" width = 200>
+<img src="screenshot/11.PNG" width = 200>
+<img src="screenshot/12.PNG" width = 200>
+<img src="screenshot/13.PNG" width = 200>
+<img src="screenshot/14.PNG" width = 200>
+<img src="screenshot/15.PNG" width = 800>

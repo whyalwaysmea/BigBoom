@@ -144,6 +144,13 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
                     .getLayoutParams();
             layoutParams.topMargin = -MeasureUtil.getStatusBarHeight(this);
             mMovieDetailBg.setLayoutParams(layoutParams);
+        } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+
+            // 设置Toolbar对顶部的距离
+            final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) toolbar
+                    .getLayoutParams();
+            layoutParams.topMargin = MeasureUtil.getStatusBarHeight(this);
         }
 
         mToolbar.setNavigationIcon(AppCompatResources.getDrawable(this, R.drawable.ic_action_clear));

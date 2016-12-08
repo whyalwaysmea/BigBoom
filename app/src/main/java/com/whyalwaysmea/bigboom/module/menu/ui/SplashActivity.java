@@ -27,6 +27,7 @@ public class SplashActivity extends BaseActivity {
             public void onAnimationEnd() {
                 Intent intent = new Intent(mContext, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         mParticleview.startAnim();

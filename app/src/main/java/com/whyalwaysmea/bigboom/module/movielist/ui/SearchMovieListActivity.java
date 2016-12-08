@@ -2,6 +2,7 @@ package com.whyalwaysmea.bigboom.module.movielist.ui;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,6 +16,8 @@ import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 import com.whyalwaysmea.bigboom.module.movielist.presenter.MovieListPresenterImp;
 import com.whyalwaysmea.bigboom.module.movielist.ui.adapter.ComingSoonMovieAdapter;
 import com.whyalwaysmea.bigboom.module.movielist.view.IMovieListView;
+import com.whyalwaysmea.bigboom.utils.SPUtils;
+import com.whyalwaysmea.bigboom.utils.StatusBarUtil;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 import com.whyalwaysmea.bigboom.view.SearchView;
 
@@ -45,6 +48,14 @@ public class SearchMovieListActivity extends MvpActivity<IMovieListView, MovieLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_movie_list);
+        SPUtils spUtils = new SPUtils(this, Constants.SP.SHARED_PREFERENCES_NAME);
+
+        if(spUtils.getBoolean(Constants.SP.THEME)) {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            StatusBarUtil.setColor(this, getResources().getColor(R.color.primary_night), 0);
+        } else {
+            StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary), 0);
+        }
         ButterKnife.bind(this);
 
         init();

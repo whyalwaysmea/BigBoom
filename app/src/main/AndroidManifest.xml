@@ -79,6 +79,7 @@
             android:theme="@style/AppTheme.FullActionBar"/>
         <activity
             android:name=".module.movielist.ui.SearchMovieListActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar"/>
 

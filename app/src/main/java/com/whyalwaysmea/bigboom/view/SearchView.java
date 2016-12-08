@@ -95,6 +95,11 @@ public class SearchView {
         RxView.clicks(mSearchClear).subscribe(aVoid -> mSearchInput.setText(""));
         RxView.clicks(mSearchSure).subscribe(aVoid -> OnSearch());
         RxTextView.textChanges(mSearchInput).subscribe(this::OntextChanges);
+        mSearchInput.setOnKeyListener((view, i, keyEvent) -> {
+            OnSearch();
+            KeyBoardUtils.toggleSoftInput(mContext);
+            return false;
+        });
 
     }
 
