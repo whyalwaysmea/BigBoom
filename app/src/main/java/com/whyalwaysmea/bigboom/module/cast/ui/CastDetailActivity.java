@@ -32,7 +32,6 @@ import com.whyalwaysmea.bigboom.utils.DensityUtils;
 import com.whyalwaysmea.bigboom.view.FlexibleScrollView;
 import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -121,12 +120,12 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
         mPhotosRecyclerview.setLayoutManager(mGridLayoutManager);
         mPhotosRecyclerview.addItemDecoration(new GridMarginDecoration(mContext.getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration2)));
 
-        mCastAdapter = new CastAdapter(this, new ArrayList<>());
+        mCastAdapter = new CastAdapter(this);
         mPhotosRecyclerview.setAdapter(mCastAdapter);
 
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mCastWorksAdapter = new CastWorksAdapter(this, new ArrayList<>());
+        mCastWorksAdapter = new CastWorksAdapter(this);
         mWorksRecyclerview.setLayoutManager(mLinearLayoutManager);
         mWorksRecyclerview.setAdapter(mCastWorksAdapter);
 

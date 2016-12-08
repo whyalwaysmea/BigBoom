@@ -15,8 +15,6 @@ import com.whyalwaysmea.bigboom.bean.db.HistoryBean;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.view.RatioImageView;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -31,8 +29,8 @@ public class HistoryAdapter extends BaseAdapter<HistoryBean> {
     private int TYPE_MOVIE_TITLE = 11;
     private int TYPE_CAST_TITLE = 22;
 
-    public HistoryAdapter(Context context, List<HistoryBean> data) {
-        super(context, data);
+    public HistoryAdapter(Context context) {
+        super(context);
     }
 
     @Override

@@ -9,16 +9,12 @@ import android.view.ViewGroup;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpFragment;
-import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 import com.whyalwaysmea.bigboom.module.movielist.presenter.MovieListPresenterImp;
 import com.whyalwaysmea.bigboom.module.movielist.ui.adapter.InTheatersMovieAdapter;
 import com.whyalwaysmea.bigboom.module.movielist.view.IMovieListView;
 import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -36,7 +32,6 @@ public class InTheatersMovieListFragment extends MvpFragment<IMovieListView, Mov
 
     private MovieListPresenterImp mMovieListPresenterImp;
     private GridLayoutManager mLayoutManager;
-    private List<MovieInfo> mMovieInfos;
     private InTheatersMovieAdapter mInTheatersMovieAdapter;
 
     public static InTheatersMovieListFragment newInstance() {
@@ -87,8 +82,7 @@ public class InTheatersMovieListFragment extends MvpFragment<IMovieListView, Mov
 
     @Override
     protected void initData() {
-        mMovieInfos = new ArrayList<>();
-        mInTheatersMovieAdapter = new InTheatersMovieAdapter(mContext, mMovieInfos);
+        mInTheatersMovieAdapter = new InTheatersMovieAdapter(mContext);
         mRecyclerView.setAdapter(mInTheatersMovieAdapter);
         onRefresh();
     }

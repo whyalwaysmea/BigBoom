@@ -49,7 +49,7 @@ public class DownloadManagerActivity extends MvpActivity<IDownloadManagerView, D
     @Override
     protected void initView() {
         mBitmaps = new ArrayList<>();
-        mDownloadPhotoAdapter = new DownloadPhotoAdapter(this, mBitmaps);
+        mDownloadPhotoAdapter = new DownloadPhotoAdapter(this);
         mGridLayoutManager = new GridLayoutManager(this, 2);
         mDownloadRecyclerview.addItemDecoration(new GridMarginDecoration(getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration2)));
         mDownloadRecyclerview.setLayoutManager(mGridLayoutManager);
@@ -119,13 +119,13 @@ public class DownloadManagerActivity extends MvpActivity<IDownloadManagerView, D
 
     @Override
     public void showDownloadPhotos(List<DownloadPhoto> bitmaps) {
-        mBitmaps.addAll(bitmaps);
+        mDownloadPhotoAdapter.addData(mBitmaps);
         mDownloadPhotoAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void delDownloadPhotos() {
-        mBitmaps.clear();
+        mDownloadPhotoAdapter.clear();
         mDownloadPhotoAdapter.notifyDataSetChanged();
         mDownloadPhotoAdapter.setDel(false);
         mPresenter.getDownloadPhotos(this);

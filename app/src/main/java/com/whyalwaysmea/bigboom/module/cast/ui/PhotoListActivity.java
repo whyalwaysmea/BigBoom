@@ -14,15 +14,14 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.CastPhoto;
-import com.whyalwaysmea.bigboom.rx.RxBus;
 import com.whyalwaysmea.bigboom.module.cast.presenter.CastPhotoPresenterImp;
 import com.whyalwaysmea.bigboom.module.cast.ui.adapter.PhotoAdapter;
 import com.whyalwaysmea.bigboom.module.cast.view.ICastPhotoView;
+import com.whyalwaysmea.bigboom.rx.RxBus;
 import com.whyalwaysmea.bigboom.service.ImageService;
 import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -70,7 +69,7 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
         mId = getIntent().getStringExtra(Constants.KEY.CASTID);
         mPresenter.getCastPhoto(mId, start);
 
-        mPhotoAdapter = new PhotoAdapter(this, new ArrayList<>());
+        mPhotoAdapter = new PhotoAdapter(this);
         mPhotosRecyclerview.setAdapter(mPhotoAdapter);
         mPhotoAdapter.setOnClickListener((view, position) -> {
             Intent intent = new Intent(mContext, PhotoActivity.class);

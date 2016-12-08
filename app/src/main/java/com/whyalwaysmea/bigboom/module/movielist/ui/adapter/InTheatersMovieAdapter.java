@@ -17,8 +17,6 @@ import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.MovieDetailActivity;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -28,8 +26,8 @@ import butterknife.BindView;
 public class InTheatersMovieAdapter extends BaseAdapter<MovieInfo> {
 
 
-    public InTheatersMovieAdapter(Context context, List<MovieInfo> data) {
-        super(context, data);
+    public InTheatersMovieAdapter(Context context) {
+        super(context);
     }
 
     @Override

@@ -15,8 +15,6 @@ import com.whyalwaysmea.bigboom.module.cast.ui.adapter.AllWorksAdapter;
 import com.whyalwaysmea.bigboom.module.cast.view.ICastDetailView;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -54,7 +52,7 @@ public class AllWorksActivity extends MvpActivity<ICastDetailView, CastPresenter
         mLinearLayoutManager = new LinearLayoutManager(this);
         mAllWorksRecyclerview.setLayoutManager(mLinearLayoutManager);
 
-        mAllWorksAdapter = new AllWorksAdapter(this, new ArrayList<>(), true);
+        mAllWorksAdapter = new AllWorksAdapter(this,  true);
         mAllWorksRecyclerview.setAdapter(mAllWorksAdapter);
         mAllWorksRecyclerview.setOnLoadMoreListener(this);
 

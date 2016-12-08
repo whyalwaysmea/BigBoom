@@ -12,8 +12,6 @@ import com.whyalwaysmea.bigboom.bean.CastPhoto;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.view.RatioImageView;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -25,8 +23,8 @@ public class PhotoAdapter extends BaseAdapter<CastPhoto.PhotosBean> {
 
     private SparseArray<Integer> mSizeMode;
 
-    public PhotoAdapter(Context context, List<CastPhoto.PhotosBean> data) {
-        super(context, data);
+    public PhotoAdapter(Context context) {
+        super(context);
         mSizeMode = new SparseArray<>();
     }
 

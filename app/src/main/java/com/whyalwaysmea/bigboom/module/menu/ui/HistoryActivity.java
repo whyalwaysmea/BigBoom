@@ -63,10 +63,10 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
 
     @Override
     protected void initData() {
-        mGridLayoutManager = new GridLayoutManager(this, 2);
+        mGridLayoutManager = new GridLayoutManager(this, 3);
         mRecyclerview.setLayoutManager(mGridLayoutManager);
         mHistoryBeanList = new ArrayList<>();
-        mHistoryAdapter = new HistoryAdapter(this, mHistoryBeanList);
+        mHistoryAdapter = new HistoryAdapter(this);
         mRecyclerview.setAdapter(mHistoryAdapter);
         mRecyclerview.addItemDecoration(new GridMarginDecoration(mContext.getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration)));
 
@@ -139,7 +139,9 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
         for (int i = 0; i < movies.size(); i++) {
             DBMovie dbMovie = movies.get(i);
             mHistoryBeanList.add(new HistoryBean(dbMovie.getId(), dbMovie.getMovieId(), Constants.TYPE.MOVIE, dbMovie.getImgUrl()));
+            mHistoryAdapter.addData(new HistoryBean(dbMovie.getId(), dbMovie.getMovieId(), Constants.TYPE.MOVIE, dbMovie.getImgUrl()));
         }
+
         mHistoryAdapter.setMovieSize(movies.size());
         mHistoryAdapter.notifyDataSetChanged();
     }
@@ -149,6 +151,7 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
         for (int i = 0; i < casts.size(); i++) {
             DBCast cast = casts.get(i);
             mHistoryBeanList.add(new HistoryBean(cast.getId(), cast.getCastId(), Constants.TYPE.CAST, cast.getImgUrl()));
+            mHistoryAdapter.addData(new HistoryBean(cast.getId(), cast.getCastId(), Constants.TYPE.CAST, cast.getImgUrl()));
         }
 
         mHistoryAdapter.setCastSize(casts.size());
@@ -158,6 +161,7 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
     @Override
     public void delHistorySuccess() {
         mHistoryBeanList.clear();
+        mHistoryAdapter.clear();
         mHistoryAdapter.setCastSize(0);
         mHistoryAdapter.setMovieSize(0);
         mHistoryAdapter.notifyDataSetChanged();
@@ -167,6 +171,7 @@ public class HistoryActivity extends MvpActivity<IHistoryView, HistoryPresenterI
 
     @Override
     public void onRefresh() {
+        mHistoryAdapter.clear();
         mHistoryBeanList.clear();
         mHistoryAdapter.notifyDataSetChanged();
         mPresenter.getHistoryMovies();

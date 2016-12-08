@@ -70,7 +70,7 @@ public class MovieFragment extends BaseFragment {
 //        fragments.add(WeeklyMovieFragment.newInstance());
         fragments.add(Top250MovieListFragment.newInstance());
         mViewPager.setAdapter(new MainAdapter(getChildFragmentManager(), titles, fragments));
-        mViewPager.setOffscreenPageLimit(1);
+        mViewPager.setOffscreenPageLimit(2);
         mViewPager.setCurrentItem(0);
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);

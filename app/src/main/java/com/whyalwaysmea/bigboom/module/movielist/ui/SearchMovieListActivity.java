@@ -18,8 +18,6 @@ import com.whyalwaysmea.bigboom.module.movielist.view.IMovieListView;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 import com.whyalwaysmea.bigboom.view.SearchView;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -56,7 +54,7 @@ public class SearchMovieListActivity extends MvpActivity<IMovieListView, MovieLi
     protected void initView() {
         mLinearLayoutManager = new LinearLayoutManager(this);
         mSearchMovieList.setLayoutManager(mLinearLayoutManager);
-        mComingSoonMovieAdapter = new ComingSoonMovieAdapter(this, new ArrayList<>(), true);
+        mComingSoonMovieAdapter = new ComingSoonMovieAdapter(this, true);
         mSearchMovieList.setAdapter(mComingSoonMovieAdapter);
         mSearchMovieList.setOnLoadMoreListener(this);
 

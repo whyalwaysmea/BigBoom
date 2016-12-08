@@ -16,8 +16,6 @@ import com.whyalwaysmea.bigboom.bean.CastWork;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.MovieDetailActivity;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -27,8 +25,8 @@ import butterknife.BindView;
 
 public class AllWorksAdapter extends BaseAdapter<CastWork.WorksBean> {
 
-    public AllWorksAdapter(Context context, List<CastWork.WorksBean> data, boolean useAnimation) {
-        super(context, data, useAnimation);
+    public AllWorksAdapter(Context context, boolean useAnimation) {
+        super(context, useAnimation);
     }
 
     @Override

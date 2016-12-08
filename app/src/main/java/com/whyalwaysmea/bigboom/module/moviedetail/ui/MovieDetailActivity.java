@@ -248,10 +248,12 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
         mCastsBeanList = new ArrayList<>();
         mCastsBeanList.addAll(detailData.getDirectors());
         mCastsBeanList.addAll(detailData.getCasts());
-        mMovicDetailCastAdapter = new MovicDetailCastAdapter(this, mCastsBeanList);
+        mMovicDetailCastAdapter = new MovicDetailCastAdapter(this);
+        mMovicDetailCastAdapter.addData(mCastsBeanList);
         mDirectorsRecyclerview.setAdapter(mMovicDetailCastAdapter);
 
-        mMoviePhotoAdapter = new MoviePhotoAdapter(this, detailData.getPhotos());
+        mMoviePhotoAdapter = new MoviePhotoAdapter(this);
+        mMoviePhotoAdapter.addData(detailData.getPhotos());
         Observable.just(detailData.getBloopers(), detailData.getTrailers(), detailData.getTrailers())
                 .subscribe(clipsBeen -> {
                     if(!clipsBeen.isEmpty()) {

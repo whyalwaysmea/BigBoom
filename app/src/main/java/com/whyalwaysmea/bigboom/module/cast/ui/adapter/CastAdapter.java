@@ -19,7 +19,6 @@ import com.whyalwaysmea.bigboom.module.cast.ui.PhotoListActivity;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
 import java.io.Serializable;
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -30,13 +29,11 @@ import butterknife.BindView;
 
 public class CastAdapter extends BaseAdapter<CastDetail.PhotosBean> {
 
-
-    private int mRgb;
     private String castId;
     private String castName;
 
-    public CastAdapter(Context context, List<CastDetail.PhotosBean> data) {
-        super(context, data);
+    public CastAdapter(Context context) {
+        super(context);
     }
 
     @Override

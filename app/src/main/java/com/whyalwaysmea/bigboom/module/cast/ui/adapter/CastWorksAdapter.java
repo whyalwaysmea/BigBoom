@@ -17,8 +17,6 @@ import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.MovieDetailActivity;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -32,8 +30,8 @@ public class CastWorksAdapter extends BaseAdapter<CastWork.WorksBean> {
     public static final int HAS_STICKY_VIEW = 2;
     public static final int NONE_STICKY_VIEW = 3;
 
-    public CastWorksAdapter(Context context, List<CastWork.WorksBean> data) {
-        super(context, data);
+    public CastWorksAdapter(Context context) {
+        super(context);
     }
 
     @Override

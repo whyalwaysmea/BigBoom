@@ -17,8 +17,6 @@ import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.MovieDetailActivity;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -28,8 +26,8 @@ import butterknife.BindView;
 public class Top250MovieAdapter extends BaseAdapter<MovieInfo> {
 
 
-    public Top250MovieAdapter(Context context, List<MovieInfo> data, boolean useAnimation) {
-        super(context, data, useAnimation);
+    public Top250MovieAdapter(Context context, boolean useAnimation) {
+        super(context, useAnimation);
     }
 
     @Override

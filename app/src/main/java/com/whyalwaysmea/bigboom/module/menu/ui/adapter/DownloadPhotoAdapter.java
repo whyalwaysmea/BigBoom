@@ -26,8 +26,8 @@ public class DownloadPhotoAdapter extends BaseAdapter<DownloadPhoto> {
     private boolean isDel;
     private List<Integer> delPositions;
 
-    public DownloadPhotoAdapter(Context context, List<DownloadPhoto> data) {
-        super(context, data);
+    public DownloadPhotoAdapter(Context context) {
+        super(context);
         delPositions = new ArrayList<>();
     }
 

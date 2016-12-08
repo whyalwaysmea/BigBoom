@@ -12,8 +12,6 @@ import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.bean.MovieVideo;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -25,8 +23,8 @@ public class MovieVideoAdapter extends BaseAdapter<MovieVideo> {
 
     private int playingPosition;
 
-    public MovieVideoAdapter(Context context, List data) {
-        super(context, data);
+    public MovieVideoAdapter(Context context) {
+        super(context);
     }
 
     @Override

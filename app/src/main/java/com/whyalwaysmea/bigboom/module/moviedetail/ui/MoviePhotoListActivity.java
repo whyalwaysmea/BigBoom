@@ -17,8 +17,6 @@ import com.whyalwaysmea.bigboom.module.moviedetail.view.IMoviePhotoListView;
 import com.whyalwaysmea.bigboom.view.GridMarginDecoration;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -56,7 +54,7 @@ public class MoviePhotoListActivity extends MvpActivity<IMoviePhotoListView, Mov
         mMoviePhotoRecyclerview.setLayoutManager(mGridLayoutManager);
         mMoviePhotoRecyclerview.setOnLoadMoreListener(this);
         mMoviePhotoRecyclerview.addItemDecoration(new GridMarginDecoration(mContext.getResources().getDimensionPixelSize(R.dimen.gridlayout_margin_decoration2)));
-        mMoviePhotoListAdapter = new MoviePhotoListAdapter(this, new ArrayList<>(), true);
+        mMoviePhotoListAdapter = new MoviePhotoListAdapter(this, true);
         mMoviePhotoRecyclerview.setAdapter(mMoviePhotoListAdapter);
         mMoviePhotoListAdapter.setOnClickListener((view, position) -> {
             Intent intent = new Intent(mContext, MoviePhotoActivity.class);

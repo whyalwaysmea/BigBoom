@@ -69,7 +69,7 @@ public class CommentFragment extends MvpFragment<IMovieCommentView, MovieComment
         mId = getArguments().getString(Constants.KEY.ID);
 
         mCommentsBeanList = new ArrayList<>();
-        mCommentAdapter = new CommentAdapter(mContext, mCommentsBeanList);
+        mCommentAdapter = new CommentAdapter(mContext);
         mRecyclerview.setAdapter(mCommentAdapter);
 
         mPresenter.getComment(mId);

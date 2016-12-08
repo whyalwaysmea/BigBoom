@@ -71,7 +71,7 @@ public class ComingSoonFragment extends MvpFragment<IMovieListView, MovieListPre
     @Override
     protected void initData() {
         mMovieInfoList = new ArrayList<>();
-        mComingSoonMovieAdapter = new ComingSoonMovieAdapter(mContext, mMovieInfoList, true);
+        mComingSoonMovieAdapter = new ComingSoonMovieAdapter(mContext, true);
         mRecyclerView.setAdapter(mComingSoonMovieAdapter);
         onRefresh();
     }

@@ -17,8 +17,6 @@ import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.cast.ui.CastDetailActivity;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -29,8 +27,8 @@ import butterknife.BindView;
 public class MovicDetailCastAdapter extends BaseAdapter<MovieDetail.CastsBean> {
 
 
-    public MovicDetailCastAdapter(Context context, List<MovieDetail.CastsBean> data) {
-        super(context, data);
+    public MovicDetailCastAdapter(Context context) {
+        super(context);
     }
 
     @Override

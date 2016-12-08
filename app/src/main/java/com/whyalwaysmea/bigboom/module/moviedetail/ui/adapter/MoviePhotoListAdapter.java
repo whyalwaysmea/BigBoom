@@ -12,8 +12,6 @@ import com.whyalwaysmea.bigboom.bean.MoviePhoto;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.view.RatioImageView;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -24,8 +22,8 @@ import butterknife.BindView;
 public class MoviePhotoListAdapter extends BaseAdapter<MoviePhoto.PhotosBean> {
 
 
-    public MoviePhotoListAdapter(Context context, List<MoviePhoto.PhotosBean> data, boolean useAnimation) {
-        super(context, data, useAnimation);
+    public MoviePhotoListAdapter(Context context, boolean useAnimation) {
+        super(context, useAnimation);
     }
 
     @Override

@@ -16,8 +16,6 @@ import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.MovieDetailActivity;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -27,8 +25,8 @@ import butterknife.BindView;
 public class ComingSoonMovieAdapter extends BaseAdapter<MovieInfo> {
 
 
-    public ComingSoonMovieAdapter(Context context, List<MovieInfo> data, boolean useAnimation) {
-        super(context, data, useAnimation);
+    public ComingSoonMovieAdapter(Context context, boolean useAnimation) {
+        super(context, useAnimation);
     }
 
     @Override

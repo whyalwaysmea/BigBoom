@@ -20,8 +20,6 @@ import com.whyalwaysmea.bigboom.module.moviedetail.ui.MoviePhotoListActivity;
 import com.whyalwaysmea.bigboom.module.player.MoviePlayerActivity;
 import com.whyalwaysmea.bigboom.utils.DensityUtils;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -35,8 +33,8 @@ public class MoviePhotoAdapter extends BaseAdapter<MovieDetail.PhotosBean> {
     private String videoURL;
     private MovieDetail movieDetail;
 
-    public MoviePhotoAdapter(Context context, List<MovieDetail.PhotosBean> data) {
-        super(context, data);
+    public MoviePhotoAdapter(Context context) {
+        super(context);
     }
 
     @Override

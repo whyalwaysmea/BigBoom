@@ -19,8 +19,6 @@ import com.whyalwaysmea.bigboom.bean.Review;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.module.moviedetail.ui.ReviewDetailActivity;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -40,8 +38,8 @@ public class ReviewAdapter extends BaseAdapter<Review.ReviewsBean> {
 
     private String movieTitle;
 
-    public ReviewAdapter(Context context, List<Review.ReviewsBean> data) {
-        super(context, data);
+    public ReviewAdapter(Context context) {
+        super(context);
     }
 
     @Override

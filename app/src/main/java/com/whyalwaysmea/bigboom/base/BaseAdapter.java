@@ -29,15 +29,15 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     protected LayoutInflater mLayoutInflater;
 
 
-    public BaseAdapter(Context context, List<T> data) {
+    public BaseAdapter(Context context) {
         this.mContext = context;
-        this.mData = data;
+        this.mData = new ArrayList<T>();
         this.mLayoutInflater = LayoutInflater.from(context);
     }
 
-    public BaseAdapter(Context context, List<T> data, boolean useAnimation) {
+    public BaseAdapter(Context context, boolean useAnimation) {
         this.mContext = context;
-        this.mData = data;
+        this.mData = new ArrayList<T>();
         this.mUseAnimation = useAnimation;
         this.mLayoutInflater = LayoutInflater.from(context);
     }
@@ -123,6 +123,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         notifyItemInserted(pos);
     }
 
+    public void addData(T item) {
+        if(mData == null) {
+            mData = new ArrayList<>();
+        }
+        mData.add(item);
+    }
+
     public List<T> getData() {
         return mData;
     }
@@ -133,6 +140,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         }
         mData.remove(pos);
         notifyItemRemoved(pos);
+    }
+
+    public void clear() {
+        if(mData != null) {
+            mData.clear();
+            notifyDataSetChanged();
+        }
     }
 
     public interface OnClickListener {

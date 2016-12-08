@@ -70,7 +70,7 @@ public class ReviewFragment extends MvpFragment<IMovieReviewView, MovieReviewPre
         mId = getArguments().getString(Constants.KEY.ID);
 
         mReviewsBeanList = new ArrayList<>();
-        mReviewAdapter = new ReviewAdapter(mContext, mReviewsBeanList);
+        mReviewAdapter = new ReviewAdapter(mContext);
         mRecyclerview.setAdapter(mReviewAdapter);
 
         mPresenter.getReview(mId);

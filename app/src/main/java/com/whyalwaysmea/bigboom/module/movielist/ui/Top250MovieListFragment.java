@@ -10,15 +10,11 @@ import android.view.ViewGroup;
 import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpFragment;
-import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 import com.whyalwaysmea.bigboom.module.movielist.presenter.MovieListPresenterImp;
 import com.whyalwaysmea.bigboom.module.movielist.ui.adapter.Top250MovieAdapter;
 import com.whyalwaysmea.bigboom.module.movielist.view.IMovieListView;
 import com.whyalwaysmea.bigboom.view.MyRecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -36,7 +32,6 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
 
     private GridLayoutManager mLayoutManager;
     private MovieListPresenterImp mMovieListPresenter;
-    private List<MovieInfo> mTop250Movies;
     private Top250MovieAdapter mTop250MovieAdapter;
     private int start = 0;
     private int count = 20;
@@ -72,8 +67,7 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mTop250Movies = new ArrayList<>();
-        mTop250MovieAdapter = new Top250MovieAdapter(getContext(), mTop250Movies, true);
+        mTop250MovieAdapter = new Top250MovieAdapter(getContext(), true);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mTop250MovieAdapter);
         mRecyclerView.setOnLoadMoreListener(this);
@@ -87,9 +81,9 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
     @Override
     public void setData(MovieListResponse movieListResponse) {
         if(start == 0) {
-            mTop250Movies.clear();
+            mTop250MovieAdapter.clear();
         }
-        mTop250Movies.addAll(movieListResponse.getSubjects());
+        mTop250MovieAdapter.addData(movieListResponse.getSubjects());
         mTop250MovieAdapter.notifyDataSetChanged();
         start = movieListResponse. getCount();
         mRecyclerView.enableLoadMore();

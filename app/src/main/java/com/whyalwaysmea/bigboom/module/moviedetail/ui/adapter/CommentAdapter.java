@@ -12,8 +12,6 @@ import com.whyalwaysmea.bigboom.base.BaseViewHolder;
 import com.whyalwaysmea.bigboom.bean.Comment;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -24,8 +22,8 @@ import butterknife.BindView;
 public class CommentAdapter extends BaseAdapter<Comment.CommentsBean> {
 
 
-    public CommentAdapter(Context context, List<Comment.CommentsBean> data) {
-        super(context, data);
+    public CommentAdapter(Context context) {
+        super(context);
     }
 
     @Override
