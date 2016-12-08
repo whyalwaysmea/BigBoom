@@ -3,7 +3,12 @@ RxJava &amp; Retrofit &amp; MVP
 
 这是一个根据[豆瓣电影API](https://developers.douban.com/wiki/?title=movie_v2)所做的电影资讯的App
 
-//TODO
+## 下载地址
+[下载地址](http://fir.im/bigboom)
+<img src="screenshot/download_qrcode.png" width = 400>
+
+
+## 相关技术记录
 - [x] Retrofit的封装
 - [x] Glide的封装
 - [x] MVP的初步构建
@@ -12,7 +17,7 @@ RxJava &amp; Retrofit &amp; MVP
 - [x] [RecyclerView悬浮条](http://www.jianshu.com/p/fe69a53502ab)
 - [ ] ScrollView可以固定某一个子View
 - [x] Activity跳转动画兼容5.0以下[TransitionHelper](https://github.com/ImmortalZ/TransitionHelper)
-
+- [ ] 夜间模式
 
 
 ## 开源技术
