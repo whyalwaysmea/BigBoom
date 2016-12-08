@@ -6,11 +6,10 @@ import com.whyalwaysmea.bigboom.bean.MovieListResponse;
 import com.whyalwaysmea.bigboom.bean.WeeklyMovieInfo;
 import com.whyalwaysmea.bigboom.http.ApiManager;
 import com.whyalwaysmea.bigboom.http.HttpMethods;
+import com.whyalwaysmea.bigboom.rx.TransformUtils;
 
 import rx.Subscriber;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Long
@@ -25,9 +24,7 @@ public class MovieListModelImp implements IMovieListModel {
     public void loadTop250(int start, int count, OnLoadCompleteListener<MovieListResponse> listener) {
         ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
         mSubscribe = apiManager.getTop250Movie(start, count)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(TransformUtils.<MovieListResponse>defaultSchedulers())
                 .subscribe(new Subscriber<MovieListResponse>() {
                     @Override
                     public void onCompleted() {
@@ -56,9 +53,7 @@ public class MovieListModelImp implements IMovieListModel {
     public void loadInTheaters(String city, OnLoadCompleteListener<MovieListResponse> listener) {
         ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
         mSubscribe = apiManager.getInTheatersMovie(city)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(TransformUtils.<MovieListResponse>defaultSchedulers())
                 .subscribe(new Subscriber<MovieListResponse>() {
                     @Override
                     public void onCompleted() {
@@ -87,9 +82,7 @@ public class MovieListModelImp implements IMovieListModel {
     public void loadComingSoon(int start, int count, OnLoadCompleteListener<MovieListResponse> listener) {
         ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
         mSubscribe = apiManager.getComingSoonMovie(start, count)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(TransformUtils.<MovieListResponse>defaultSchedulers())
                 .subscribe(new Subscriber<MovieListResponse>() {
                     @Override
                     public void onCompleted() {
@@ -118,9 +111,7 @@ public class MovieListModelImp implements IMovieListModel {
     public void getSearchMovieList(int start,String keyWords, OnLoadCompleteListener<MovieListResponse> listener) {
         ApiManager apiManager = HttpMethods.createService();
         mSearchMovieList = apiManager.getSearchMovieList(start, keyWords, Constants.ID.APIKEY)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(TransformUtils.<MovieListResponse>defaultSchedulers())
                 .subscribe(new Subscriber<MovieListResponse>() {
                     @Override
                     public void onCompleted() {
@@ -147,9 +138,7 @@ public class MovieListModelImp implements IMovieListModel {
     public void loadWeeklyMovies(OnLoadCompleteListener<WeeklyMovieInfo> listener) {
         ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
         mSubscribe = apiManager.getWeeklyMovie(Constants.ID.APIKEY)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(TransformUtils.<WeeklyMovieInfo>defaultSchedulers())
                 .subscribe(new Subscriber<WeeklyMovieInfo>() {
                     @Override
                     public void onCompleted() {
@@ -177,9 +166,7 @@ public class MovieListModelImp implements IMovieListModel {
     public void loadNewMovies(OnLoadCompleteListener<MovieListResponse> listener) {
         ApiManager apiManager = HttpMethods.createService(Constants.URL.MOVIE, ApiManager.class);
         mSubscribe = apiManager.getNewMovies(Constants.ID.APIKEY)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(TransformUtils.<MovieListResponse>defaultSchedulers())
                 .subscribe(new Subscriber<MovieListResponse>() {
                     @Override
                     public void onCompleted() {

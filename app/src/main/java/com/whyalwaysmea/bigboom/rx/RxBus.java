@@ -1,4 +1,4 @@
-package com.whyalwaysmea.bigboom.eventbus;
+package com.whyalwaysmea.bigboom.rx;
 
 import rx.Observable;
 import rx.subjects.PublishSubject;

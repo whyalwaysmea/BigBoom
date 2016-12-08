@@ -9,7 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
 import com.whyalwaysmea.bigboom.Constants;
 import com.whyalwaysmea.bigboom.bean.CastPhoto;
-import com.whyalwaysmea.bigboom.eventbus.RxBus;
+import com.whyalwaysmea.bigboom.rx.RxBus;
 
 import java.util.concurrent.ExecutionException;
 

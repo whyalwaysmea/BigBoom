@@ -14,7 +14,7 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.CastPhoto;
-import com.whyalwaysmea.bigboom.eventbus.RxBus;
+import com.whyalwaysmea.bigboom.rx.RxBus;
 import com.whyalwaysmea.bigboom.module.cast.presenter.CastPhotoPresenterImp;
 import com.whyalwaysmea.bigboom.module.cast.ui.adapter.PhotoAdapter;
 import com.whyalwaysmea.bigboom.module.cast.view.ICastPhotoView;
