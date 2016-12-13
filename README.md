@@ -7,6 +7,11 @@ RxJava &amp; Retrofit &amp; MVP
 [下载地址](http://fir.im/bigboom)
 <img src="screenshot/download_qrcode.png" width = 400>
 
+## 更新日志
+
+V1.0
+* 基本功能实现(浏览，搜索，下载图片，夜间模式)
+
 
 ## 相关技术记录
 - [x] Retrofit的封装

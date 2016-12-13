@@ -100,7 +100,6 @@ public class SearchView {
             KeyBoardUtils.toggleSoftInput(mContext);
             return false;
         });
-
     }
 
     public interface OnSearchClickListener {

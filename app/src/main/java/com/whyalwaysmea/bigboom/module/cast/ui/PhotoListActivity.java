@@ -14,6 +14,8 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.CastPhoto;
+import com.whyalwaysmea.bigboom.di.component.DaggerActivityComponent;
+import com.whyalwaysmea.bigboom.di.module.ActivityModule;
 import com.whyalwaysmea.bigboom.module.cast.presenter.CastPhotoPresenterImp;
 import com.whyalwaysmea.bigboom.module.cast.ui.adapter.PhotoAdapter;
 import com.whyalwaysmea.bigboom.module.cast.view.ICastPhotoView;
@@ -24,6 +26,8 @@ import com.whyalwaysmea.bigboom.view.MyRecyclerView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.android.schedulers.AndroidSchedulers;
@@ -32,6 +36,8 @@ import rx.subscriptions.CompositeSubscription;
 
 public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPresenterImp> implements ICastPhotoView, MyRecyclerView.OnLoadMoreListener {
 
+    @Inject
+    CastPhotoPresenterImp mPresenterImp;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -52,7 +58,8 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
 
     @Override
     protected CastPhotoPresenterImp createPresenter(BaseView view) {
-        return new CastPhotoPresenterImp(this);
+//        return new CastPhotoPresenterImp(this);
+        return null;
     }
 
     @Override
@@ -61,13 +68,20 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
         setContentView(R.layout.activity_photo_list);
         ButterKnife.bind(this);
 
+        DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .build()
+                .inject(this);
+
+
+        mPresenterImp.attachView(this);
         init();
     }
 
     @Override
     protected void initData() {
         mId = getIntent().getStringExtra(Constants.KEY.CASTID);
-        mPresenter.getCastPhoto(mId, start);
+        mPresenterImp.getCastPhoto(mId, start);
 
         mPhotoAdapter = new PhotoAdapter(this);
         mPhotosRecyclerview.setAdapter(mPhotoAdapter);
@@ -149,7 +163,7 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
     @Override
     public void onLoadMore() {
         start += 20;
-        mPresenter.getCastPhoto(mId, start);
+        mPresenterImp.getCastPhoto(mId, start);
     }
 
     @Override
