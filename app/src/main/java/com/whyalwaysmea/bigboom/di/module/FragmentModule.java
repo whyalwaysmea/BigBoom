@@ -3,7 +3,7 @@ package com.whyalwaysmea.bigboom.di.module;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 
-import com.whyalwaysmea.bigboom.di.FragmentScope;
+import com.whyalwaysmea.bigboom.di.scope.FragmentScope;
 
 import dagger.Module;
 import dagger.Provides;

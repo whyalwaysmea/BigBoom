@@ -18,11 +18,11 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.whyalwaysmea.bigboom.base.BaseActivity;
-import com.whyalwaysmea.bigboom.module.menu.ui.AboutActivity;
-import com.whyalwaysmea.bigboom.module.menu.ui.DownloadManagerActivity;
-import com.whyalwaysmea.bigboom.module.menu.ui.GithubActivity;
-import com.whyalwaysmea.bigboom.module.menu.ui.HistoryActivity;
-import com.whyalwaysmea.bigboom.module.movielist.ui.MovieFragment;
+import com.whyalwaysmea.bigboom.view.menu.ui.AboutActivity;
+import com.whyalwaysmea.bigboom.view.menu.ui.DownloadManagerActivity;
+import com.whyalwaysmea.bigboom.view.menu.ui.GithubActivity;
+import com.whyalwaysmea.bigboom.view.menu.ui.HistoryActivity;
+import com.whyalwaysmea.bigboom.view.movielist.ui.MovieFragment;
 import com.whyalwaysmea.bigboom.utils.SPUtils;
 import com.whyalwaysmea.bigboom.utils.StatusBarUtil;
 

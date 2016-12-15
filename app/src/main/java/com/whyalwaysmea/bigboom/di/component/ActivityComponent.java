@@ -2,9 +2,9 @@ package com.whyalwaysmea.bigboom.di.component;
 
 import android.app.Activity;
 
-import com.whyalwaysmea.bigboom.di.ActivityScope;
+import com.whyalwaysmea.bigboom.di.scope.ActivityScope;
 import com.whyalwaysmea.bigboom.di.module.ActivityModule;
-import com.whyalwaysmea.bigboom.module.cast.ui.PhotoListActivity;
+import com.whyalwaysmea.bigboom.view.cast.ui.PhotoListActivity;
 
 import dagger.Component;
 

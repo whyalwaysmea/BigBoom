@@ -2,7 +2,7 @@ package com.whyalwaysmea.bigboom.di.module;
 
 
 import com.whyalwaysmea.bigboom.App;
-import com.whyalwaysmea.bigboom.di.ContextLife;
+import com.whyalwaysmea.bigboom.di.scope.ContextLife;
 
 import javax.inject.Singleton;
 

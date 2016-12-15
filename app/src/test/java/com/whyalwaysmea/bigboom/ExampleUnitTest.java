@@ -1,6 +1,6 @@
 package com.whyalwaysmea.bigboom;
 
-import com.whyalwaysmea.bigboom.module.movielist.view.IMovieListView;
+import com.whyalwaysmea.bigboom.view.movielist.view.IMovieListView;
 
 import org.junit.Test;
 

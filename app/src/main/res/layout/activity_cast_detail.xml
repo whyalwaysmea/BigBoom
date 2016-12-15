@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.whyalwaysmea.bigboom.view.FlexibleScrollView
+        <com.whyalwaysmea.bigboom.widget.FlexibleScrollView
             android:id="@+id/content_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -151,7 +151,7 @@
                     android:padding="10dp"
                     android:text="@string/all_works"/>
             </LinearLayout>
-        </com.whyalwaysmea.bigboom.view.FlexibleScrollView>
+        </com.whyalwaysmea.bigboom.widget.FlexibleScrollView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

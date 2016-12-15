@@ -17,11 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.whyalwaysmea.bigboom.view.MyRecyclerView
+        <com.whyalwaysmea.bigboom.widget.MyRecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </com.whyalwaysmea.bigboom.view.MyRecyclerView>
+        </com.whyalwaysmea.bigboom.widget.MyRecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 

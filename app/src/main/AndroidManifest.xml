@@ -34,29 +34,29 @@
 
         </activity>
         <activity
-            android:name=".module.moviedetail.ui.MovieDetailActivity"
+            android:name=".view.moviedetail.ui.MovieDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
         <activity
-            android:name=".module.moviedetail.ui.ReviewDetailActivity"
+            android:name=".view.moviedetail.ui.ReviewDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
         <activity
-            android:name=".module.cast.ui.PhotoListActivity"
+            android:name=".view.cast.ui.PhotoListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar"/>
         <activity
-            android:name=".module.cast.ui.PhotoActivity"
+            android:name=".view.cast.ui.PhotoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar"/>
         <activity
-            android:name=".module.cast.ui.CastDetailActivity"
+            android:name=".view.cast.ui.CastDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar"/>
         <activity
-            android:name=".module.cast.ui.CastInfoActivity"
+            android:name=".view.cast.ui.CastInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar"/>
 
@@ -64,21 +64,21 @@
         </service>
 
         <activity
-            android:name=".module.cast.ui.AllWorksActivity"
+            android:name=".view.cast.ui.AllWorksActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
         <activity
-            android:name=".module.moviedetail.ui.MoviePhotoListActivity"
+            android:name=".view.moviedetail.ui.MoviePhotoListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
         <activity
-            android:name=".module.moviedetail.ui.MoviePhotoActivity"
+            android:name=".view.moviedetail.ui.MoviePhotoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar"/>
         <activity
-            android:name=".module.movielist.ui.SearchMovieListActivity"
+            android:name=".view.movielist.ui.SearchMovieListActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar"/>
@@ -91,28 +91,28 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-            android:name=".module.player.MoviePlayerActivity"
+            android:name=".view.player.MoviePlayerActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".module.menu.ui.GithubActivity"
+            android:name=".view.menu.ui.GithubActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
         <activity
-            android:name=".module.menu.ui.HistoryActivity"
+            android:name=".view.menu.ui.HistoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
         <activity
-            android:name=".module.menu.ui.DownloadManagerActivity"
+            android:name=".view.menu.ui.DownloadManagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullActionBar">
         </activity>
-        <activity android:name=".module.menu.ui.AboutActivity"
+        <activity android:name=".view.menu.ui.AboutActivity"
                   android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.menu.ui.SplashActivity"
+        <activity android:name=".view.menu.ui.SplashActivity"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

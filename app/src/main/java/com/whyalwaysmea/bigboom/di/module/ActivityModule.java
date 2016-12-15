@@ -2,8 +2,8 @@ package com.whyalwaysmea.bigboom.di.module;
 
 import android.app.Activity;
 
-import com.whyalwaysmea.bigboom.di.ActivityScope;
-import com.whyalwaysmea.bigboom.module.cast.view.ICastPhotoView;
+import com.whyalwaysmea.bigboom.di.scope.ActivityScope;
+import com.whyalwaysmea.bigboom.view.cast.view.ICastPhotoView;
 
 import dagger.Module;
 import dagger.Provides;

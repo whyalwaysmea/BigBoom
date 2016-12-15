@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context="com.whyalwaysmea.bigboom.module.menu.ui.SplashActivity">
+    tools:context="com.whyalwaysmea.bigboom.view.menu.ui.SplashActivity">
 
     <me.wangyuwei.particleview.ParticleView
         android:id="@+id/particleview"

@@ -18,6 +18,7 @@ public class TransformUtils {
                 return tObservable
                         .unsubscribeOn(Schedulers.io())
                         .subscribeOn(Schedulers.io())
+                        .compose(ErrorTransformer.<T>getInstance())
                         .observeOn(AndroidSchedulers.mainThread());
             }
         };
