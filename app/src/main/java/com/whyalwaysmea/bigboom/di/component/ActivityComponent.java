@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.whyalwaysmea.bigboom.di.scope.ActivityScope;
 import com.whyalwaysmea.bigboom.di.module.ActivityModule;
+import com.whyalwaysmea.bigboom.view.cast.ui.PhotoActivity;
 import com.whyalwaysmea.bigboom.view.cast.ui.PhotoListActivity;
 
 import dagger.Component;
@@ -18,4 +19,5 @@ public interface ActivityComponent {
     Activity getActivity();
 
     void inject(PhotoListActivity photoListActivity);
+    void inject(PhotoActivity photoActivity);
 }

@@ -37,7 +37,7 @@ import rx.subscriptions.CompositeSubscription;
 public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPresenterImp> implements ICastPhotoView, MyRecyclerView.OnLoadMoreListener {
 
     @Inject
-    CastPhotoPresenterImp mPresenterImp;
+    CastPhotoPresenterImp mPresenter;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -74,14 +74,14 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
                 .inject(this);
 
 
-        mPresenterImp.attachView(this);
+        mPresenter.attachView(this);
         init();
     }
 
     @Override
     protected void initData() {
         mId = getIntent().getStringExtra(Constants.KEY.CASTID);
-        mPresenterImp.getCastPhoto(mId, start);
+        mPresenter.getCastPhoto(mId, start);
 
         mPhotoAdapter = new PhotoAdapter(this);
         mPhotosRecyclerview.setAdapter(mPhotoAdapter);
@@ -163,7 +163,7 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
     @Override
     public void onLoadMore() {
         start += 20;
-        mPresenterImp.getCastPhoto(mId, start);
+        mPresenter.getCastPhoto(mId, start);
     }
 
     @Override

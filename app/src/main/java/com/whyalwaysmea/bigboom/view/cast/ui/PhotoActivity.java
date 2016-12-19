@@ -21,15 +21,19 @@ import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.CastDetail;
 import com.whyalwaysmea.bigboom.bean.CastPhoto;
+import com.whyalwaysmea.bigboom.di.component.DaggerActivityComponent;
+import com.whyalwaysmea.bigboom.di.module.ActivityModule;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
-import com.whyalwaysmea.bigboom.view.cast.presenter.CastPhotoPresenterImp;
-import com.whyalwaysmea.bigboom.view.cast.view.ICastPhotoView;
 import com.whyalwaysmea.bigboom.utils.DownLoadUtils;
 import com.whyalwaysmea.bigboom.utils.PermissionUtil;
+import com.whyalwaysmea.bigboom.view.cast.presenter.CastPhotoPresenterImp;
+import com.whyalwaysmea.bigboom.view.cast.view.ICastPhotoView;
 import com.whyalwaysmea.bigboom.widget.HackyViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +46,9 @@ public class PhotoActivity extends  MvpActivity<ICastPhotoView, CastPhotoPresent
     Toolbar mToolbar;
     @BindView(R.id.viewPager)
     HackyViewPager mViewPager;
+
+    @Inject
+    CastPhotoPresenterImp mPresenter;
 
     private int mPosition;
     private int totalSize;
@@ -58,7 +65,8 @@ public class PhotoActivity extends  MvpActivity<ICastPhotoView, CastPhotoPresent
 
     @Override
     protected CastPhotoPresenterImp createPresenter(BaseView view) {
-        return new CastPhotoPresenterImp(this);
+//        return new CastPhotoPresenterImp(this);
+        return null;
     }
 
     @Override
@@ -67,6 +75,10 @@ public class PhotoActivity extends  MvpActivity<ICastPhotoView, CastPhotoPresent
         setContentView(R.layout.activity_photo);
         ButterKnife.bind(this);
 
+        DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .build()
+                .inject(this);
         init();
     }
 

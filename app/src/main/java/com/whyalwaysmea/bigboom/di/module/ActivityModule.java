@@ -15,10 +15,10 @@ import dagger.Provides;
 @Module
 public class ActivityModule {
     private Activity mActivity;
-    private ICastPhotoView mView;
+    private ICastPhotoView mICastPhotoView;
 
     public ActivityModule(ICastPhotoView view) {
-        this.mView = view;
+        this.mICastPhotoView = view;
     }
 
     @Provides
@@ -29,5 +29,5 @@ public class ActivityModule {
 
     @Provides
     @ActivityScope
-    public ICastPhotoView provideView() {return this.mView;}
+    public ICastPhotoView provideCastPhotoView() {return this.mICastPhotoView;}
 }

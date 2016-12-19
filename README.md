@@ -22,6 +22,8 @@ RxJava &amp; Retrofit &amp; MVP
 V1.0
 * 基本功能实现(浏览，搜索，下载图片，夜间模式)
 
+v1.1
+* 尝试加入dagger用于管理Presenter，ImageLoader，Retrofit等
 
 ## 相关技术记录
 - [x] Retrofit的封装
