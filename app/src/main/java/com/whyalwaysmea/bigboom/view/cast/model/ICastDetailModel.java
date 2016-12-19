@@ -1,9 +1,10 @@
 package com.whyalwaysmea.bigboom.view.cast.model;
 
 import com.whyalwaysmea.bigboom.base.BaseModel;
-import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.CastDetail;
 import com.whyalwaysmea.bigboom.bean.CastWork;
+
+import rx.Observable;
 
 /**
  * Created by Long
@@ -11,8 +12,8 @@ import com.whyalwaysmea.bigboom.bean.CastWork;
  */
 
 public interface ICastDetailModel extends BaseModel{
-    void loadCastDetails(String id, OnLoadCompleteListener<CastDetail> onLoadCompleteListener);
+    Observable<CastDetail> loadCastDetails(String id);
 
 
-    void loadCastWorks(String id, int start, OnLoadCompleteListener<CastWork> workOnLoadCompleteListener);
+    Observable<CastWork> loadCastWorks(String id, int start);
 }

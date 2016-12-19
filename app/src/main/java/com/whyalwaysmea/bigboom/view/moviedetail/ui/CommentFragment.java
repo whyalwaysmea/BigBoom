@@ -11,12 +11,16 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpFragment;
 import com.whyalwaysmea.bigboom.bean.Comment;
+import com.whyalwaysmea.bigboom.di.component.DaggerMovieComponent;
+import com.whyalwaysmea.bigboom.di.module.MovieModule;
 import com.whyalwaysmea.bigboom.view.moviedetail.presenter.MovieCommentPresenterImp;
 import com.whyalwaysmea.bigboom.view.moviedetail.ui.adapter.CommentAdapter;
 import com.whyalwaysmea.bigboom.view.moviedetail.view.IMovieCommentView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -35,6 +39,9 @@ public class CommentFragment extends MvpFragment<IMovieCommentView, MovieComment
     private List<Comment.CommentsBean> mCommentsBeanList;
     private String mId;
 
+    @Inject
+    MovieCommentPresenterImp mPresenter;
+
     public static CommentFragment newInstance(String id) {
         
         Bundle args = new Bundle();
@@ -47,7 +54,15 @@ public class CommentFragment extends MvpFragment<IMovieCommentView, MovieComment
 
     @Override
     protected MovieCommentPresenterImp createPresenter(BaseView view) {
-        return new MovieCommentPresenterImp(this);
+//        return new MovieCommentPresenterImp(this);
+        DaggerMovieComponent
+                .builder()
+                .movieModule(new MovieModule(this))
+                .build()
+                .inject(this);
+
+
+        return null;
     }
     
     @Override

@@ -11,11 +11,15 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.MoviePhoto;
+import com.whyalwaysmea.bigboom.di.component.DaggerMovieComponent;
+import com.whyalwaysmea.bigboom.di.module.MovieModule;
 import com.whyalwaysmea.bigboom.view.moviedetail.presenter.MoviePhotoListPresenterImp;
 import com.whyalwaysmea.bigboom.view.moviedetail.ui.adapter.MoviePhotoListAdapter;
 import com.whyalwaysmea.bigboom.view.moviedetail.view.IMoviePhotoListView;
 import com.whyalwaysmea.bigboom.widget.GridMarginDecoration;
 import com.whyalwaysmea.bigboom.widget.MyRecyclerView;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,9 +38,13 @@ public class MoviePhotoListActivity extends MvpActivity<IMoviePhotoListView, Mov
     private String mMovieId;
     private int start;
 
+    @Inject
+    MoviePhotoListPresenterImp mPresenter;
+
     @Override
     protected MoviePhotoListPresenterImp createPresenter(BaseView view) {
-        return new MoviePhotoListPresenterImp(this);
+//        return new MoviePhotoListPresenterImp(this);
+        return null;
     }
 
     @Override
@@ -44,7 +52,11 @@ public class MoviePhotoListActivity extends MvpActivity<IMoviePhotoListView, Mov
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_photo_list);
         ButterKnife.bind(this);
-
+        DaggerMovieComponent
+                .builder()
+                .movieModule(new MovieModule(this))
+                .build()
+                .inject(this);
         init();
     }
 

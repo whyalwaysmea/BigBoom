@@ -1,12 +1,18 @@
 package com.whyalwaysmea.bigboom.view.cast.presenter;
 
 import com.whyalwaysmea.bigboom.base.BasePresenter;
-import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.CastDetail;
 import com.whyalwaysmea.bigboom.bean.CastWork;
+import com.whyalwaysmea.bigboom.http.exception.ResponeThrowable;
+import com.whyalwaysmea.bigboom.rx.RxSubscriber;
 import com.whyalwaysmea.bigboom.view.cast.model.CastDetailModelImp;
 import com.whyalwaysmea.bigboom.view.cast.model.ICastDetailModel;
 import com.whyalwaysmea.bigboom.view.cast.view.ICastDetailView;
+
+import javax.inject.Inject;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
 
 /**
  * Created by Long
@@ -17,6 +23,7 @@ public class CastPresenterImp extends BasePresenter<ICastDetailView> implements 
 
     private ICastDetailModel mCastDetailModel;
 
+    @Inject
     public CastPresenterImp(ICastDetailView iCastDetailView) {
         super(iCastDetailView);
         mCastDetailModel = new CastDetailModelImp();
@@ -24,37 +31,53 @@ public class CastPresenterImp extends BasePresenter<ICastDetailView> implements 
 
     @Override
     public void getCastDetail(String id) {
-        mView.showLoading();
-        mCastDetailModel.loadCastDetails(id, new OnLoadCompleteListener<CastDetail>() {
-            @Override
-            public void onLoadSussess(CastDetail castDetail) {
-                mView.hideLoading();
-                mView.showDetail(castDetail);
-            }
+        mCastDetailModel
+                .loadCastDetails(id)
+                .doOnSubscribe(new Action0() {
+                    @Override
+                    public void call() {
+                        mView.showLoading();
+                    }
+                })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new RxSubscriber<CastDetail>() {
+                    @Override
+                    protected void onError(ResponeThrowable responeThrowable) {
+                        mView.hideLoading();
+                        mView.showToast(responeThrowable.message);
+                    }
 
-            @Override
-            public void onLoadFailed(String error) {
-                mView.hideLoading();
-                mView.showToast(error);
-            }
-        });
+                    @Override
+                    public void onNext(CastDetail castDetail) {
+                        mView.hideLoading();
+                        mView.showDetail(castDetail);
+                    }
+                });
     }
 
 
     @Override
     public void getCastWorks(String id, int start) {
-        mCastDetailModel.loadCastWorks(id, start, new OnLoadCompleteListener<CastWork>() {
-            @Override
-            public void onLoadSussess(CastWork castWork) {
-                mView.hideLoading();
-                mView.showDetail(castWork);
-            }
+        mCastDetailModel.loadCastWorks(id, start)
+                .doOnSubscribe(new Action0() {
+                    @Override
+                    public void call() {
+                        mView.showLoading();
+                    }
+                })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new RxSubscriber<CastWork>() {
+                    @Override
+                    protected void onError(ResponeThrowable responeThrowable) {
+                        mView.hideLoading();
+                        mView.showToast(responeThrowable.message);
+                    }
 
-            @Override
-            public void onLoadFailed(String error) {
-                mView.hideLoading();
-                mView.showToast(error);
-            }
-        });
+                    @Override
+                    public void onNext(CastWork castWork) {
+                        mView.hideLoading();
+                        mView.showDetail(castWork);
+                    }
+                });
     }
 }

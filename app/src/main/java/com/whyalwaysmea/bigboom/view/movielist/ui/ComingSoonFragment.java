@@ -11,6 +11,8 @@ import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpFragment;
 import com.whyalwaysmea.bigboom.bean.MovieInfo;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
+import com.whyalwaysmea.bigboom.di.component.DaggerMovieListComponent;
+import com.whyalwaysmea.bigboom.di.module.MovieListModule;
 import com.whyalwaysmea.bigboom.view.movielist.presenter.MovieListPresenterImp;
 import com.whyalwaysmea.bigboom.view.movielist.ui.adapter.ComingSoonMovieAdapter;
 import com.whyalwaysmea.bigboom.view.movielist.view.IMovieListView;
@@ -18,6 +20,8 @@ import com.whyalwaysmea.bigboom.widget.MyRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -36,6 +40,9 @@ public class ComingSoonFragment extends MvpFragment<IMovieListView, MovieListPre
     private ComingSoonMovieAdapter mComingSoonMovieAdapter;
     private List<MovieInfo> mMovieInfoList;
 
+    @Inject
+    MovieListPresenterImp mPresenter;
+
     public static ComingSoonFragment newInstance() {
         
         Bundle args = new Bundle();
@@ -48,7 +55,13 @@ public class ComingSoonFragment extends MvpFragment<IMovieListView, MovieListPre
 
     @Override
     protected MovieListPresenterImp createPresenter(BaseView view) {
-        return new MovieListPresenterImp(this);
+
+        DaggerMovieListComponent.builder()
+                .movieListModule(new MovieListModule(this))
+                .build()
+                .inject(this);
+
+        return null;
     }
 
     @Override

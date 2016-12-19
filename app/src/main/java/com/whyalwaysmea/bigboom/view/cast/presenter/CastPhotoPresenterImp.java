@@ -1,9 +1,6 @@
 package com.whyalwaysmea.bigboom.view.cast.presenter;
 
-import android.support.annotation.NonNull;
-
 import com.whyalwaysmea.bigboom.base.BasePresenter;
-import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.OnLoadCompleteListener;
 import com.whyalwaysmea.bigboom.bean.CastPhoto;
 import com.whyalwaysmea.bigboom.di.scope.ActivityScope;
@@ -52,7 +49,4 @@ public class CastPhotoPresenterImp extends BasePresenter<ICastPhotoView> impleme
         mPhotoModel.loadCastPhoto(id, start, this);
     }
 
-    public void attachView(@NonNull BaseView view) {
-        mView = (ICastPhotoView) view;
-    }
 }

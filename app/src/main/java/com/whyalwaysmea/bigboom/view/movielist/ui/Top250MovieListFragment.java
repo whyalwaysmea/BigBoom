@@ -11,10 +11,14 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpFragment;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
+import com.whyalwaysmea.bigboom.di.component.DaggerMovieListComponent;
+import com.whyalwaysmea.bigboom.di.module.MovieListModule;
 import com.whyalwaysmea.bigboom.view.movielist.presenter.MovieListPresenterImp;
 import com.whyalwaysmea.bigboom.view.movielist.ui.adapter.Top250MovieAdapter;
 import com.whyalwaysmea.bigboom.view.movielist.view.IMovieListView;
 import com.whyalwaysmea.bigboom.widget.MyRecyclerView;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -31,7 +35,8 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private GridLayoutManager mLayoutManager;
-    private MovieListPresenterImp mMovieListPresenter;
+    @Inject
+    MovieListPresenterImp mPresenter;
     private Top250MovieAdapter mTop250MovieAdapter;
     private int start = 0;
     private int count = 20;
@@ -53,8 +58,11 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
 
     @Override
     protected MovieListPresenterImp createPresenter(BaseView view) {
-        mMovieListPresenter = new MovieListPresenterImp(this);
-        return mMovieListPresenter;
+        DaggerMovieListComponent.builder()
+                .movieListModule(new MovieListModule(this))
+                .build()
+                .inject(this);
+        return null;
     }
 
     @Override
@@ -93,7 +101,7 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
     @Override
     public void onRefresh() {
         start = 0;
-        mMovieListPresenter.loadTop250(start, count);
+        mPresenter.loadTop250(start, count);
     }
 
     @Override
@@ -112,7 +120,7 @@ public class Top250MovieListFragment extends MvpFragment<IMovieListView, MovieLi
     @Override
     public void onLoadMore() {
         if(!mSwipeRefreshLayout.isRefreshing()) {
-            mMovieListPresenter.loadTop250(start, count);
+            mPresenter.loadTop250(start, count);
         }
     }
 

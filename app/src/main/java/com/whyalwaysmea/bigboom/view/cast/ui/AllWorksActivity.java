@@ -10,10 +10,14 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.CastWork;
+import com.whyalwaysmea.bigboom.di.component.DaggerCastComponent;
+import com.whyalwaysmea.bigboom.di.module.CastModule;
 import com.whyalwaysmea.bigboom.view.cast.presenter.CastPresenterImp;
 import com.whyalwaysmea.bigboom.view.cast.ui.adapter.AllWorksAdapter;
 import com.whyalwaysmea.bigboom.view.cast.view.ICastDetailView;
 import com.whyalwaysmea.bigboom.widget.MyRecyclerView;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,9 +36,13 @@ public class AllWorksActivity extends MvpActivity<ICastDetailView, CastPresenter
     private AllWorksAdapter mAllWorksAdapter;
     private int start;
 
+    @Inject
+    CastPresenterImp mPresenter;
+
     @Override
     protected CastPresenterImp createPresenter(BaseView view) {
-        return new CastPresenterImp(this);
+//        return new CastPresenterImp(this);
+        return null;
     }
 
     @Override
@@ -42,6 +50,12 @@ public class AllWorksActivity extends MvpActivity<ICastDetailView, CastPresenter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_works);
         ButterKnife.bind(this);
+
+        DaggerCastComponent
+                .builder()
+                .castModule(new CastModule(this))
+                .build()
+                .inject(this);
 
         init();
     }

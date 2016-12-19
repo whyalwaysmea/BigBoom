@@ -10,6 +10,8 @@ import com.whyalwaysmea.bigboom.view.moviedetail.model.MovieDetailModelImp;
 import com.whyalwaysmea.bigboom.view.moviedetail.view.IMovieDetailView;
 import com.whyalwaysmea.bigboom.utils.NetworkUtils;
 
+import javax.inject.Inject;
+
 /**
  * Created by Long
  * on 2016/9/20.
@@ -18,6 +20,7 @@ public class MovieDetailPresenterImp extends BasePresenter<IMovieDetailView> imp
 
     private IMovieDetailModel mIMovieDetailModel;
 
+    @Inject
     public MovieDetailPresenterImp(IMovieDetailView iMovieDetailView) {
         super(iMovieDetailView);
         mIMovieDetailModel = new MovieDetailModelImp();

@@ -10,6 +10,8 @@ import com.whyalwaysmea.bigboom.view.moviedetail.model.MovieReviewModelImp;
 import com.whyalwaysmea.bigboom.view.moviedetail.view.IMovieReviewView;
 import com.whyalwaysmea.bigboom.utils.NetworkUtils;
 
+import javax.inject.Inject;
+
 /**
  * Created by Long
  * on 2016/10/24.
@@ -19,6 +21,7 @@ public class MovieReviewPresenterImp extends BasePresenter<IMovieReviewView> imp
 
     private IMovieReviewModel mIMovieReviewModel;
 
+    @Inject
     public MovieReviewPresenterImp(IMovieReviewView iMovieReviewView) {
         super(iMovieReviewView);
         mIMovieReviewModel = new MovieReviewModelImp();

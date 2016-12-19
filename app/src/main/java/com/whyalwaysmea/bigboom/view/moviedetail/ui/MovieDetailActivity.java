@@ -37,6 +37,8 @@ import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.MovieDetail;
 import com.whyalwaysmea.bigboom.bean.db.DBMovie;
 import com.whyalwaysmea.bigboom.db.DBManager;
+import com.whyalwaysmea.bigboom.di.component.DaggerMovieComponent;
+import com.whyalwaysmea.bigboom.di.module.MovieModule;
 import com.whyalwaysmea.bigboom.imageloader.ImageUtils;
 import com.whyalwaysmea.bigboom.view.moviedetail.presenter.MovieDetailPresenterImp;
 import com.whyalwaysmea.bigboom.view.moviedetail.ui.adapter.CommentPageAdapter;
@@ -50,6 +52,8 @@ import com.whyalwaysmea.bigboom.widget.ExpandableTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -109,6 +113,9 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
     private DaoSession mDaoSession;
     private DBMovieDao mDbMovieDao;
 
+    @Inject
+    MovieDetailPresenterImp mPresenter;
+
     @Override
     protected MovieDetailPresenterImp createPresenter(BaseView view) {
         return new MovieDetailPresenterImp(this);
@@ -124,7 +131,13 @@ public class MovieDetailActivity extends MvpActivity<IMovieDetailView, MovieDeta
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
         ButterKnife.bind(this);
-        mPresenter = createPresenter(this);
+
+        DaggerMovieComponent
+                .builder()
+                .movieModule(new MovieModule(this))
+                .build()
+                .inject(this);
+
         StatusBarUtil.setTransparent(this);
         initView();
         initData();

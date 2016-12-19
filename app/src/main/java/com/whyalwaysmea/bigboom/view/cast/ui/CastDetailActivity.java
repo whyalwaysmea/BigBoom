@@ -24,6 +24,8 @@ import com.whyalwaysmea.bigboom.bean.CastDetail;
 import com.whyalwaysmea.bigboom.bean.CastWork;
 import com.whyalwaysmea.bigboom.bean.db.DBCast;
 import com.whyalwaysmea.bigboom.db.DBManager;
+import com.whyalwaysmea.bigboom.di.component.DaggerCastComponent;
+import com.whyalwaysmea.bigboom.di.module.CastModule;
 import com.whyalwaysmea.bigboom.view.cast.presenter.CastPresenterImp;
 import com.whyalwaysmea.bigboom.view.cast.ui.adapter.CastAdapter;
 import com.whyalwaysmea.bigboom.view.cast.ui.adapter.CastWorksAdapter;
@@ -33,6 +35,8 @@ import com.whyalwaysmea.bigboom.widget.FlexibleScrollView;
 import com.whyalwaysmea.bigboom.widget.GridMarginDecoration;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,9 +79,13 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
     private CastAdapter mCastAdapter;
     private CastWorksAdapter mCastWorksAdapter;
 
+    @Inject
+    CastPresenterImp mPresenter;
+
     @Override
     protected CastPresenterImp createPresenter(BaseView view) {
-        return new CastPresenterImp(this);
+//        return new CastPresenterImp(this);
+        return null;
     }
 
 
@@ -86,6 +94,12 @@ public class CastDetailActivity extends MvpActivity<ICastDetailView, CastPresent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cast_detail);
         ButterKnife.bind(this);
+
+        DaggerCastComponent
+                .builder()
+                .castModule(new CastModule(this))
+                .build()
+                .inject(this);
 
         init();
     }

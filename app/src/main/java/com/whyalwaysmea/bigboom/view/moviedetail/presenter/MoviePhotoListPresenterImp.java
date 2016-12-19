@@ -6,6 +6,8 @@ import com.whyalwaysmea.bigboom.bean.MoviePhoto;
 import com.whyalwaysmea.bigboom.view.moviedetail.model.MoviePhotoListModelImp;
 import com.whyalwaysmea.bigboom.view.moviedetail.view.IMoviePhotoListView;
 
+import javax.inject.Inject;
+
 /**
  * Created by Long
  * on 2016/11/11.
@@ -15,6 +17,7 @@ public class MoviePhotoListPresenterImp extends BasePresenter<IMoviePhotoListVie
 
     private MoviePhotoListModelImp mMoviePhotoListModelImp;
 
+    @Inject
     public MoviePhotoListPresenterImp(IMoviePhotoListView iMoviePhotoListView) {
         super(iMoviePhotoListView);
         mMoviePhotoListModelImp = new MoviePhotoListModelImp();

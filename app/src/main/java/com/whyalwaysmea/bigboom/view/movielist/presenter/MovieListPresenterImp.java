@@ -9,6 +9,8 @@ import com.whyalwaysmea.bigboom.view.movielist.model.IMovieListModel;
 import com.whyalwaysmea.bigboom.view.movielist.model.MovieListModelImp;
 import com.whyalwaysmea.bigboom.view.movielist.view.IMovieListView;
 
+import javax.inject.Inject;
+
 /**
  * Created by Long
  * on 2016/9/5.
@@ -17,6 +19,7 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
 
     private IMovieListModel mMovieListModel;
 
+    @Inject
     public MovieListPresenterImp(IMovieListView iMovieListView) {
         super(iMovieListView);
         mMovieListModel = new MovieListModelImp();
@@ -25,10 +28,6 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
 
     @Override
     public void loadTop250(int start, int count) {
-//        if(!NetworkUtils.isConnected(App.getApplication())) {
-//            mView.hideLoading();
-//            mView.showToast(App.getApplication().getResources().getString(R.string.no_network));
-//        }
         mView.showLoading();
         mMovieListModel.loadTop250(start, count, this);
 
@@ -36,10 +35,6 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
 
     @Override
     public void loadInTheaters(@Nullable String city) {
-//        if(!NetworkUtils.isConnected(App.getApplication())) {
-//            mView.hideLoading();
-//            mView.showToast(App.getApplication().getResources().getString(R.string.no_network));
-//        }
         mView.showLoading();
         mMovieListModel.loadInTheaters(city, this);
 
@@ -47,10 +42,6 @@ public class MovieListPresenterImp extends BasePresenter<IMovieListView> impleme
 
     @Override
     public void loadComingSoon(int start, int count) {
-//        if(!NetworkUtils.isConnected(App.getApplication())) {
-//            mView.hideLoading();
-//            mView.showToast(App.getApplication().getResources().getString(R.string.no_network));
-//        }
         mView.showLoading();
         mMovieListModel.loadComingSoon(start, count, this);
 

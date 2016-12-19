@@ -14,8 +14,8 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpActivity;
 import com.whyalwaysmea.bigboom.bean.CastPhoto;
-import com.whyalwaysmea.bigboom.di.component.DaggerActivityComponent;
-import com.whyalwaysmea.bigboom.di.module.ActivityModule;
+import com.whyalwaysmea.bigboom.di.component.DaggerCastComponent;
+import com.whyalwaysmea.bigboom.di.module.CastModule;
 import com.whyalwaysmea.bigboom.view.cast.presenter.CastPhotoPresenterImp;
 import com.whyalwaysmea.bigboom.view.cast.ui.adapter.PhotoAdapter;
 import com.whyalwaysmea.bigboom.view.cast.view.ICastPhotoView;
@@ -68,13 +68,11 @@ public class PhotoListActivity extends MvpActivity<ICastPhotoView, CastPhotoPres
         setContentView(R.layout.activity_photo_list);
         ButterKnife.bind(this);
 
-        DaggerActivityComponent.builder()
-                .activityModule(new ActivityModule(this))
+        DaggerCastComponent.builder()
+                .castModule(new CastModule(this))
                 .build()
                 .inject(this);
 
-
-        mPresenter.attachView(this);
         init();
     }
 

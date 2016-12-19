@@ -10,11 +10,15 @@ import com.whyalwaysmea.bigboom.R;
 import com.whyalwaysmea.bigboom.base.BaseView;
 import com.whyalwaysmea.bigboom.base.MvpFragment;
 import com.whyalwaysmea.bigboom.bean.MovieListResponse;
+import com.whyalwaysmea.bigboom.di.component.DaggerMovieListComponent;
+import com.whyalwaysmea.bigboom.di.module.MovieListModule;
 import com.whyalwaysmea.bigboom.view.movielist.presenter.MovieListPresenterImp;
 import com.whyalwaysmea.bigboom.view.movielist.ui.adapter.InTheatersMovieAdapter;
 import com.whyalwaysmea.bigboom.view.movielist.view.IMovieListView;
 import com.whyalwaysmea.bigboom.widget.GridMarginDecoration;
 import com.whyalwaysmea.bigboom.widget.MyRecyclerView;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -29,8 +33,8 @@ public class InTheatersMovieListFragment extends MvpFragment<IMovieListView, Mov
     @BindView(R.id.swiperefreshlayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-
-    private MovieListPresenterImp mMovieListPresenterImp;
+    @Inject
+    MovieListPresenterImp mPresenter;
     private GridLayoutManager mLayoutManager;
     private InTheatersMovieAdapter mInTheatersMovieAdapter;
 
@@ -50,8 +54,11 @@ public class InTheatersMovieListFragment extends MvpFragment<IMovieListView, Mov
 
     @Override
     protected MovieListPresenterImp createPresenter(BaseView view) {
-        mMovieListPresenterImp = new MovieListPresenterImp(this);
-        return mMovieListPresenterImp;
+        DaggerMovieListComponent.builder()
+                .movieListModule(new MovieListModule(this))
+                .build()
+                .inject(this);
+        return null;
     }
 
     @Override
@@ -95,7 +102,7 @@ public class InTheatersMovieListFragment extends MvpFragment<IMovieListView, Mov
 
     @Override
     public void onRefresh() {
-        mMovieListPresenterImp.loadInTheaters(null);
+        mPresenter.loadInTheaters(null);
     }
 
     @Override

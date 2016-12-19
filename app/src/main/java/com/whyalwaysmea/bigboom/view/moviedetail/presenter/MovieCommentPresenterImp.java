@@ -6,6 +6,8 @@ import com.whyalwaysmea.bigboom.bean.Comment;
 import com.whyalwaysmea.bigboom.view.moviedetail.model.MovieCommentModelImp;
 import com.whyalwaysmea.bigboom.view.moviedetail.view.IMovieCommentView;
 
+import javax.inject.Inject;
+
 /**
  * Created by Long
  * on 2016/10/26.
@@ -15,6 +17,7 @@ public class MovieCommentPresenterImp extends BasePresenter<IMovieCommentView> i
 
     private MovieCommentModelImp mCommentModel;
 
+    @Inject
     public MovieCommentPresenterImp(IMovieCommentView iMovieCommentView) {
         super(iMovieCommentView);
         mCommentModel = new MovieCommentModelImp();
