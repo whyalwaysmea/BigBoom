@@ -3,6 +3,8 @@ RxJava &amp; Retrofit &amp; MVP
 
 这是一个根据[豆瓣电影API](https://developers.douban.com/wiki/?title=movie_v2)所做的电影资讯的App
 
+**版权说明：该项目纯属练手项目，不作为商用项目！有涉及到侵权请告知删除，涉及商用侵权与本人无关！**
+
 ## 下载地址
 [下载地址](http://fir.im/bigboom)
 <img src="screenshot/download_qrcode.png" width = 400>
@@ -39,6 +41,8 @@ V1.0
 11. [leakcanary](https://github.com/square/leakcanary)
 
 ## 效果图
+<img src="screenshot/gif1.gif" width = 400>
+<img src="screenshot/gif2.gif" width = 400>
 
 <img src="screenshot/1.jpg" width = 400>
 <img src="screenshot/2.jpg" width = 400>
