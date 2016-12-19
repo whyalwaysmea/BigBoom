@@ -9,6 +9,14 @@ RxJava &amp; Retrofit &amp; MVP
 [下载地址](http://fir.im/bigboom)
 <img src="screenshot/download_qrcode.png" width = 400>
 
+## 功能说明
+* 浏览电影资讯，按类型分为：正在热映、将要上映、TOP250
+* 电影、影人资料搜索
+* 影人图片、剧照下载
+* 预告片播放，弹幕
+* 浏览记录保存
+* 夜间模式
+
 ## 更新日志
 
 V1.0
